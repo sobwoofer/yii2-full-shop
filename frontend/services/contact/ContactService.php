@@ -28,8 +28,6 @@ class ContactService
             ->compose()
             ->setTo($this->adminEmail)
             ->setSubject($form->subject)
-//           use global email from mail config
-//            ->setFrom($this->supportEmail)
             ->setTextBody($form->body)
             ->send();
 

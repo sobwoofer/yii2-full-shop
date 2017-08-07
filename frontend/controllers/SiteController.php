@@ -28,6 +28,7 @@ class SiteController extends Controller
         $module,
         PasswordResetService $passwordResetService,
         ContactService $contactService,
+        SignupService $signupService,
         array $config = [])
     {
         parent::__construct($id, $module, $config);
@@ -173,10 +174,21 @@ class SiteController extends Controller
         $form = new SignupForm();
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            $user = (new SignupService())->signup($form);
-            if (Yii::$app->getUser()->login($user)) {
+            try {
+                $this->signupService->signup($form);
+                Yii::$app->session->setFlash('success', 'Check your email furthet instructions.');
                 return $this->goHome();
+
+            } catch (\DomainException $e) {
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
             }
+
+
+//            $user = $this->signupService->signup($form);
+//            if (Yii::$app->getUser()->login($user)) {
+//                return $this->goHome();
+//            }
 //            try {
 //                $user = (new SignupService())->signup($form);
 //                if (Yii::$app->getUser()->login($user)) {
@@ -191,6 +203,21 @@ class SiteController extends Controller
         return $this->render('signup', [
             'model' => $form,
         ]);
+    }
+
+    public function actionConfirm($token)
+    {
+        try {
+            $this->actionSignup()->confirm($token);
+            Yii::$app->session->setFlash('success', 'Your email is confirmed');
+            return $this->redirect(['login']);
+        } catch (\DomainException $e) {
+            Yii::$app->errorHandler->logException($e);
+            Yii::$app->session->setFlash('error', $e->getMessage());
+            return $this->goHome();
+        }
+
+
     }
 
     /**

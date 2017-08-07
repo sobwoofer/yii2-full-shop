@@ -1,18 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: volynets
- * Date: 07.08.17
- * Time: 13:16
- */
 
 /* @var $this yii\web\View */
-/* @var $user common\entities\User */
+/* @var $user \common\entities\User */
 
-$resetLink = Yii::$app->urlManager->createAbsoluteUrl(['site/reset-password', 'token' => $user->password_reset_token]);
+$confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['site/confirm', 'token' => $user->email_confirm_token]);
 ?>
 Hello <?= $user->username ?>,
 
-Follow the link below to reset your password:
+Follow the link below to confirm your email:
 
-<?= $resetLink ?>
+<?= $confirmLink ?>

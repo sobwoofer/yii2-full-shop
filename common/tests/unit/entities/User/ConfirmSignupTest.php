@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: volynets
- * Date: 04.08.17
- * Time: 13:15
- */
 
 namespace common\tests\unit\entities\User;
-
 
 use Codeception\Test\Unit;
 use common\entities\User;
@@ -18,7 +11,7 @@ class ConfirmSignupTest extends Unit
     {
         $user = new User([
             'status' => User::STATUS_WAIT,
-            'email_confirm_token' => 'token'
+            'email_confirm_token' => 'token',
         ]);
 
         $user->confirmSignup();
@@ -35,8 +28,8 @@ class ConfirmSignupTest extends Unit
             'email_confirm_token' => null,
         ]);
 
-        $this->expectExceptionMessage('User is already active');
+        $this->expectExceptionMessage('User is already active.');
+
         $user->confirmSignup();
     }
-
 }

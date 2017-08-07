@@ -9,6 +9,7 @@
 namespace frontend\services\auth;
 
 use common\entities\User;
+use common\repositories\UserRepository;
 use frontend\forms\PasswordResetRequestForm;
 use frontend\forms\ResetPasswordForm;
 use Yii;
@@ -17,15 +18,17 @@ use yii\mail\MailerInterface;
 class PasswordResetService
 {
     private $mailer;
+    private $users;
 
-    public function __construct(MailerInterface $mailer)
+    public function __construct(UserRepository $users, MailerInterface $mailer)
     {
         $this->mailer = $mailer;
+        $this->users = $users;
     }
 
     public function request(PasswordResetRequestForm $form): void
     {
-        $user = $this->getByEmail($form->email);
+        $user = $this->users->getByEmail($form->email);
 
         if (!$user->isActive()) {
             throw new \DomainException('User is not active');
@@ -35,7 +38,7 @@ class PasswordResetService
 
         $user->requestPasswordReset();
 
-        $this->save($user);
+        $this->users->save($user);
 
         $send = $this->mailer
             ->compose(
@@ -57,16 +60,16 @@ class PasswordResetService
         if (empty($token) || !is_string($token)) {
             throw new \DomainException('Password reset token cancot be blank');
         }
-        if (!$this->existsByPasswordResetToken($token)) {
+        if (!$this->users->existsByPasswordResetToken($token)) {
             throw new \DomainException('Wrong password reset token');
         }
     }
 
     public function reset(string $token, ResetPasswordForm $form):void
     {
-        $user = $this->getByPasswordResetToken($token);
+        $user = $this->users->getByPasswordResetToken($token);
         $user->resetPassword($form->password);
-        $this->save($user);
+        $this->users->save($user);
     }
 
 

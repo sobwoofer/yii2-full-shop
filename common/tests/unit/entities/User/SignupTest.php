@@ -1,24 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: volynets
- * Date: 03.08.17
- * Time: 13:48
- */
 
 namespace common\tests\unit\entities\User;
 
 use Codeception\Test\Unit;
 use common\entities\User;
 
-class RequestSignupTest extends Unit
+class SignupTest extends Unit
 {
     public function testSuccess()
     {
         $user = User::requestSignup(
-          $username = 'username',
-          $email = 'email@site.com',
-          $password = 'password'
+            $username = 'username',
+            $email = 'email@site.com',
+            $password = 'password'
         );
 
         $this->assertEquals($username, $user->username);
@@ -27,6 +21,7 @@ class RequestSignupTest extends Unit
         $this->assertNotEquals($password, $user->password_hash);
         $this->assertNotEmpty($user->created_at);
         $this->assertNotEmpty($user->auth_key);
-        $this->assertTrue($user->isActive());
+        $this->assertFalse($user->isActive());
+        $this->assertTrue($user->isWait());
     }
 }

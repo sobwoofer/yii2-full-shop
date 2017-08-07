@@ -22,16 +22,18 @@ class SiteController extends Controller
 {
     private $passwordResetService;
     private $contactService;
+    private $signupService;
 
     public function __construct(
         $id,
         $module,
+        SignupService $signupService,
         PasswordResetService $passwordResetService,
         ContactService $contactService,
-        SignupService $signupService,
-        array $config = [])
+        $config = [])
     {
         parent::__construct($id, $module, $config);
+        $this->signupService = $signupService;
         $this->passwordResetService = $passwordResetService;
         $this->contactService = $contactService;
     }
@@ -176,32 +178,15 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $form = new SignupForm();
-
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
                 $this->signupService->signup($form);
-                Yii::$app->session->setFlash('success', 'Check your email furthet instructions.');
+                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
                 return $this->goHome();
-
             } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
-
-
-//            $user = $this->signupService->signup($form);
-//            if (Yii::$app->getUser()->login($user)) {
-//                return $this->goHome();
-//            }
-//            try {
-//                $user = (new SignupService())->signup($form);
-//                if (Yii::$app->getUser()->login($user)) {
-//                    return $this->goHome();
-//                }
-//            } catch (\DomainException $e){
-//                Yii::$app->session->setFlash('error', $e->getMessage());
-//            }
-
         }
 
         return $this->render('signup', [
@@ -212,16 +197,14 @@ class SiteController extends Controller
     public function actionConfirm($token)
     {
         try {
-            $this->actionSignup()->confirm($token);
-            Yii::$app->session->setFlash('success', 'Your email is confirmed');
+            $this->signupService->confirm($token);
+            Yii::$app->session->setFlash('success', 'Your email is confirmed.');
             return $this->redirect(['login']);
         } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
             return $this->goHome();
         }
-
-
     }
 
     /**

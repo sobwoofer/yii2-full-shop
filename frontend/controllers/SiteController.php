@@ -12,7 +12,7 @@ use yii\filters\AccessControl;
 use shop\forms\auth\LoginForm;
 use shop\forms\auth\PasswordResetRequestForm;
 use shop\forms\auth\ResetPasswordForm;
-use shop\forms\auth\SignupForm;
+use shop\forms\SignupForm;
 use shop\forms\ContactForm;
 use shop\services\auth\SignupService;
 /**

@@ -12,4 +12,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Hello!</p>
+
+    <h2>Attach profile</h2>
+    <?= yii\authclient\widgets\AuthChoice::widget([
+        'baseAuth' => ['cabinet/network/attach'],
+    ]) ?>
 </div>

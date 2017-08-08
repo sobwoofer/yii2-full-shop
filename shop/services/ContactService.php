@@ -6,7 +6,7 @@
  * Time: 10:05
  */
 
-namespace shop\services\contact;
+namespace shop\services;
 
 use shop\forms\ContactForm;
 use yii\mail\MailerInterface;

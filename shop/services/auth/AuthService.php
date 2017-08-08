@@ -6,8 +6,7 @@
  * Time: 16:27
  */
 
-namespace services;
-
+namespace shop\services\auth;
 
 use shop\entities\User\User;
 use shop\forms\auth\LoginForm;

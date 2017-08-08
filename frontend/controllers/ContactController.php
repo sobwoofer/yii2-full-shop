@@ -1,7 +1,7 @@
 <?php
 namespace frontend\controllers;
 
-use shop\services\contact\ContactService;
+use shop\services\ContactService;
 use Yii;
 use yii\web\Controller;
 use shop\forms\ContactForm;

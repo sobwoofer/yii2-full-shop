@@ -1,33 +1,32 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: volynets
- * Date: 07.08.17
- * Time: 15:36
- */
 
 namespace shop\repositories;
 
-use shop\entities\User;
+use shop\entities\User\User;
 
 class UserRepository
 {
-    public function getByEmailConfirmToken(string $token): User
+    public function findByUsernameOrEmail($value): ?User
+    {
+        return User::find()->andWhere(['or', ['username' => $value], ['email' => $value]])->one();
+    }
+
+    public function getByEmailConfirmToken($token): User
     {
         return $this->getBy(['email_confirm_token' => $token]);
     }
 
-    public function getByEmail(string $email): User
+    public function getByEmail($email): User
     {
         return $this->getBy(['email' => $email]);
     }
 
-    public function getByPasswordResetToken(string $token): User
+    public function getByPasswordResetToken($token): User
     {
         return $this->getBy(['password_reset_token' => $token]);
     }
 
-    public function existsByPasswordResetToken(string $token): User
+    public function existsByPasswordResetToken(string $token): bool
     {
         return (bool) User::findByPasswordResetToken($token);
     }
@@ -42,15 +41,8 @@ class UserRepository
     private function getBy(array $condition): User
     {
         if (!$user = User::find()->andWhere($condition)->limit(1)->one()) {
-            throw new NotFountException('User not found.');
+            throw new NotFoundException('User not found.');
         }
         return $user;
     }
-
-
-
-
-
-
-
 }

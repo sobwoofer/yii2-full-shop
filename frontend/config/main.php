@@ -16,7 +16,7 @@ return [
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
-            'identityClass' => 'shop\entities\User',
+            'identityClass' => 'shop\entities\User\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-fron tend', 'httpOnly' => true],
             'loginUrl' => ['auth/auth/login'],

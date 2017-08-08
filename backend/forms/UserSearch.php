@@ -2,8 +2,6 @@
 
 namespace backend\forms;
 
-use Yii;
-use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use shop\entities\User\User;
 
@@ -12,6 +10,12 @@ use shop\entities\User\User;
  */
 class UserSearch extends User
 {
+    public $id;
+    public $created_at;
+    public $username;
+    public $email;
+    public $status;
+
     /**
      * @inheritdoc
      */
@@ -19,17 +23,8 @@ class UserSearch extends User
     {
         return [
             [['id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['username', 'auth_key', 'password_hash', 'password_reset_token', 'email', 'email_confirm_token'], 'safe'],
+            [['username', 'email'], 'safe'],
         ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function scenarios()
-    {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
     }
 
     /**
@@ -39,7 +34,7 @@ class UserSearch extends User
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params): ActiveDataProvider
     {
         $query = User::find();
 
@@ -62,15 +57,11 @@ class UserSearch extends User
             'id' => $this->id,
             'status' => $this->status,
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
-            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
-            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'email_confirm_token', $this->email_confirm_token]);
+        $query
+            ->andFilterWhere(['like', 'username', $this->username])
+            ->andFilterWhere(['like', 'email', $this->email]);
 
         return $dataProvider;
     }

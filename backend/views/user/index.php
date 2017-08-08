@@ -13,7 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -30,7 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'created_at:datetime',
                     'username',
                     'email:email',
-                    'status',
+                    [
+                        'attribute' => 'status',
+                        'filter' => shop\helpers\UserHelper::statusList(),
+                        'value' => function(\shop\entities\User\User $user) {
+                            return shop\helpers\UserHelper::statusLabel($user->status);
+                        },
+                        'format' => 'raw',
+                    ],
                     ['class' => ActionColumn::class],
                 ],
             ]); ?>

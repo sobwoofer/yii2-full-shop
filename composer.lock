@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c6d06ffc7f9abc21424fb463defe18c0",
+    "content-hash": "33c4d34878cc8c75cef32dccecad91f8",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -515,6 +515,53 @@
                 "icon"
             ],
             "time": "2016-10-24T15:52:54+00:00"
+        },
+        {
+            "name": "la-haute-societe/yii2-save-relations-behavior",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/la-haute-societe/yii2-save-relations-behavior.git",
+                "reference": "bac425e927e2d2183a3f09d9ec530231bd97b54d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/la-haute-societe/yii2-save-relations-behavior/zipball/bac425e927e2d2183a3f09d9ec530231bd97b54d",
+                "reference": "bac425e927e2d2183a3f09d9ec530231bd97b54d",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": ">=2.0.7"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "lhs\\Yii2SaveRelationsBehavior\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alban Jubert",
+                    "email": "alban@lahautesociete.com"
+                }
+            ],
+            "description": "Validate and save automatically related Active Record models.",
+            "keywords": [
+                "Behavior",
+                "active-query",
+                "active-record",
+                "database",
+                "extension",
+                "has-many",
+                "has-one",
+                "relations",
+                "yii2"
+            ],
+            "time": "2017-07-20 09:41:36"
         },
         {
             "name": "rmrevin/yii2-fontawesome",
@@ -3496,7 +3543,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "dmstr/yii2-adminlte-asset": 20,
-        "webmozart/assert": 20
+        "webmozart/assert": 20,
+        "la-haute-societe/yii2-save-relations-behavior": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

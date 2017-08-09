@@ -5,6 +5,7 @@ namespace common\bootstrap;
 use shop\services\ContactService;
 use yii\base\BootstrapInterface;
 use yii\mail\MailerInterface;
+use Yii;
 
 class SetUp implements BootstrapInterface
 {

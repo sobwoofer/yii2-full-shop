@@ -1,4 +1,7 @@
 <?php
+/**
+ * This class is registered and confirmed user into system.
+ */
 
 namespace shop\services\auth;
 

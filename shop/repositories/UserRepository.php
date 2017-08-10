@@ -1,4 +1,7 @@
 <?php
+/**
+ * This class created for get and save data entity.
+ */
 
 namespace shop\repositories;
 

@@ -17,7 +17,7 @@ class m170810_140048_create_tags_table extends Migration
         $this->createTable('{{%shop_tags}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
-            'slug' => $this->string()->notNull()
+            'slug' => $this->string()->notNull()->unique()
         ], $tableOptions);
     }
 

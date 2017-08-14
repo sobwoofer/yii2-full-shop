@@ -6,10 +6,11 @@
  * Time: 16:51
  */
 
-namespace tests\unit\entities\Shop\Tag;
+namespace shop\tests\unit\entities\Shop\Tag;
 
 
 use Codeception\Test\Unit;
+use shop\entities\Shop\Tag;
 
 class EditTest extends Unit
 {

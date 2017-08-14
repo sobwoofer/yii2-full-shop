@@ -1,5 +1,5 @@
 <?php
-namespace frontend\tests;
+namespace shop\tests;
 
 /**
  * Inherited Methods

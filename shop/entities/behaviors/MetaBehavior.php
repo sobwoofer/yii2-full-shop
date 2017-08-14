@@ -17,7 +17,16 @@ use yii\helpers\Json;
 
 class MetaBehavior extends Behavior
 {
+    /**
+     * @var string
+     * property name of meta
+     */
     public $attribute = 'meta';
+
+    /**
+     * @var string
+     * column name of tables DB
+     */
     public $jsonAttribute = 'meta_json';
 
     public function events(): array

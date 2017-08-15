@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f17d98e255935c8752cedb11967d7c98",
+    "content-hash": "c190e540e78752cd24f82eb9b7936c90",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1798,6 +1798,55 @@
                 "yii2"
             ],
             "time": "2017-04-08T16:12:54+00:00"
+        },
+        {
+            "name": "paulzi/yii2-nested-sets",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paulzi/yii2-nested-sets.git",
+                "reference": "000cc4c93bab85c1fa6ecc984a14d3c8906728e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paulzi/yii2-nested-sets/zipball/000cc4c93bab85c1fa6ecc984a14d3c8906728e1",
+                "reference": "000cc4c93bab85c1fa6ecc984a14d3c8906728e1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "require-dev": {
+                "phpunit/dbunit": "~1.0",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "paulzi\\nestedsets\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Kochetov",
+                    "email": "creocoder@gmail.com"
+                },
+                {
+                    "name": "PaulZi",
+                    "email": "pavel.zimakoff@gmail.com"
+                }
+            ],
+            "description": "Nested Sets Behavior for Yii2",
+            "keywords": [
+                "nested sets",
+                "yii2"
+            ],
+            "time": "2017-05-30 14:32:47"
         },
         {
             "name": "rmrevin/yii2-fontawesome",
@@ -4872,7 +4921,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "paulzi/yii2-nested-sets": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

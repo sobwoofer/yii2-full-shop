@@ -6,13 +6,16 @@
  * Time: 9:58
  */
 
-namespace shop\entities\Shop;
+namespace shop\entities\Shop\Product;
 
 
+use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use shop\entities\behaviors\MetaBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use shop\entities\Meta;
+use shop\entities\Shop\Brand;
+use shop\entities\Shop\Category;
 
 /**
  * @property integer $id
@@ -28,6 +31,7 @@ use shop\entities\Meta;
  * @property Meta $meta
  * @property Brand $brand
  * @property Category $category
+ * @property CategoryAssignment[] $categoryAssignments
  */
 class Product extends ActiveRecord
 {
@@ -51,6 +55,41 @@ class Product extends ActiveRecord
         $this->price_old = $old;
     }
 
+    public function changeMainCategory($categoryId): void
+    {
+        $this->category_id = $categoryId;
+    }
+
+    public function assignCategory($id): void
+    {
+        $assignments = $this->categoryAssignments;
+        foreach ($assignments as $assignment) {
+            if ($assignment->isForCategory($id)) {
+                return;
+            }
+        }
+        $assignments = CategoryAssignment::create($id);
+        $this->categoryAssignments = $assignments;
+    }
+
+    public function revokeCategory($id): void
+    {
+        $assignments = $this->categoryAssignments;
+        foreach ($assignments as $i => $assignment) {
+            if ($assignment->isForCategory($id)) {
+                unset($assignments[$i]);
+                $this->categoryAssignments = $assignments;
+                return;
+            }
+        }
+        throw new \DomainException('Assignment is not fount');
+    }
+
+    public function revokeCategories(): void
+    {
+        $this->categoryAssignments = [];
+    }
+
     ##########################
 
     public function getBrand(): ActiveQuery
@@ -61,6 +100,11 @@ class Product extends ActiveRecord
     public function getCategory(): ActiveQuery
     {
         return $this->hasOne(Category::class, ['id' => 'category_id']);
+    }
+
+    public function getCategoryAssignments(): ActiveQuery
+    {
+        return $this->hasMany(CategoryAssignment::class, ['product_id' => 'id']);
     }
 
     ##########################
@@ -74,6 +118,17 @@ class Product extends ActiveRecord
     {
         return [
             MetaBehavior::class,
+            [
+                'class' => SaveRelationsBehavior::className(),
+                'relations' => ['CategoryAssignments']
+            ],
+        ];
+    }
+
+    public function transactions()
+    {
+        return [
+            self::SCENARIO_DEFAULT => self::OP_ALL,
         ];
     }
 

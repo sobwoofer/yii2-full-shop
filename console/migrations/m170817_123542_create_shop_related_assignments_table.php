@@ -20,10 +20,11 @@ class m170817_123542_create_shop_related_assignments_table extends Migration
         ], $tableOptions);
 
         $this->addPrimaryKey('{{%pk-shop_related_assignments}}', '{{%shop_related_assignments}}', ['product_id', 'related_id']);
-        $this->createIndex('{{idx-shop_related_assignments-product_id}}', '{{%shop_related_assignments}}', 'product_id');
-        $this->createIndex('{{idx-shop_related_assignments-related_id}}', '{{%shop_related_assignments}}', 'related_id');
+        $this->createIndex('{{%idx-shop_related_assignments-product_id}}', '{{%shop_related_assignments}}', 'product_id');
+        $this->createIndex('{{%idx-shop_related_assignments-related_id}}', '{{%shop_related_assignments}}', 'related_id');
 
-        $this->addForeignKey('{{%fk-shop_related_assignments-product_id}}',
+        $this->addForeignKey(
+            '{{%fk-shop_related_assignments-product_id}}',
             '{{%shop_related_assignments}}',
             'product_id',
             '{{%shop_products}}',
@@ -33,10 +34,11 @@ class m170817_123542_create_shop_related_assignments_table extends Migration
         );
 
         $this->addForeignKey(
-            '{{fk-shop_related_assignments-related_id}}',
+            '{{%fk-shop_related_assignments-related_id}}',
             '{{%shop_related_assignments}}',
             'related_id',
-            'shop_products',
+            '{{%shop_products}}',
+            'id',
             'CASCADE',
             'RESTRICT'
         );

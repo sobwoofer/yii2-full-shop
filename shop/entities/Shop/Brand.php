@@ -12,6 +12,13 @@ use shop\entities\behaviors\MetaBehavior;
 use yii\db\ActiveRecord;
 use shop\entities\Meta;
 
+/**
+ * Class Brand
+ * @package shop\entities\Shop
+ * @property string $name
+ * @property string $slug
+ * @property Meta $meta
+ */
 class Brand extends ActiveRecord
 {
     public static function create($name, $slug, Meta $meta): self

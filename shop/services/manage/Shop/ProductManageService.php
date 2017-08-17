@@ -1,37 +1,40 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: volynets
- * Date: 16.08.17
- * Time: 10:47
- */
 
 namespace shop\services\manage\Shop;
 
+use shop\entities\Meta;
 use shop\entities\Shop\Product\Product;
+use shop\entities\Shop\Tag;
 use shop\forms\manage\Shop\Product\CategoriesForm;
 use shop\forms\manage\Shop\Product\PhotosForm;
 use shop\forms\manage\Shop\Product\ProductCreateForm;
 use shop\repositories\Shop\BrandRepository;
 use shop\repositories\Shop\CategoryRepository;
 use shop\repositories\Shop\ProductRepository;
-use shop\entities\Meta;
+use shop\repositories\Shop\TagRepository;
+use shop\services\TransactionManager;
 
 class ProductManageService
 {
     private $products;
     private $brands;
     private $categories;
+    private $tags;
+    private $transaction;
 
     public function __construct(
         ProductRepository $products,
         BrandRepository $brands,
-        CategoryRepository $categories
+        CategoryRepository $categories,
+        TagRepository $tags,
+        TransactionManager $transaction
     )
     {
         $this->products = $products;
         $this->brands = $brands;
         $this->categories = $categories;
+        $this->tags = $tags;
+        $this->transaction = $transaction;
     }
 
     public function create(ProductCreateForm $form): Product
@@ -66,16 +69,29 @@ class ProductManageService
             $product->addPhoto($file);
         }
 
-        $this->products->save($product);
+        foreach ($form->tags->existing as $tagId) {
+            $tag = $this->tags->get($tagId);
+            $product->assignTag($tag->id);
+        }
+
+        $this->transaction->wrap(function () use ($product, $form) {
+            foreach ($form->tags->newNames as $tagName) {
+                if (!$tag = $this->tags->findByName($tagName)) {
+                    $tag = Tag::create($tagName, $tagName);
+                    $this->tags->save($tag);
+                }
+                $product->assignTag($tag->id);
+            }
+            $this->products->save($product);
+        });
 
         return $product;
     }
 
-    public function productChangeCategories($id, CategoriesForm $form): void
+    public function changeCategories($id, CategoriesForm $form): void
     {
         $product = $this->products->get($id);
         $category = $this->categories->get($form->main);
-
         $product->changeMainCategory($category->id);
         $product->revokeCategories();
         foreach ($form->others as $otherId) {
@@ -120,5 +136,4 @@ class ProductManageService
         $product = $this->products->get($id);
         $this->products->remove($product);
     }
-
 }

@@ -32,6 +32,7 @@ use yii\web\UploadedFile;
  * @property Meta $meta
  * @property Brand $brand
  * @property Category $category
+ *  * @property RelatedAssignment[] $relatedAssignments
  * @property CategoryAssignment[] $categoryAssignments
  * @property TagAssignment[] $tagAssignments
  * @property Value[] $values
@@ -220,6 +221,33 @@ class Product extends ActiveRecord
         $this->photos = $photos;
     }
 
+    // Related products
+
+    public function assignRelatedProduct($id): void
+    {
+        $assignments = $this->relatedAssignments;
+        foreach ($assignments as $assignment) {
+            if ($assignment->isForProduct($id)) {
+                return;
+            }
+        }
+        $assignments[] = CategoryAssignment::create($id);
+        $this->relatedAssignments = $assignments;
+    }
+
+    public function revokeRelatedProduct($id): void
+    {
+        $assignments = $this->relatedAssignments;
+        foreach ($assignments as $i => $assignment) {
+            if ($assignment->isForProduct($id)) {
+                unset($assignments[$i]);
+                $this->relatedAssignments = $assignments;
+                return;
+            }
+        }
+        throw new \DomainException('Assignment is not found.');
+    }
+
     ##########################
 
     public function getBrand(): ActiveQuery
@@ -252,6 +280,11 @@ class Product extends ActiveRecord
         return $this->hasMany(Photo::class, ['product_id' => 'id'])->orderBy('sort');
     }
 
+    public function getRelatedAssignments(): ActiveQuery
+    {
+        return $this->hasMany(RelatedAssignment::class, ['product_id' => 'id']);
+    }
+
     ##########################
 
     public static function tableName(): string
@@ -265,7 +298,7 @@ class Product extends ActiveRecord
             MetaBehavior::class,
             [
                 'class' => SaveRelationsBehavior::className(),
-                'relations' => ['CategoryAssignments', 'values']
+                'relations' => ['categoryAssignments', 'tagAssignments', 'relatedAssignments', 'values', 'photos'],
             ],
         ];
     }

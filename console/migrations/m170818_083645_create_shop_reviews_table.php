@@ -2,7 +2,10 @@
 
 use yii\db\Migration;
 
-class m170519_212444_create_shop_reviews_table extends Migration
+/**
+ * Handles the creation of table `shop_reviews`.
+ */
+class m170818_083645_create_shop_reviews_table extends Migration
 {
     public function up()
     {

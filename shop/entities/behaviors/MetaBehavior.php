@@ -30,6 +30,10 @@ class MetaBehavior extends Behavior
      */
     public $jsonAttribute = 'meta_json';
 
+    /**
+     * @return array
+     * named call methods after worked something event
+     */
     public function events(): array
     {
         return [
@@ -39,6 +43,10 @@ class MetaBehavior extends Behavior
         ];
     }
 
+    /**
+     * @param Event $event
+     * parse json string to php object after select from DB
+     */
     public function onAfterFind(Event $event): void
     {
         $model = $event->sender;
@@ -50,6 +58,10 @@ class MetaBehavior extends Behavior
         );
     }
 
+    /**
+     * @param Event $event
+     * generate json string from php object before insert or update it.
+     */
     public function onBeforeSave(Event $event): void
     {
         $model = $event->sender;

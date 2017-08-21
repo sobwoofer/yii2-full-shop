@@ -26,7 +26,7 @@ class EntityManageService
     //заполненную форму сущьности
     public function create(EntityForm $form): Entity
     {
-        //передаем непосредственно в сущьность
+        //передаем непосредственно в сущьность 
         //необходимые поля для создания записи
         $entity = Entity::create(
                     $form->name,

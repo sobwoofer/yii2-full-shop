@@ -8,6 +8,7 @@ use yii\base\Model;
 
 /**
  * @property integer $id
+ * Форма для заполнения значения одной конкретной характеристики
  */
 class ValueForm extends Model
 {
@@ -26,6 +27,7 @@ class ValueForm extends Model
 
     public function rules(): array
     {
+        //динамическое присваивание данных для валидации в зависимости от типа пришедшей характеристики
         return array_filter([
             $this->_characteristic->required ? ['value', 'required'] : false,
             $this->_characteristic->isString() ? ['value', 'string', 'max' => 255] : false,

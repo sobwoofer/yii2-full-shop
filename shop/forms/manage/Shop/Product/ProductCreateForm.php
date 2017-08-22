@@ -14,6 +14,7 @@ use shop\forms\manage\MetaForm;
  * @property PhotosForm $photos
  * @property TagsForm $tags
  * @property ValueForm[] $values
+ * Общая композитная форма для создания и редактирования товара включает в себя мелкие формы
  */
 class ProductCreateForm extends CompositeForm
 {
@@ -28,6 +29,7 @@ class ProductCreateForm extends CompositeForm
         $this->categories = new CategoriesForm();
         $this->photos = new PhotosForm();
         $this->tags = new TagsForm();
+        //в values попадает отсортированный массив из форм ValueForm уже заполненных каждая своим значениям
         $this->values = array_map(function (Characteristic $characteristic) {
             return new ValueForm($characteristic);
         }, Characteristic::find()->orderBy('sort')->all());

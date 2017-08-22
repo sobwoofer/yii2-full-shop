@@ -16,6 +16,7 @@ use yii\db\ActiveRecord;
  * @package shop\entities\Shop\Product
  * @property integer $characteristic_id
  * @property string $value
+ * Сущьность описывает значения какойто одной характеристики (атрибута) продукта.
  */
 class Value extends ActiveRecord
 {

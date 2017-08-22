@@ -80,4 +80,6 @@ class Characteristic extends ActiveRecord
         $this->setAttribute('variants_json', Json::encode($this->variants));
         return parent::beforeSave($insert);
     }
+
+    //TODO yii2 EAV http://www.elisdn.ru/blog/31/dinamicheskie-atributi-dlia-tovarov-ispolzovanie-eav-v-yii
 }

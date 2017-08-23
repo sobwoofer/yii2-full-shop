@@ -338,6 +338,11 @@ class Product extends ActiveRecord
         });
     }
 
+    /**
+     * @param $id
+     * @param callable $callback
+     * Callback function doing with review and after did, recalculate rating
+     */
     private function doWithReview($id, callable $callback): void
     {
         $reviews = $this->reviews;
@@ -380,7 +385,7 @@ class Product extends ActiveRecord
         $this->rating = $amount ? $total / $amount : null;
     }
 
-    ##########################
+    ########################## Start Relations with other entities tables
 
     public function getBrand(): ActiveQuery
     {
@@ -427,13 +432,18 @@ class Product extends ActiveRecord
         return $this->hasMany(Review::class, ['product_id' => 'id']);
     }
 
-    ##########################
+    ########################## End Relations with other entities tables
 
     public static function tableName(): string
     {
         return '{{%shop_products}}';
     }
 
+    /**
+     * @return array
+     * Поведение MetaBehavior конвертирует мета описание в json или из него, перед сохранением или после селекта.
+     * Поведение SaveRelationsBehavior Автоматически пишет id сущьности или связи в сохраняемую таблицу.
+     */
     public function behaviors(): array
     {
         return [

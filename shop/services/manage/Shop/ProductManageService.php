@@ -84,6 +84,7 @@ class ProductManageService
                 }
                 $product->assignTag($tag->id);
             }
+
             $this->products->save($product);
         });
 
@@ -129,6 +130,11 @@ class ProductManageService
         });
     }
 
+    /**
+     * @param $id
+     * @param CategoriesForm $form
+     * changed product's categories
+     */
     public function changeCategories($id, CategoriesForm $form): void
     {
         $product = $this->products->get($id);
@@ -151,6 +157,11 @@ class ProductManageService
         $this->products->save($product);
     }
 
+    /**
+     * @param $id
+     * @param $photoId
+     * changed sort photo in the list for product. One item up
+     */
     public function movePhotoUp($id, $photoId): void
     {
         $product = $this->products->get($id);
@@ -158,6 +169,11 @@ class ProductManageService
         $this->products->save($product);
     }
 
+    /**
+     * @param $id
+     * @param $photoId
+     * changed sort photo in the list for product. One item down
+     */
     public function movePhotoDown($id, $photoId): void
     {
         $product = $this->products->get($id);

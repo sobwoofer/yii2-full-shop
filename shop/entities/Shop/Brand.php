@@ -15,12 +15,15 @@ use shop\entities\Meta;
 /**
  * Class Brand
  * @package shop\entities\Shop
- * @property string $name
+ * @property integer $id
  * @property string $slug
  * @property Meta $meta
+ * @property string $name
  */
 class Brand extends ActiveRecord
 {
+    public $meta;
+
     public static function create($name, $slug, Meta $meta): self
     {
         $brand = new static();

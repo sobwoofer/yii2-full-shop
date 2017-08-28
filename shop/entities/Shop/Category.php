@@ -25,6 +25,8 @@ use shop\entities\Shop\queries\CategoryQuery;
  * @property integer $depth
  * @property Meta $meta
  *
+ * @property Category $prev
+ * @property Category $next
  * @property Category $parent
  * @mixin NestedSetsBehavior
  */

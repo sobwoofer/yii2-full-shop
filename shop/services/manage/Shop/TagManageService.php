@@ -23,7 +23,7 @@ class TagManageService
         $this->tags = $tags;
     }
 
-    public function create(TagForm $form): void
+    public function create(TagForm $form): Tag
     {
         $tag = Tag::create(
             $form->name,

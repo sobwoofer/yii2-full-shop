@@ -8,6 +8,7 @@
 
 namespace shop\forms\manage\Shop;
 
+use shop\forms\CompositeForm;
 use shop\forms\manage\MetaForm;
 use yii\base\Model;
 use shop\entities\Shop\Category;
@@ -17,7 +18,7 @@ use yii\helpers\ArrayHelper;
 /**
  * @property MetaForm $meta;
  */
-class CategoryForm extends Model
+class CategoryForm extends CompositeForm
 {
     public $name;
     public $slug;
@@ -29,7 +30,7 @@ class CategoryForm extends Model
 
     public function __construct(Category $category = null, array $config = [])
     {
-        if ($category){
+        if ($category) {
             $this->name = $category->name;
             $this->slug = $category->slug;
             $this->title = $category->title;

@@ -27,6 +27,11 @@ class ProductRepository
         return Product::find()->andWhere(['brand_id' => $id])->exists();
     }
 
+    public function existByMainCategory($id): bool
+    {
+        return Product::find()->andWhere(['category_id' => $id])->exists();
+    }
+
     public function save(Product $product): void
     {
         if (!$product->save()) {

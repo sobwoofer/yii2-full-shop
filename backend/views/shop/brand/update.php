@@ -7,8 +7,8 @@
  */
 
 /* @var $this yii\web\View */
-/* @var $brand shop\entities\Shop\Brand */
-/* @var $model shop\forms\manage\Shop\BrandForm */
+/* @var $brand core\entities\Shop\Brand */
+/* @var $model core\forms\manage\Shop\BrandForm */
 
 $this->title = 'Update Brand: ' . $brand->name;
 $this->params['breadcrumbs'][] = ['label' => 'Brands', 'url' => ['index']];

@@ -10,10 +10,10 @@ namespace backend\controllers\shop;
 
 
 use backend\forms\Shop\BrandSearch;
-use shop\entities\Shop\Brand;
-use shop\forms\manage\Shop\BrandForm;
-use shop\repositories\NotFoundException;
-use shop\services\manage\Shop\BrandManageService;
+use core\entities\Shop\Brand;
+use core\forms\manage\Shop\BrandForm;
+use core\repositories\NotFoundException;
+use core\services\manage\Shop\BrandManageService;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use Yii;

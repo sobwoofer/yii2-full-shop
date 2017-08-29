@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \shop\forms\auth\ResetPasswordForm */
+/* @var $model \core\forms\auth\ResetPasswordForm */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;

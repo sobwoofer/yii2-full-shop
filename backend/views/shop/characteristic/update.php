@@ -7,8 +7,8 @@
  */
 
 /* @var $this yii\web\View */
-/* @var $characteristic shop\entities\Shop\Characteristic */
-/* @var $model shop\forms\manage\Shop\CharacteristicForm */
+/* @var $characteristic core\entities\Shop\Characteristic */
+/* @var $model core\forms\manage\Shop\CharacteristicForm */
 
 $this->title = 'Update Characteristic: ' . $characteristic->name;
 $this->params['breadcrumbs'][] = ['label' => 'Characteristics', 'url' => ['index']];

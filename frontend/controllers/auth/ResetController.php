@@ -1,12 +1,12 @@
 <?php
 namespace frontend\controllers\auth;
 
-use shop\services\auth\PasswordResetService;
+use core\services\auth\PasswordResetService;
 use Yii;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use shop\forms\auth\PasswordResetRequestForm;
-use shop\forms\auth\ResetPasswordForm;
+use core\forms\auth\PasswordResetRequestForm;
+use core\forms\auth\ResetPasswordForm;
 
 class ResetController extends Controller
 {

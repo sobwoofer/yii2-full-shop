@@ -6,12 +6,12 @@
  * Time: 16:29
  */
 
-use shop\helpers\CharacteristicHelper;
+use core\helpers\CharacteristicHelper;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $characteristic shop\entities\Shop\Characteristic */
+/* @var $characteristic core\entities\Shop\Characteristic */
 
 $this->title = $characteristic->name;
 $this->params['breadcrumbs'][] = ['label' => 'Characteristics', 'url' => ['index']];

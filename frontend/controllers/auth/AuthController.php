@@ -1,10 +1,10 @@
 <?php
 namespace frontend\controllers\auth;
 
-use shop\services\auth\AuthService;
+use core\services\auth\AuthService;
 use Yii;
 use yii\web\Controller;
-use shop\forms\auth\LoginForm;
+use core\forms\auth\LoginForm;
 
 class AuthController extends Controller
 {

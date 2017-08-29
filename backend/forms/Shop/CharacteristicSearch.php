@@ -9,10 +9,10 @@
 
 namespace backend\forms\Shop;
 
-use shop\helpers\CharacteristicHelper;
+use core\helpers\CharacteristicHelper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use shop\entities\Shop\Characteristic;
+use core\entities\Shop\Characteristic;
 
 class CharacteristicSearch extends Model
 {

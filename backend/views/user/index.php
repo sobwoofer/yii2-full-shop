@@ -3,8 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\grid\ActionColumn;
-use shop\helpers\UserHelper;
-use shop\entities\User\User;
+use core\helpers\UserHelper;
+use core\entities\User\User;
 use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */

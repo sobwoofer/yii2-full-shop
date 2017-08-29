@@ -7,7 +7,7 @@
  */
 
 /* @var $this yii\web\View */
-/* @var $model shop\forms\manage\Shop\TagForm */
+/* @var $model core\forms\manage\Shop\TagForm */
 
 $this->title = 'Create Tag';
 $this->params['breadcrumbs'][] = ['label' => 'Tags', 'url' => ['index']];

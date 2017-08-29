@@ -7,7 +7,7 @@
  */
 
 
-use shop\entities\Shop\Tag;
+use core\entities\Shop\Tag;
 use yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;

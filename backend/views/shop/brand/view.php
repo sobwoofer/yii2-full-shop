@@ -9,7 +9,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $brand shop\entities\Shop\Brand */
+/* @var $brand core\entities\Shop\Brand */
 
 $this->title = $brand->name;
 $this->params['breadcrumbs'][] = ['label' => 'Brands', 'url' => ['index']];

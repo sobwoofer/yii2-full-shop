@@ -7,8 +7,8 @@
  */
 
 
-use shop\entities\Shop\Characteristic;
-use shop\helpers\CharacteristicHelper;
+use core\entities\Shop\Characteristic;
+use core\helpers\CharacteristicHelper;
 use yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;

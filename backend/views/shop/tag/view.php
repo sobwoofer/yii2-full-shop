@@ -11,7 +11,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $tag shop\entities\Shop\Tag */
+/* @var $tag core\entities\Shop\Tag */
 
 $this->title = $tag->name;
 $this->params['breadcrumbs'][] = ['label' => 'Tags', 'url' => ['index']];

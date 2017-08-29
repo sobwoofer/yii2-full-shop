@@ -9,10 +9,10 @@
 
 namespace backend\controllers\shop;
 
-use shop\forms\manage\Shop\CategoryForm;
-use shop\services\manage\Shop\CategoryManageService;
+use core\forms\manage\Shop\CategoryForm;
+use core\services\manage\Shop\CategoryManageService;
 use Yii;
-use shop\entities\Shop\Category;
+use core\entities\Shop\Category;
 use backend\forms\Shop\CategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

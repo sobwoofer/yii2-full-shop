@@ -8,10 +8,10 @@
 
 namespace backend\controllers\shop;
 
-use shop\forms\manage\Shop\CharacteristicForm;
-use shop\services\manage\Shop\CharacteristicManageService;
+use core\forms\manage\Shop\CharacteristicForm;
+use core\services\manage\Shop\CharacteristicManageService;
 use Yii;
-use shop\entities\Shop\Characteristic;
+use core\entities\Shop\Characteristic;
 use backend\forms\Shop\CharacteristicSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

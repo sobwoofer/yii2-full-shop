@@ -8,7 +8,7 @@
 
 
 /* @var $this yii\web\View */
-/* @var $model shop\forms\manage\Shop\CategoryForm */
+/* @var $model core\forms\manage\Shop\CategoryForm */
 
 $this->title = 'Create Category';
 $this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];

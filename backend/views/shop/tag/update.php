@@ -7,8 +7,8 @@
  */
 
 /* @var $this yii\web\View */
-/* @var $tag shop\entities\Shop\Tag */
-/* @var $model shop\forms\manage\Shop\TagForm */
+/* @var $tag core\entities\Shop\Tag */
+/* @var $model core\forms\manage\Shop\TagForm */
 
 $this->title = 'Update Tag: ' . $tag->name;
 $this->params['breadcrumbs'][] = ['label' => 'Tags', 'url' => ['index']];

@@ -10,10 +10,10 @@ namespace backend\controllers\shop;
 
 
 
-use shop\forms\manage\Shop\TagForm;
-use shop\services\manage\Shop\TagManageService;
+use core\forms\manage\Shop\TagForm;
+use core\services\manage\Shop\TagManageService;
 use Yii;
-use shop\entities\Shop\Tag;
+use core\entities\Shop\Tag;
 use backend\forms\Shop\TagSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

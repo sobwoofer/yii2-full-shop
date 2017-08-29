@@ -7,7 +7,7 @@
  */
 use yii\helpers\Html;
 use yii\grid\GridView;
-use shop\entities\Shop\Brand;
+use core\entities\Shop\Brand;
 use yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */

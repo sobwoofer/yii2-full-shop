@@ -2,8 +2,8 @@
 namespace frontend\tests\unit\models;
 
 use common\fixtures\UserFixture;
-use shop\forms\auth\SignupForm;
-use shop\entities\User\User;
+use core\forms\auth\SignupForm;
+use core\entities\User\User;
 
 class SignupFormTest extends \Codeception\Test\Unit
 {

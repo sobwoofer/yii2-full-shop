@@ -3,6 +3,7 @@
 namespace core\forms\manage\Shop\Product;
 
 use core\entities\Shop\Product\Product;
+use core\entities\Shop\Tag;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
 
@@ -29,6 +30,12 @@ class TagsForm extends Model
             ['existing', 'default', 'value' => []],
             ['textNew', 'string'],
         ];
+    }
+
+    //TODO need move this metod and like him into one structure, because it use ActiveRecord in form
+    public function tagsList(): array
+    {
+        return ArrayHelper::map(Tag::find()->orderBy('name')->asArray()->all(), 'id', 'name');
     }
 
     public function getNewNames(): array

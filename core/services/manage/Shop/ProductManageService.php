@@ -10,6 +10,7 @@ use core\forms\manage\Shop\Product\PhotosForm;
 use core\forms\manage\Shop\Product\ProductCreateForm;
 use core\forms\manage\Shop\Product\ProductEditForm;
 use core\forms\manage\Shop\Product\ModificationForm;
+use core\forms\manage\Shop\Product\PriceForm;
 use core\repositories\Shop\BrandRepository;
 use core\repositories\Shop\CategoryRepository;
 use core\repositories\Shop\ProductRepository;
@@ -142,7 +143,12 @@ class ProductManageService
         });
     }
 
-
+    public function changePrice($id, PriceForm $form): void
+    {
+        $product = $this->products->get($id);
+        $product->setPrice($form->new, $form->old);
+        $this->products->save($product);
+    }
 
     public function addPhotos($id, PhotosForm $form): void
     {

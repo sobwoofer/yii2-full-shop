@@ -19,6 +19,7 @@ class UserRepository
         return User::find()->joinWith('networks n')->andWhere(['n.network' => $network, 'n.identity' => $identity])->one();
     }
 
+    //TODO i would like created interface repository and implement someone methods into him
     public function get($id): User
     {
         return $this->getBy(['id' => $id]);

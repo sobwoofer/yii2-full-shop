@@ -16,6 +16,8 @@ use core\repositories\Shop\CategoryRepository;
 use core\repositories\Shop\ProductRepository;
 use core\repositories\Shop\TagRepository;
 use core\services\TransactionManager;
+use core\services\import\Product\Reader;
+use core\forms\manage\Shop\importForm;
 
 class ProductManageService
 {
@@ -24,13 +26,15 @@ class ProductManageService
     private $categories;
     private $tags;
     private $transaction;
+    private $reader;
 
     public function __construct(
         ProductRepository $products,
         BrandRepository $brands,
         CategoryRepository $categories,
         TagRepository $tags,
-        TransactionManager $transaction
+        TransactionManager $transaction,
+        Reader $reader
     )
     {
         $this->products = $products;
@@ -38,6 +42,7 @@ class ProductManageService
         $this->categories = $categories;
         $this->tags = $tags;
         $this->transaction = $transaction;
+        $this->reader = $reader;
     }
 
     public function create(ProductCreateForm $form): Product
@@ -141,6 +146,28 @@ class ProductManageService
             }
             $this->products->save($product);
         });
+    }
+
+    //TODO import this projecting to the test import service
+    public function import($id, importForm $form)
+    {
+        //обернули все в транзакцию
+        $this->transaction->wrap(function() use ($form){
+            $results = $this->reader->readCsv($form->file->tmpName);
+            foreach ($results as $result) {
+                //достаем продукт из базы по коду товара
+                $product = $this->products->getByCode($result->code);
+                //записываем полученные значения из файла в обьект продукта
+                $product->setPrice($result->priceNew, $result->priceOld);
+                $product->setModificationPriceByCode(
+                    $result->modificationCode,
+                    $result->modificationPrice
+                );
+                //сохраняем продукт в репозиторий
+                $this->products->save($product);
+            }
+        });
+
     }
 
     public function changePrice($id, PriceForm $form): void

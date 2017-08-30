@@ -9,7 +9,10 @@
 namespace core\services\import\Product;
 
 use core\services\import\Product\Row;
-//TODO watch on four lesson elisDN 4:30
+//TODO import watch on four lesson elisDN 4:30
+//TODO нужно сделать так чтобы файл Если это синхронизация с 1с
+//TODO ложился на сервер и только потом по крону запускался импорт
+
 /**
  * Class Reader
  * @package core\services\import\Product
@@ -21,7 +24,7 @@ class Reader
      * @param $file
      * @return Row[];
      */
-    public function readCsv($file)
+    public function readCsv($file): iterable
     {
         $result = [];
         $f = fopen($file->tmpName, 'r');
@@ -33,9 +36,10 @@ class Reader
             $row->description = $fields[2];
             $row->quantity = $fields[3];
             //...
-            $result[] = $row;
+            yield $row;
         }
-        return $result;
+        fclose($f);
+//        return null;
     }
 
 }

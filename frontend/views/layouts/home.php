@@ -3,12 +3,18 @@
  * Created by PhpStorm.
  * User: volynets
  * Date: 31.08.17
- * Time: 9:47
+ * Time: 16:35
  */
+
+/* @var $this \yii\web\View */
+/* @var $content string */
 
 use romkaChev\yii2\swiper\Swiper;
 use yii\helpers\Html;
+
 ?>
+<?php $this->beginContent('@frontend/views/layouts/main.php') ?>
+
 <div class="main-block">
     <div class="container">
         <div class="col-md-3 col-lg-2">
@@ -711,3 +717,5 @@ use yii\helpers\Html;
         <p class="text-right"><a href="#/" class="read_more"> читать дальше. <span></span></a></p>
     </div>
 </div>
+
+<?php $this->endContent() ?>

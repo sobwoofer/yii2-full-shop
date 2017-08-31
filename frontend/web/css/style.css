@@ -5313,7 +5313,7 @@ a.filter-title {
 .slider_wrapper .custom-next {
     top: 1px;
 
-    background: transparent url(../images/one_product/slider_arrow.png) no-repeat center;
+    background: transparent url(../../../static/dev/one_product/slider_arrow.png) no-repeat center;
 }
 
 .slider_wrapper .custom-prev {
@@ -5321,7 +5321,7 @@ a.filter-title {
 
     display: block;
 
-    background: transparent url(../images/one_product/slider_arrow-bottom.png) no-repeat center;
+    background: transparent url(../../../static/dev/one_product/slider_arrow-bottom.png) no-repeat center;
 }
 
 .slider_wrapper .slick-list.draggable {
@@ -5528,7 +5528,7 @@ a.filter-title {
     width: 170px;
     height: 27px;
 
-    background: url(../images/one_product/economix_logo.png) no-repeat center/contain;
+    background: url(../../../static/dev/one_product/economix_logo.png) no-repeat center/contain;
 }
 
 .product-line__item__one_product {
@@ -5642,7 +5642,7 @@ a.filter-title {
     height: 25px;
     margin-left: 15px;
 
-    background: url(../images/one_product/goods_amount_icon.png) no-repeat right center;
+    background: url(../../../static/dev/one_product/goods_amount_icon.png) no-repeat right center;
 }
 
 .product-line__item__one_product .price__one_product {
@@ -5682,7 +5682,7 @@ a.filter-title {
 
     vertical-align: sub;
 
-    background: url(../images/one_product/i.png) no-repeat center;
+    background: url(../../../static/dev/one_product/i.png) no-repeat center;
 }
 
 .product-line__item__one_product .one_product_details__item:not(:last-child) {
@@ -5792,7 +5792,7 @@ a.filter-title {
     height: 38px;
     margin-right: 22px;
 
-    background-image: url(../images/one_product/icons_benefits.png);
+    background-image: url(../../../static/dev/one_product/icons_benefits.png);
     background-repeat: no-repeat;
 }
 
@@ -5871,7 +5871,7 @@ a.filter-title {
 
     vertical-align: sub;
 
-    background-image: url(../images/one_product/icons_review.png);
+    background-image: url(../../../static/dev/one_product/icons_review.png);
     background-repeat: no-repeat;
 }
 
@@ -5896,7 +5896,7 @@ a.filter-title {
     text-align: left;
 
     color: #000;
-    background-image: url(../images/one_product/icon_review.png);
+    background-image: url(../../../static/dev/one_product/icon_review.png);
     background-repeat: no-repeat;
     background-position: 96% center;
     background-size: 15%;
@@ -5976,7 +5976,7 @@ a.filter-title {
     width: 168px;
     height: 127px;
 
-    background: url(../images/one_product/durokol.png);
+    background: url(../../../static/dev/one_product/durokol.png);
 }
 
 .list_pair__disc {
@@ -6054,7 +6054,7 @@ a.filter-title {
 
     margin-right: -25px;
 
-    background: transparent url(../images/one_product/slider_arrow.png) no-repeat center;
+    background: transparent url(../../../static/dev/one_product/slider_arrow.png) no-repeat center;
 }
 
 .slider_wrapper .sp .swiper-button-prev {
@@ -6064,7 +6064,7 @@ a.filter-title {
 
     margin-left: -25px;
 
-    background: transparent url(../images/one_product/slider_arrow-bottom.png) no-repeat center;
+    background: transparent url(../../../static/dev/one_product/slider_arrow-bottom.png) no-repeat center;
 }
 
 /* Preload images */
@@ -6384,7 +6384,7 @@ body.lb-disable-scrolling {
 
     opacity: .7;
     outline: none;
-    background: url(../images/one_product/close_one_pro.png) top right no-repeat;
+    background: url(../../../static/dev/one_product/close_one_pro.png) top right no-repeat;
 
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
 }
@@ -6399,7 +6399,7 @@ body.lb-disable-scrolling {
     width: 39px;
     height: 39px;
 
-    background: url(../images/one_product/zoom-in.png) top right no-repeat;
+    background: url(../../../static/dev/one_product/zoom-in.png) top right no-repeat;
 }
 
 .swiper-container.gallery-top.swiper-container-horizontal {

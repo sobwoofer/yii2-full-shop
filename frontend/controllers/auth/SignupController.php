@@ -9,6 +9,7 @@ use core\forms\auth\SignupForm;
 
 class SignupController extends Controller
 {
+    public $layout = 'cabinet';
     private $service;
 
     public function __construct($id, $module, SignupService $service, $config = [])

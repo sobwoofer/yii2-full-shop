@@ -19,12 +19,12 @@
     <!-- .stock -->
     <!-- .product-line__item__logo -->
     <div class="product-line__item__logo">
-        <img src="images/product-logo.png" alt="">
+        <img src="http://static.yii2-shop.dev/dev/product-logo.png" alt="">
     </div>
     <!-- .product-line__item__logo -->
     <!-- .product-line__img -->
     <div class="product-line__img">
-        <img src="images/product-img-1.png" alt="">
+        <img src="http://static.yii2-shop.dev/dev/product-img-1.png" alt="">
     </div>
     <!-- .product-line__img -->
     <!-- .product-line__title -->

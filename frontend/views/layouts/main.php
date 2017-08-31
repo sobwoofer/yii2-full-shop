@@ -12,7 +12,8 @@
 use frontend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\jquery\formstyler\FormStylerAsset;
-
+use yii\helpers\Url;
+use common\widgets\Alert;
 
 AppAsset::register($this);
 ?>
@@ -158,7 +159,7 @@ AppAsset::register($this);
                 <div class="flex-btw-center">
                     <div class="col-xs-12 col-md-5 col-lg-4">
                         <div class="top-logo-block">
-                            <a href="/">
+                            <a href="<?= Url::home() ?>">
                                 <div class="logo">
                                     <img src="images/system/logo-papirus.png" alt="">
                                 </div>
@@ -759,13 +760,13 @@ AppAsset::register($this);
             <div class="cart-icon"></div>
         </div>
     </div>
-    <script>
-    </script>
+
 </header>
 
 
 <main role="main">
-    <?= $this->render('/site/home'); ?>
+    <?= Alert::widget() ?>
+    <?= $content ?>
 </main>
 <footer role="contentinfo">
     <div id="toTop">
@@ -813,13 +814,15 @@ AppAsset::register($this);
                     </ul>
                 </div>
                 <div id="fb-root"></div>
-                <script>(function(d, s, id) {
+                <script type="text/javascript">
+                    (function(d, s, id) {
                         var js, fjs = d.getElementsByTagName(s)[0];
                         if (d.getElementById(id)) return;
                         js = d.createElement(s); js.id = id;
                         js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.10";
                         fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));</script>
+                    }(document, 'script', 'facebook-jssdk'));
+                </script>
                 <div class="col-md-4">
                     <div class="pull-left" style="margin-right: 25px;">
 

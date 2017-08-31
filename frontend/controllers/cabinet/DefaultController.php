@@ -7,6 +7,8 @@ use yii\filters\AccessControl;
 
 class DefaultController extends Controller
 {
+    public $layout = 'cabinet';
+
     public function behaviors(): array
     {
         return [

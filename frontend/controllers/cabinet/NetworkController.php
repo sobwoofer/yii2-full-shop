@@ -19,6 +19,7 @@ use Yii;
 
 class NetworkController extends Controller
 {
+    public $layout = 'cabinet';
     private $service;
 
     public function __construct($id, $module, NetworkService $service, array $config = [])

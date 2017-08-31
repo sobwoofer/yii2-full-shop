@@ -48,6 +48,19 @@
         <input type="number" value="1">
         <a href="#" class="btn btn-to-cart">В КОРЗИНУ</a>
     </div>
+    <div class="clearfix"></div>
+    <?= \alfa6661\widgets\Raty::widget([
+        'name' => 'user-vote',
+        'options' => [
+            'class' => 'star',
+            'id' => 'user-vote'
+        ],
+        'pluginOptions' => [
+            'click' => new \yii\web\JsExpression('function(score, e) {
+                                            alert(score);
+                                        }')
+        ]
+    ]); ?>
     <!-- .product-line__item__action-block -->
     <div class="review">
         <a href="#" class="pull-right">Оставить отзыв</a>

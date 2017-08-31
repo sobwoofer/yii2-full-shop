@@ -48,8 +48,10 @@ $(document).ready(function () {
     //  //= source/modal.js
     //  //= source/responsive-iframe.js
     //  //= source/miss-click.js
+
     $('.product-line__item input[type="number"]').styler();
     $('.product_list_item input[type="number"]').styler();
+
     // var main_block_swiper = new Swiper('.main-block .swiper-container', {
     //     pagination: ' .main-block  .swiper-pagination',
     //     nextButton: '.main-block  .swiper-button-next',
@@ -440,24 +442,24 @@ $('.menu button').click(function (event) {
 $('.catalog button').click(function (event) {
     $('.catalog-inner').toggleClass('active');
 });
-$('.star').raty({
-    start: 4
-});
+// $('.star').raty({
+//     start: 4
+// });
 $('[data-toggle="tooltip"]').tooltip();
-$("#slider-range").slider({
-    min: 0,
-    max: 1000,
-    values: [0, 1000],
-    range: true,
-    stop: function (event, ui) {
-        $("input#minCost").val($("#slider-range").slider("values", 0));
-        $("input#maxCost").val($("#slider-range").slider("values", 1));
-    },
-    slide: function (event, ui) {
-        $("input#minCost").val($("#slider-range").slider("values", 0));
-        $("input#maxCost").val($("#slider-range").slider("values", 1));
-    }
-});
+// $("#slider-range").slider({
+//     min: 0,
+//     max: 1000,
+//     values: [0, 1000],
+//     range: true,
+//     stop: function (event, ui) {
+//         $("input#minCost").val($("#slider-range").slider("values", 0));
+//         $("input#maxCost").val($("#slider-range").slider("values", 1));
+//     },
+//     slide: function (event, ui) {
+//         $("input#minCost").val($("#slider-range").slider("values", 0));
+//         $("input#maxCost").val($("#slider-range").slider("values", 1));
+//     }
+// });
 $('.like').click(function (e) {
     e.preventDefault();
     $(this).toggleClass('active')
@@ -532,23 +534,23 @@ if ($('#clock').length) {
     });
 }
 //slick slider
-$('.slider-for').slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
-    prevArrow: '<button type="button" class="custom-next"></button>',
-    nextArrow: '<button type="button" class="custom-prev"></button>',
-    fade: true,
-    asNavFor: '.slider-nav'
-});
-$('.slider-nav').slick({
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    asNavFor: '.slider-for',
-    dots: true,
-    centerMode: true,
-    focusOnSelect: true
-});
+// $('.slider-for').slick({
+//     slidesToShow: 1,
+//     slidesToScroll: 1,
+//     arrows: true,
+//     prevArrow: '<button type="button" class="custom-next"></button>',
+//     nextArrow: '<button type="button" class="custom-prev"></button>',
+//     fade: true,
+//     asNavFor: '.slider-nav'
+// });
+// $('.slider-nav').slick({
+//     slidesToShow: 3,
+//     slidesToScroll: 1,
+//     asNavFor: '.slider-for',
+//     dots: true,
+//     centerMode: true,
+//     focusOnSelect: true
+// });
 
 // help page
 $(document).ready(function () {
@@ -561,10 +563,10 @@ $(document).ready(function () {
     });
 });
 // light box
-$('.slider-for').slickLightbox({
-    itemSelector: '.light',
-    navigateByKeyboard: true
-});
+// $('.slider-for').slickLightbox({
+//     itemSelector: '.light',
+//     navigateByKeyboard: true
+// });
 
 $('.product-line__item').hover(
     function () {
@@ -599,34 +601,34 @@ $('.product-line__item__action-block .like').click(function () {
 $(".seo-text-block").click(function () {
     $(" .seo-text-block .max-seo-text").slideToggle("show");
 });
-$("#feedback").validate({
-    rules: {
-        firstname: {
-            required: true,
-            minlength: 2
-        },
-        msg: {
-            required: true,
-            minlength: 2
-        },
-        phone: {
-            required: true,
-            number: true,
-            minlength: 10,
-            maxlength: 10
-        },
-        email: {
-            required: true,
-            email: true
-        }
-    },
-    messages: {
-        firstname: "Введите имя",
-        msg: "Введите текст",
-        email: "Введите корректный email",
-        phone: "Введите корректный номер телефона",
-    }
-});
+// $("#feedback").validate({
+//     rules: {
+//         firstname: {
+//             required: true,
+//             minlength: 2
+//         },
+//         msg: {
+//             required: true,
+//             minlength: 2
+//         },
+//         phone: {
+//             required: true,
+//             number: true,
+//             minlength: 10,
+//             maxlength: 10
+//         },
+//         email: {
+//             required: true,
+//             email: true
+//         }
+//     },
+//     messages: {
+//         firstname: "Введите имя",
+//         msg: "Введите текст",
+//         email: "Введите корректный email",
+//         phone: "Введите корректный номер телефона",
+//     }
+// });
 !function (e) {
     var t = function (t, n) {
         this.$element = e(t), this.type = this.$element.data("uploadtype") || (this.$element.find(".thumbnail").length > 0 ? "image" : "file"), this.$input = this.$element.find(":file");

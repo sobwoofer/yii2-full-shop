@@ -11,6 +11,8 @@
 
 use frontend\assets\AppAsset;
 use yii\helpers\Html;
+use yii\jquery\formstyler\FormStylerAsset;
+
 
 AppAsset::register($this);
 ?>
@@ -50,12 +52,12 @@ AppAsset::register($this);
 
 <!--    <link rel="stylesheet" href="libs/jquery-ui/jquery-ui.min.css">-->
 <!--    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="libs/selectric/selectric.css">
+<!--    <link rel="stylesheet" href="libs/selectric/selectric.css">-->
 <!--    <link rel="stylesheet" href="libs/swiper/css/swiper.min.css">-->
-    <link rel="stylesheet" href="libs/jquery.mmenu/jquery.mmenu.all.css">
+<!--    <link rel="stylesheet" href="libs/jquery.mmenu/jquery.mmenu.all.css">-->
 
-    <link rel="stylesheet" href="libs/jQueryFormStyler/dist/jquery.formstyler.css">
-    <link rel="stylesheet" href="libs/jQueryFormStyler/dist/jquery.formstyler.theme.css">
+<!--    <link rel="stylesheet" href="libs/jQueryFormStyler/dist/jquery.formstyler.css">-->
+<!--    <link rel="stylesheet" href="libs/jQueryFormStyler/dist/jquery.formstyler.theme.css">-->
 
     <!-- Theme Bootstrap
     <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap-theme.min.css"> -->
@@ -84,6 +86,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 <body>
 <header role="banner">
+
     <!-- .top-nav -->
     <div class="fix_menu_wrp">
         <ul>
@@ -840,33 +843,33 @@ AppAsset::register($this);
     </div>
 </footer>
 <!--light-box styles-->
-<link rel="stylesheet" href="https://mreq.github.io/slick-lightbox/gh-pages/bower_components/slick-carousel/slick/slick-theme.css">
+<!--<link rel="stylesheet" href="https://mreq.github.io/slick-lightbox/gh-pages/bower_components/slick-carousel/slick/slick-theme.css">-->
 <!--light-box styles-->
 <!-- ADD SCRIPTS -->
 <!-- JQuery -->
-<script src="libs/jquery/dist/jquery.min.js"></script>
+<!--<script src="libs/jquery/dist/jquery.min.js"></script>-->
 
 <!-- Slick-carousel -->
 <!-- <script src="libs/slick-carousel/slick/slick.min.js"></script> -->
 <!-- Map Script -->
-<script src="libs/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="libs/jquery-ui/jquery-ui.min.js"></script>
+<!--<script src="libs/jquery-validation/dist/jquery.validate.min.js"></script>-->
+<!--<script src="libs/jquery-ui/jquery-ui.min.js"></script>-->
 <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
 <!--<script src="libs/swiper/js/swiper.min.js"></script>-->
-<script src="libs/selectric/jquery.selectric.min.js"></script>
-<script src="libs/jquery.mmenu/jquery.mmenu.all.js"></script>
+<!--<script src="libs/selectric/jquery.selectric.min.js"></script>-->
+<!--<script src="libs/jquery.mmenu/jquery.mmenu.all.js"></script>-->
 
-<script src="libs/jQueryFormStyler/dist/jquery.formstyler.js"></script>
+<!--<script src="libs/jQueryFormStyler/dist/jquery.formstyler.js"></script>-->
 
-<script src="libs/star/jquery.raty.min.js"></script>
-<script src="libs/countdown/jquery.countdown.min.js"></script>
+<!--<script src="libs/star/jquery.raty.min.js"></script>-->
+<!--<script src="libs/countdown/jquery.countdown.min.js"></script>-->
 
-<script src="libs/slick-carousel/slick/slick.min.js"></script>
-<script src="libs/slick_light/slick_lightbox.js"></script>
+<!--<script src="libs/slick-carousel/slick/slick.min.js"></script>-->
+<!--<script src="libs/slick_light/slick_lightbox.js"></script>-->
 
-<script src="libs/lightbox2/js/lightbox.js"></script>
+<!--<script src="libs/lightbox2/js/lightbox.js"></script>-->
 <!-- Bootstrap -->
-<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<!--<script src="libs/bootstrap/js/bootstrap.min.js"></script>-->
 <!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBMIdjyZmJPMrW7Kq2S9u-xmMIJnrIRMIg&amp;amp;amp;sensor=false"></script> -->
 <!-- Common Script -->
 <script>

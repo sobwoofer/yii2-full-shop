@@ -4,8 +4,50 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b75270fa34859b6bbea6fe9e99217257",
+    "content-hash": "7df11d45475def532f650f92bcd3b882",
     "packages": [
+        {
+            "name": "alfa6661/yii2-raty",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alfa6661/yii2-raty.git",
+                "reference": "59e1c85943ba8e3e1b4e183e8ccd6aad38823151"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alfa6661/yii2-raty/zipball/59e1c85943ba8e3e1b4e183e8ccd6aad38823151",
+                "reference": "59e1c85943ba8e3e1b4e183e8ccd6aad38823151",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "alfa6661\\widgets\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "alfa",
+                    "email": "alfa2159@gmail.com"
+                }
+            ],
+            "description": "Yii2 wrapper for jQuery Raty plugin",
+            "keywords": [
+                " raty",
+                " star rating",
+                "extension",
+                "yii2"
+            ],
+            "time": "2015-08-18T08:05:02+00:00"
+        },
         {
             "name": "almasaeed2010/adminlte",
             "version": "v2.3.11",
@@ -88,6 +130,69 @@
             ]
         },
         {
+            "name": "bower-asset/jquery-ui",
+            "version": "1.11.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/components/jqueryui.git",
+                "reference": "c34f8dbf3ba57b3784b93f26119f436c0e8288e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/components/jqueryui/zipball/c34f8dbf3ba57b3784b93f26119f436c0e8288e1",
+                "reference": "c34f8dbf3ba57b3784b93f26119f436c0e8288e1",
+                "shasum": null
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.6"
+            },
+            "type": "bower-asset"
+        },
+        {
+            "name": "bower-asset/jquery.countdown",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hilios/jQuery.countdown.git",
+                "reference": "f4dd04b02be1e0504c03d886efe8a94de7f2da6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hilios/jQuery.countdown/zipball/f4dd04b02be1e0504c03d886efe8a94de7f2da6b",
+                "reference": "f4dd04b02be1e0504c03d886efe8a94de7f2da6b",
+                "shasum": null
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.7"
+            },
+            "type": "bower-asset",
+            "license": [
+                {
+                    "type": "MIT",
+                    "url": "https://github.com/hilios/jQuery.countdown/blob/2.0.4/LICENSE.md"
+                }
+            ]
+        },
+        {
+            "name": "bower-asset/jquery.form-styler",
+            "version": "1.7.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Dimox/jQueryFormStyler.git",
+                "reference": "bf857e8d01e9e32a4ec3099582f5faf8524e94ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Dimox/jQueryFormStyler/zipball/bf857e8d01e9e32a4ec3099582f5faf8524e94ef",
+                "reference": "bf857e8d01e9e32a4ec3099582f5faf8524e94ef",
+                "shasum": null
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
             "name": "bower-asset/jquery.inputmask",
             "version": "3.3.8",
             "source": {
@@ -107,6 +212,41 @@
             "type": "bower-asset",
             "license": [
                 "http://opensource.org/licenses/mit-license.php"
+            ]
+        },
+        {
+            "name": "bower-asset/jquery.mmenu",
+            "version": "5.6.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FrDH/jQuery.mmenu.git",
+                "reference": "4039d651c7a04b1fc2f0416969b16be4096670bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FrDH/jQuery.mmenu/zipball/4039d651c7a04b1fc2f0416969b16be4096670bf",
+                "reference": "4039d651c7a04b1fc2f0416969b16be4096670bf",
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
+            "name": "bower-asset/lightbox2",
+            "version": "2.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lokesh/lightbox2.git",
+                "reference": "2e7daa84b9cf6412084ed5c97fdb448942c62d31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lokesh/lightbox2/zipball/2e7daa84b9cf6412084ed5c97fdb448942c62d31",
+                "reference": "2e7daa84b9cf6412084ed5c97fdb448942c62d31",
+                "shasum": null
+            },
+            "type": "bower-asset",
+            "license": [
+                "CC BY 2.5"
             ]
         },
         {
@@ -187,6 +327,47 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "branchonline/yii2-lightbox",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BranchOnline/yii2-lightbox.git",
+                "reference": "6cfe1a4a4fba046294b718904f7e57f671558fd1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BranchOnline/yii2-lightbox/zipball/6cfe1a4a4fba046294b718904f7e57f671558fd1",
+                "reference": "6cfe1a4a4fba046294b718904f7e57f671558fd1",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/lightbox2": "2.7.1",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "branchonline\\lightbox\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jap Mul",
+                    "email": "jap@branchonline.nl"
+                }
+            ],
+            "description": "Lightbox widget for Yii2",
+            "keywords": [
+                "module",
+                "yii2"
+            ],
+            "time": "2016-10-27T15:13:14+00:00"
         },
         {
             "name": "cebe/markdown",
@@ -547,6 +728,60 @@
                 "package"
             ],
             "time": "2017-04-09T11:49:10+00:00"
+        },
+        {
+            "name": "ivan-chkv/yii2-jquery-form-styler",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ivan-chkv/yii2-jquery-form-styler.git",
+                "reference": "2b0f4b9d1d4222c226f27c22606a3b6c0e4dd6e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ivan-chkv/yii2-jquery-form-styler/zipball/2b0f4b9d1d4222c226f27c22606a3b6c0e4dd6e0",
+                "reference": "2b0f4b9d1d4222c226f27c22606a3b6c0e4dd6e0",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery.form-styler": "1.7.*",
+                "yiisoft/yii2": ">=2.0.4"
+            },
+            "require-dev": {
+                "ivan-chkv/yii2-phpunit": "2.*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\jquery\\formstyler\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Chistyakov",
+                    "email": "ivan.chkv@gmail.com"
+                }
+            ],
+            "description": "Yii 2 jQuery Form Styler Asset",
+            "homepage": "http://dimox.name/jquery-form-styler",
+            "keywords": [
+                "dimox",
+                "form",
+                "jquery",
+                "styler",
+                "yii2"
+            ],
+            "time": "2016-07-14T21:30:20+00:00"
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
@@ -2026,6 +2261,43 @@
             "time": "2015-06-25T17:23:06+00:00"
         },
         {
+            "name": "russ666/yii2-countdown",
+            "version": "0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/russ666/yii2-countdown.git",
+                "reference": "0438d14870b9a7f58b523a0ad0cb5aab40f20e49"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/russ666/yii2-countdown/zipball/0438d14870b9a7f58b523a0ad0cb5aab40f20e49",
+                "reference": "0438d14870b9a7f58b523a0ad0cb5aab40f20e49",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery.countdown": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "russ666\\widgets\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "jQuery countdown widget for Yii2",
+            "keywords": [
+                "countdown",
+                "jquery",
+                "widget",
+                "yii2"
+            ],
+            "time": "2017-05-31T14:46:43+00:00"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v5.4.8",
             "source": {
@@ -2078,6 +2350,52 @@
                 "mailer"
             ],
             "time": "2017-05-01T15:54:03+00:00"
+        },
+        {
+            "name": "wbraganca/yii2-mmenu-widget",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wbraganca/yii2-mmenu-widget.git",
+                "reference": "d68ce209d0cac61c0e83bfb90f96474e6ec5d245"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wbraganca/yii2-mmenu-widget/zipball/d68ce209d0cac61c0e83bfb90f96474e6ec5d245",
+                "reference": "d68ce209d0cac61c0e83bfb90f96474e6ec5d245",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery.mmenu": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "wbraganca\\mmenu\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Wanderson Bragança",
+                    "email": "wanderson.wbc@gmail.com"
+                }
+            ],
+            "description": "The yii2-mmenu widget is a Yii 2 wrapper for the [jQuery-mmenu](http://mmenu.frebsite.nl/). A jQuery plugin for creating slick, app look-alike sliding menus for you mobile website with only one line of javascript",
+            "keywords": [
+                "extension",
+                "menu",
+                "mmenu",
+                "yii2",
+                "yii2-extension",
+                "yii2-mmenu",
+                "yii2-mmenu-widget"
+            ],
+            "time": "2014-12-08T23:42:25+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -2476,6 +2794,56 @@
                 "yii2"
             ],
             "time": "2017-06-23T09:36:13+00:00"
+        },
+        {
+            "name": "yiisoft/yii2-jui",
+            "version": "2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-jui.git",
+                "reference": "843a2160cfe30f5c8b0cb2e9dbd8ee6bcf97e71d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-jui/zipball/843a2160cfe30f5c8b0cb2e9dbd8ee6bcf97e71d",
+                "reference": "843a2160cfe30f5c8b0cb2e9dbd8ee6bcf97e71d",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery-ui": "1.11.*@stable",
+                "yiisoft/yii2": ">=2.0.4"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                },
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\jui\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Qiang Xue",
+                    "email": "qiang.xue@gmail.com"
+                }
+            ],
+            "description": "The Jquery UI extension for the Yii framework",
+            "keywords": [
+                "jQuery UI",
+                "yii2"
+            ],
+            "time": "2016-07-22T22:26:59+00:00"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -3105,22 +3473,22 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "3.2.2",
+            "version": "3.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "4aada1f93c72c35e22fb1383b47fee43b8f1d157"
+                "reference": "86e24012a3139b42a7b71155cfaa325389f00f1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/4aada1f93c72c35e22fb1383b47fee43b8f1d157",
-                "reference": "4aada1f93c72c35e22fb1383b47fee43b8f1d157",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/86e24012a3139b42a7b71155cfaa325389f00f1f",
+                "reference": "86e24012a3139b42a7b71155cfaa325389f00f1f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5",
+                "php": "^7.0",
                 "phpdocumentor/reflection-common": "^1.0@dev",
-                "phpdocumentor/type-resolver": "^0.3.0",
+                "phpdocumentor/type-resolver": "^0.4.0",
                 "webmozart/assert": "^1.0"
             },
             "require-dev": {
@@ -3146,20 +3514,20 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2017-08-08T06:39:58+00:00"
+            "time": "2017-08-29T19:37:41+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "0.3.0",
+            "version": "0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "fb3933512008d8162b3cdf9e18dba9309b7c3773"
+                "reference": "9c977708995954784726e25d0cd1dddf4e65b0f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/fb3933512008d8162b3cdf9e18dba9309b7c3773",
-                "reference": "fb3933512008d8162b3cdf9e18dba9309b7c3773",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/9c977708995954784726e25d0cd1dddf4e65b0f7",
+                "reference": "9c977708995954784726e25d0cd1dddf4e65b0f7",
                 "shasum": ""
             },
             "require": {
@@ -3193,7 +3561,7 @@
                     "email": "me@mikevanriel.com"
                 }
             ],
-            "time": "2017-06-03T08:32:36+00:00"
+            "time": "2017-07-14T14:27:02+00:00"
         },
         {
             "name": "phpspec/php-diff",

@@ -50,47 +50,47 @@ $(document).ready(function () {
     //  //= source/miss-click.js
     $('.product-line__item input[type="number"]').styler();
     $('.product_list_item input[type="number"]').styler();
-    var main_block_swiper = new Swiper('.main-block .swiper-container', {
-        pagination: ' .main-block  .swiper-pagination',
-        nextButton: '.main-block  .swiper-button-next',
-        prevButton: '.main-block  .swiper-button-prev',
-        paginationClickable: true
-    });
-    var product_line_swiper = new Swiper('.product-line-1 .swiper-container', {
-        slidesPerView: 6,
-        loop: true,
-        nextButton: '.product-line-1 .swiper-button-next',
-        prevButton: '.product-line-1 .swiper-button-prev',
-        autoplay: 4000,
-        // onlyExternal: true,
-        paginationClickable: true,
-        breakpoints: {
-            480: {
-                slidesPerView: 1,
-                spaceBetween: 20
-            },
-            900: {
-                slidesPerView: 2
-            },
-            1100: {
-                slidesPerView: 3
-            },
-            1200: {
-                slidesPerView: 4
-            },
-            1390: {
-                slidesPerView: 5
-            },
-            1400: {
-                slidersPreView: 6
-            }
-    
-            // 1920: {
-            //     slidesPerView: 5
-            // }
-        },
-        spaceBetween: 30
-    });
+    // var main_block_swiper = new Swiper('.main-block .swiper-container', {
+    //     pagination: ' .main-block  .swiper-pagination',
+    //     nextButton: '.main-block  .swiper-button-next',
+    //     prevButton: '.main-block  .swiper-button-prev',
+    //     paginationClickable: true
+    // });
+    // var product_line_swiper = new Swiper('.product-line-1 .swiper-container', {
+    //     slidesPerView: 6,
+    //     loop: true,
+    //     nextButton: '.product-line-1 .swiper-button-next',
+    //     prevButton: '.product-line-1 .swiper-button-prev',
+    //     autoplay: 4000,
+    //     // onlyExternal: true,
+    //     paginationClickable: true,
+    //     breakpoints: {
+    //         480: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20
+    //         },
+    //         900: {
+    //             slidesPerView: 2
+    //         },
+    //         1100: {
+    //             slidesPerView: 3
+    //         },
+    //         1200: {
+    //             slidesPerView: 4
+    //         },
+    //         1390: {
+    //             slidesPerView: 5
+    //         },
+    //         1400: {
+    //             slidersPreView: 6
+    //         }
+    //
+    //         // 1920: {
+    //         //     slidesPerView: 5
+    //         // }
+    //     },
+    //     spaceBetween: 30
+    // });
     
     var product_line_swiper_1 = new Swiper('#tab-1 .swiper-container', {
         slidesPerView: 6,

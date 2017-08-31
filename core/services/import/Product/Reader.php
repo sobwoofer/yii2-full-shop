@@ -20,10 +20,7 @@ use core\services\import\Product\Row;
  */
 class Reader
 {
-    /**
-     * @param $file
-     * @return Row[];
-     */
+
     public function readCsv($file): iterable
     {
         $result = [];

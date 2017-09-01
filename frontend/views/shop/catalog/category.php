@@ -44,14 +44,33 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <a href="/catalog_list.html" class="list"><i class="fa fa-list" aria-hidden="true"></i></a>
                             </div>
                             <div class="select">
-                                <select class="pull-right ">
-                                    <option value="#">по рейтингу</option>
-                                    <option value="#">по рейтингу </option>
-                                    <option value="#">по рейтингу</option>
-                                    <option value="#">по рейтингу</option>
-                                    <option value="#">по рейтингу</option>
+                                <select class="pull-right" onchange="location = this.value;">
+                                    <?php
+                                    $values = [
+                                        '' => 'Default',
+                                        'name' => 'Name (A - Z)',
+                                        '-name' => 'Name (Z - A)',
+                                        'price' => 'Price (Low &gt; High)',
+                                        '-price' => 'Price (High &gt; Low)',
+                                        '-rating' => 'Rating (Highest)',
+                                        'rating' => 'Rating (Lowest)',
+                                    ];
+                                    $current = Yii::$app->request->get('sort');
+                                    ?>
+                                    <?php foreach ($values as $value => $label): ?>
+                                        <option value="<?= Html::encode(Url::current(['sort' => $value ?: null])) ?>" <?php if ($current == $value): ?>selected="selected"<?php endif; ?>><?= $label ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
+                            <?php //<select id="input-limit" class="form-control" onchange="location = this.value;"> ?>
+                                <?php
+                                //$values = [15, 25, 50, 75, 100];
+                                //$current = $dataProvider->getPagination()->getPageSize();
+                                ?>
+                                <?php //foreach ($values as $value): ?>
+                                    <?php //<option value="?><?php //echo Html::encode(Url::current(['per-page' => $value])) ?><?php //" ?><?php //if ($current == $value): ?><?php //selected="selected"?><?php endif; ?><?php //>?><?php //echo $value ?><?php //</option>?>
+                                <?php// endforeach; ?>
+                            <?php //</select> ?>
 
                         </div>
                     </div>

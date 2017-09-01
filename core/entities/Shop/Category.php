@@ -24,6 +24,7 @@ use core\entities\Shop\queries\CategoryQuery;
  * @property integer $rgt
  * @property integer $depth
  * @property Meta $meta
+ * @property Category[] $children
  *
  * @property Category $prev
  * @property Category $next

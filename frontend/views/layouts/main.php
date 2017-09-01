@@ -569,7 +569,15 @@ AppAsset::register($this);
                 <div class="col-xs-12 col-md-5 col-lg-5">
                     <div class="top-action">
                         <div class="authorization" data-toggle="modal" data-target="#authorization_modal">
-                            <p><span></span> <i>Войти\регистрация</i></p>
+                            <p><span></span>
+                                <i>
+                                    <?php if (Yii::$app->user->isGuest): ?>
+                                        <a href="#">Войти/регистрация</a>
+                                    <?php else: ?>
+                                        <a href="<?= Html::encode(Url::to(['/auth/auth/logout'])) ?>" data-method="post">Выход</a>
+                                    <?php endif; ?>
+                                </i>
+                            </p>
                         </div>
 
 

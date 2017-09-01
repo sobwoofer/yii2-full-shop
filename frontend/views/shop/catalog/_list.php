@@ -66,11 +66,11 @@ use yii\widgets\Breadcrumbs;
 
         <div class="product_content">
             <?php foreach ($dataProvider->getModels() as $product): ?>
-            <div class="col-sm-4 col-lg-3">
-                <?=  $this->render('/shop/catalog/_product',[
-                'product' => $product
-                ]) ?>
-            </div>
+                <div class="col-sm-4 col-lg-3">
+                    <?=  $this->render('/shop/catalog/_product',[
+                    'product' => $product
+                    ]) ?>
+                </div>
             <?php endforeach; ?>
 
                 <div class="load-more">

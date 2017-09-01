@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $category->name;
 
 //= modules/product-line.html
 
-<?= $this->render('/catalog/seoblock', [
+<?= $this->render('/shop/seoblock', [
     'shortText' => $category->description
     ]) ?>
 

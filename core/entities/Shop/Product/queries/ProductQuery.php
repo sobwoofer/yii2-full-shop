@@ -6,7 +6,7 @@
  * Time: 9:49
  */
 
-namespace shop\entities\Shop\Product\queries;
+namespace core\entities\Shop\Product\queries;
 
 use core\entities\Shop\Product\Product;
 use yii\db\ActiveQuery;

@@ -5,6 +5,16 @@
  * Date: 31.08.17
  * Time: 10:53
  */
+
+/* @var $this yii\web\View */
+/* @var $product core\entities\Shop\Product\Product */
+
+use core\helpers\PriceHelper;
+use yii\helpers\Html;
+use yii\helpers\StringHelper;
+use yii\helpers\Url;
+
+$url = Url::to(['product', 'id' =>$product->id]);
 ?>
 
 <div class="product-line__item">
@@ -24,30 +34,42 @@
     <!-- .product-line__item__logo -->
     <!-- .product-line__img -->
     <div class="product-line__img">
-        <img src="http://static.yii2-shop.dev/dev/product-img-1.png" alt="">
+        <div class="image">
+            <a href="<?= Html::encode($url) ?>">
+                <?php if ($product->mainPhoto): ?>
+                    <img src="<?= Html::encode($product->mainPhoto->getThumbFileUrl('file', 'catalog_list')) ?>" alt="" class="img-responsive" />
+                <?php else: ?>
+                    <img src="http://static.yii2-shop.dev/dev/product-img-1.png" alt="">
+                <?php endif; ?>
+            </a>
+        </div>
     </div>
     <!-- .product-line__img -->
     <!-- .product-line__title -->
     <div class="product-line__title">
-        <p>Папка-конверт А4 непрозрачная на кнопке, фактура апельсин</p>
+        <p><a href="<?= Html::encode($url) ?>"><?= StringHelper::truncateWords(Html::encode($product->name), 20) ?></a></p>
     </div>
     <!-- .product-line__title -->
     <span class="vendor_code">Артикул: s101003</span>
     <!-- .price_block -->
     <div class="price_block price_stock
         ">
-        <p class="price_old">216.99</p>
-        <p class="prace_new">215. <span>99</span> грн</p>
+        <p class="prace_new"><?= PriceHelper::format($product->price_new) ?></p>
+        <?php if ($product->price_old): ?>
+            <p class="price_old"><?= PriceHelper::format($product->price_old) ?></p>
+        <?php endif; ?>
+
     </div>
     <!-- .price_block -->
     <!-- .product-line__item__action-block -->
     <div class="product-line__item__action-block">
-        <a href="#" class="like">
+        <a href="#" onclick="wishlist.add('<?= $product->id ?>');" class="like">
             <i class="fa fa-heart" aria-hidden="true"></i>
         </a>
         <input type="number" value="1">
-        <a href="#" class="btn btn-to-cart">В КОРЗИНУ</a>
+        <a href="#" onclick="cart.add('<?= $product->id ?>', '2');" class="btn btn-to-cart">В КОРЗИНУ</a>
     </div>
+
     <div class="clearfix"></div>
     <?= \alfa6661\widgets\Raty::widget([
         'name' => 'user-vote',

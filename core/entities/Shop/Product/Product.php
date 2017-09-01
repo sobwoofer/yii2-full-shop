@@ -14,7 +14,7 @@ use core\entities\behaviors\MetaBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\db\Exception;
-use shop\entities\Shop\Product\queries\ProductQuery;
+use core\entities\Shop\Product\queries\ProductQuery;
 use core\entities\Meta;
 use core\entities\Shop\Brand;
 use core\entities\Shop\Category;

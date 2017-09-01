@@ -183,11 +183,11 @@ use yii\helpers\Html;
 
         <?= Swiper::widget( [
             'items'         => [
-                $this->render('/shop/_product'),
-                $this->render('/shop/_product'),
-                $this->render('/shop/_product'),
-                $this->render('/shop/_product'),
-                $this->render('/shop/_product'),
+                $this->render('/shop/catalog/_product'),
+                $this->render('/shop/catalog/_product'),
+                $this->render('/shop/catalog/_product'),
+                $this->render('/shop/catalog/_product'),
+                $this->render('/shop/catalog/_product'),
             ],
             'behaviours'    => [
                 'nextButton',
@@ -298,19 +298,19 @@ use yii\helpers\Html;
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                     </div>
                     <!-- Add Pagination -->
@@ -322,22 +322,22 @@ use yii\helpers\Html;
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                     </div>
                     <!-- Add Pagination -->
@@ -349,22 +349,22 @@ use yii\helpers\Html;
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                         <div class="swiper-slide">
-                            <?=  $this->render('/shop/_product') ?>
+                            <?=  $this->render('/shop/catalog/_product') ?>
                         </div>
                     </div>
                     <!-- Add Pagination -->
@@ -393,22 +393,22 @@ use yii\helpers\Html;
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
             </div>
             <!-- Add Pagination -->
@@ -435,22 +435,22 @@ use yii\helpers\Html;
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
             </div>
             <!-- Add Pagination -->
@@ -478,22 +478,22 @@ use yii\helpers\Html;
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
                 <div class="swiper-slide">
-                    <?=  $this->render('/shop/_product') ?>
+                    <?=  $this->render('/shop/catalog/_product') ?>
                 </div>
             </div>
             <!-- Add Pagination -->

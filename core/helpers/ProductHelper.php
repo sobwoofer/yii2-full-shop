@@ -6,11 +6,12 @@
  * Time: 9:52
  */
 
-namespace shop\helpers;
+namespace core\helpers;
 
 use core\entities\Shop\Product\Product;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+
 
 class ProductHelper
 {

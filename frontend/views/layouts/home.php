@@ -167,123 +167,8 @@ use yii\helpers\Html;
 </div>
 <hr>
 <?= \frontend\widgets\ViewedProductsWidget::widget(['limit' => 4]) ?>
-<div class="product-line  product-line__tabs">
-    <div class="product-line__tabs__wrp">
-        <!-- Nav tabs -->
-        <div class="container">
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="col-md-4">
-                    <a href="#tab-1" aria-controls="tab-1" role="tab" data-toggle="tab">
-                        <div class="product-line__title__wrp">
-                            <p class="product-line__title">ПОПУЛЯРНЫЕ</p>
-                            <p onclick="document.location.href = '#1'" class="more">смотреть все<span></span></p>
-                        </div>
-                    </a>
-                </li>
-                <li role="presentation" class="active col-md-4">
-                    <a href="#tab-2" aria-controls="tab-2" role="tab" data-toggle="tab">
-                        <div class="product-line__title__wrp">
-                            <p class="product-line__title">НОВИНКИ</p>
-                            <p onclick="document.location.href = '#2'" class="more">смотреть все<span></span></p>
-                        </div>
-                    </a>
-                </li>
-                <li role="presentation" class="col-md-4">
-                    <a href="#tab-3" aria-controls="tab-3" role="tab" data-toggle="tab">
-                        <div class="product-line__title__wrp">
-                            <p class="product-line__title">РАСПРОДАЖИ</p>
-                            <p onclick="document.location.href = '#3'" class="more">смотреть все<span></span></p>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="container">
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane " id="tab-1">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
+<?= \frontend\widgets\PnsTabsProductWidget::widget(['limit' => 4]) ?>
 
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                    </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
-            </div>
-            <div role="tabpanel" class="tab-pane active" id="tab-2">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                    </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="tab-3">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                        <div class="swiper-slide">
-                            <?=  $this->render('/shop/catalog/_product') ?>
-                        </div>
-                    </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <?= \frontend\widgets\NewProductsWidget::widget(['limit' => 4]) ?>
@@ -343,6 +228,7 @@ use yii\helpers\Html;
         </div>
     </div>
 </div>
+
 
 <div class="our_advantages">
     <div class="container">

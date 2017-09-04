@@ -94,229 +94,229 @@ $(document).ready(function () {
     //     spaceBetween: 30
     // });
     
-    var product_line_swiper_1 = new Swiper('#tab-1 .swiper-container', {
-        slidesPerView: 6,
-        loop: true,
-        autoplay: 4000,
-        nextButton: '#tab-1 .swiper-button-next',
-        prevButton: '#tab-1 .swiper-button-prev',
+    // var product_line_swiper_1 = new Swiper('#tab-1 .swiper-container', {
+    //     slidesPerView: 6,
+    //     loop: true,
+    //     autoplay: 4000,
+    //     nextButton: '#tab-1 .swiper-button-next',
+    //     prevButton: '#tab-1 .swiper-button-prev',
+    //
+    //     // onlyExternal: true,
+    //     lazyLoading: true,
+    //     paginationClickable: true,
+    //     spaceBetween: 30,
+    //     breakpoints: {
+    //         480: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20
+    //         },
+    //         900: {
+    //             slidesPerView: 2
+    //         },
+    //         1100: {
+    //             slidesPerView: 3
+    //         },
+    //         1200: {
+    //             slidesPerView: 4
+    //         },
+    //         1390: {
+    //             slidesPerView: 5
+    //         },
+    //         1400: {
+    //             slidersPreView: 6
+    //         }
+    //
+    //         // 1920: {
+    //         //     slidesPerView: 5
+    //         // }
+    //
+    //     }
+    // });
     
-        // onlyExternal: true,
-        lazyLoading: true,
-        paginationClickable: true,
-        spaceBetween: 30,
-        breakpoints: {
-            480: {
-                slidesPerView: 1,
-                spaceBetween: 20
-            },
-            900: {
-                slidesPerView: 2
-            },
-            1100: {
-                slidesPerView: 3
-            },
-            1200: {
-                slidesPerView: 4
-            },
-            1390: {
-                slidesPerView: 5
-            },
-            1400: {
-                slidersPreView: 6
-            }
+    // var product_line_swiper_2 = new Swiper('#tab-2 .swiper-container', {
+    //     slidesPerView: 6,
+    //     loop: true,
+    //     autoplay: 4000,
+    //     nextButton: '#tab-2 .swiper-button-next',
+    //     prevButton: '#tab-2 .swiper-button-prev',
+    //
+    //     // onlyExternal: true,
+    //     paginationClickable: true,
+    //     lazyLoading: true,
+    //     spaceBetween: 30,
+    //     breakpoints: {
+    //         480: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20
+    //         },
+    //         900: {
+    //             slidesPerView: 2
+    //         },
+    //         1100: {
+    //             slidesPerView: 3
+    //         },
+    //         1200: {
+    //             slidesPerView: 4
+    //         },
+    //         1390: {
+    //             slidesPerView: 5
+    //         },
+    //         1400: {
+    //             slidersPreView: 6
+    //         }
+    //
+    //         // 1920: {
+    //         //     slidesPerView: 5
+    //         // }
+    //     }
+    // });
     
-            // 1920: {
-            //     slidesPerView: 5
-            // }
+    // var product_line_swiper_3 = new Swiper('#tab-3 .swiper-container', {
+    //     slidesPerView: 6,
+    //     loop: true,
+    //     autoplay: 4000,
+    //     lazyLoading: true,
+    //     nextButton: '#tab-3 .swiper-button-next',
+    //     prevButton: '#tab-3 .swiper-button-prev',
+    //     // onlyExternal: true,
+    //     paginationClickable: true,
+    //     spaceBetween: 30,
+    //     breakpoints: {
+    //         480: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20
+    //         },
+    //         900: {
+    //             slidesPerView: 2
+    //         },
+    //         1100: {
+    //             slidesPerView: 3
+    //         },
+    //         1200: {
+    //             slidesPerView: 4
+    //         },
+    //         1390: {
+    //             slidesPerView: 5
+    //         },
+    //         1400: {
+    //             slidersPreView: 6
+    //         }
+    //
+    //         // 1920: {
+    //         //     slidesPerView: 5
+    //         // }
+    //     }
+    // });
     
-        }
-    });
+    // var popular_line_swiper = new Swiper('.popular .swiper-container', {
+    //     slidesPerView: 6,
+    //     loop: true,
+    //     autoplay: 4000,
+    //     lazyLoading: true,
+    //     nextButton: '.popular .swiper-button-next',
+    //     prevButton: '.popular .swiper-button-prev',
+    //     // onlyExternal: true,
+    //     paginationClickable: true,
+    //     spaceBetween: 30,
+    //     breakpoints: {
+    //         480: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20
+    //         },
+    //         900: {
+    //             slidesPerView: 2
+    //         },
+    //         1100: {
+    //             slidesPerView: 3
+    //         },
+    //         1200: {
+    //             slidesPerView: 4
+    //         },
+    //         1390: {
+    //             slidesPerView: 5
+    //         },
+    //         1400: {
+    //             slidersPreView: 6
+    //         }
+    //
+    //         // 1920: {
+    //         //     slidesPerView: 5
+    //         // }
+    //     }
+    // });
+    // var news_line_swiper = new Swiper('.news .swiper-container', {
+    //     slidesPerView: 6,
+    //     loop: true,
+    //     autoplay: 4000,
+    //     lazyLoading: true,
+    //     nextButton: '.news .swiper-button-next',
+    //     prevButton: '.news .swiper-button-prev',
+    //     // onlyExternal: true,
+    //     paginationClickable: true,
+    //     spaceBetween: 30,
+    //     breakpoints: {
+    //         480: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20
+    //         },
+    //         900: {
+    //             slidesPerView: 2
+    //         },
+    //         1100: {
+    //             slidesPerView: 3
+    //         },
+    //         1200: {
+    //             slidesPerView: 4
+    //         },
+    //         1390: {
+    //             slidesPerView: 5
+    //         },
+    //         1400: {
+    //             slidersPreView: 6
+    //         }
+    //
+    //         // 1920: {
+    //         //     slidesPerView: 5
+    //         // }
+    //     }
+    // });
     
-    var product_line_swiper_2 = new Swiper('#tab-2 .swiper-container', {
-        slidesPerView: 6,
-        loop: true,
-        autoplay: 4000,
-        nextButton: '#tab-2 .swiper-button-next',
-        prevButton: '#tab-2 .swiper-button-prev',
-    
-        // onlyExternal: true,
-        paginationClickable: true,
-        lazyLoading: true,
-        spaceBetween: 30,
-        breakpoints: {
-            480: {
-                slidesPerView: 1,
-                spaceBetween: 20
-            },
-            900: {
-                slidesPerView: 2
-            },
-            1100: {
-                slidesPerView: 3
-            },
-            1200: {
-                slidesPerView: 4
-            },
-            1390: {
-                slidesPerView: 5
-            },
-            1400: {
-                slidersPreView: 6
-            }
-    
-            // 1920: {
-            //     slidesPerView: 5
-            // }
-        }
-    });
-    
-    var product_line_swiper_3 = new Swiper('#tab-3 .swiper-container', {
-        slidesPerView: 6,
-        loop: true,
-        autoplay: 4000,
-        lazyLoading: true,
-        nextButton: '#tab-3 .swiper-button-next',
-        prevButton: '#tab-3 .swiper-button-prev',
-        // onlyExternal: true,
-        paginationClickable: true,
-        spaceBetween: 30,
-        breakpoints: {
-            480: {
-                slidesPerView: 1,
-                spaceBetween: 20
-            },
-            900: {
-                slidesPerView: 2
-            },
-            1100: {
-                slidesPerView: 3
-            },
-            1200: {
-                slidesPerView: 4
-            },
-            1390: {
-                slidesPerView: 5
-            },
-            1400: {
-                slidersPreView: 6
-            }
-    
-            // 1920: {
-            //     slidesPerView: 5
-            // }
-        }
-    });
-    
-    var popular_line_swiper = new Swiper('.popular .swiper-container', {
-        slidesPerView: 6,
-        loop: true,
-        autoplay: 4000,
-        lazyLoading: true,
-        nextButton: '.popular .swiper-button-next',
-        prevButton: '.popular .swiper-button-prev',
-        // onlyExternal: true,
-        paginationClickable: true,
-        spaceBetween: 30,
-        breakpoints: {
-            480: {
-                slidesPerView: 1,
-                spaceBetween: 20
-            },
-            900: {
-                slidesPerView: 2
-            },
-            1100: {
-                slidesPerView: 3
-            },
-            1200: {
-                slidesPerView: 4
-            },
-            1390: {
-                slidesPerView: 5
-            },
-            1400: {
-                slidersPreView: 6
-            }
-    
-            // 1920: {
-            //     slidesPerView: 5
-            // }
-        }
-    });
-    var news_line_swiper = new Swiper('.news .swiper-container', {
-        slidesPerView: 6,
-        loop: true,
-        autoplay: 4000,
-        lazyLoading: true,
-        nextButton: '.news .swiper-button-next',
-        prevButton: '.news .swiper-button-prev',
-        // onlyExternal: true,
-        paginationClickable: true,
-        spaceBetween: 30,
-        breakpoints: {
-            480: {
-                slidesPerView: 1,
-                spaceBetween: 20
-            },
-            900: {
-                slidesPerView: 2
-            },
-            1100: {
-                slidesPerView: 3
-            },
-            1200: {
-                slidesPerView: 4
-            },
-            1390: {
-                slidesPerView: 5
-            },
-            1400: {
-                slidersPreView: 6
-            }
-    
-            // 1920: {
-            //     slidesPerView: 5
-            // }
-        }
-    });
-    
-    var sale_line_swiper = new Swiper('.sale .swiper-container', {
-        slidesPerView: 6,
-        loop: true,
-        autoplay: 4000,
-        lazyLoading: true,
-        nextButton: '.sale .swiper-button-next',
-        prevButton: '.sale .swiper-button-prev',
-        // onlyExternal: true,
-        paginationClickable: true,
-        spaceBetween: 30,
-        breakpoints: {
-            480: {
-                slidesPerView: 1,
-                spaceBetween: 20
-            },
-            900: {
-                slidesPerView: 2
-            },
-            1100: {
-                slidesPerView: 3
-            },
-            1200: {
-                slidesPerView: 4
-            },
-            1390: {
-                slidesPerView: 5
-            },
-            1400: {
-                slidersPreView: 6
-            }
-    
-            // 1920: {
-            //     slidesPerView: 5
-            // }
-        }
-    });
+    // var sale_line_swiper = new Swiper('.sale .swiper-container', {
+    //     slidesPerView: 6,
+    //     loop: true,
+    //     autoplay: 4000,
+    //     lazyLoading: true,
+    //     nextButton: '.sale .swiper-button-next',
+    //     prevButton: '.sale .swiper-button-prev',
+    //     // onlyExternal: true,
+    //     paginationClickable: true,
+    //     spaceBetween: 30,
+    //     breakpoints: {
+    //         480: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20
+    //         },
+    //         900: {
+    //             slidesPerView: 2
+    //         },
+    //         1100: {
+    //             slidesPerView: 3
+    //         },
+    //         1200: {
+    //             slidesPerView: 4
+    //         },
+    //         1390: {
+    //             slidesPerView: 5
+    //         },
+    //         1400: {
+    //             slidersPreView: 6
+    //         }
+    //
+    //         // 1920: {
+    //         //     slidesPerView: 5
+    //         // }
+    //     }
+    // });
     
     var our_clients_swiper = new Swiper('.our_clients .swiper-container', {
         slidesPerView: 6,

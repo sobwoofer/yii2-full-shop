@@ -64,8 +64,9 @@ class Product extends ActiveRecord
         $product->code = $code;
         $product->name = $name;
         $product->description = $description;
-        $product->meta = $meta;
         $product->created_at = time();
+        $product->meta = $meta;
+        $product->status = self::STATUS_DRAFT;
         return $product;
     }
 

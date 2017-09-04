@@ -18,7 +18,7 @@ class m170816_063229_create_shop_products_table extends Migration
             'id' => $this->primaryKey(),
             'category_id' => $this->integer()->notNull(),
             'brand_id' => $this->integer(),
-            'createt_at' => $this->integer()->unsigned()->notNull(),
+            'created_at' => $this->integer()->unsigned()->notNull(),
             'code' => $this->string()->notNull(),
             'name' => $this->string()->notNull(),
             'price_old' => $this->integer(),

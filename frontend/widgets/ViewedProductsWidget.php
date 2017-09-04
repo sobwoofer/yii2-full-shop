@@ -19,7 +19,7 @@ class ViewedProductsWidget extends Widget
     public $limit;
     public $class = 'product-line-1';
 
-    public function __construct(ProductReadRepository $repository,array $config = [])
+    public function __construct(ProductReadRepository $repository, array $config = [])
     {
         parent::__construct($config);
         $this->repository = $repository;

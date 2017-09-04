@@ -27,7 +27,7 @@ class PopularProductsWidget extends Widget
 
     public function run()
     {
-        $this->render('product-line', [
+        return $this->render('product-line', [
             'products' => $this->repository->getPopular($this->limit),
             'title' => $this->title,
             'class' => $this->class,

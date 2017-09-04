@@ -30,7 +30,7 @@ use romkaChev\yii2\swiper\Swiper;
         <?php
         $data = [];
         foreach ($products as $product) {
-            $data[] = $this->render('/shop/catalog/_product', ['product' => $product]);
+            $data[] = $this->render('@frontend/views/shop/catalog/_product', ['product' => $product]);
         } ?>
         <?= Swiper::widget( [
             'items'         => $data,

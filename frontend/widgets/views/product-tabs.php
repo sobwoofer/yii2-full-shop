@@ -54,7 +54,7 @@ use romkaChev\yii2\swiper\Swiper;
                 <?php
                 $data = [];
                 foreach ($products['content1'] as $product) {
-                    $data[] = $this->render('/shop/catalog/_product', ['product' => $product]);
+                    $data[] = $this->render('@frontend/views/shop/catalog/_product', ['product' => $product]);
                 } ?>
                 <?= Swiper::widget( [
                     'items'         => $data,
@@ -66,14 +66,14 @@ use romkaChev\yii2\swiper\Swiper;
                         'grabCursor'     => true,
                         'centeredSlides' => true,
                         'slidesPerView'  => 'auto',
-//                        'effect'         => 'coverflow',
-//                        'coverflow'      => [
-//                            'rotate'       => 50,
-//                            'stretch'      => 0,
-//                            'depth'        => 100,
-//                            'modifier'     => 2,
-//                            'slideShadows' => true
-//                        ]
+                        'effect'         => 'coverflow',
+                        'coverflow'      => [
+                            'rotate'       => 50,
+                            'stretch'      => 0,
+                            'depth'        => 100,
+                            'modifier'     => 2,
+                            'slideShadows' => true
+                        ]
                     ]
                 ] ); ?>
             </div>

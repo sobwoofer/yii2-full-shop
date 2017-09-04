@@ -20,7 +20,7 @@
             </p>
         </div>
 
-        <?php if (isset($shortText)): ?>
+        <?php if (isset($fullText)): ?>
             <div class="max-seo-text" style="display: none;">
                 <p>
                     <?= Yii::$app->formatter->asNtext($fullText) ?>

@@ -47,7 +47,6 @@ class CatalogController extends Controller
      */
     public function actionIndex()
     {
-
         $dataProvider = $this->products->getAll();
         $category = $this->categories->getRoot();
 

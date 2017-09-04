@@ -23,45 +23,51 @@ abstract class CompositeForm extends Model
 
     /**
      * @return array
-     * в методе наследнике должны быть перечисленны названия форм которые будут вложенными
+     * в методе наследнике должны быть перечисленны названия форм которые будут вложенными.
+     * parent::load() вызвали родительский клас для заполнения родительской формы
+     * крутим массив субформ которые прилители в метод internalForms()
+     * загрузка данных в форму из $data, если в load передано пустое имя формы $formName
+     * (что значит грузить элементы из корня массива) то просим его грузить данные в субформу
+     * из масива по ключу названия субформуы $data[имя субформы]. В инном случае передаем
+     * null что значит что ключ будет выбран автоматически исходя из названия субформы.
+     * if (is_array($form)) сработает в случае если придет масив из нескольких субформ
+     * else заполнения одной формы
      */
     abstract protected function internalForms(): array;
 
     public function load($data, $formName = null): bool
     {
-        //вызвали родительский клас для заполнения родительской формы
         $success = parent::load($data, $formName);
-        //крутим массив субформ которые прилители в метод internalForms()
         foreach ($this->forms as $name => $form) {
-            //загрузка данных в форму из $data, если в load передано пустое имя формы $formName
-            //(что значит грузить элементы из корня массива) то просим его грузить данные в субформу
-            //из масива по ключу названия субформуы $data[имя субформы]. В инном случае передаем
-            //null что значит что ключ будет выбран автоматически исходя из названия субформы.
             if (is_array($form)) {
-                //сработает в случае если придет масив из нескольких субформ
                 $success = Model::loadMultiple($form, $data, $formName === null ? null : $name) && $success;
             } else {
-                //заполнения одной формы
                 $success = $form->load($data, $formName !== '' ? null : $name) && $success;
             }
         }
         return $success;
     }
 
+    /**
+     * @param null $attributeNames
+     * @param bool $clearErrors
+     * @return bool
+     * если пришел attributeNames то отсеиваем из него для родительской формы все вложенные формы
+     * которые будут приходить массивами а обычные поля все будут строками.
+     * вызов родительского валидатора для валидации родительской формы
+     * крутим массив субформ которые прилители в метод internalForms()
+     * if (is_array($form)) сработает в случае если придет масив из нескольких субформ
+     * else валидация одной субформы
+     */
     public function validate($attributeNames = null, $clearErrors = true): bool
     {
-        //если пришел attributeNames то отсеиваем из него для родительской формы все вложенные формы
-        //которые будут приходить массивами а обычные поля все будут строками.
+
         $parentNames = $attributeNames !== null ? array_filter((array)$attributeNames, 'is_string') : null;
-        //вызов родительского валидатора для валидации родительской формы
         $success = parent::validate($parentNames, $clearErrors);
-        //крутим массив субформ которые прилители в метод internalForms()
         foreach ($this->forms as $name => $form) {
             if (is_array($form)) {
-                //сработает в случае если придет масив из нескольких субформ
                 $success = Model::validateMultiple($form) && $success;
             } else {
-                //валидация одной субформы
                 $innerNames = $attributeNames !== null ? ArrayHelper::getValue($attributeNames, $name) : null;
                 $success = $form->validate($innerNames ?: null, $clearErrors) && $success;
             }

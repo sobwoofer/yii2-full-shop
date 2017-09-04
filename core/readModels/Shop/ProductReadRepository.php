@@ -86,4 +86,27 @@ class ProductReadRepository
             ]
         ]);
     }
+
+    public function getViewed($limit): array
+    {
+        //TODO need develop record customer's product views
+        return Product::find()->with('mainPhoto')->orderBy(['id' => SORT_DESC])->limit($limit)->all();
+    }
+
+    public function getSale($limit): array
+    {
+        //TODO need develop record customer's sale products
+        return Product::find()->with('mainPhoto')->orderBy(['id' => SORT_DESC])->limit($limit)->all();
+    }
+
+    public function getPopular($limit): array
+    {
+        //TODO need develop record customer's popular products
+        return Product::find()->with('mainPhoto')->orderBy(['id' => SORT_DESC])->limit($limit)->all();
+    }
+
+    public function getNew($limit): array
+    {
+        return Product::find()->with('mainPhoto')->orderBy(['id' => SORT_DESC])->limit($limit)->all();
+    }
 }

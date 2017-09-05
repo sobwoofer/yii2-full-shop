@@ -7,6 +7,7 @@
  */
 /* @var $this yii\web\View */
 /* @var $product core\entities\Shop\Product\Product */
+use yii\helpers\Html;
 
 $this->title = 'HP LP3065';
 $this->params['breadcrumbs'][] = ['label' => 'Catalog', 'url' => ['index']];
@@ -22,38 +23,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <div class="swiper-container gallery-top">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" alt="">
-                                <a href="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" class="zoom_in" data-lightbox="image-1" data-title=""></a>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" alt="">
-                                <a href="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" class="zoom_in" data-lightbox="image-1" data-title=""></a>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" alt="">
-                                <a href="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" class="zoom_in" data-lightbox="image-1" data-title=""></a>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" alt="">
-                                <a href="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" class="zoom_in" data-lightbox="image-1" data-title=""></a>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" alt="">
-                                <a href="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" class="zoom_in" data-lightbox="image-1" data-title=""></a>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" alt="">
-                                <a href="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" class="zoom_in" data-lightbox="image-1" data-title=""></a>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" alt="">
-                                <a href="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" class="zoom_in" data-lightbox="image-1" data-title=""></a>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" alt="">
-                                <a href="http://static.yii2-shop.dev/dev/one_product/one_product_slide_preview.jpg" class="zoom_in" data-lightbox="image-1" data-title=""></a>
-                            </div>
+                            <!-- //TODO i would like to connect this fancybox v. >=3.0 -->
+                            <?php foreach ($product->photos as $i => $photo): ?>
+                                <?php if ($i == 0): ?>
+                                    <div class="swiper-slide">
+                                        <img src="<?= $photo->getThumbFileUrl('file', 'catalog_product_main') ?>" alt="<?= Html::encode($product->name) ?>">
+                                        <a href="<?= $photo->getUploadedFileUrl('file') ?>" class="zoom_in" data-lightbox="image-1" data-title=""></a>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="swiper-slide">
+                                        <img src="<?= $photo->getThumbFileUrl('file', 'catalog_product_main') ?>" alt="">
+                                        <a href="<?= $photo->getUploadedFileUrl('file') ?>" class="zoom_in" data-lightbox="image-1" data-title=""></a>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+
                         </div>
                         <!-- Add Arrows -->
                     </div>

@@ -16,7 +16,7 @@ use yii\helpers\Html;
 use core\helpers\PriceHelper;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
-
+use yii\widgets\Breadcrumbs;
 $this->title = $product->name;
 
 $this->registerMetaTag(['name' =>'description', 'content' => $product->meta->description]);
@@ -36,7 +36,14 @@ $this->params['active_category'] = $product->category;
 
 <div class="container">
     <section class="section section__gutter_top">
+        <div class="bread_crumbs">
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                'options' => ['class' => '']
+            ]) ?>
+        </div>
         <div class="row" xmlns:fb="http://www.w3.org/1999/xhtml">
+
             <div class="col-md-6 col-lg-6">
                 <div class="slider_wrapper">
 

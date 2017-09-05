@@ -346,11 +346,9 @@ $this->params['breadcrumbs'][] = $product->name;
                     <?php else: ?>
                     <div class="comment_window">
                         <?php $form = ActiveForm::begin(['id' => 'form-review']) ?>
-                        <?= $form->field($reviewForm, 'vote')->dropDownList($reviewForm->votesList(), ['prompt' => '--- Select ---']) ?>
                             <div class="clearfix">
-                                <span class="star"></span>
-                                <?= \alfa6661\widgets\Raty::widget([
-                                    'name' => 'user-vote',
+                                <span>Оценка</span>
+                                <?= $form->field($reviewForm, 'vote')->widget(\alfa6661\widgets\Raty::className(), [
                                     'options' => [
                                         // the HTML attributes for the widget container
                                     ],
@@ -358,9 +356,8 @@ $this->params['breadcrumbs'][] = $product->name;
                                         // the options for the underlying jQuery Raty plugin
                                         // see : https://github.com/wbotelhos/raty#options
                                     ]
-                                ]) ?>
+                                ])->label(false); ?>
 
-                                <span>Оценка</span>
                                 <div class="pull-right close-live_review"><img src="http://static.yii2-shop.dev/dev/one_product/close_one_pro-act.png" alt=""></div>
                             </div>
                             <p class="clearfix">

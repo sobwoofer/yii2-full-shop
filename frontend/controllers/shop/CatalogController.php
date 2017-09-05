@@ -9,6 +9,7 @@
 namespace frontend\controllers\shop;
 
 
+use core\forms\Shop\AddToCartForm;
 use core\readModels\Shop\BrandReadRepository;
 use core\readModels\Shop\CategoryReadRepository;
 use core\readModels\Shop\ProductReadRepository;
@@ -125,8 +126,11 @@ class CatalogController extends Controller
         }
         $this->layout = 'blank';
 
+        $cartForm = new AddToCartForm($product);
+
         return $this->render('product', [
             'product' => $product,
+            'cartForm' => $cartForm,
         ]);
     }
 

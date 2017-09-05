@@ -7,8 +7,12 @@
  */
 /* @var $this yii\web\View */
 /* @var $product core\entities\Shop\Product\Product */
+/* @var $cartForm core\forms\Shop\AddToCartForm */
+
+
 use yii\helpers\Html;
 use core\helpers\PriceHelper;
+use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 
 $this->title = $product->name;
@@ -23,7 +27,7 @@ $this->params['breadcrumbs'][] = $product->name;
 
 <div class="container">
     <section class="section section__gutter_top">
-        <div class="row">
+        <div class="row" xmlns:fb="http://www.w3.org/1999/xhtml">
             <div class="col-md-6 col-lg-6">
                 <div class="slider_wrapper">
 
@@ -96,6 +100,7 @@ $this->params['breadcrumbs'][] = $product->name;
                 </h2>
                 <div class="logo_economix"></div>
                 <div class="product-line__item product-line__item__one_product">
+                    <?php $form = ActiveForm::begin() ?>
                     <!-- .product-line__title -->
                     <span class="vendor_code vendor_code__one_product">Артикул: <?= Html::encode($product->code) ?></span>
                     <!-- .price_block -->
@@ -158,8 +163,12 @@ $this->params['breadcrumbs'][] = $product->name;
                             <a href="#" class="like">
                                 <i class="fa fa-heart" aria-hidden="true"></i>
                             </a>
-                            <input type="number" value="1">
-                            <a href="#" class="btn btn-to-cart">В КОРЗИНУ</a>
+                            <?= $form->field($cartForm, 'quantity', [
+                                    'options' => ['class' => ''],
+                                    'template' => '{input}',
+                            ])->textInput([ 'type' => 'number', 'class' => ''])->label(false) ?>
+                            <?= Html::submitButton('В КОРЗИНУ', ['class' => 'btn btn-to-cart']) ?>
+
                         </div>
                         <!-- .product-line__item__action-block -->
                         <div class="star"></div>
@@ -181,6 +190,9 @@ $this->params['breadcrumbs'][] = $product->name;
                             <div class="one_product_details__square">Площадь нанесения
 
                             </div>
+                            <?= $form->field($cartForm, 'modification')
+                                ->dropDownList($cartForm->modificationsList(), ['prompt' => '--- Select ---'])->label(false) ?>
+
                             <div class="dropdown dropdown__one_product_details">
                                 <button class="dropdown-toggle dropdown_button__one_product_details" type="button" data-toggle="dropdown">Выберите размер
                                     <span class="caret"></span></button>
@@ -192,6 +204,7 @@ $this->params['breadcrumbs'][] = $product->name;
                             </div>
                         </div>
                     </div>
+                    <?php ActiveForm::end() ?>
                 </div>
                 <div class="one_product_deal">
                     <div class="one_product_deal__item">

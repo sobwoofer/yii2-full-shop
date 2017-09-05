@@ -254,22 +254,16 @@ $this->params['breadcrumbs'][] = $product->name;
             <div class="col-md-7">
                 <div class="sub-title sub-title__one_product"><strong>Харастеристики</strong></div>
                 <table class="character">
-                    <tr>
-                        <td>Матеріал обкладинки</td>
-                        <td>Просмолена тканина "Молескін"</td>
-                    </tr>
-                    <tr>
-                        <td>Корпус</td>
-                        <td>стальной</td>
-                    </tr>
-                    <tr>
-                        <td>Покрытие</td>
-                        <td>матовое</td>
-                    </tr>
-                    <tr>
-                        <td>Перо</td>
-                        <td>сталь</td>
-                    </tr>
+                    <tbody>
+                    <?php foreach ($product->values as $value): ?>
+                        <?php if (!empty($value->value)): ?>
+                            <tr>
+                                <td><?= Html::encode($value->characteristic->name) ?></td>
+                                <td><?= Html::encode($value->value) ?></td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    </tbody>
                 </table>
                 <div class="about">
                     <div class="sub-title sub-title__one_product"><strong>Описание</strong></div>

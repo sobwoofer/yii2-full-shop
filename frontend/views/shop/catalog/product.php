@@ -8,10 +8,16 @@
 /* @var $this yii\web\View */
 /* @var $product core\entities\Shop\Product\Product */
 use yii\helpers\Html;
+use core\helpers\PriceHelper;
+use yii\helpers\Url;
 
-$this->title = 'HP LP3065';
+$this->title = $product->name;
+
+$this->registerMetaTag(['name' =>'description', 'content' => $product->meta->description]);
+$this->registerMetaTag(['name' =>'keywords', 'content' => $product->meta->keywords]);
+
 $this->params['breadcrumbs'][] = ['label' => 'Catalog', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $product->name;
 
 ?>
 
@@ -86,12 +92,12 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div class="col-md-6 col-lg-5">
                 <h2 class="catalog-title catalog-title__one_product">
-                    <strong>Шариковая ручка PARKER Nano </strong>
+                    <strong><?= Html::encode($product->name) ?></strong>
                 </h2>
                 <div class="logo_economix"></div>
                 <div class="product-line__item product-line__item__one_product">
                     <!-- .product-line__title -->
-                    <span class="vendor_code vendor_code__one_product">Артикул: s101003</span>
+                    <span class="vendor_code vendor_code__one_product">Артикул: <?= Html::encode($product->code) ?></span>
                     <!-- .price_block -->
                     <!--color pick-->
                     <div class="clearfix"></div>
@@ -144,7 +150,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="one_product_details">
                         <div class="price_block price_stock">
                             <div class="goods_amount">Товара много <span class="goods_amount___icon"></span></div>
-                            <p class="price__one_product">215. <span>99</span> грн</p>
+                            <p class="price__one_product"><?= PriceHelper::format($product->price_new) ?></p>
                         </div>
                         <!-- .price_block -->
                         <!-- .product-line__item__action-block -->
@@ -252,19 +258,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </table>
                 <div class="about">
                     <div class="sub-title sub-title__one_product"><strong>Описание</strong></div>
-                    <p>
-                        Parker - это бренд с многолетней историей. С 1888 года под брендом Parker выпускаются ручки классических очертаний и эталонного качества.
-                        Ручки Parker можно отличить по характерной форме клипа, гравировка которого меняется в зависимости от коллекции.
-                    </p>
-                    <p>
-                        Производство марки располагается в Великобритании и Франции, а ее центральный офис находится в Ньюхейвене (Великобритания).
-
-                    </p>
-                    <p>
-                        Как и 100 лет назад, эти ручки воплощают эталон технически совершенных, элегантных и практичных пишущих инструментов.Торговая марка
-                        поддерживает
-                        неизменно высокое качество письменных принадлежностей и предоставляет пожизненную гарантию.
-                    </p>
+                    <?= Yii::$app->formatter->asNtext($product->description) ?>
                 </div>
             </div>
             <div class="col-md-5">

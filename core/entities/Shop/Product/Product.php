@@ -85,6 +85,11 @@ class Product extends ActiveRecord
         $this->meta = $meta;
     }
 
+    public function getSeoTitle(): string
+    {
+        return $this->meta->title ?: $this->name;
+    }
+
     public function changeMainCategory($categoryId): void
     {
         $this->category_id = $categoryId;

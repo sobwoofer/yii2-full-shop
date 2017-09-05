@@ -105,6 +105,11 @@ class ProductReadRepository
         return Product::find()->with('mainPhoto')->orderBy(['id' => SORT_DESC])->limit($limit)->all();
     }
 
+    public function getOfCategory($limit, $productId): array
+    {
+        //TODO need develop select from one category
+        return Product::find()->with('mainPhoto')->orderBy(['id' => SORT_DESC])->limit($limit)->all();
+    }
     public function getNew($limit): array
     {
         return Product::find()->with('mainPhoto')->orderBy(['id' => SORT_DESC])->limit($limit)->all();

@@ -168,9 +168,6 @@ use yii\helpers\Html;
 <hr>
 <?= \frontend\widgets\ViewedProductsWidget::widget(['limit' => 4]) ?>
 <?= \frontend\widgets\PnsTabsProductWidget::widget(['limit' => 4]) ?>
-
-
-
 <?= \frontend\widgets\NewProductsWidget::widget(['limit' => 4]) ?>
 <?= \frontend\widgets\PopularProductsWidget::widget(['limit' => 4]) ?>
 <?= \frontend\widgets\SaleProductsWidget::widget(['limit' => 4]) ?>

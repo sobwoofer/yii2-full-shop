@@ -18,6 +18,7 @@ class ViewedProductsWidget extends Widget
     public $title = 'ПРОСМОТРЕННЫЕ';
     public $limit;
     public $class = 'product-line-1';
+    public $viewAll = 'viewed-products';
 
     public function __construct(ProductReadRepository $repository, array $config = [])
     {
@@ -31,6 +32,7 @@ class ViewedProductsWidget extends Widget
             'products' => $this->repository->getViewed($this->limit),
             'title' => $this->title,
             'class' => $this->class,
+            'viewAll' => $this->viewAll,
         ]);
     }
 

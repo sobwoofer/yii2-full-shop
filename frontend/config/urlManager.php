@@ -15,6 +15,7 @@ return [
         'signup/<_a:[\w-]+>' => 'auth/signup/<_a>',
         '<_a:login|logout>' => 'auth/auth/<_a>',
         'catalog' => 'shop/catalog/index',
+        'catalog/<id:\d+>' => 'shop/catalog/product',
         'category' => 'shop/catalog/category',
         'cabinet' => 'cabinet/default/index',
         'cabinet/<_c:[\w\-]+>' => 'cabinet/<_c>/index',

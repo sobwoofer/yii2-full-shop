@@ -18,6 +18,7 @@ class NewProductsWidget extends Widget
     public $title = 'НОВИНКИ';
     public $limit;
     public $class = 'news';
+    public $viewAll = 'news-products';
 
     public function __construct(ProductReadRepository $repository, array $config = [])
     {
@@ -31,6 +32,7 @@ class NewProductsWidget extends Widget
             'products' => $this->repository->getNew($this->limit),
             'title' => $this->title,
             'class' => $this->class,
+            'viewAll' => $this->viewAll,
         ]);
     }
 

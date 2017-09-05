@@ -7,12 +7,16 @@
  */
 
 use romkaChev\yii2\swiper\Swiper;
+use yii\helpers\Url;
 
 /** @var $products core\entities\Shop\Product\Product[][] */
 /** @var $title1 string */
 /** @var $title2 string */
 /** @var $title3 string */
 /** @var $class string */
+/** @var $viewLink1 string */
+/** @var $viewLink2 string */
+/** @var $viewLink3 string */
 ?>
 <!-- // TODO need refactoring this code to cycle -->
 <div class="product-line  <?= $class ?>">
@@ -24,7 +28,9 @@ use romkaChev\yii2\swiper\Swiper;
                     <a href="#tab-1" aria-controls="tab-1" role="tab" data-toggle="tab">
                         <div class="product-line__title__wrp">
                             <p class="product-line__title"><?= $title1 ?></p>
-                            <p onclick="document.location.href = '#1'" class="more">смотреть все<span></span></p>
+                            <?php if ($viewLink1): ?>
+                                <p onclick="document.location.href = '<?= Url::to([$viewLink1]) ?>'" class="more">смотреть все<span></span></p>
+                            <?php endif; ?>
                         </div>
                     </a>
                 </li>
@@ -32,7 +38,9 @@ use romkaChev\yii2\swiper\Swiper;
                     <a href="#tab-2" aria-controls="tab-2" role="tab" data-toggle="tab">
                         <div class="product-line__title__wrp">
                             <p class="product-line__title"><?= $title2 ?></p>
-                            <p onclick="document.location.href = '#2'" class="more">смотреть все<span></span></p>
+                            <?php if ($viewLink2): ?>
+                                <p onclick="document.location.href = '<?= Url::to([$viewLink2]) ?>'" class="more">смотреть все<span></span></p>
+                            <?php endif; ?>
                         </div>
                     </a>
                 </li>
@@ -40,7 +48,9 @@ use romkaChev\yii2\swiper\Swiper;
                     <a href="#tab-3" aria-controls="tab-3" role="tab" data-toggle="tab">
                         <div class="product-line__title__wrp">
                             <p class="product-line__title"><?= $title3 ?></p>
-                            <p onclick="document.location.href = '#3'" class="more">смотреть все<span></span></p>
+                            <?php if ($viewLink3): ?>
+                                <p onclick="document.location.href = '<?= Url::to([$viewLink3]) ?>'" class="more">смотреть все<span></span></p>
+                            <?php endif; ?>
                         </div>
                     </a>
                 </li>

@@ -18,6 +18,7 @@ class PopularProductsWidget extends Widget
     public $title = 'ПОПУЛЯРНЫЕ';
     public $limit;
     public $class = 'popular';
+    public $viewAll = 'popular-products';
 
     public function __construct(ProductReadRepository $repository, array $config = [])
     {
@@ -31,6 +32,7 @@ class PopularProductsWidget extends Widget
             'products' => $this->repository->getPopular($this->limit),
             'title' => $this->title,
             'class' => $this->class,
+            'viewAll' => $this->viewAll,
         ]);
     }
 

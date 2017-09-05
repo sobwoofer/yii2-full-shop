@@ -14,7 +14,7 @@ use yii\helpers\Html;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
 
-$url = Url::to(['product', 'id' =>$product->id]);
+$url = Url::to(['catalog/product', 'id' =>$product->id]);
 ?>
 
 <div class="product-line__item">

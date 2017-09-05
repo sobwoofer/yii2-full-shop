@@ -7,10 +7,11 @@
  */
 
 use romkaChev\yii2\swiper\Swiper;
-
+use yii\helpers\Url;
 /** @var $products core\entities\Shop\Product\Product[] */
 /** @var $title string */
 /** @var $class string */
+/** @var $viewAll string */
 ?>
 
 <div class="product-line <?= $class ?>">
@@ -21,9 +22,11 @@ use romkaChev\yii2\swiper\Swiper;
                 <div class="col-sm-4">
                     <p class="product-line__title"><?= $title ?></p>
                 </div>
-                <div class="col-md-2">
-                    <a href="#" class="read_more">смотреть <span></span></a>
-                </div>
+                <?php if ($viewAll): ?>
+                    <div class="col-md-2">
+                        <a href="<?= Url::to([$viewAll]) ?>" class="read_more">смотреть <span></span></a>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
         <div class="clearfix"></div>

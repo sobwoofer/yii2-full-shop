@@ -161,7 +161,7 @@ AppAsset::register($this);
                         <div class="top-logo-block">
                             <a href="<?= Url::home() ?>">
                                 <div class="logo">
-                                    <img src="images/system/logo-papirus.png" alt="">
+                                    <img src="/images/system/logo-papirus.png" alt="">
                                 </div>
                             </a>
 
@@ -176,10 +176,10 @@ AppAsset::register($this);
                     <!-- end .md3 -->
                     <div class="col-xs-12 col-md-5">
                         <div class="advantages">
-                            <img src="images/system/car-icon.png" alt="">
+                            <img src="/images/system/car-icon.png" alt="">
                             <p>Собственый
                                 <br>автопарк</p>
-                            <p><img src="images/system/header-arrow.png" alt=""> </p>
+                            <p><img src="/images/system/header-arrow.png" alt=""> </p>
                             <p class="number">120</p>
                             <p>Разногабаритных автомобилей
                                 <br> для быстрой доставки</p>

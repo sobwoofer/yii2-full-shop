@@ -7,6 +7,7 @@ return [
     'hostInfo' => $params['frontendHostInfo'],
     'enablePrettyUrl' => true,
     'showScriptName' => false,
+    'cache' => false,
     'rules' => [
         '' => 'site/index',
         '<_a:about>' => 'site/<_a>',
@@ -15,6 +16,7 @@ return [
         'signup/<_a:[\w-]+>' => 'auth/signup/<_a>',
         '<_a:login|logout>' => 'auth/auth/<_a>',
         'catalog' => 'shop/catalog/index',
+        ['class' => 'frontend\urls\CategoryUrlRule'],
         'catalog/<id:\d+>' => 'shop/catalog/product',
         'category' => 'shop/catalog/category',
         'cabinet' => 'cabinet/default/index',

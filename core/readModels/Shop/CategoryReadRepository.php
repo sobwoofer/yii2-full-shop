@@ -23,6 +23,11 @@ class CategoryReadRepository
         return Category::find()->andWhere(['id' => $id])->andWhere(['>', 'depth', 0])->one();
     }
 
+    public function findBySlug($slug): ?Category
+    {
+        return Category::find()->andWhere(['slug' => $slug])->andWhere(['>', 'depth', 0])->one();
+    }
+
     public function getTreeWithSubsOf(Category $category = null): array
     {
         $query = Category::find()->andWhere(['>', 'depth', 0])->orderBy('lft');
@@ -39,4 +44,5 @@ class CategoryReadRepository
 
         return $query->all();
     }
+
 }

@@ -24,6 +24,7 @@ class AppAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapPluginAsset',
         'yii\jquery\formstyler\FormStylerAsset',
+        'rmrevin\yii\fontawesome\AssetBundle',
     ];
     public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
 }

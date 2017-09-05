@@ -29,6 +29,7 @@ use core\entities\Shop\queries\CategoryQuery;
  * @property Category $prev
  * @property Category $next
  * @property Category $parent
+ * @property Category[] $parents
  * @mixin NestedSetsBehavior
  */
 class Category extends ActiveRecord

@@ -5,9 +5,11 @@
  * Date: 05.09.17
  * Time: 9:57
  */
+
 /* @var $this yii\web\View */
 /* @var $product core\entities\Shop\Product\Product */
 /* @var $cartForm core\forms\Shop\AddToCartForm */
+/* @var $reviewForm core\forms\Shop\ReviewForm */
 
 
 use yii\helpers\Html;
@@ -275,6 +277,7 @@ $this->params['breadcrumbs'][] = $product->name;
                 </div>
             </div>
             <div class="col-md-5">
+            <!--   //TODO need move code of review in other template-->
                 <div class="sub-title sub-title__one_product sub-title__review_block"><strong>Отзывы пользователей</strong> <span
                             class="review_block_amount">56</span></div>
                 <a id="btn__review_block" class="btn btn__review_block">Оставить отзыв</a>
@@ -332,18 +335,48 @@ $this->params['breadcrumbs'][] = $product->name;
                 <div class="live_review">
                     <a class="btn btn_grey">Оставить отзыв</a>
                     <div class="clearfix"></div>
-                    <div class="comment_window">
-                        <div class="clearfix">
-                            <span class="star"></span>
-                            <span>Оценка</span>
-                            <div class="pull-right close-live_review"><img src="http://static.yii2-shop.dev/dev/one_product/close_one_pro-act.png" alt=""></div>
+                    <?php if (Yii::$app->user->isGuest): ?>
+
+                        <div class="panel-panel-info">
+                            <div class="panel-body">
+                                Please <?= Html::a('Log In', ['/auth/auth/login']) ?> for writing a review.
+                            </div>
                         </div>
-                        <p class="clearfix"><textarea name="comment" placeholder="Коментарий..." class="comment_window__text"></textarea></p>
-                        <a id="send" href="#" class="btn btn__review_block btn__review_block_left clearfix">Оставить отзыв</a>
+
+                    <?php else: ?>
+                    <div class="comment_window">
+                        <?php $form = ActiveForm::begin(['id' => 'form-review']) ?>
+                        <?= $form->field($reviewForm, 'vote')->dropDownList($reviewForm->votesList(), ['prompt' => '--- Select ---']) ?>
+                            <div class="clearfix">
+                                <span class="star"></span>
+                                <?= \alfa6661\widgets\Raty::widget([
+                                    'name' => 'user-vote',
+                                    'options' => [
+                                        // the HTML attributes for the widget container
+                                    ],
+                                    'pluginOptions' => [
+                                        // the options for the underlying jQuery Raty plugin
+                                        // see : https://github.com/wbotelhos/raty#options
+                                    ]
+                                ]) ?>
+
+                                <span>Оценка</span>
+                                <div class="pull-right close-live_review"><img src="http://static.yii2-shop.dev/dev/one_product/close_one_pro-act.png" alt=""></div>
+                            </div>
+                            <p class="clearfix">
+                                <?= $form->field($reviewForm, 'text')
+                                    ->textarea(['rows' => 5, 'class' => 'comment_window__text', 'placeholder' => 'Коментарий...'])
+                                    ->label(false) ?>
+                            </p>
+                            <?= Html::submitButton('Оставить отзыв', ['class' => 'btn btn__review_block btn__review_block_left clearfix']) ?>
+
                         <p class="comment_window__important clearfix">Важно! Чтобы Ваш отзыв либо комментарий прошел модерацию и был опубликован, ознакомьтесь,
-                            пожалуйста, с нашими правилами!
-                        </p>
+                                пожалуйста, с нашими правилами!
+                            </p>
+                        <?php ActiveForm::end() ?>
                     </div>
+                    <?php endif; ?>
+
                 </div>
             </div>
         </div>

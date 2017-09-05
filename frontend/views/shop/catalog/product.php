@@ -65,30 +65,11 @@ $this->params['active_category'] = $product->category;
                         <div class="swiper-container gallery-thumbs">
 
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="http://static.yii2-shop.dev/dev/one_product/small-img.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="http://static.yii2-shop.dev/dev/one_product/sm.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="http://static.yii2-shop.dev/dev/one_product/small-img.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="http://static.yii2-shop.dev/dev/one_product/sm.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="http://static.yii2-shop.dev/dev/one_product/small-img.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="http://static.yii2-shop.dev/dev/one_product/sm.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="http://static.yii2-shop.dev/dev/one_product/small-img.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="http://static.yii2-shop.dev/dev/one_product/sm.png" alt="">
-                                </div>
+                                <?php foreach ($product->photos as $i => $photo): ?>
+                                    <div class="swiper-slide">
+                                        <img src="<?= $photo->getThumbFileUrl('file', 'catalog_product_additional') ?>" alt="">
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
                             <div class="clearfix"></div>
 

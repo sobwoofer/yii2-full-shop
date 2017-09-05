@@ -62,9 +62,9 @@ class Photo extends ActiveRecord
                     'admin' => ['width' => 100, 'height' => 70],
                     'thumb' => ['width' => 640, 'height' => 480],
                     'catalog_list' => ['width' => 228, 'height' => 228],
-                    'catalog_product_main' => ['processor' => [new WaterMarker(750, 1000, '@frontend/web/images/logo-papirus.png'), 'process']],
-                    'catalog_product_additional' => ['width' => 66, 'height' => 66],
-                    'catalog_origin' => ['processor' => [new WaterMarker(1024, 768, '@frontend/web/images/logo-papirus.png'), 'process']],
+                    'catalog_product_main' => ['processor' => [new WaterMarker(616, 516, '@frontend/web/images/system/logo-papirus.png'), 'process']],
+                    'catalog_product_additional' => ['width' => 90, 'height' => 90],
+                    'catalog_origin' => ['processor' => [new WaterMarker(1024, 768, '@frontend/web/images/system/logo-papirus.png'), 'process']],
                 ],
             ],
         ];

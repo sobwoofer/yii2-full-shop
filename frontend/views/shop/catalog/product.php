@@ -40,12 +40,12 @@ $this->params['breadcrumbs'][] = $product->name;
                                 <?php if ($i == 0): ?>
                                     <div class="swiper-slide">
                                         <img src="<?= $photo->getThumbFileUrl('file', 'catalog_product_main') ?>" alt="<?= Html::encode($product->name) ?>">
-                                        <a href="<?= $photo->getUploadedFileUrl('file') ?>" class="zoom_in" data-lightbox="image-1" data-title=""></a>
+                                        <a href="<?= $photo->getThumbFileUrl('file', 'catalog_origin') ?>" class="zoom_in" data-lightbox="image-1" data-title=""></a>
                                     </div>
                                 <?php else: ?>
                                     <div class="swiper-slide">
                                         <img src="<?= $photo->getThumbFileUrl('file', 'catalog_product_main') ?>" alt="">
-                                        <a href="<?= $photo->getUploadedFileUrl('file') ?>" class="zoom_in" data-lightbox="image-1" data-title=""></a>
+                                        <a href="<?= $photo->getThumbFileUrl('file', 'catalog_origin') ?>" class="zoom_in" data-lightbox="image-1" data-title=""></a>
                                     </div>
                                 <?php endif; ?>
                             <?php endforeach; ?>

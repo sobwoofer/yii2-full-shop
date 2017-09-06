@@ -17,6 +17,7 @@ use core\readModels\Shop\TagReadRepository;
 use core\forms\Shop\ReviewForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use core\forms\Shop\Search\SearchForm;
 
 class CatalogController extends Controller
 {
@@ -112,6 +113,23 @@ class CatalogController extends Controller
         return $this->render('tag', [
             'tag' => $tag,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function actionSearch()
+    {
+        $form = new SearchForm();
+        $form->load(\Yii::$app->request->queryParams);
+        $form->validate();
+
+        $dataProvider = $this->products->search($form);
+
+        return $this->render('search', [
+            'dataProvider' => $dataProvider,
+            'searchForm' => $form,
         ]);
     }
 

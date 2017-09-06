@@ -5,6 +5,7 @@ namespace common\bootstrap;
 use core\services\ContactService;
 use yii\base\BootstrapInterface;
 use yii\mail\MailerInterface;
+use yii\caching\Cache;
 use Yii;
 
 class SetUp implements BootstrapInterface
@@ -15,6 +16,10 @@ class SetUp implements BootstrapInterface
 
         $container->setSingleton(MailerInterface::class, function () use ($app) {
             return $app->mailer;
+        });
+
+        $container->setSingleton(Cache::class, function () use ($app) {
+            return $app->cache;
         });
 
         $container->setSingleton(ContactService::class, [], [

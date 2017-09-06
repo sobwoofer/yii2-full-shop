@@ -451,10 +451,10 @@ AppAsset::register($this);
                 <!-- end md2 -->
                 <div class="col-xs-12 col-md-4 col-lg-5">
                     <div class="top-search-block">
-                        <form action="#">
-                            <input type="text" value="" id="serach-input" placeholder="Что ищете?">
+                        <?= Html::beginForm(['/shop/catalog/search'], 'get') ?>
+                            <input type="text" name="text" value="" id="serach-input" placeholder="Что ищете?">
                             <input type="submit" value=" ">
-                        </form>
+                        <?= Html::endForm() ?>
 
 
                         <div class="top-serch-block--result">

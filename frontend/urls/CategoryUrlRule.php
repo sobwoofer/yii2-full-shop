@@ -17,6 +17,14 @@ use yii\helpers\ArrayHelper;
 use yii\web\UrlNormalizerRedirectException;
 use yii\web\UrlRuleInterface;
 
+/**
+ * Класс обрабатывает пришедший гет запрос клиента, сравнивает его из слагами категорий в бд
+ * склеивает последовательность родительских категорий если слаг равен категории детенышу
+ * кеширует либо тянет из кеша результат и возвращает в систему понятный для нее формат
+ * контроллер/метод?айдишник?параметры
+ * Class CategoryUrlRule
+ * @package frontend\urls
+ */
 class CategoryUrlRule extends Object implements UrlRuleInterface
 {
     public $prefix = 'catalog';
@@ -31,6 +39,12 @@ class CategoryUrlRule extends Object implements UrlRuleInterface
         $this->cache = $cache;
     }
 
+    /**
+     * @param \yii\web\UrlManager $manager
+     * @param \yii\web\Request $request
+     * @return array|bool
+     * @throws UrlNormalizerRedirectException
+     */
     public function parseRequest($manager, $request)
     {
         if (preg_match('#^' . $this->prefix . '/(.*[a-z])$#is', $request->pathInfo, $matches)) {
@@ -56,6 +70,12 @@ class CategoryUrlRule extends Object implements UrlRuleInterface
         return false;
     }
 
+    /**
+     * @param \yii\web\UrlManager $manager
+     * @param string $route
+     * @param array $params
+     * @return bool|mixed|string
+     */
     public function createUrl($manager, $route, $params)
     {
         if ($route == 'shop/catalog/category') {
@@ -86,12 +106,20 @@ class CategoryUrlRule extends Object implements UrlRuleInterface
         return false;
     }
 
+    /**
+     * @param $path
+     * @return string
+     */
     private function getPathSlug($path): string
     {
         $chunks = explode('/', $path);
         return end($chunks);
     }
 
+    /**
+     * @param Category $category
+     * @return string
+     */
     private function getCategoryPath(Category $category): string
     {
         $chunks = ArrayHelper::getColumn($category->getParents()->andWhere(['>', 'depth', 0])->all(), 'slug');

@@ -34,7 +34,8 @@
         "yiisoft/yii2-jui": "^2.0",
         "alfa6661/yii2-raty": "*",
         "russ666/yii2-countdown": "*",
-        "branchonline/yii2-lightbox": "*"
+        "branchonline/yii2-lightbox": "*",
+        "elasticsearch/elasticsearch": "^5.3"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

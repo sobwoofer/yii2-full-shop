@@ -32,7 +32,7 @@ class m170817_115755_create_shop_tag_assignments_table extends Migration
             'id',
             'CASCADE',
             'RESTRICT'
-            );
+        );
         $this->addForeignKey(
             '{{%fk-shop_tag_assignments-tag_id}}',
             '{{%shop_tag_assignments}}',
@@ -41,7 +41,7 @@ class m170817_115755_create_shop_tag_assignments_table extends Migration
             'id',
             'CASCADE',
             'RESTRICT'
-            );
+        );
 
     }
 

@@ -118,13 +118,17 @@ class SearchController extends Controller
                     'price' => $product->price_new,
                     'rating' => $product->rating,
                     'brand' => $product->brand_id,
+//                    'categories' => ArrayHelper::merge(
+//                        [$product->category->id],
+//                        ArrayHelper::getColumn($product->category->parents, 'id'),
+//                        ArrayHelper::getColumn($product->categoryAssignments, 'category_id'),
+//                        array_reduce(array_map(function (CategoryAssignment $category) {
+//                            return ArrayHelper::getColumn($category->parents, 'id');
+//                        }, $product->categoryAssignments),'array_merge', [])
+//                    ),
                     'categories' => ArrayHelper::merge(
                         [$product->category->id],
-                        ArrayHelper::getColumn($product->category->parents, 'id'),
-                        ArrayHelper::getColumn($product->categoryAssignments, 'category_id'),
-                        array_reduce(array_map(function (CategoryAssignment $category) {
-                            return ArrayHelper::getColumn($category->parents, 'id');
-                        }, $product->categoryAssignments),'array_merge', [])
+                        ArrayHelper::getColumn($product->categoryAssignments, 'category_id')
                     ),
                     'tags' => ArrayHelper::getColumn($product->tagAssignments, 'tag_id'),
                     'values' => array_map(function (Value $value) {

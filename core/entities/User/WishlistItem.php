@@ -7,7 +7,7 @@
  */
 
 
-namespace shop\entities\User;
+namespace core\entities\User;
 
 use yii\db\ActiveRecord;
 

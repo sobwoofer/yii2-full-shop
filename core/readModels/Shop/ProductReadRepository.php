@@ -209,5 +209,16 @@ class ProductReadRepository
         ]);
     }
 
+    public function getWishList($userId): ActiveDataProvider
+    {
+        return new ActiveDataProvider([
+            'query' => Product::find()
+                ->alias('p')->active('p')
+                ->joinWith('wishlistItems w', false, 'INNER JOIN')
+                ->andWhere(['w.user_id' => $userId]),
+            'sort' => false,
+        ]);
+    }
+
 
 }

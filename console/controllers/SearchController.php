@@ -9,6 +9,7 @@
 namespace console\controllers;
 
 
+use core\entities\Shop\Product\CategoryAssignment;
 use core\entities\Shop\Product\Product;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;

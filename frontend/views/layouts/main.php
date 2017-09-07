@@ -614,7 +614,7 @@ AppAsset::register($this);
                                                     <button type="button" class="btn enter" >Войти</button>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <button type="button" class="btn-link reg" >Зарегестрироваться</button>
+                                                    <a href="<?= Html::encode(Url::to(['/signup'])) ?>" class="btn-link reg" >Зарегестрироваться</a>
                                                 </div>
                                             </div>
 

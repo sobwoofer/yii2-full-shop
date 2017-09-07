@@ -6,56 +6,36 @@
  * Time: 13:51
  */
 
+
 namespace frontend\widgets;
 
 use core\entities\Shop\Category;
 use core\readModels\Shop\CategoryReadRepository;
+use core\readModels\Shop\views\CategoryView;
 use yii\base\Widget;
 use yii\helpers\Html;
-use Elasticsearch\Client;
-use yii\helpers\ArrayHelper;
 
 class CategoriesWidget extends Widget
 {
     /** @var Category|null */
     public $active;
-    private $client;
 
     private $categories;
 
-    public function __construct(CategoryReadRepository $categories, Client $client,  $config = [])
+    public function __construct(CategoryReadRepository $categories, $config = [])
     {
         parent::__construct($config);
         $this->categories = $categories;
-        $this->client = $client;
     }
 
     public function run(): string
     {
-        $aggs = $this->client->search([
-            'index' => 'shop',
-            'type' => 'products',
-            'body' => [
-                'size' => 0,
-                'aggs' => [
-                    'group_by_category' => [
-                        'terms' => [
-                            'field' => 'categories'
-                        ]
-                    ]
-                ],
-            ],
-        ]);
-
-        $counts = ArrayHelper::map($aggs['aggregations']['group_by_category']['buckets'], 'key', 'doc_count');
-
-        return Html::tag('div', implode(PHP_EOL, array_map(function (Category $category) use ($counts) {
-            $indent = ($category->depth > 1 ? str_repeat('&nbsp;&nbsp;&nbsp;', $category->depth - 1) . '- ' : '');
-            $active = $this->active && ($this->active->id == $category->id || $this->active->isChildOf($category));
-            $count = ArrayHelper::getValue($counts, $category->id, 0);
+        return Html::tag('div', implode(PHP_EOL, array_map(function (CategoryView $view) {
+            $indent = ($view->category->depth > 1 ? str_repeat('&nbsp;&nbsp;&nbsp;', $view->category->depth - 1) . '- ' : '');
+            $active = $this->active && ($this->active->id == $view->category->id || $this->active->isChildOf($view->category));
             return Html::a(
-                $indent . Html::encode($category->name) . ' (' . $count . ')',
-                ['/shop/catalog/category', 'id' => $category->id],
+                $indent . Html::encode($view->category->name) . ' (' . $view->count . ')',
+                ['/shop/catalog/category', 'id' => $view->category->id],
                 ['class' => $active ? 'list-group-item active' : 'list-group-item']
             );
         }, $this->categories->getTreeWithSubsOf($this->active))), [

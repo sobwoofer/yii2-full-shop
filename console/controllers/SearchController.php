@@ -23,10 +23,10 @@ class SearchController extends Controller
 {
     private $client;
 
-    public function __construct($id, $module, ClientBuilder $client, array $config = [])
+    public function __construct($id, $module, Client $client, array $config = [])
     {
         parent::__construct($id, $module, $config);
-        $this->client = $client::create()->build();
+        $this->client = $client;
     }
 
     public function actionReindex(): void
@@ -122,7 +122,7 @@ class SearchController extends Controller
                         [$product->category->id],
                         ArrayHelper::getColumn($product->category->parents, 'id'),
                         ArrayHelper::getColumn($product->categoryAssignments, 'category_id'),
-                        array_reduce(array_map(function (Category $category) {
+                        array_reduce(array_map(function (CategoryAssignment $category) {
                             return ArrayHelper::getColumn($category->parents, 'id');
                         }, $product->categoryAssignments),'array_merge', [])
                     ),

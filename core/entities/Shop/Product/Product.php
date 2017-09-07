@@ -14,6 +14,7 @@ use core\entities\behaviors\MetaBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\db\Exception;
+use core\entities\User\WishlistItem;
 use core\entities\Shop\Product\queries\ProductQuery;
 use core\entities\Meta;
 use core\entities\Shop\Brand;
@@ -498,6 +499,11 @@ class Product extends ActiveRecord
     public function getReviews(): ActiveQuery
     {
         return $this->hasMany(Review::class, ['product_id' => 'id']);
+    }
+
+    public function getWishlistItems(): ActiveQuery
+    {
+        return $this->hasMany(WishlistItem::class, ['product_id' => 'id']);
     }
 
     ########################## End Relations with other entities tables

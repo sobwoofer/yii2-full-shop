@@ -25,6 +25,7 @@ use yii\web\IdentityInterface;
  * @property string $password write-only password
  *
  * @property Network[] $networks
+ * @property WishlistItem[] $wishlistItems
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -96,6 +97,31 @@ class User extends ActiveRecord implements IdentityInterface
         $this->networks = $networks;
     }
 
+    public function addToWishList($productId): void
+    {
+        $items = $this->wishlistItems;
+        foreach ($items as $item) {
+            if ($item->isForProduct($productId)) {
+                throw new \DomainException('Item is already added.');
+            }
+        }
+        $items[] = WishlistItem::create($productId);
+        $this->wishlistItems = $items;
+    }
+
+    public function removeFromWishList($productId): void
+    {
+        $items = $this->wishlistItems;
+        foreach ($items as $i => $item) {
+            if ($item->isForProduct($productId)) {
+                unset($items[$i]);
+                $this->wishlistItems = $items;
+                return;
+            }
+        }
+        throw new \DomainException('Item is not found.');
+    }
+
     public function requestPasswordReset(): void
     {
         if (!empty($this->password_reset_token) && self::isPasswordResetTokenValid($this->password_reset_token)) {
@@ -128,6 +154,11 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->hasMany(Network::className(), ['user_id' => 'id']);
     }
 
+    public function getWishlistItems(): ActiveQuery
+    {
+        return $this->hasMany(WishlistItem::class, ['user_id' => 'id']);
+    }
+
 
     /**
      * @inheritdoc
@@ -146,7 +177,7 @@ class User extends ActiveRecord implements IdentityInterface
             TimestampBehavior::className(),
             [
                 'class' => SaveRelationsBehavior::className(),
-                'relations' => ['networks'],
+                'relations' => ['networks', 'wishlistItems'],
             ],
         ];
     }

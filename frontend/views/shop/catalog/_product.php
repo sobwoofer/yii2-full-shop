@@ -64,7 +64,7 @@ $url = Url::to(['catalog/product', 'id' =>$product->id]);
     <!-- .product-line__item__action-block -->
     <div class="product-line__item__action-block">
 <!--        //TODO need response login or not login and isset in woshlist, add or delete-->
-        <a href="#" onclick="wishlist.add('<?= $product->id ?>');" class="like">
+        <a href="<?= Url::to(['/cabinet/wishlist/add', 'id' => $product->id]) ?>" onclick="wishlist.add('<?= $product->id ?>');" data-method="post" class="like">
             <i class="fa fa-heart" aria-hidden="true"></i>
         </a>
         <input type="number" value="1">

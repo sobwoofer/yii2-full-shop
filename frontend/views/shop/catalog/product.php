@@ -157,7 +157,7 @@ $this->params['active_category'] = $product->category;
                         <!-- .price_block -->
                         <!-- .product-line__item__action-block -->
                         <div class="product-line__item__action-block">
-                            <a href="#" class="like">
+                            <a href="<?= Url::to(['/cabinet/wishlist/add', 'id' => $product->id]) ?>" data-method="post" class="like">
                                 <i class="fa fa-heart" aria-hidden="true"></i>
                             </a>
                             <?= $form->field($cartForm, 'quantity', [

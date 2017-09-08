@@ -6,27 +6,40 @@
  * Time: 16:33
  */
 
+use yii\helpers\Html;
+use yii\helpers\Url;
+
 /* @var $this \yii\web\View */
 /* @var $content string */
+
 
 ?>
 <?php $this->beginContent('@frontend/views/layouts/main.php') ?>
 
-    <div class="row">
-        <div id="content" class="col-sm-9">
-            <?= $content ?>
-        </div>
-        <aside id="column-right" class="col-sm-3 hidden-xs">
-            <div class="list-group">
-                <a href="/account/login" class="list-group-item">Login</a>
-                <a href="/account/register" class="list-group-item">Register</a>
-                <a href="/account/forgotten" class="list-group-item">Forgotten Password</a>
-                <a href="/account/account" class="list-group-item">My Account</a>
-                <a href="/account/wishlist" class="list-group-item">Wish List</a>
-                <a href="/account/order" class="list-group-item">Order History</a>
-                <a href="/account/newsletter" class="list-group-item">Newsletter</a>
+    <div class="container">
+        <div class="col-sm-3 col-lg-2">
+            <div class="row">
+                <div class="left-nav-block">
+                    <ul>
+                        <li><a href="<?= Html::encode(Url::to(['/cabinet/default/index'])) ?>">Личные данные</a></li>
+                        <li><a href="<?= Html::encode(Url::to(['/auth/reset/request'])) ?>">Забыли пароль</a></li>
+                        <li><a href="<?= Html::encode(Url::to(['/cabinet/wishlist/index'])) ?>">Избранное</a></li>
+                        <li><a href="#">История заказов</a></li>
+                        <li><a href="#">Отзывы</a></li>
+                        <li><a href="#">Персональное предложение</a></li>
+                        <li><a href="#">Просмотренные</a></li>
+                    </ul>
+                </div>
+                <div class="responsive-img">
+                    <img src="images/b.png" alt="">
+                </div>
             </div>
-        </aside>
+
+        </div>
+        <?= $content ?>
+        //= modules/catalog/content.html
+
     </div>
+
 
 <?php $this->endContent() ?>

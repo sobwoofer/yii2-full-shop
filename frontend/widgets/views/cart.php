@@ -58,4 +58,27 @@ use yii\helpers\Html;
             </div>
         </div>
     <?php endforeach ?>
+
+
+<!--    === TOTAL COST ===  -->
+    <?php /* $cost = $cart->getCost(); */ ?>
+<!--    <div>-->
+<!--        <table class="table table-bordered">-->
+<!---->
+<!--            <tr>-->
+<!--                <td class="text-right"><strong>Sub-Total:</strong></td>-->
+<!--                <td class="text-right">--><?php  /*= PriceHelper::format($cost->getOrigin()) */?><!--</td>-->
+<!--            </tr>-->
+<!--            --><?php /*foreach ($cost->getDiscounts() as $discount):  */?>
+<!--                <tr>-->
+<!--                    <td class="text-right"><strong>--><?php  /*= Html::encode($discount->getName()) */?><!--:</strong></td>-->
+<!--                    <td class="text-right">--><?php /*= PriceHelper::format($discount->getValue()) */ ?><!--</td>-->
+<!--                </tr>-->
+<!--            --><?php /* endforeach; */?>
+<!--            <tr>-->
+<!--                <td class="text-right"><strong>Total:</strong></td>-->
+<!--                <td class="text-right">--><?php  /* = PriceHelper::format($cost->getTotal()) */?><!--</td>-->
+<!--            </tr>-->
+<!--        </table>-->
+<!--    </div>-->
 </div>

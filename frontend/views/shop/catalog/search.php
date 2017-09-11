@@ -19,8 +19,41 @@ $this->title = 'Search';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<h1><?= Html::encode($this->title) ?></h1>
+<div class="container">
+<div class="row">
 
+    <div class="catalog-page">
+
+        <div class="col-sm-3 col-lg-2">
+            <div class="left-nav-block">
+                <p class="left-serch-title text-center">Найдено 123 товара</p>
+                <ul>
+                    <li><a href="#">Личные данные <span>(50)</span></a></li>
+                    <li><a href="#">Избранное <span>(50)</span></a></li>
+                    <li><a href="#">История заказов <span>(50)</span></a></li>
+                    <li><a href="#">Отзывы <span>(50)</span></a></li>
+                    <li><a href="#">Персональное предложение <span>(50)</span></a></li>
+                    <li><a href="#">Просмотренные <span>(50)</span></a></li>
+                </ul>
+            </div>
+            <div class="responsive-img">
+                <img src="images/b.png" alt="">
+            </div>
+        </div>
+        <?= $this->render('_list', [
+            'dataProvider' => $dataProvider
+        ]) ?>
+    </div>
+</div>
+
+</div>
+
+<div class="clearfix"></div>
+
+
+
+
+<!-- TODO maybe delete this code of detail filter because there is not was in design -->
 <div class="panel panel-default">
     <div class="panel-body">
         <?php $form = ActiveForm::begin(['action' => [''], 'method' => 'get']) ?>
@@ -70,8 +103,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
-<?= $this->render('_list', [
-    'dataProvider' => $dataProvider
-]) ?>
+
 
 

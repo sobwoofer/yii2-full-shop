@@ -97,6 +97,7 @@ $this->params['active_category'] = $product->category;
                 </h2>
                 <div class="logo_economix"></div>
                 <div class="product-line__item product-line__item__one_product">
+                    <?php if ($product->isAvailable()): ?>
                     <?php $form = ActiveForm::begin([
                         'action' => ['/shop/cart/add', 'id' => $product->id],
                     ]) ?>
@@ -207,6 +208,13 @@ $this->params['active_category'] = $product->category;
                         </div>
                     </div>
                     <?php ActiveForm::end() ?>
+                    <?php else: ?>
+
+                        <div class="alert alert-danger">
+                            The product is not available for purchasing right now.<br />Add it to your wishlist.
+                        </div>
+
+                    <?php endif; ?>
                 </div>
                 <div class="one_product_deal">
                     <div class="one_product_deal__item">

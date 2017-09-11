@@ -66,14 +66,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             'code',
                             'name',
                             [
-                                'attribute' => 'price_new',
-                                'value' => PriceHelper::format($product->price_new),
-                            ],
-                            [
-                                'attribute' => 'price_old',
-                                'value' => PriceHelper::format($product->price_old),
-                            ],
-                            [
                                 'attribute' => 'category_id',
                                 'value' => ArrayHelper::getValue($product, 'category.name'),
                             ],
@@ -85,11 +77,27 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'label' => 'Tags',
                                 'value' => implode(', ', ArrayHelper::getColumn($product->tags, 'name')),
                             ],
+                            'quantity',
+                            [
+                                'attribute' => 'weight',
+                                'value' => $product->weight / 1000 . ' kg',
+                            ],
+                            [
+                                'attribute' => 'price_new',
+                                'value' => PriceHelper::format($product->price_new),
+                            ],
+                            [
+                                'attribute' => 'price_old',
+                                'value' => PriceHelper::format($product->price_old),
+                            ],
                         ],
                     ]) ?>
                     <br />
                     <p>
                         <?= Html::a('Change Price', ['price', 'id' => $product->id], ['class' => 'btn btn-primary']) ?>
+                        <?php if ($product->canChangeQuantity()): ?>
+                            <?= Html::a('Change Quantity', ['quantity', 'id' => $product->id], ['class' => 'btn btn-primary']) ?>
+                        <?php endif; ?>
                     </p>
                 </div>
             </div>
@@ -138,6 +146,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return PriceHelper::format($model->price);
                         },
                     ],
+                    'quantity',
                     [
                         'class' => ActionColumn::class,
                         'controller' => 'shop/modification',

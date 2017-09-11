@@ -11,6 +11,7 @@ use yii\helpers\ArrayHelper;
 
 /**
  * @property PriceForm $price
+ * @property QuantityForm $quantity
  * @property MetaForm $meta
  * @property CategoriesForm $categories
  * @property PhotosForm $photos
@@ -24,10 +25,12 @@ class ProductCreateForm extends CompositeForm
     public $code;
     public $name;
     public $description;
+    public $weight;
 
     public function __construct($config = [])
     {
         $this->price = new PriceForm();
+        $this->quantity = new QuantityForm();
         $this->meta = new MetaForm();
         $this->categories = new CategoriesForm();
         $this->photos = new PhotosForm();
@@ -42,11 +45,12 @@ class ProductCreateForm extends CompositeForm
     public function rules(): array
     {
         return [
-            [['brandId', 'code', 'name'], 'required'],
+            [['brandId', 'code', 'name', 'weight'], 'required'],
             [['code', 'name'], 'string', 'max' => 255],
             [['brandId'], 'integer'],
             [['code'], 'unique', 'targetClass' => Product::class],
             ['description', 'string'],
+            ['weight', 'integer', 'min' => 0],
         ];
     }
 
@@ -57,6 +61,6 @@ class ProductCreateForm extends CompositeForm
 
     protected function internalForms(): array
     {
-        return ['price', 'meta','photos', 'categories', 'tags', 'values'];
+        return ['price', 'quantity', 'meta','photos', 'categories', 'tags', 'values'];
     }
 }

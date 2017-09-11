@@ -67,8 +67,8 @@ AppAsset::register($this);
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
     <!-- Less/Sass generated style -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/media.css">
+<!--    <link rel="stylesheet" href="css/style.css">-->
+<!--    <link rel="stylesheet" href="css/media.css">-->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -642,45 +642,7 @@ AppAsset::register($this);
 
 
                         <hr>
-                        <div class="header_cart_wrp">
-
-                            <div class="cart cart_empty">
-                                <span class="cart__icon"></span>
-                                <p class="cart__title">Корзина</p>
-                                <p class="cart-items">ПОКА ПУСТА</p>
-                            </div>
-                            <div class="cart cart_full">
-                                <span class="cart__icon cart__icon_full"> <span>100</span> </span>
-                                <p class="cart__title">Корзина</p>
-                                <p class="cart__amount">15.000.00 грн</p>
-                            </div>
-                        </div>
-
-                        <div class="checkout btn">
-                            оформить
-                        </div>
-                        <div class="cart__inside">
-                            <div class="cart__item">
-                                <p class="cart__product-icon"></p>
-                                <div class="wrapper">
-                                    <p class="cart__product-name">Папка на завязках "Дело"</p>
-                                    <div class="wrapper_product">
-                                        <p class="cart__product-price">2.83 грн</p>
-                                        <p class="cart__product-amount">1 шт</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cart__item">
-                                <p class="cart__product-icon"></p>
-                                <div class="wrapper">
-                                    <p class="cart__product-name">Папка на завязках "Дело"</p>
-                                    <div class="wrapper_product">
-                                        <p class="cart__product-price">2.83 грн</p>
-                                        <p class="cart__product-amount">1 шт</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?= \frontend\widgets\CartWidget::widget() ?>
                     </div>
                 </div>
             </div>
@@ -865,7 +827,7 @@ AppAsset::register($this);
 <!-- Map Script -->
 <!--<script src="libs/jquery-validation/dist/jquery.validate.min.js"></script>-->
 <!--<script src="libs/jquery-ui/jquery-ui.min.js"></script>-->
-<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>-->
 <!--<script src="libs/swiper/js/swiper.min.js"></script>-->
 <!--<script src="libs/selectric/jquery.selectric.min.js"></script>-->
 <!--<script src="libs/jquery.mmenu/jquery.mmenu.all.js"></script>-->
@@ -889,7 +851,7 @@ AppAsset::register($this);
         $('.top-serch-block--result').toggleClass('act')
     })
 </script>
-<script src="js/common.js"></script>
+<!--<script src="js/common.js"></script>-->
 
 <?php $this->endBody() ?>
 </body>

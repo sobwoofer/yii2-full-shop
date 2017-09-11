@@ -318,95 +318,96 @@ $(document).ready(function () {
     //     }
     // });
     
-    var our_clients_swiper = new Swiper('.our_clients .swiper-container', {
-        slidesPerView: 6,
-        loop: true,
-        autoplay: 4000,
-        nextButton: '.our_clients .swiper-button-next',
-        prevButton: '.our_clients .swiper-button-prev',
-        // onlyExternal: true,
-        paginationClickable: true,
-        spaceBetween: 30,
-        spaceBetween: 30,
-        breakpoints: {
-            480: {
-                slidesPerView: 1,
-                spaceBetween: 20
-            },
-            900: {
-                slidesPerView: 2
-            },
-            1100: {
-                slidesPerView: 3
-            },
-            1200: {
-                slidesPerView: 4
-            },
-            1390: {
-                slidesPerView: 5
-            },
-            1400: {
-                slidersPreView: 6
-            }
-    
-            // 1920: {
-            //     slidesPerView: 5
-            // }
-        }
-    });
-    var our_brends_swiper = new Swiper('.our_brends .swiper-container', {
-        slidesPerView: 5,
-        loop: true,
-        autoplay: 4000,
-        nextButton: '.our_brends .swiper-button-next',
-        prevButton: '.our_brends .swiper-button-prev',
-        // onlyExternal: true,
-        paginationClickable: true,
-        spaceBetween: 30,
-        spaceBetween: 30,
-        breakpoints: {
-            480: {
-                slidesPerView: 1,
-                spaceBetween: 20
-            },
-            900: {
-                slidesPerView: 2
-            },
-            1100: {
-                slidesPerView: 3
-            },
-            1200: {
-                slidesPerView: 4
-            },
-            1390: {
-                slidesPerView: 5
-            },
-            1600: {
-                slidesPerView: 4
-            }
-    
-            // 1920: {
-            //     slidesPerView: 5
-            // }
-        }
-    });
+    // var our_clients_swiper = new Swiper('.our_clients .swiper-container', {
+    //     slidesPerView: 6,
+    //     loop: true,
+    //     autoplay: 4000,
+    //     nextButton: '.our_clients .swiper-button-next',
+    //     prevButton: '.our_clients .swiper-button-prev',
+    //     // onlyExternal: true,
+    //     paginationClickable: true,
+    //     spaceBetween: 30,
+    //     spaceBetween: 30,
+    //     breakpoints: {
+    //         480: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20
+    //         },
+    //         900: {
+    //             slidesPerView: 2
+    //         },
+    //         1100: {
+    //             slidesPerView: 3
+    //         },
+    //         1200: {
+    //             slidesPerView: 4
+    //         },
+    //         1390: {
+    //             slidesPerView: 5
+    //         },
+    //         1400: {
+    //             slidersPreView: 6
+    //         }
+    //
+    //         // 1920: {
+    //         //     slidesPerView: 5
+    //         // }
+    //     }
+    // });
+
+    // var our_brends_swiper = new Swiper('.our_brends .swiper-container', {
+    //     slidesPerView: 5,
+    //     loop: true,
+    //     autoplay: 4000,
+    //     nextButton: '.our_brends .swiper-button-next',
+    //     prevButton: '.our_brends .swiper-button-prev',
+    //     // onlyExternal: true,
+    //     paginationClickable: true,
+    //     spaceBetween: 30,
+    //     spaceBetween: 30,
+    //     breakpoints: {
+    //         480: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20
+    //         },
+    //         900: {
+    //             slidesPerView: 2
+    //         },
+    //         1100: {
+    //             slidesPerView: 3
+    //         },
+    //         1200: {
+    //             slidesPerView: 4
+    //         },
+    //         1390: {
+    //             slidesPerView: 5
+    //         },
+    //         1600: {
+    //             slidesPerView: 4
+    //         }
+    //
+    //         // 1920: {
+    //         //     slidesPerView: 5
+    //         // }
+    //     }
+    // });
     
     <!-- Initialize Swiper -->
-    var galleryTop = new Swiper('.slider_wrapper .gallery-top', {
-        spaceBetween: 10,
-    });
-    var galleryThumbs = new Swiper('.slider_wrapper .gallery-thumbs', {
-        spaceBetween: 10,
-        centeredSlides: true,
-        slidesPerView: 3,
-        touchRatio: 0.2,
-        nextButton: '.slider_wrapper .sp .swiper-button-next',
-        prevButton: '.slider_wrapper .sp .swiper-button-prev',
-        direction: 'vertical',
-        slideToClickedSlide: true
-    });
-    galleryTop.params.control = galleryThumbs;
-    galleryThumbs.params.control = galleryTop;
+    // var galleryTop = new Swiper('.slider_wrapper .gallery-top', {
+    //     spaceBetween: 10,
+    // });
+    // var galleryThumbs = new Swiper('.slider_wrapper .gallery-thumbs', {
+    //     spaceBetween: 10,
+    //     centeredSlides: true,
+    //     slidesPerView: 3,
+    //     touchRatio: 0.2,
+    //     nextButton: '.slider_wrapper .sp .swiper-button-next',
+    //     prevButton: '.slider_wrapper .sp .swiper-button-prev',
+    //     direction: 'vertical',
+    //     slideToClickedSlide: true
+    // });
+    // galleryTop.params.control = galleryThumbs;
+    // galleryThumbs.params.control = galleryTop;
     // $(function() {
     
     $('header select').selectric();
@@ -715,23 +716,25 @@ $(document).ready(function () {
 }
 
     })
+
+    $('#accordion .panel-heading').click(function (e) {
+        console.log(e)
+        // $('#accordion .panel-heading').removeClass('active');
+        $(this).toggleClass('active');
+    });
+
+    $('.filter_cat_wrp .toggle-btn').click(function (e) {
+        $($(this).parent().parent('.filter_cat_wrp')).toggleClass('active')
+    });
+
+    $('.header_cart_wrp').click(function (e) {
+        $(this).toggleClass('active')
+        $('.cart__inside').toggleClass('active')
+    });
+
 });
 
 
-$('#accordion .panel-heading').click(function (e) {
-    console.log(e)
-    // $('#accordion .panel-heading').removeClass('active');
-    $(this).toggleClass('active');
-});
-
-$('.filter_cat_wrp .toggle-btn').click(function (e) {
-    $($(this).parent().parent('.filter_cat_wrp')).toggleClass('active')
-});
-
-$('.header_cart_wrp').click(function (e) {
-    $(this).toggleClass('active')
-    $('.cart__inside').toggleClass('active')
-});
 
 
 // live comment

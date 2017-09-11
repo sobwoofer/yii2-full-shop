@@ -1987,7 +1987,7 @@ fieldset {
 }
 
 .header_cart_wrp .cart_full {
-    display: none;
+    /*display: none;*/
 }
 
 .cart__inside {

@@ -25,6 +25,7 @@ class DynamicCost implements CalculatorInterface
     public function getCost(array $items): Cost
     {
         /** @var DiscountEntity[] $discounts */
+        //TODO need added repository for DuscountEntity Entity and get or save data from it
         $discounts = DiscountEntity::find()->active()->orderBy('sort')->all();
 
         $cost = $this->next->getCost($items);

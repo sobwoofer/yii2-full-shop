@@ -97,7 +97,9 @@ $this->params['active_category'] = $product->category;
                 </h2>
                 <div class="logo_economix"></div>
                 <div class="product-line__item product-line__item__one_product">
-                    <?php $form = ActiveForm::begin() ?>
+                    <?php $form = ActiveForm::begin([
+                        'action' => ['/shop/cart/add', 'id' => $product->id],
+                    ]) ?>
                     <!-- .product-line__title -->
                     <span class="vendor_code vendor_code__one_product">Артикул: <?= Html::encode($product->code) ?></span>
                     <!-- .price_block -->
@@ -187,8 +189,11 @@ $this->params['active_category'] = $product->category;
                             <div class="one_product_details__square">Площадь нанесения
 
                             </div>
-                            <?= $form->field($cartForm, 'modification')
-                                ->dropDownList($cartForm->modificationsList(), ['prompt' => '--- Select ---'])->label(false) ?>
+                            <?php if ($modifications = $cartForm->modificationsList()): ?>
+                                <?= $form->field($cartForm, 'modification')
+                                    ->dropDownList($modifications, ['prompt' => '--- Select ---'])
+                                    ->label(false)  ?>
+                            <?php endif; ?>
 
                             <div class="dropdown dropdown__one_product_details">
                                 <button class="dropdown-toggle dropdown_button__one_product_details" type="button" data-toggle="dropdown">Выберите размер

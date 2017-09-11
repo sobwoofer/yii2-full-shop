@@ -68,7 +68,7 @@ $url = Url::to(['catalog/product', 'id' =>$product->id]);
             <i class="fa fa-heart" aria-hidden="true"></i>
         </a>
         <input type="number" value="1">
-        <a href="#" onclick="cart.add('<?= $product->id ?>', '2');" class="btn btn-to-cart">В КОРЗИНУ</a>
+        <a href="<?= Url::to(['/shop/cart/add', 'id' => $product->id]) ?>" data-method="post" onclick="cart.add('<?= $product->id ?>', '2');" class="btn btn-to-cart">В КОРЗИНУ</a>
     </div>
 
     <div class="clearfix"></div>

@@ -95,7 +95,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p>(в корзине присутствует товар под заказ)</p>
                 </div>
                 <div class="col-sm-6">
-
                     <p class="text-right link-in-p">Доставка согласно <a href="#/">тарифов перевозчика </a>Новая почта</p>
                     <p class="text-right"><b>Стоимость (включая НДС): <span class="red price"><?= PriceHelper::format($cost->getOrigin()) ?></span></b></p>
                     <?php foreach ($cost->getDiscounts() as $discount): ?>

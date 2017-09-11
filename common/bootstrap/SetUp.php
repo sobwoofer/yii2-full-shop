@@ -8,6 +8,7 @@ use Elasticsearch\ClientBuilder;
 use core\cart\Cart;
 use core\cart\cost\calculator\SimpleCost;
 use core\cart\storage\SessionStorage;
+use core\cart\cost\calculator\DynamicCost;
 use yii\base\BootstrapInterface;
 use yii\mail\MailerInterface;
 use yii\caching\Cache;
@@ -38,7 +39,7 @@ class SetUp implements BootstrapInterface
         $container->setSingleton(Cart::class, function () {
             return new Cart(
                 new SessionStorage('cart', \Yii::$app->session),
-                new SimpleCost()
+                new DynamicCost(new SimpleCost())
             );
         });
     }

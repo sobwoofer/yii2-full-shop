@@ -10,7 +10,7 @@ namespace core\readModels\Shop;
 
 use Elasticsearch\Client;
 use core\entities\Shop\Category;
-use shop\readModels\Shop\views\CategoryView;
+use core\readModels\Shop\views\CategoryView;
 use yii\helpers\ArrayHelper;
 
 class CategoryReadRepository

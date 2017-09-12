@@ -27,6 +27,8 @@ use yii\web\IdentityInterface;
  * @property Network[] $networks
  * @property WishlistItem[] $wishlistItems
  */
+
+//TODO need add yii2 multilanguage behavior. video elisDn 7th - 1:39
 class User extends ActiveRecord implements IdentityInterface
 {
 //    const STATUS_DELETED = 0;

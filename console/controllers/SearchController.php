@@ -48,6 +48,7 @@ class SearchController extends Controller
 
         $this->stdout('Creating of index' . PHP_EOL);
 
+        //TODO need create different indexes like table - products_ru, products_ua and maybe products_en for multi language
         $this->client->indices()->create([
             'index' => 'shop',
             'body' => [

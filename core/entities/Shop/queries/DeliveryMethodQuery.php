@@ -7,7 +7,7 @@
  */
 
 
-namespace shop\entities\Shop\queries;
+namespace core\entities\Shop\queries;
 
 use yii\db\ActiveQuery;
 

@@ -47,6 +47,7 @@ class OrderService
         $this->transaction = $transaction;
     }
 
+    //TODO need add checkoutGuest method for not authorization users.
     public function checkout($userId, OrderForm $form): Order
     {
         $user = $this->users->get($userId);

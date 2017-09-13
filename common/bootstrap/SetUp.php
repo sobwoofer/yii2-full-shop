@@ -7,6 +7,7 @@ use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
 use core\cart\Cart;
 use core\cart\cost\calculator\SimpleCost;
+use core\cart\storage\CookieStorage;
 use core\cart\storage\SessionStorage;
 use core\cart\cost\calculator\DynamicCost;
 use yii\base\BootstrapInterface;

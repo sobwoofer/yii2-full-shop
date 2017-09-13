@@ -6,7 +6,7 @@
  * Time: 16:07
  */
 
-namespace croe\helpers;
+namespace core\helpers;
 
 class WeightHelper
 {

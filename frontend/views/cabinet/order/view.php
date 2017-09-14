@@ -73,4 +73,10 @@ $this->params['breadcrumbs'][] = $this->title;
         </table>
     </div>
 
+    <?php if ($order->canBePaid()): ?>
+        <p>
+            <?= Html::a('Pay via Robokassa', ['/payment/robokassa/invoice', 'id' => $order->id], ['class' => 'btn btn-success']) ?>
+        </p>
+    <?php endif; ?>
+
 </div>

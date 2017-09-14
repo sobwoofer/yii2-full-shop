@@ -12,5 +12,13 @@ return [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',
         ],
+        //for example payment method
+        'robokassa' => [
+            'class' => '\robokassa\Merchant',
+            'baseUrl' => 'https://auth.robokassa.ru/Merchant/Index.aspx',
+            'sMerchantLogin' => '',
+            'sMerchantPass1' => '',
+            'sMerchantPass2' => '',
+        ],
     ],
 ];

@@ -16,5 +16,13 @@ return [
             // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
+        //for example payment method
+        'robokassa' => [
+            'class' => '\robokassa\Merchant',
+            'baseUrl' => 'https://auth.robokassa.ru/Merchant/Index.aspx',
+            'sMerchantLogin' => '',
+            'sMerchantPass1' => '',
+            'sMerchantPass2' => '',
+        ],
     ],
 ];

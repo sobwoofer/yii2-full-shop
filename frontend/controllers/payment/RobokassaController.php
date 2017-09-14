@@ -26,7 +26,7 @@ use yii\web\NotFoundHttpException;
  * Class TestPaymentController
  * @package core\controllers\payment
  */
-class TestPaymentController extends Controller
+class RobokassaController extends Controller
 {
     public $enableCsrfValidation = false;
 

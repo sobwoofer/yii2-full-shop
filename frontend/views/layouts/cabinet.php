@@ -37,8 +37,6 @@ use yii\helpers\Url;
 
         </div>
         <?= $content ?>
-        //= modules/catalog/content.html
-
     </div>
 
 

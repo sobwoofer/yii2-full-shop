@@ -6,7 +6,7 @@
  * Time: 12:33
  */
 
-namespace forms\manage\Blog;
+namespace core\forms\manage\Blog;
 
 
 use core\entities\Blog\Category;

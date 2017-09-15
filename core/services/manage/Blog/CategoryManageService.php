@@ -24,6 +24,10 @@ class CategoryManageService
         $this->categories = $categories;
     }
 
+    /**
+     * @param CategoryForm $form
+     * @return Category
+     */
     public function create(CategoryForm $form): Category
     {
         $category = Category::create(

@@ -17,9 +17,9 @@ use yii\db\ActiveRecord;
  * Class Category
  * @package core\entities\Blog
  * @property integer $id
- * @property string $name
  * @property string $slug
  * @property string $title
+ * @property string $name
  * @property string $description
  * @property integer $sort
  * @property Meta $meta
@@ -32,6 +32,7 @@ class Category extends ActiveRecord
     public static function create($name, $slug, $title, $description, $sort, Meta $meta): self
     {
         $category = new static();
+        $category->name = $name;
         $category->slug = $slug;
         $category->title = $title;
         $category->description = $description;

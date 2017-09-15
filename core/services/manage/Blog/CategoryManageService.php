@@ -13,7 +13,7 @@ use core\entities\Blog\Category;
 use core\entities\Meta;
 use core\forms\manage\MetaForm;
 use core\repositories\Blog\CategoryRepository;
-use forms\manage\Blog\CategoryForm;
+use core\forms\manage\Blog\CategoryForm;
 
 class CategoryManageService
 {
@@ -42,7 +42,7 @@ class CategoryManageService
                 $form->meta->keywords
             )
         );
-
+        $this->categories->save($category);
         return $category;
     }
 

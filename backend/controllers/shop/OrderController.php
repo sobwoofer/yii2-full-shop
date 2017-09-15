@@ -94,7 +94,7 @@ class OrderController extends Controller
      */
     public function actionExport()
     {
-        //TODO need move this code to repository and use service
+        //TODO need move this code to repository and use service and mv it into console extension
         $query = Order::find()->orderBy(['id' => SORT_DESC]);
 
         $objPHPExcel = new \PHPExcel();

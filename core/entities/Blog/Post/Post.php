@@ -6,13 +6,13 @@
  * Time: 11:35
  */
 
+
 namespace core\entities\Blog\Post;
 
-
-use core\entities\Blog\Post\Comment;
+//use core\entities\Blog\Post\Comment;
+//use core\entities\Blog\Post\queries\CommentQuery;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use core\entities\behaviors\MetaBehavior;
-use core\entities\Blog\Post\queries\CommentQuery;
 use core\entities\Blog\Post\queries\PostQuery;
 use core\entities\Meta;
 use core\entities\Blog\Category;
@@ -24,8 +24,6 @@ use yii\web\UploadedFile;
 use yiidreamteam\upload\ImageUploadBehavior;
 
 /**
- * Class Post
- * @package core\entities\Blog
  * @property integer $id
  * @property integer $category_id
  * @property integer $created_at
@@ -59,10 +57,17 @@ class Post extends ActiveRecord
         $post->description = $description;
         $post->content = $content;
         $post->meta = $meta;
+        $post->status = self::STATUS_DRAFT;
         $post->created_at = time();
         $post->comments_count = 0;
         return $post;
     }
+
+    public function setPhoto(UploadedFile $photo): void
+    {
+        $this->photo = $photo;
+    }
+
 
     public function edit($categoryId, $title, $description, $content, Meta $meta): void
     {
@@ -93,6 +98,7 @@ class Post extends ActiveRecord
     {
         return $this->status == self::STATUS_ACTIVE;
     }
+
 
     public function isDraft(): bool
     {
@@ -239,6 +245,11 @@ class Post extends ActiveRecord
         return $this->hasMany(Tag::class, ['id' => 'tag_id'])->via('tagAssignments');
     }
 
+    public function getComments(): ActiveQuery
+    {
+        return $this->hasMany(Comment::class, ['post_id' => 'id']);
+    }
+
     ##########################
 
     public static function tableName(): string
@@ -252,7 +263,7 @@ class Post extends ActiveRecord
             MetaBehavior::className(),
             [
                 'class' => SaveRelationsBehavior::className(),
-                'relations' => ['tagAssignments'],
+                'relations' => ['tagAssignments', 'comments'],
             ],
             [
                 'class' => ImageUploadBehavior::className(),
@@ -282,5 +293,4 @@ class Post extends ActiveRecord
     {
         return new PostQuery(static::class);
     }
-
 }

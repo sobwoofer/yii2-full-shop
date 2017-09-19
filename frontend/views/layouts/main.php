@@ -642,7 +642,7 @@ AppAsset::register($this);
 
 
                         <hr>
-                        <?= \frontend\widgets\CartWidget::widget() ?>
+                        <?= \frontend\widgets\Shop\CartWidget::widget() ?>
                     </div>
                 </div>
             </div>

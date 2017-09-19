@@ -6,7 +6,7 @@
  * Time: 14:20
  */
 
-namespace frontend\widgets;
+namespace frontend\widgets\Shop;
 
 
 use core\readModels\Shop\ProductReadRepository;

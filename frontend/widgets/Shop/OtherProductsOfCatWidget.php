@@ -2,23 +2,24 @@
 /**
  * Created by PhpStorm.
  * User: volynets
- * Date: 04.09.17
- * Time: 16:33
+ * Date: 05.09.17
+ * Time: 10:28
  */
 
-namespace frontend\widgets;
+namespace frontend\widgets\Shop;
 
 
 use core\readModels\Shop\ProductReadRepository;
 use yii\base\Widget;
 
-class SaleProductsWidget extends Widget
+class OtherProductsOfCatWidget extends Widget
 {
     private $repository;
-    public $title = 'РАСПРОДАЖИ';
+    public $title = 'ДРУГИЕ ТОВАРЫ КАТЕГОРИИ';
     public $limit;
-    public $class = 'sale';
-    public $viewAll = 'sale-products';
+    public $class = 'product-of-cat';
+    public $productId;
+    public $viewAll = null;
 
     public function __construct(ProductReadRepository $repository, array $config = [])
     {
@@ -29,7 +30,7 @@ class SaleProductsWidget extends Widget
     public function run()
     {
         return $this->render('product-line', [
-            'products' => $this->repository->getSale($this->limit),
+            'products' => $this->repository->getOfCategory($this->limit, $this->productId),
             'title' => $this->title,
             'class' => $this->class,
             'viewAll' => $this->viewAll,

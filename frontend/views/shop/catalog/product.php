@@ -405,4 +405,4 @@ $this->params['active_category'] = $product->category;
 </div>
 <hr>
 
-<?= \frontend\widgets\OtherProductsOfCatWidget::widget(['limit' => 4, 'productId' => $product->id]) ?>
+<?= \frontend\widgets\Shop\OtherProductsOfCatWidget::widget(['limit' => 4, 'productId' => $product->id]) ?>

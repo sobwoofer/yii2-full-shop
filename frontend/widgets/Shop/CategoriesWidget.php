@@ -7,7 +7,7 @@
  */
 
 
-namespace frontend\widgets;
+namespace frontend\widgets\Shop;
 
 use core\entities\Shop\Category;
 use core\readModels\Shop\CategoryReadRepository;

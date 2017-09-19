@@ -6,7 +6,7 @@
  * Time: 17:11
  */
 
-namespace frontend\widgets;
+namespace frontend\widgets\Shop;
 
 
 use yii\base\Widget;

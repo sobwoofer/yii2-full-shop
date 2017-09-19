@@ -6,7 +6,7 @@
  * Time: 10:39
  */
 
-namespace frontend\widgets;
+namespace frontend\widgets\Shop;
 
 
 use core\cart\Cart;

@@ -36,6 +36,8 @@ foreach ($post->tags as $tag) {
 </div>
 <p><?= Yii::$app->formatter->asNtext($post->content) ?></p>
 
-<p><?= Yii::$app->formatter->asNtext($post->content) ?></p>
+<?= \frontend\widgets\Blog\CommentsWidget::widget([
+    'post' => $post,
+]) ?>
 
 <p>Tags: <?= implode(', ', $tagLinks) ?></p>

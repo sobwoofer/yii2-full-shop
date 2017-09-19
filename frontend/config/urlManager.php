@@ -20,6 +20,7 @@ return [
         'blog/tag/<slug:[\w\-]+>' => 'blog/post/tag',
         'blog/<id:\d+>' => 'blog/post/post',
         'blog/<slug:[\w\-]+>' => 'blog/post/category',
+        'blog/<id:\d+>/comment' => 'blog/post/comment',
 
         'catalog' => 'shop/catalog/index',
         ['class' => 'frontend\urls\CategoryUrlRule'],

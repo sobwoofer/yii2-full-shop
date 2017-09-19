@@ -15,13 +15,8 @@
     <div class="row">
 
         <div class="col-md-3 col-lg-2">
-            <div class="left-nav-block">
-                <ul>
-                    <li><a href="#">Статьи (2)</a></li>
-                    <li><a href="#">Обзор новинок (4)</a></li>
-                    <li><a href="#">Акции (3)</a></li>
-                </ul>
-            </div>
+
+            <?= \frontend\widgets\Blog\CategoriesWidget::widget() ?>
 
             <div class="responsive-img">
                 <img src="images/b.png" alt="">

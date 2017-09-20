@@ -9,7 +9,10 @@ class m170918_091421_create_blog_comments_table extends Migration
 {
     public function up()
     {
-        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
 
         $this->createTable('{{%blog_comments}}', [
             'id' => $this->primaryKey(),

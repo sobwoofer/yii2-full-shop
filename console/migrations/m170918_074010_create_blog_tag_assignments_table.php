@@ -12,7 +12,10 @@ class m170918_074010_create_blog_tag_assignments_table extends Migration
      */
     public function up()
     {
-        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
 
         $this->createTable('{{%blog_tag_assignments}}', [
             'post_id' => $this->integer()->notNull(),

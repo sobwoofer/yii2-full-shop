@@ -12,7 +12,10 @@ class m170907_135432_create_user_wishlist_items_table extends Migration
      */
     public function up()
     {
-        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+        }
 
         $this->createTable('{{%user_wishlist_items}}', [
             'user_id' => $this->integer()->notNull(),

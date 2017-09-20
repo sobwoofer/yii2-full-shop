@@ -12,7 +12,10 @@ class m170912_132341_create_shop_orders_items_table extends Migration
      */
     public function up()
     {
-        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+        }
 
         $this->createTable('{{%shop_order_items}}', [
             'id' => $this->primaryKey(),

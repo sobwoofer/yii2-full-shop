@@ -16,6 +16,7 @@ class m170920_141501_create_pages_table extends Migration
         if ($this->db->driverName === 'mysql') {
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
+
         $this->createTable('{{%pages}}', [
             'id' => $this->primaryKey(),
             'title' => $this->string()->notNull(),
@@ -39,7 +40,6 @@ class m170920_141501_create_pages_table extends Migration
             'rgt' => 2,
             'depth' => 0,
         ]);
-
     }
 
     /**

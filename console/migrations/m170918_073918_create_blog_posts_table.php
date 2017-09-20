@@ -12,7 +12,10 @@ class m170918_073918_create_blog_posts_table extends Migration
      */
     public function up()
     {
-        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
 
         $this->createTable('{{%blog_posts}}', [
             'id' => $this->primaryKey(),

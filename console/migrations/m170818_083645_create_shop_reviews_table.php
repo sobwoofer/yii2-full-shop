@@ -9,7 +9,10 @@ class m170818_083645_create_shop_reviews_table extends Migration
 {
     public function up()
     {
-        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+        }
 
         $this->createTable('{{%shop_reviews}}', [
             'id' => $this->primaryKey(),

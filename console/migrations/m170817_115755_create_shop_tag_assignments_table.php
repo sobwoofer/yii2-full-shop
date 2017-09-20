@@ -12,7 +12,10 @@ class m170817_115755_create_shop_tag_assignments_table extends Migration
      */
     public function up()
     {
-        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+        }
 
         $this->createTable('{{%shop_tag_assignments}}', [
             'product_id' => $this->integer()->notNull(),

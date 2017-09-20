@@ -11,7 +11,10 @@ class m170814_073920_shop_brands_table extends Migration
     // Use up()/down() to run migration code without a transaction.
     public function up()
     {
-        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
 
         $this->createTable('{{%shop_brands}}', [
             'id' => $this->primaryKey(),

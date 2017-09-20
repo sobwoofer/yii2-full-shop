@@ -12,7 +12,11 @@ class m170808_074014_create_user_networks_table extends Migration
      */
     public function up()
     {
-        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+        }
+
         $this->createTable('{{%user_networks}}', [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),

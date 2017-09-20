@@ -58,7 +58,7 @@ class Category extends ActiveRecord
 
     public function getHeadingTitle(): string
     {
-        return $this->title ?: $this->getHeadingTitle();
+        return $this->title ?: $this->name;
     }
 
     public static function tableName(): string

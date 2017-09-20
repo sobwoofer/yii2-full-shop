@@ -29,7 +29,7 @@ $url = Url::to(['post', 'id' =>$model->id]);
         </div>
 
         <div class="col-sm-8 col-lg-9">
-            <p class="news_item-title"><?= Html::encode($model->title) ?> <span class="news-date">28.04.2017</span></p>
+            <p class="news_item-title"><?= Html::encode($model->title) ?> <span class="news-date"><?= Yii::$app->formatter->asDatetime($model->created_at); ?></span></p>
             <p><?= Yii::$app->formatter->asNtext($model->description) ?></p>
             <a href="<?= Html::encode($url) ?>" class="read_more">подробнее <span></span></a>
         </div>

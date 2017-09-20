@@ -172,59 +172,7 @@ use yii\helpers\Html;
 <?= \frontend\widgets\Shop\PopularProductsWidget::widget(['limit' => 4]) ?>
 <?= \frontend\widgets\Shop\SaleProductsWidget::widget(['limit' => 4]) ?>
 
-<div class="promotions_and_news">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 promotions_and_news__block__wrp">
-                <a href="#" class="read_more">смотреть все <span></span></a>
-                <div class="col-md-7 ">
-
-                    <div class="promotions_and_news__block">
-                        <p class="promotions_and_news__block__title">Акции
-                        </p>
-                        <a href="#">
-                            <p>с 04.08.2016 по 23.08.2016</p>
-                            <p>Получи подарок ко Дню Независимости Украины</p>
-                        </a>
-                        <hr>
-                        <a href="#">
-                            <p>с 04.08.2016 по 23.08.2016</p>
-                            <p>Получи подарок ко Дню Независимости Украины</p>
-                        </a>
-                        <hr>
-                        <a href="#">
-                            <p>с 04.08.2016 по 23.08.2016</p>
-                            <p>Получи подарок ко Дню Независимости Украины</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 promotions_and_news__block__wrp">
-                <a href="#" class="read_more">смотреть все <span></span></a>
-                <div class="col-md-7 ">
-
-                    <div class="promotions_and_news__block">
-                        <p class="promotions_and_news__block__title">Новости</p>
-                        <a href="#">
-                            <p>с 04.08.2016 по 23.08.2016</p>
-                            <p>Получи подарок ко Дню Независимости Украины</p>
-                        </a>
-                        <hr>
-                        <a href="#">
-                            <p>с 04.08.2016 по 23.08.2016</p>
-                            <p>Получи подарок ко Дню Независимости Украины</p>
-                        </a>
-                        <hr>
-                        <a href="#">
-                            <p>с 04.08.2016 по 23.08.2016</p>
-                            <p>Получи подарок ко Дню Независимости Украины</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<?= \frontend\widgets\Blog\LastPostsWidget::widget(['limit' => 3]) ?>
 
 
 <div class="our_advantages">

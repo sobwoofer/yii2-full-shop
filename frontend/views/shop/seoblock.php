@@ -23,7 +23,13 @@
         <?php if (isset($fullText)): ?>
             <div class="max-seo-text" style="display: none;">
                 <p>
-                    <?= Yii::$app->formatter->asNtext($fullText) ?>
+                    <?= Yii::$app->formatter->asHtml($fullText, [
+                        'Attr.AllowedRel' => array('nofollow'),
+                        'HTML.SafeObject' => true,
+                        'Output.FlashCompat' => true,
+                        'HTML.SafeIframe' => true,
+                        'URI.SafeIframeRegexp'=>'%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
+                    ]) ?>
                 </p>
             </div>
             <p class="text-right"><a href="#" class="read_more"> читать дальше. <span></span></a></p>

@@ -36,7 +36,8 @@
         "russ666/yii2-countdown": "*",
         "branchonline/yii2-lightbox": "*",
         "elasticsearch/elasticsearch": "^5.3",
-        "phpoffice/phpexcel": "^1.8"
+        "phpoffice/phpexcel": "^1.8",
+        "mihaildev/yii2-ckeditor": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

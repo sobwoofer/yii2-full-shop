@@ -8,6 +8,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use mihaildev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model core\forms\manage\PageForm */
@@ -24,7 +25,7 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'parentId')->dropDownList($model->parentsList()) ?>
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'content')->textarea(['rows' => 15]) ?>
+            <?= $form->field($model, 'content')->widget(CKEditor::className()) ?>
 
         </div>
     </div>

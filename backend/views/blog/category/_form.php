@@ -8,6 +8,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use mihaildev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model core\forms\manage\Blog\CategoryForm */
@@ -25,7 +26,7 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'sort')->textInput(['maxlength' => true]) ?>
-
+            <?= $form->field($model, 'description')->widget(CKEditor::className()) ?>
         </div>
     </div>
 

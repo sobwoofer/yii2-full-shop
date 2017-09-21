@@ -26,3 +26,4 @@ $this->params['active_category'] = $category;
 
 <?= $this->render('_list', ['dataProvider' => $dataProvider]) ?>
 
+

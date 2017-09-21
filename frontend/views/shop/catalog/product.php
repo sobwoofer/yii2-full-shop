@@ -275,7 +275,13 @@ $this->params['active_category'] = $product->category;
                 </table>
                 <div class="about">
                     <div class="sub-title sub-title__one_product"><strong>Описание</strong></div>
-                    <?= Yii::$app->formatter->asNtext($product->description) ?>
+                    <?= Yii::$app->formatter->asHtml($product->description, [
+                        'Attr.AllowedRel' => array('nofollow'),
+                        'HTML.SafeObject' => true,
+                        'Output.FlashCompat' => true,
+                        'HTML.SafeIframe' => true,
+                        'URI.SafeIframeRegexp'=>'%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
+                    ]) ?>
                 </div>
             </div>
             <div class="col-md-5">

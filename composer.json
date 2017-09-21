@@ -37,7 +37,9 @@
         "branchonline/yii2-lightbox": "*",
         "elasticsearch/elasticsearch": "^5.3",
         "phpoffice/phpexcel": "^1.8",
-        "mihaildev/yii2-ckeditor": "*"
+        "mihaildev/yii2-ckeditor": "*",
+        "mihaildev/yii2-elfinder": "*",
+        "fishvision/yii2-migrate": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

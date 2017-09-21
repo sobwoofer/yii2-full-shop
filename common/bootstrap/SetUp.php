@@ -13,6 +13,7 @@ use core\cart\cost\calculator\DynamicCost;
 use yii\base\BootstrapInterface;
 use yii\mail\MailerInterface;
 use yii\caching\Cache;
+use yii\rbac\ManagerInterface;
 use Yii;
 
 class SetUp implements BootstrapInterface
@@ -31,6 +32,10 @@ class SetUp implements BootstrapInterface
 
         $container->setSingleton(Cache::class, function () use ($app) {
             return $app->cache;
+        });
+
+        $container->setSingleton(ManagerInterface::class, function () use ($app) {
+            return $app->authManager;
         });
 
         $container->setSingleton(ContactService::class, [], [

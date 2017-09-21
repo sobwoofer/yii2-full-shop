@@ -1,6 +1,9 @@
 <?php
 
+use core\helpers\UserHelper;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\rbac\Item;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -11,6 +14,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-view">
+
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -30,12 +34,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id',
                     'username',
                     'email:email',
-                    'status',
+                    [
+                        'attribute' => 'status',
+                        'value' => UserHelper::statusLabel($model->status),
+                        'format' => 'raw',
+                    ],
+                    [
+                        'label' => 'Role',
+                        'value' => implode(', ', ArrayHelper::getColumn(Yii::$app->authManager->getRolesByUser($model->id), 'description')),
+                        'format' => 'raw',
+                    ],
                     'created_at:datetime',
-                    'updated_at:datetime'
+                    'updated_at:datetime',
                 ],
             ]) ?>
         </div>
     </div>
-
 </div>

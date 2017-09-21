@@ -9,16 +9,28 @@ use core\entities\User\User;
 use core\forms\auth\SignupForm;
 use core\repositories\UserRepository;
 use yii\mail\MailerInterface;
+use core\access\Rbac;
+use core\services\RoleManager;
+use core\services\TransactionManager;
 
 class SignupService
 {
     private $mailer;
     private $users;
+    private $roles;
+    private $transaction;
 
-    public function __construct(UserRepository $users, MailerInterface $mailer)
+    public function __construct(
+        UserRepository $users,
+        MailerInterface $mailer,
+        RoleManager $roles,
+        TransactionManager $transaction
+    )
     {
         $this->mailer = $mailer;
         $this->users = $users;
+        $this->roles = $roles;
+        $this->transaction = $transaction;
     }
 
     public function signup(SignupForm $form): void
@@ -28,7 +40,11 @@ class SignupService
             $form->email,
             $form->password
         );
-        $this->users->save($user);
+
+        $this->transaction->wrap(function () use ($user) {
+            $this->users->save($user);
+            $this->roles->assign($user->id, Rbac::ROLE_USER);
+        });
 
         $send = $this->mailer
             ->compose(

@@ -41,6 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'label' => 'Role',
+                        //TODO need move it under code to user helper
                         'value' => implode(', ', ArrayHelper::getColumn(Yii::$app->authManager->getRolesByUser($model->id), 'description')),
                         'format' => 'raw',
                     ],

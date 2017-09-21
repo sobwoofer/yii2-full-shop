@@ -23,6 +23,7 @@ return [
             'class' => 'yii\console\controllers\FixtureController',
             'namespace' => 'common\fixtures',
           ],
+        //additional migrates wrote in the array migrationPaths
         'migrate' => [
             'class' => 'fishvision\migrate\controllers\MigrateController',
             'autoDiscover' => true,

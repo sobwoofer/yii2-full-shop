@@ -23,7 +23,6 @@ class RoleManager
     public function assign($userId, $name): void
     {
         $am = $this->manager;
-        $am->revokeAll($userId);
         if (!$role = $am->getRole($name)) {
             throw new \DomainException('Role "' . $name . '" does not exist.');
         }

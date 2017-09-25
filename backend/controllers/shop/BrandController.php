@@ -16,6 +16,8 @@ use core\repositories\NotFoundException;
 use core\services\manage\Shop\BrandManageService;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
+use yii\filters\AccessControl;
+use core\access\Rbac;
 use Yii;
 
 class BrandController extends Controller
@@ -35,6 +37,20 @@ class BrandController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => [Rbac::PERMISSION_BRAND_VIEW],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => [Rbac::PERMISSION_BRAND_EDIT],
+                    ],
                 ],
             ],
         ];

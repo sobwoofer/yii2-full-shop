@@ -13,4 +13,7 @@ class Rbac
 {
     const ROLE_USER = 'user';
     const ROLE_ADMIN = 'admin';
+    const ROLE_MANAGER = 'manager';
+    const PERMISSION_BRAND_VIEW = 'permBrandView';
+    const PERMISSION_BRAND_EDIT = 'permBrandEdit';
 }

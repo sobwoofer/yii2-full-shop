@@ -47,4 +47,65 @@ class RoleController extends Controller
         }
         return $model;
     }
+
+
+    public function actionCreateRole()
+    {
+        $am = Yii::$app->authManager;
+        $role = $this->prompt('New role name:', ['required' => true]);
+
+        if ($am->getRole($role)){
+            throw new Exception('Role already exist');
+        }
+        $description = $this->prompt('Role description:');
+
+        $newRole = $am->createRole($role);
+        $newRole->description = $description;
+        $am->add($newRole);
+
+        $this->stdout('Role: '. $role . ' is created' . PHP_EOL);
+
+    }
+
+    public function actionCreatePermission()
+    {
+        $am = Yii::$app->authManager;
+        $permission = $this->prompt('New permission name:', ['required' => true]);
+
+        if ($am->getPermission($permission)){
+            throw new Exception('Permission already exist');
+        }
+        $description = $this->prompt('Permission description:');
+
+        $newRole = $am->createPermission($permission);
+        $newRole->description = $description;
+        $am->add($newRole);
+
+        $this->stdout('Permission: '. $permission . ' is created' . PHP_EOL);
+
+    }
+
+    public function actionAddPermissionToRole()
+    {
+        $am = Yii::$app->authManager;
+
+        $roleName = $this->select('Enter role name:', ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'description'));
+
+        if (!$role = $am->getRole($roleName)){
+            throw new Exception('Role not found');
+        }
+
+        $permissionName = $this->select('Enter permission name:', ArrayHelper::map(Yii::$app->authManager->getPermissions(), 'name', 'description'));
+
+        if (!$permission = $am->getPermission($permissionName)){
+            throw new Exception('Permission not found');
+        }
+
+        $am->addChild($role, $permission);
+
+
+        $this->stdout('permission : '. $permission->name . ' added to role: ' . $role->name . PHP_EOL);
+
+    }
+
 }

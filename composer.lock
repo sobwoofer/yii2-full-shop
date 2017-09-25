@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e27c924886d9565991d7223108d802ea",
+    "content-hash": "a5ff634378e322f0694b5bf573b57193",
     "packages": [
         {
             "name": "alfa6661/yii2-raty",
@@ -267,16 +267,16 @@
         },
         {
             "name": "bower-asset/slick-carousel",
-            "version": "1.7.1",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kenwheeler/slick.git",
-                "reference": "77101f1dc3e72cb44c253c81a74f9d4881b093a6"
+                "reference": "f9a8733207a558bcd0ace7c0746f596660f89dbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kenwheeler/slick/zipball/77101f1dc3e72cb44c253c81a74f9d4881b093a6",
-                "reference": "77101f1dc3e72cb44c253c81a74f9d4881b093a6",
+                "url": "https://api.github.com/repos/kenwheeler/slick/zipball/f9a8733207a558bcd0ace7c0746f596660f89dbf",
+                "reference": "f9a8733207a558bcd0ace7c0746f596660f89dbf",
                 "shasum": null
             },
             "require": {
@@ -474,24 +474,24 @@
         },
         {
             "name": "dmstr/yii2-adminlte-asset",
-            "version": "2.4.3",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-adminlte-asset.git",
-                "reference": "2cff40e951c47d02667617833465e09abdac45da"
+                "reference": "e9e5a843e47f47af61146524af99c0e98d8f5f90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/2cff40e951c47d02667617833465e09abdac45da",
-                "reference": "2cff40e951c47d02667617833465e09abdac45da",
+                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/e9e5a843e47f47af61146524af99c0e98d8f5f90",
+                "reference": "e9e5a843e47f47af61146524af99c0e98d8f5f90",
                 "shasum": ""
             },
             "require": {
-                "almasaeed2010/adminlte": "~2.0",
+                "almasaeed2010/adminlte": "2.3.11",
                 "cebe/yii2-gravatar": "1.*",
                 "rmrevin/yii2-fontawesome": "~2.9",
                 "yiisoft/yii2": "2.*",
-                "yiisoft/yii2-bootstrap": "~2.0.0"
+                "yiisoft/yii2-bootstrap": "2.*"
             },
             "type": "yii2-extension",
             "extra": {
@@ -518,19 +518,13 @@
                     "email": "et.coder@gmail.com"
                 }
             ],
-            "description": "AdminLTE backend theme asset bundle for Yii 2.0 Framework",
+            "description": "Backend theme for Yii2 Framework",
             "keywords": [
                 "AdminLTE",
-                "admin",
-                "asset",
-                "backend",
-                "css",
                 "extension",
-                "less",
-                "theme",
                 "yii2"
             ],
-            "time": "2017-08-31T16:21:44+00:00"
+            "time": "2016-05-31T15:42:01+00:00"
         },
         {
             "name": "elasticsearch/elasticsearch",
@@ -981,16 +975,16 @@
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
-            "version": "v4.4.3",
+            "version": "v4.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "e35391eb28e6c8d2f280d5d2b025437733058131"
+                "reference": "a34efc2739157969c74c320715871ee2a2ab49c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/e35391eb28e6c8d2f280d5d2b025437733058131",
-                "reference": "e35391eb28e6c8d2f280d5d2b025437733058131",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/a34efc2739157969c74c320715871ee2a2ab49c8",
+                "reference": "a34efc2739157969c74c320715871ee2a2ab49c8",
                 "shasum": ""
             },
             "type": "library",
@@ -1030,7 +1024,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2017-08-27T18:51:18+00:00"
+            "time": "2017-09-21T16:53:00+00:00"
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
@@ -1386,22 +1380,27 @@
         },
         {
             "name": "kartik-v/yii2-widget-alert",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-alert.git",
-                "reference": "5b312eeaf429c2affe6a96217d79f0c761159643"
+                "reference": "7348b0d047695a3e552888c481ce250cbc1f9d0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-alert/zipball/5b312eeaf429c2affe6a96217d79f0c761159643",
-                "reference": "5b312eeaf429c2affe6a96217d79f0c761159643",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-alert/zipball/7348b0d047695a3e552888c481ce250cbc1f9d0d",
+                "reference": "7348b0d047695a3e552888c481ce250cbc1f9d0d",
                 "shasum": ""
             },
             "require": {
                 "kartik-v/yii2-krajee-base": "*"
             },
             "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "kartik\\alert\\": ""
@@ -1432,7 +1431,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2014-11-19T06:44:12+00:00"
+            "time": "2017-03-10T17:08:52+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-colorinput",

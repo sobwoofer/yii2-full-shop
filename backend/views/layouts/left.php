@@ -50,6 +50,9 @@
                         ['label' => 'Files', 'icon' => 'file-o', 'url' => ['/file/index'], 'active' => $this->context->id == 'file'],
                     ]],
                     ['label' => 'Users', 'icon' => 'user', 'url' => ['/user/index'], 'active' => $this->context->id == 'user'],
+                    ['label' => 'System', 'icon' => 'folder', 'items' => [
+                        ['label' => 'Roles', 'icon' => 'file-o', 'url' => ['/system/role/index'], 'active' => $this->context->id == 'roles'],
+                    ]],
                 ],
             ]
         ) ?>

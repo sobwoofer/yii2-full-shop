@@ -61,4 +61,9 @@ class UserManageService
         $this->repository->remove($user);
     }
 
+    public function getAll(): array
+    {
+        return $this->repository->getAll();
+    }
+
 }

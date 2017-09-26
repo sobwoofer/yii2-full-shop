@@ -25,6 +25,14 @@ class UserRepository
         return $this->getBy(['id' => $id]);
     }
 
+    /**
+     * @return User[]
+     */
+    public function getAll(): array
+    {
+        return User::find()->all();
+    }
+
     public function getByEmailConfirmToken($token): User
     {
         return $this->getBy(['email_confirm_token' => $token]);
@@ -65,5 +73,20 @@ class UserRepository
             throw new NotFoundException('User not found.');
         }
         return $user;
+    }
+
+    /**
+     * Find all users who be in the role by name
+     * @param $name
+     * @return User[]
+     */
+    public function findByAuthAssignment($name): array
+    {
+        $result = User::find()
+            ->alias('u')
+            ->leftJoin('{{%auth_assignments}} a', 'a.user_id = u.id')
+            ->andWhere(['a.item_name' => $name])->all();
+
+        return $result;
     }
 }

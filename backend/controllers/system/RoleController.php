@@ -10,6 +10,7 @@ namespace backend\controllers\system;
 
 
 use core\services\manage\UserManageService;
+use core\services\RoleManager;
 use yii\data\ArrayDataProvider;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -23,11 +24,13 @@ use yii\web\NotFoundHttpException;
 class RoleController extends Controller
 {
     private $service;
+    private $userManageService;
 
-    public function __construct($id, $module, UserManageService $service,  array $config = [])
+    public function __construct($id, $module, RoleManager $service, UserManageService $userManageService,  array $config = [])
     {
         parent::__construct($id, $module, $config);
         $this->service = $service;
+        $this->userManageService = $userManageService;
     }
 
 
@@ -38,6 +41,7 @@ class RoleController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'create' => ['POST'],
                 ],
             ],
 //            'access' => [
@@ -59,24 +63,9 @@ class RoleController extends Controller
 
     public function actionIndex()
     {
-
         return $this->render('index', [
-            'roles' => Yii::$app->authManager->getRoles(),
-            'permissions' => Yii::$app->authManager->getPermissions()
-        ]);
-    }
-
-    public function actionView($name)
-    {
-        if (!$role = Yii::$app->authManager->getRole($name)) {
-            throw new NotFoundHttpException('Role is not found ');
-        }
-
-
-
-        return $this->render('view', [
-            'role' => Yii::$app->authManager->getRoles(),
-            'permissions' => Yii::$app->authManager->getPermissions()
+            'roles' => $this->service->getRoles(),
+            'permissions' =>  $this->service->getPermissions()
         ]);
     }
 
@@ -88,13 +77,42 @@ class RoleController extends Controller
         return $model;
     }
 
+    /**
+     * @param $id string - role name
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionView($id)
+    {
+        if (!$role = $this->service->getRole($id)) {
+            throw new NotFoundHttpException('Role is not found ');
+        }
+
+        return $this->render('view', [
+            'role' => $role,
+            'assignUsers' => $this->service->getUsers($role->name),
+            'allUsers' => $this->userManageService->getAll(),
+            'permissions' => $this->service->getChildRoles($role->name)
+        ]);
+    }
+
+    /**
+     * @param $userId
+     * @param $roleName
+     * @return \yii\web\Response
+     */
     public function actionAssign($userId, $roleName)
     {
         $user = $this->findModel($userId);
-        $role = Yii::$app->authManager->getRole($roleName);
+        $role = $this->service->getRole($roleName);
+        $this->service->assign($user->id, $role);
+        return $this->redirect($this->goBack(), 301);
+    }
 
-        $this->service->assignRole($user->id, $role);
-
+    public function actionRevoke($userId, $roleName)
+    {
+        $this->service->revoke($userId, $roleName);
+        return $this->redirect($this->goBack(), 301);
     }
 
 
@@ -103,14 +121,22 @@ class RoleController extends Controller
 
     }
 
-    public function actionDelete()
+    public function actionDelete($id, $type)
     {
-
+        $this->service->remove($id, $type);
+        return $this->redirect($this->goBack(), 301);
     }
 
-    public function actionCreate()
+    /**
+     * @param $name
+     * @param string $description
+     * @param int $type = 1/2 = role/permission
+     * @return \yii\web\Response
+     */
+    public function actionCreate($name, $description = '', $type = 1)
     {
-
+        $this->service->createRole($name, $description, $type);
+        return $this->redirect($this->goBack(), 301);
     }
 
 

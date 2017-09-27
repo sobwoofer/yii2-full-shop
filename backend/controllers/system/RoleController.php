@@ -47,7 +47,6 @@ class RoleController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
-//                    'create' => ['POST'],
                 ],
             ],
 //            'access' => [
@@ -110,15 +109,14 @@ class RoleController extends Controller
     public function actionAssign($userId, $roleName)
     {
         $user = $this->findModel($userId);
-        $role = $this->service->getRole($roleName);
-        $this->service->assign($user->id, $role);
-        return $this->redirect($this->goBack(), 301);
+        $this->service->assign($user->id, $roleName);
+        return $this->redirect('/system/role', 301);
     }
 
     public function actionRevoke($userId, $roleName)
     {
         $this->service->revoke($userId, $roleName);
-        return $this->redirect($this->goBack(), 301);
+        return $this->redirect('/system/role', 301);
     }
 
 

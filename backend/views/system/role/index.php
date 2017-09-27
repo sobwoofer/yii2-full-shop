@@ -112,7 +112,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     'name',
                     'description',
                     'type',
-                    ['class' => ActionColumn::class]
+                    ['class' => ActionColumn::class, 'template' => '{delete}',
+                        'buttons' => [
+                        'delete' => function ($url, $model, $index) {
+                            return Html::a(
+                                '<span class="glyphicon glyphicon-trash"></span>',
+                                '/system/role/delete?'. http_build_query([
+                                    'name' => $model->name,
+                                    'type' => $model->type]), [
+                                'data-method' => 'post',
+                                'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                            ]);
+                        },
+                    ],]
                 ]
             ]); ?>
         </div>

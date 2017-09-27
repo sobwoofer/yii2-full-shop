@@ -7,7 +7,7 @@
  */
 /* @var $role */
 /* @var $permissions */
-/* @var $users \core\entities\User\User[] */
+/* @var $allUsers \core\entities\User\User[] */
 /* @var $assignUsers \core\entities\User\User[] */
 
 use yii\widgets\DetailView;
@@ -97,19 +97,15 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <?= Html::beginForm('assign', 'post', ['class' => 'form-horizontal']) ?>
+            <?= Html::beginForm('assign', 'get', ['class' => 'form-horizontal']) ?>
                 <div class="box-body">
-                    <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">Role name</label>
+                    <?= Html::hiddenInput('roleName', $role->name, ['class' => 'form-control']); ?>
 
-                        <div class="col-sm-10">
-                            <?= Html::textInput('name', '', ['class' => 'form-control']); ?>
-                        </div>
-                    </div>
                     <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Choose user</label>
+                        <div class="col-sm-10">
                             <?= Html::dropDownList('userId', null,
-                                ArrayHelper::map($assignUsers, 'id', 'username'),
+                                ArrayHelper::map($allUsers, 'id', 'username'),
                                 ['class' => 'form-control']); ?>
                         </div>
                     </div>

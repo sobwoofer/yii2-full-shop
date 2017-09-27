@@ -108,7 +108,7 @@ class RoleManager
 
     public function remove($name, $type): void
     {
-        if ($type = 1) {
+        if ($type == 1) {
            if (!$role =  $this->manager->getRole($name)) {
                 throw new NotFoundHttpException('Role is not exist');
            }

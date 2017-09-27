@@ -83,7 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <?= Html::dropDownList('userId', 1,
+                        <?= Html::dropDownList('type', 1,
                             ['1' => 'role', '2' => 'permission'],
                             ['class' => 'form-control']); ?>
                     </div>

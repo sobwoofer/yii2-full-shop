@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `shop_modifications`.
  */
-class m890224_045601_create_shop_modifications_table extends Migration
+class m170911_121126_create_shop_modifications_table extends Migration
 {
     public function up()
     {
@@ -20,6 +20,7 @@ class m890224_045601_create_shop_modifications_table extends Migration
             'code' => $this->string()->notNull(),
             'name' => $this->string()->notNull(),
             'price' => $this->integer(),
+            'quantity' => $this->integer()->notNull(),
         ], $tableOptions);
 
         $this->createIndex('{{%idx-shop_modifications-code}}', '{{%shop_modifications}}', 'code');

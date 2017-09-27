@@ -6,6 +6,7 @@
  * Time: 16:52
  */
 /* @var $role */
+/* @var $assignPermissions */
 /* @var $permissions */
 /* @var $allUsers \core\entities\User\User[] */
 /* @var $assignUsers \core\entities\User\User[] */
@@ -46,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- /.box-header -->
             <div class="box-body">
                 <?= yii\grid\GridView::widget([
-                    'dataProvider' => new ArrayDataProvider(['allModels' => $permissions]),
+                    'dataProvider' => new ArrayDataProvider(['allModels' => $assignPermissions]),
                     'columns' => [
                         'name',
                         'description',
@@ -116,6 +117,35 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= Html::submitButton('Assign user', ['class' => 'btn btn-info pull-right']) ?>
                 </div>
                 <!-- /.box-footer -->
+            <?= Html::endForm() ?>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Assign Permission to Role</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <?= Html::beginForm('add-child', 'get', ['class' => 'form-horizontal']) ?>
+            <div class="box-body">
+                <?= Html::hiddenInput('roleName', $role->name, ['class' => 'form-control']); ?>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Choose permission</label>
+                    <div class="col-sm-10">
+                        <?= Html::dropDownList('premissionName', null,
+                            ArrayHelper::map($permissions, 'name', 'description'),
+                            ['class' => 'form-control']); ?>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+
+                <?= Html::submitButton('Assign permission', ['class' => 'btn btn-info pull-right']) ?>
+            </div>
+            <!-- /.box-footer -->
             <?= Html::endForm() ?>
         </div>
     </div>

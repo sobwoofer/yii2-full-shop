@@ -80,12 +80,31 @@ class RoleManager
      * @param $name
      * @return Role[]
      */
-    public function getChildRoles($name): array
+    public function getChildren($name): array
     {
-        if (!$roleChildren = $this->manager->getChildRoles($name)) {
+        if (!$roleChildren = $this->manager->getChildren($name)) {
             throw new \DomainException('Role ' . $name . ' does not has children.');
         }
         return $roleChildren;
+    }
+
+    public function addChild($parentName, $childName): void
+    {
+        $parent = $this->getRole($parentName);
+        $child = $this->getPermission($childName);
+
+        if (!$this->manager->addChild($parent, $child)) {
+            throw new \DomainException('Child ' . $child->name . ' did not added to');
+        }
+
+    }
+
+    public function getPermission($name)
+    {
+        if (!$permission = $this->manager->getPermission($name)){
+            throw new \DomainException('Permission is not found');
+        }
+        return $permission;
     }
 
     public function createRole($name, $description, $type): void
@@ -109,13 +128,9 @@ class RoleManager
     public function remove($name, $type): void
     {
         if ($type == 1) {
-           if (!$role =  $this->manager->getRole($name)) {
-                throw new NotFoundHttpException('Role is not exist');
-           }
+            $role = $this->getRole($name);
         } else {
-            if (!$role =  $this->manager->getPermission($name)) {
-                throw new NotFoundHttpException('Permission is not exist');
-            }
+            $role = $this->getPermission($name);
         }
         $this->manager->remove($role);
     }

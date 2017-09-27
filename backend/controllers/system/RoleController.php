@@ -97,7 +97,9 @@ class RoleController extends Controller
             'role' => $role,
             'assignUsers' => $this->service->getUsers($role->name),
             'allUsers' => $this->userManageService->getAll(),
-            'permissions' => $this->service->getChildRoles($role->name)
+            'assignPermissions' => $this->service->getChildren($role->name),
+            'permissions' => $this->service->getPermissions(),
+            'all' => $this->service->getChildren($role->name)
         ]);
     }
 
@@ -120,8 +122,10 @@ class RoleController extends Controller
     }
 
 
-    public function actionEdit()
+    public function actionAddChild($roleName, $premissionName)
     {
+        $this->service->addChild($roleName, $premissionName);
+        return $this->redirect('/system/role', 301);
 
     }
 

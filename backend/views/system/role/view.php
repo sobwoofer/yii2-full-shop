@@ -98,28 +98,29 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- /.box-header -->
             <!-- form start -->
             <?= Html::beginForm('assign', 'post', ['class' => 'form-horizontal']) ?>
-            <div class="box-body">
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Role name</label>
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Role name</label>
 
-                    <div class="col-sm-10">
-                        <?= Html::textInput('name', '', ['class' => 'form-control']); ?>
+                        <div class="col-sm-10">
+                            <?= Html::textInput('name', '', ['class' => 'form-control']); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <?= Html::dropDownList('userId', null,
+                                ArrayHelper::map($assignUsers, 'id', 'username'),
+                                ['class' => 'form-control']); ?>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <?= Html::dropDownList('userId', null,
-                            ArrayHelper::map($assignUsers, 'id', 'username'),
-                            ['class' => 'form-control']); ?>
-                    </div>
-                </div>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer">
+                <!-- /.box-body -->
+                <div class="box-footer">
 
-                <?= Html::submitButton('Assign user', ['class' => 'btn btn-info pull-right']) ?>
-            </div>
-            <!-- /.box-footer -->
+                    <?= Html::submitButton('Assign user', ['class' => 'btn btn-info pull-right']) ?>
+                </div>
+                <!-- /.box-footer -->
+            <?= Html::endForm() ?>
         </div>
     </div>
 </div>

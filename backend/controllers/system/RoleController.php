@@ -33,6 +33,12 @@ class RoleController extends Controller
         $this->userManageService = $userManageService;
     }
 
+    public function beforeAction($action)
+    {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
 
     public function behaviors()
     {
@@ -41,7 +47,7 @@ class RoleController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
-                    'create' => ['POST'],
+//                    'create' => ['POST'],
                 ],
             ],
 //            'access' => [
@@ -121,10 +127,10 @@ class RoleController extends Controller
 
     }
 
-    public function actionDelete($id, $type)
+    public function actionDelete($name, $type)
     {
-        $this->service->remove($id, $type);
-        return $this->redirect($this->goBack(), 301);
+        $this->service->remove($name, $type);
+        return $this->redirect('/system/role', 301);
     }
 
     /**
@@ -136,7 +142,7 @@ class RoleController extends Controller
     public function actionCreate($name, $description = '', $type = 1)
     {
         $this->service->createRole($name, $description, $type);
-        return $this->redirect($this->goBack(), 301);
+        return $this->redirect('/system/role', 301);
     }
 
 

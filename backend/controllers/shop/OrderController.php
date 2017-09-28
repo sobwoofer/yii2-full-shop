@@ -9,7 +9,6 @@
 namespace backend\controllers\shop;
 
 use core\forms\manage\Shop\Order\OrderEditForm;
-use core\forms\manage\Shop\OrderForm;
 use core\services\manage\Shop\OrderManageService;
 use Yii;
 use core\entities\Shop\Order\Order;
@@ -17,6 +16,8 @@ use backend\forms\Shop\OrderSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use core\access\Rbac;
 
 class OrderController extends Controller
 {
@@ -35,6 +36,20 @@ class OrderController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => [Rbac::PERMISSION_SHOP_ORDER_VIEW],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => [Rbac::PERMISSION_SHOP_ORDER_EDIT],
+                    ],
                 ],
             ],
         ];

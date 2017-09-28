@@ -15,6 +15,8 @@ use core\entities\Shop\Product\Product;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use core\access\Rbac;
 
 class ModificationController extends Controller
 {
@@ -33,6 +35,20 @@ class ModificationController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => [Rbac::PERMISSION_SHOP_MODIFICATION_VIEW],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => [Rbac::PERMISSION_SHOP_MODIFICATION_EDIT],
+                    ],
                 ],
             ],
         ];

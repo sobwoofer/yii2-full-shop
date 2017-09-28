@@ -16,6 +16,8 @@ use backend\forms\Blog\PostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use core\access\Rbac;
 
 class PostController extends Controller
 {
@@ -39,6 +41,20 @@ class PostController extends Controller
                     'delete-photo' => ['POST'],
                     'move-photo-up' => ['POST'],
                     'move-photo-down' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => [Rbac::PERMISSION_BLOG_POST_VIEW],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => [Rbac::PERMISSION_BLOG_POST_EDIT],
+                    ],
                 ],
             ],
         ];

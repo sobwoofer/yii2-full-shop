@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'description',
                     'type',
                     [
-                        'class' => ActionColumn::class,  'template' => '{update} {delete}',
+                        'class' => ActionColumn::class,  'template' => '{view} {update} {delete}',
                             'buttons' => [
                                 'delete' => function ($url, $model, $index) {
                                     return Html::a(

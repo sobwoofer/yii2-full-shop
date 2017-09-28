@@ -16,6 +16,8 @@ use backend\forms\Shop\CharacteristicSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use core\access\Rbac;
 
 class CharacteristicController extends Controller
 {
@@ -34,6 +36,20 @@ class CharacteristicController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => [Rbac::PERMISSION_SHOP_CHARACTERISTIC_VIEW],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => [Rbac::PERMISSION_SHOP_CHARACTERISTIC_EDIT],
+                    ],
                 ],
             ],
         ];

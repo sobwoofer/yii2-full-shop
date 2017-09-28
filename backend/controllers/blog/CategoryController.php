@@ -16,6 +16,8 @@ use core\forms\manage\Blog\CategoryForm;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use Yii;
+use yii\filters\AccessControl;
+use core\access\Rbac;
 
 class CategoryController extends Controller
 {
@@ -35,7 +37,21 @@ class CategoryController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ]
-            ]
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => [Rbac::PERMISSION_BLOG_CATEGORY_VIEW],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => [Rbac::PERMISSION_BLOG_CATEGORY_EDIT],
+                    ],
+                ],
+            ],
         ];
     }
 

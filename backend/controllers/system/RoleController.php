@@ -49,20 +49,20 @@ class RoleController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
-//            'access' => [
-//                'class' => AccessControl::className(),
-//                'rules' => [
-//                    [
-//                        'allow' => true,
-//                        'actions' => ['index', 'view'],
-//                        'roles' => [Rbac::PERMISSION_BRAND_VIEW],
-//                    ],
-//                    [
-//                        'allow' => true,
-//                        'roles' => [Rbac::PERMISSION_BRAND_EDIT],
-//                    ],
-//                ],
-//            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => [Rbac::PERMISSION_ROLE_VIEW],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => [Rbac::PERMISSION_ROLE_EDIT],
+                    ],
+                ],
+            ],
         ];
     }
 
@@ -112,32 +112,32 @@ class RoleController extends Controller
     {
         $user = $this->findModel($userId);
         $this->service->assign($user->id, $roleName);
-        return $this->goBack();
+        return $this->redirect(['index']);
     }
 
     public function actionRevoke($userId, $roleName)
     {
         $this->service->revoke($userId, $roleName);
-        return $this->goBack();
+        return $this->redirect(['index']);
     }
 
     public function actionRevokeChild($childName, $parentName)
     {
         $this->service->revokeChild($childName, $parentName);
-        return $this->goBack();
+        return $this->redirect(['index']);
     }
 
 
     public function actionAddChild($roleName, $premissionName)
     {
         $this->service->addChild($roleName, $premissionName);
-        return $this->goBack();
+        return $this->redirect(['index']);
     }
 
     public function actionDelete($name, $type)
     {
         $this->service->remove($name, $type);
-        return $this->goBack();
+        return $this->redirect(['index']);
     }
 
     /**
@@ -149,7 +149,7 @@ class RoleController extends Controller
     public function actionCreate($name, $description = '', $type = 1)
     {
         $this->service->createRole($name, $description, $type);
-        return $this->goBack();
+        return $this->redirect(['index']);
     }
 
 

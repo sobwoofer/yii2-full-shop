@@ -45,11 +45,11 @@ class BrandController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['index', 'view'],
-                        'roles' => [Rbac::PERMISSION_BRAND_VIEW],
+                        'roles' => [Rbac::PERMISSION_SHOP_BRAND_VIEW],
                     ],
                     [
                         'allow' => true,
-                        'roles' => [Rbac::PERMISSION_BRAND_EDIT],
+                        'roles' => [Rbac::PERMISSION_SHOP_BRAND_EDIT],
                     ],
                 ],
             ],

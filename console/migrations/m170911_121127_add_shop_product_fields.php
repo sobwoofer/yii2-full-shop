@@ -8,14 +8,10 @@ class m170911_121127_add_shop_product_fields extends Migration
     {
         $this->addColumn('{{%shop_products}}', 'weight', $this->integer()->notNull());
         $this->addColumn('{{%shop_products}}', 'quantity', $this->integer()->notNull());
-
-        $this->addColumn('{{%shop_modifications}}', 'quantity', $this->integer()->notNull());
     }
 
     public function down()
     {
-        $this->dropColumn('{{%shop_modifications}}', 'quantity');
-
         $this->dropColumn('{{%shop_products}}', 'quantity');
         $this->dropColumn('{{%shop_products}}', 'weight');
     }

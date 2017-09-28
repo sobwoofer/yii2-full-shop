@@ -10,7 +10,7 @@ class m170804_085537_add_user_email_confirm_token extends Migration
      */
     public function up()
     {
-        $this->addColumn('{{%user%}}', 'email_confirm_token', $this->string()->unique()->after('email'));
+        $this->addColumn('{{%users%}}', 'email_confirm_token', $this->string()->unique()->after('email'));
     }
 
     /**
@@ -18,6 +18,6 @@ class m170804_085537_add_user_email_confirm_token extends Migration
      */
     public function down()
     {
-       $this->dropColumn('{{user}}', 'email_confirm_token');
+       $this->dropColumn('{{users}}', 'email_confirm_token');
     }
 }

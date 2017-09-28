@@ -43,6 +43,16 @@ class RoleManager
         }
     }
 
+    public function revokeChild($childName, $parentName): void
+    {
+        $perent = $this->getRole($parentName);
+        $child = $this->getPermission($childName);
+
+        if (! $this->manager->removeChild($perent, $child)) {
+            throw new \DomainException('Role "' . $child->name . '" did not revoke from' . $perent->name);
+        }
+    }
+
     /**
      * @param $name
      * @return Role

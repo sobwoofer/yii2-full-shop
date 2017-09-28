@@ -74,32 +74,32 @@ class RoleController extends Controller
         ]);
     }
 
-    private function findModel($userId): User
-    {
-        if (!$model = User::findOne(['id' => $userId])) {
-            throw new Exception('User is not found');
-        }
-        return $model;
-    }
-
     /**
      * @param $id string - role name
      * @return string
      * @throws NotFoundHttpException
      */
-    public function actionView($id)
+    public function actionUpdate($id)
     {
-        if (!$role = $this->service->getRole($id)) {
-            throw new NotFoundHttpException('Role is not found ');
-        }
+        $role = $this->service->getRole($id);
 
-        return $this->render('view', [
+        return $this->render('update', [
             'role' => $role,
             'assignUsers' => $this->service->getUsers($role->name),
             'allUsers' => $this->userManageService->getAll(),
             'assignPermissions' => $this->service->getChildren($role->name),
             'permissions' => $this->service->getPermissions(),
-            'all' => $this->service->getChildren($role->name)
+        ]);
+    }
+
+    public function actionView($id)
+    {
+        $role = $this->service->getRole($id);
+
+        return $this->render('view', [
+            'role' => $role,
+            'assignUsers' => $this->service->getUsers($role->name),
+            'assignPermissions' => $this->service->getChildren($role->name),
         ]);
     }
 
@@ -112,27 +112,32 @@ class RoleController extends Controller
     {
         $user = $this->findModel($userId);
         $this->service->assign($user->id, $roleName);
-        return $this->redirect('/system/role', 301);
+        return $this->goBack();
     }
 
     public function actionRevoke($userId, $roleName)
     {
         $this->service->revoke($userId, $roleName);
-        return $this->redirect('/system/role', 301);
+        return $this->goBack();
+    }
+
+    public function actionRevokeChild($childName, $parentName)
+    {
+        $this->service->revokeChild($childName, $parentName);
+        return $this->goBack();
     }
 
 
     public function actionAddChild($roleName, $premissionName)
     {
         $this->service->addChild($roleName, $premissionName);
-        return $this->redirect('/system/role', 301);
-
+        return $this->goBack();
     }
 
     public function actionDelete($name, $type)
     {
         $this->service->remove($name, $type);
-        return $this->redirect('/system/role', 301);
+        return $this->goBack();
     }
 
     /**
@@ -144,7 +149,16 @@ class RoleController extends Controller
     public function actionCreate($name, $description = '', $type = 1)
     {
         $this->service->createRole($name, $description, $type);
-        return $this->redirect('/system/role', 301);
+        return $this->goBack();
+    }
+
+
+    private function findModel($userId): User
+    {
+        if (!$model = User::findOne(['id' => $userId])) {
+            throw new Exception('User is not found');
+        }
+        return $model;
     }
 
 

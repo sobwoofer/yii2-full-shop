@@ -14,7 +14,7 @@ class m170928_123858_add_user_permissions extends Migration
     public function up()
     {
 
-        $this->batchInsert('{{%items}}', ['type', 'name', 'description'], [
+        $this->batchInsert('{{%auth_items}}', ['type', 'name', 'description'], [
             [2, 'permBlogCategoryEdit', 'Blog Category Edit'],
             [2, 'permBlogCategoryView', 'Blog Category View'],
             [2, 'permBlogCommentEdit', 'Blog Comment Edit'],

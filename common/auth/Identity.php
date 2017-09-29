@@ -13,6 +13,15 @@ use core\readModels\UserReadRepository;
 use yii\base\NotSupportedException;
 use yii\web\IdentityInterface;
 
+/**
+ * Этот клас создан для переноса всех необходимых методов из сущьности User которые производят логин и идентивикацию пользователей
+ * а также реализуют интерфейс IdentityInterface. теперь у всех конфигурационных файлах он должен быть указан как
+ * identityClass, так же сюда вставлены методы из дополнения OAuth2 для авторизации через API и генерации всех необходимых
+ * токенов и ключей.
+ *
+ * Class Identity
+ * @package common\auth
+ */
 class Identity implements IdentityInterface
 {
     private $user;

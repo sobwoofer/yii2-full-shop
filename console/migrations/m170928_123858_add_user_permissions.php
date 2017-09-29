@@ -4,11 +4,6 @@ use yii\db\Migration;
 
 class m170928_123858_add_user_permissions extends Migration
 {
-    public function safeUp()
-    {
-
-    }
-
 
     // Use up()/down() to run migration code without a transaction.
     public function up()

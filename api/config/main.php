@@ -49,7 +49,7 @@ return [
             ],
         ],
         'user' => [
-            'identityClass' => 'shop\entities\User\User',
+            'identityClass' => 'common\auth\Identity',
             'enableAutoLogin' => false,
             'enableSession' => false,
         ],

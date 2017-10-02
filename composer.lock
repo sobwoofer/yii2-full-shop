@@ -1082,16 +1082,16 @@
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
-            "version": "v4.4.4",
+            "version": "v4.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "a34efc2739157969c74c320715871ee2a2ab49c8"
+                "reference": "47377ede9533f2060ed8a132a925e4efa60cbd77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/a34efc2739157969c74c320715871ee2a2ab49c8",
-                "reference": "a34efc2739157969c74c320715871ee2a2ab49c8",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/47377ede9533f2060ed8a132a925e4efa60cbd77",
+                "reference": "47377ede9533f2060ed8a132a925e4efa60cbd77",
                 "shasum": ""
             },
             "type": "library",
@@ -1131,7 +1131,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2017-09-21T16:53:00+00:00"
+            "time": "2017-10-01T12:55:30+00:00"
         },
         {
             "name": "kartik-v/bootstrap-star-rating",

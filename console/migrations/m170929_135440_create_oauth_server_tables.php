@@ -1,6 +1,7 @@
 <?php
 
 use yii\db\Migration;
+use yii\db\Schema;
 
 class m170929_135440_create_oauth_server_tables extends Migration
 {

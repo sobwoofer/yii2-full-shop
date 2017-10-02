@@ -41,14 +41,15 @@
         "mihaildev/yii2-elfinder": "*",
         "fishvision/yii2-migrate": "*",
         "filsh/yii2-oauth2-server": "^2.0",
-        "flow/jsonpath": "^0.3.4"
+
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
         "yiisoft/yii2-gii": "~2.0.0",
         "yiisoft/yii2-faker": "~2.0.0",
         "codeception/base": "^2.2.3",
-        "codeception/verify": "~0.3.1"
+        "codeception/verify": "~0.3.1",
+        "flow/jsonpath": "^0.3.4"
     },
     "config": {
         "process-timeout": 1800

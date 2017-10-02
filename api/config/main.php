@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: volynets
- * Date: 29.09.17
- * Time: 11:51
- */
-
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
     require(__DIR__ . '/../../common/config/params-local.php'),
@@ -88,29 +81,35 @@ return [
                 '' => 'site/index',
                 'profile' => 'user/profile/index',
                 'POST oauth2/<action:\w+>' => 'oauth2/rest/<action>',
+
+                'GET shop/products/<id:\d+>' => 'shop/product/view',
+                'GET shop/products/category/<id:\d+>' => 'shop/product/category',
+                'GET shop/products/brand/<id:\d+>' => 'shop/product/brand',
+                'GET shop/products/tag/<id:\d+>' => 'shop/product/tag',
+                'GET shop/products' => 'shop/product/index',
             ],
         ],
-        'as authenticator' => [
-            'class' => 'filsh\yii2\oauth2server\filters\auth\CompositeAuth',
-            'except' => ['site/index', 'oauth2/rest/token'],
-            'authMethods' => [
-                ['class' => 'yii\filters\auth\HttpBearerAuth'],
-                ['class' => 'yii\filters\auth\QueryParamAuth', 'tokenParam' => 'accessToken'],
-            ]
-        ],
-        'as access' => [
-            'class' => 'yii\filters\AccessControl',
-            'except' => ['site/index', 'oauth2/rest/token'],
-            'rules' => [
-                [
-                    'allow' => true,
-                    'roles' => ['@'],
-                ],
+    ],
+    'as authenticator' => [
+        'class' => 'filsh\yii2\oauth2server\filters\auth\CompositeAuth',
+        'except' => ['site/index', 'oauth2/rest/token'],
+        'authMethods' => [
+            ['class' => 'yii\filters\auth\HttpBearerAuth'],
+            ['class' => 'yii\filters\auth\QueryParamAuth', 'tokenParam' => 'accessToken'],
+        ]
+    ],
+    'as access' => [
+        'class' => 'yii\filters\AccessControl',
+        'except' => ['site/index', 'oauth2/rest/token'],
+        'rules' => [
+            [
+                'allow' => true,
+                'roles' => ['@'],
             ],
         ],
-        'as exceptionFilter' => [
-            'class' => 'filsh\yii2\oauth2server\filters\ErrorToExceptionFilter',
-        ],
+    ],
+    'as exceptionFilter' => [
+        'class' => 'filsh\yii2\oauth2server\filters\ErrorToExceptionFilter',
     ],
     'params' => $params,
 ];

@@ -86,7 +86,30 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
+                'profile' => 'user/profile/index',
+                'POST oauth2/<action:\w+>' => 'oauth2/rest/<action>',
             ],
+        ],
+        'as authenticator' => [
+            'class' => 'filsh\yii2\oauth2server\filters\auth\CompositeAuth',
+            'except' => ['site/index', 'oauth2/rest/token'],
+            'authMethods' => [
+                ['class' => 'yii\filters\auth\HttpBearerAuth'],
+                ['class' => 'yii\filters\auth\QueryParamAuth', 'tokenParam' => 'accessToken'],
+            ]
+        ],
+        'as access' => [
+            'class' => 'yii\filters\AccessControl',
+            'except' => ['site/index', 'oauth2/rest/token'],
+            'rules' => [
+                [
+                    'allow' => true,
+                    'roles' => ['@'],
+                ],
+            ],
+        ],
+        'as exceptionFilter' => [
+            'class' => 'filsh\yii2\oauth2server\filters\ErrorToExceptionFilter',
         ],
     ],
     'params' => $params,

@@ -6,6 +6,7 @@ use core\services\ContactService;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
 use core\cart\Cart;
+use core\cart\storage\HybridStorage;
 use core\cart\cost\calculator\SimpleCost;
 use core\cart\storage\CookieStorage;
 use core\cart\storage\SessionStorage;
@@ -42,9 +43,9 @@ class SetUp implements BootstrapInterface
             $app->params['adminEmail']
         ]);
 
-        $container->setSingleton(Cart::class, function () {
+        $container->setSingleton(Cart::class, function () use ($app) {
             return new Cart(
-                new SessionStorage('cart', \Yii::$app->session),
+                new HybridStorage($app->get('user'), 'cart', 3600 * 24, $app->db),
                 new DynamicCost(new SimpleCost())
             );
         });

@@ -27,6 +27,7 @@ class CookieStorage implements StorageInterface
 
     public function load(): array
     {
+
         if ($cookie = Yii::$app->request->cookies->get($this->key)) {
             return array_filter(array_map(function (array $row) {
                 if (isset($row['p'], $row['q']) && $product = Product::find()->active()->andWhere(['id' => $row['p']])->one()) {

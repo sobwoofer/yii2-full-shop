@@ -30,9 +30,9 @@ class Identity implements IdentityInterface, UserCredentialsInterface
 {
     private $user;
 
-    public function __construct(User $user)
+    public function __construct(User $user = null)
     {
-        $this->user = $user;
+        $this->user = $user ?? new User();
     }
 
     public static function findIdentity($id)

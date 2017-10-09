@@ -52,7 +52,8 @@ class HybridStorage implements StorageInterface
                 $this->storage = $cookieStorage;
             } else {
                 $dbStorage = new DbStorage($this->user->id, $this->db);
-                if ($cookieItems = $cookieStorage->load()) {
+//                if ($cookieItems = $cookieStorage->load()) {
+                if ($cookieItems = []) {
                     $dbItems = $dbStorage->load();
                     $items = array_merge($dbItems, array_udiff($cookieItems, $dbItems, function (CartItem $first, CartItem $second) {
                         return $first->getId() === $second->getId();

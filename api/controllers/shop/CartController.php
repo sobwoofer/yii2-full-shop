@@ -36,7 +36,7 @@ class CartController extends Controller
         return [
             'index' => ['GET'],
             'add' => ['GET'],
-            'quantity' => ['POST'],
+            'quantity' => ['PUT'],
             'delete' => ['DELETE'],
             'clear' => ['DELETE'],
         ];
@@ -113,10 +113,10 @@ class CartController extends Controller
         return $form;
     }
 
-    public function actionQuantity($id): void
+    public function actionQuantity($id, $quantity): void
     {
         try {
-            $this->service->set($id, (int)Yii::$app->request->post('quantity'));
+            $this->service->set($id, (int)$quantity);
         } catch (\DomainException $e) {
             throw new BadRequestHttpException($e->getMessage(), null, $e);
         }

@@ -34,6 +34,14 @@ class ProductReadRepository
         $this->client = $client;
     }
 
+    /**
+     * @return iterable|Product[]
+     */
+    public function getAllIterator(): iterable
+    {
+        return Product::find()->alias('p')->active('p')->with('mainPhoto', 'brand')->each();
+    }
+
     public function getAll(): DataProviderInterface
     {
         $query = Product::find()->alias('p')->active('p')->with('mainPhoto');

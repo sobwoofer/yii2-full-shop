@@ -10,6 +10,8 @@ use core\cart\storage\HybridStorage;
 use core\cart\cost\calculator\SimpleCost;
 use core\cart\storage\CookieStorage;
 use core\cart\storage\SessionStorage;
+use core\services\feed\Market;
+use shop\services\feed\ShopInfo;
 use core\cart\cost\calculator\DynamicCost;
 use yii\base\BootstrapInterface;
 use yii\mail\MailerInterface;
@@ -49,5 +51,9 @@ class SetUp implements BootstrapInterface
                 new DynamicCost(new SimpleCost())
             );
         });
+
+        $container->setSingleton(Market::class, [], [
+            new ShopInfo($app->name, $app->name, $app->params['frontendHostInfo']),
+        ]);
     }
 }

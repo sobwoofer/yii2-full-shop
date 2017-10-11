@@ -18,7 +18,7 @@ class ProfileController extends Controller
 {
     /**
      * @SWG\Get(
-     *     path="/user/profile",
+     *     path="v1/user/profile",
      *     tags={"Profile"},
      *     description="Returns profile info",
      *     @SWG\Response(

@@ -61,7 +61,7 @@ class ProductController extends Controller
 
     /**
      * @SWG\Get(
-     *     path="/shop/products",
+     *     path="v1/shop/products",
      *     tags={"Catalog"},
      *     @SWG\Response(
      *         response=200,
@@ -82,7 +82,7 @@ class ProductController extends Controller
 
     /**
      * @SWG\Get(
-     *     path="/shop/products/category/{categoryId}",
+     *     path="v1/shop/products/category/{categoryId}",
      *     tags={"Catalog"},
      *     @SWG\Parameter(name="categoryId", in="path", required=true, type="integer"),
      *     @SWG\Response(
@@ -107,7 +107,7 @@ class ProductController extends Controller
 
     /**
      * @SWG\Get(
-     *     path="/shop/products/brand/{brandId}",
+     *     path="v1/shop/products/brand/{brandId}",
      *     tags={"Catalog"},
      *     @SWG\Parameter(name="brandId", in="path", required=true, type="integer"),
      *     @SWG\Response(
@@ -132,7 +132,7 @@ class ProductController extends Controller
 
     /**
      * @SWG\Get(
-     *     path="/shop/products/tag/{tagId}",
+     *     path="v1/shop/products/tag/{tagId}",
      *     tags={"Catalog"},
      *     @SWG\Parameter(name="tagId", in="path", required=true, type="integer"),
      *     @SWG\Response(
@@ -157,7 +157,7 @@ class ProductController extends Controller
 
     /**
      * @SWG\Get(
-     *     path="/shop/products/{productId}",
+     *     path="v1/shop/products/{productId}",
      *     tags={"Catalog"},
      *     @SWG\Parameter(
      *         name="productId",

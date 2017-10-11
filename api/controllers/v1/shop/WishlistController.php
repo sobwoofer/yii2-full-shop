@@ -41,7 +41,7 @@ class WishlistController extends Controller
 
     /**
      * @SWG\Get(
-     *     path="/shop/wishlist",
+     *     path="v1/shop/wishlist",
      *     tags={"WishList"},
      *     @SWG\Response(
      *         response=200,
@@ -62,7 +62,7 @@ class WishlistController extends Controller
 
     /**
      * @SWG\Post(
-     *     path="/shop/products/{productId}/wish",
+     *     path="v1/shop/products/{productId}/wish",
      *     tags={"WishList"},
      *     @SWG\Parameter(name="productId", in="path", required=true, type="integer"),
      *     @SWG\Response(
@@ -86,7 +86,7 @@ class WishlistController extends Controller
 
     /**
      * @SWG\Delete(
-     *     path="/shop/wishlist/{id}",
+     *     path="v1/shop/wishlist/{id}",
      *     tags={"WishList"},
      *     @SWG\Parameter(name="id", in="path", required=true, type="integer"),
      *     @SWG\Response(

@@ -44,7 +44,7 @@ class CartController extends Controller
 
     /**
      * @SWG\Get(
-     *     path="/shop/cart",
+     *     path="v1/shop/cart",
      *     tags={"Cart"},
      *     @SWG\Response(
      *         response=200,
@@ -108,7 +108,7 @@ class CartController extends Controller
 
     /**
      * @SWG\Post(
-     *     path="/shop/products/{productId}/cart",
+     *     path="v1/shop/products/{productId}/cart",
      *     tags={"Cart"},
      *     @SWG\Parameter(name="productId", in="path", required=true, type="integer"),
      *     @SWG\Parameter(name="modification", in="formData", required=false, type="integer"),
@@ -148,7 +148,7 @@ class CartController extends Controller
 
     /**
      * @SWG\Put(
-     *     path="/shop/cart/{id}/quantity",
+     *     path="v1/shop/cart/{id}/quantity",
      *     tags={"Cart"},
      *     @SWG\Parameter(name="id", in="path", required=true, type="integer"),
      *     @SWG\Parameter(name="quantity", in="formData", required=true, type="integer"),
@@ -173,7 +173,7 @@ class CartController extends Controller
 
     /**
      * @SWG\Delete(
-     *     path="/shop/cart/{id}",
+     *     path="v1/shop/cart/{id}",
      *     tags={"Cart"},
      *     @SWG\Parameter(name="id", in="path", required=true, type="integer"),
      *     @SWG\Response(
@@ -198,7 +198,7 @@ class CartController extends Controller
 
     /**
      * @SWG\Delete(
-     *     path="/shop/cart",
+     *     path="v1/shop/cart",
      *     tags={"Cart"},
      *     @SWG\Response(
      *         response=204,

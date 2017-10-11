@@ -6,7 +6,7 @@
  * Time: 11:01
  */
 
-namespace api\controllers\shop;
+namespace api\controllers\v1\shop;
 
 use core\cart\Cart;
 use core\forms\Shop\Order\OrderForm;

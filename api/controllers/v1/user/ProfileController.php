@@ -6,7 +6,7 @@
  * Time: 12:37
  */
 
-namespace api\controllers\user;
+namespace api\controllers\v1\user;
 
 use api\helpers\DateHelper;
 use core\entities\User\User;

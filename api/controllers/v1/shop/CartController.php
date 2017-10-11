@@ -6,7 +6,7 @@
  * Time: 9:36
  */
 
-namespace api\controllers\shop;
+namespace api\controllers\v1\shop;
 
 use core\cart\CartItem;
 use core\cart\cost\Discount;

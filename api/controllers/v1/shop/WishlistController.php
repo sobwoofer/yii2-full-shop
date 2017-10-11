@@ -6,7 +6,7 @@
  * Time: 15:47
  */
 
-namespace api\controllers\shop;
+namespace api\controllers\v1\shop;
 
 use api\providers\MapDataProvider;
 use core\entities\Shop\Product\Product;

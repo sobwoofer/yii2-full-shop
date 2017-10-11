@@ -1,45 +1,7 @@
 {
     "swagger": "2.0",
-    "info": {
-        "title": "Shop API",
-        "description": "HTTP JSON API",
-        "version": "1.0.0"
-    },
-    "host": "api.shop.dev",
-    "basePath": "/",
-    "schemes": [
-        "http"
-    ],
-    "consumes": [
-        "application/json",
-        "application/xml"
-    ],
-    "produces": [
-        "application/json",
-        "application/xml"
-    ],
     "paths": {
-        "/": {
-            "get": {
-                "tags": [
-                    "Info"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "API version",
-                        "schema": {
-                            "properties": {
-                                "version": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/shop/cart": {
+        "v1/shop/cart": {
             "get": {
                 "tags": [
                     "Cart"
@@ -76,7 +38,7 @@
                 ]
             }
         },
-        "/shop/products/{productId}/cart": {
+        "v1/shop/products/{productId}/cart": {
             "post": {
                 "tags": [
                     "Cart"
@@ -114,7 +76,7 @@
                 ]
             }
         },
-        "/shop/cart/{id}/quantity": {
+        "v1/shop/cart/{id}/quantity": {
             "put": {
                 "tags": [
                     "Cart"
@@ -146,7 +108,7 @@
                 ]
             }
         },
-        "/shop/cart/{id}": {
+        "v1/shop/cart/{id}": {
             "delete": {
                 "tags": [
                     "Cart"
@@ -172,7 +134,7 @@
                 ]
             }
         },
-        "/shop/products": {
+        "v1/shop/products": {
             "get": {
                 "tags": [
                     "Catalog"
@@ -196,7 +158,7 @@
                 ]
             }
         },
-        "/shop/products/category/{categoryId}": {
+        "v1/shop/products/category/{categoryId}": {
             "get": {
                 "tags": [
                     "Catalog"
@@ -225,7 +187,7 @@
                 ]
             }
         },
-        "/shop/products/brand/{brandId}": {
+        "v1/shop/products/brand/{brandId}": {
             "get": {
                 "tags": [
                     "Catalog"
@@ -254,7 +216,7 @@
                 ]
             }
         },
-        "/shop/products/tag/{tagId}": {
+        "v1/shop/products/tag/{tagId}": {
             "get": {
                 "tags": [
                     "Catalog"
@@ -283,7 +245,7 @@
                 ]
             }
         },
-        "/shop/products/{productId}": {
+        "v1/shop/products/{productId}": {
             "get": {
                 "tags": [
                     "Catalog"
@@ -313,7 +275,7 @@
                 ]
             }
         },
-        "/shop/wishlist": {
+        "v1/shop/wishlist": {
             "get": {
                 "tags": [
                     "WishList"
@@ -337,7 +299,7 @@
                 ]
             }
         },
-        "/shop/products/{productId}/wish": {
+        "v1/shop/products/{productId}/wish": {
             "post": {
                 "tags": [
                     "WishList"
@@ -363,7 +325,7 @@
                 ]
             }
         },
-        "/shop/wishlist/{id}": {
+        "v1/shop/wishlist/{id}": {
             "delete": {
                 "tags": [
                     "WishList"
@@ -389,7 +351,7 @@
                 ]
             }
         },
-        "/user/profile": {
+        "v1/user/profile": {
             "get": {
                 "tags": [
                     "Profile"
@@ -413,21 +375,6 @@
         }
     },
     "definitions": {
-        "ErrorModel": {
-            "required": [
-                "code",
-                "message"
-            ],
-            "properties": {
-                "code": {
-                    "type": "integer"
-                },
-                "message": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
         "Cart": {
             "properties": {
                 "weight": {
@@ -817,18 +764,6 @@
                 }
             },
             "type": "object"
-        }
-    },
-    "securityDefinitions": {
-        "OAuth2": {
-            "type": "oauth2",
-            "flow": "password",
-            "tokenUrl": "http://api.shop.dev/oauth2/token"
-        },
-        "Bearer": {
-            "type": "apiKey",
-            "name": "Authorization",
-            "in": "header"
         }
     }
 }

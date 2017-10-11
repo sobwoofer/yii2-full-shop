@@ -18,8 +18,8 @@ class DocController extends Controller
     public function actionBuild()
     {
         $swagger = Yii::getAlias('@vendor/bin/swagger');
-        $source = Yii::getAlias('@api/controllers');
-        $target = Yii::getAlias('@api/web/docs/swagger.json');
+        $source = Yii::getAlias('@api/controllers/v1');
+        $target = Yii::getAlias('@api/web/v1/docs/swagger.json');
 
         passthru('"' . PHP_BINARY . '"' . " \"{$swagger}\" \"{$source}\" --output \"{$target}\"");
     }

@@ -26,6 +26,15 @@ use yii\db\Expression;
 
 class ProductReadRepository
 {
+    public function count(): int
+    {
+        return Product::find()->active()->count();
+    }
+
+    public function getAllByRange(int $offset, int $limit): array
+    {
+        return Product::find()->alias('p')->active('p')->orderBy(['id' => SORT_ASC])->limit($limit)->offset($offset)->all();
+    }
 
     private $client;
 

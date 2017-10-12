@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use core\forms\manage\User\UserCreateForm;
 use core\forms\manage\User\UserEditForm;
-use core\services\manage\UserManageService;
+use core\useCases\manage\UserManageService;
 use Yii;
 use core\entities\User\User;
 use backend\forms\UserSearch;

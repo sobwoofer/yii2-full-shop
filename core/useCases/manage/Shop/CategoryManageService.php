@@ -6,7 +6,7 @@
  * Time: 14:18
  */
 
-namespace core\services\manage\Shop;
+namespace core\useCases\manage\Shop;
 
 use core\entities\Meta;
 use core\entities\Shop\Category;

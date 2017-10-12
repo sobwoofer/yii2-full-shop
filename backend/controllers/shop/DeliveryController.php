@@ -9,7 +9,7 @@
 namespace backend\controllers\shop;
 
 use core\forms\manage\Shop\DeliveryMethodForm;
-use core\services\manage\Shop\DeliveryMethodManageService;
+use core\useCases\manage\Shop\DeliveryMethodManageService;
 use Yii;
 use core\entities\Shop\DeliveryMethod;
 use backend\forms\Shop\DeliveryMethodSearch;

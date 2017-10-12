@@ -6,7 +6,7 @@
  * Time: 16:26
  */
 
-namespace core\services\manage\Shop;
+namespace core\useCases\manage\Shop;
 
 use core\entities\Shop\Order\CustomerData;
 use core\entities\Shop\Order\DeliveryData;

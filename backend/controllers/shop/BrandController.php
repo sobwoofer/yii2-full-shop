@@ -13,7 +13,7 @@ use backend\forms\Shop\BrandSearch;
 use core\entities\Shop\Brand;
 use core\forms\manage\Shop\BrandForm;
 use core\repositories\NotFoundException;
-use core\services\manage\Shop\BrandManageService;
+use core\useCases\manage\Shop\BrandManageService;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\filters\AccessControl;

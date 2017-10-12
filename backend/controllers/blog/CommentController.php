@@ -10,7 +10,7 @@ namespace backend\controllers\blog;
 
 use backend\forms\Blog\CommentSearch;
 use core\forms\manage\Blog\Post\CommentEditForm;
-use core\services\manage\Blog\CommentManageService;
+use core\useCases\manage\Blog\CommentManageService;
 use Yii;
 use core\entities\Blog\Post\Post;
 use yii\web\Controller;

@@ -6,7 +6,7 @@
  * Time: 17:38
  */
 
-namespace core\services\Shop;
+namespace core\useCases\Shop;
 
 use core\cart\Cart;
 use core\cart\CartItem;

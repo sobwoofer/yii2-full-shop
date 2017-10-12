@@ -6,7 +6,7 @@
  * Time: 17:32
  */
 
-namespace core\services\manage;
+namespace core\useCases\manage;
 
 use core\entities\Meta;
 use core\entities\Page;

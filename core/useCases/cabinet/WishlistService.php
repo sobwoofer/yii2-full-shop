@@ -7,7 +7,7 @@
  */
 
 
-namespace core\services\cabinet;
+namespace core\useCases\cabinet;
 
 use core\repositories\Shop\ProductRepository;
 use core\repositories\UserRepository;

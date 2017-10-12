@@ -9,7 +9,7 @@
 namespace backend\controllers\shop;
 
 use core\forms\manage\Shop\CharacteristicForm;
-use core\services\manage\Shop\CharacteristicManageService;
+use core\useCases\manage\Shop\CharacteristicManageService;
 use Yii;
 use core\entities\Shop\Characteristic;
 use backend\forms\Shop\CharacteristicSearch;

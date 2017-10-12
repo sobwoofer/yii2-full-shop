@@ -6,7 +6,7 @@
  * Time: 17:37
  */
 
-namespace core\services\manage\Shop;
+namespace core\useCases\manage\Shop;
 
 
 use core\entities\Shop\Tag;

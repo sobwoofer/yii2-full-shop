@@ -10,7 +10,7 @@
 namespace frontend\controllers\cabinet;
 
 use core\readModels\Shop\ProductReadRepository;
-use core\services\cabinet\WishlistService;
+use core\useCases\cabinet\WishlistService;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;

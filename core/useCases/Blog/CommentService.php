@@ -7,7 +7,7 @@
  */
 
 
-namespace core\services\Blog;
+namespace core\useCases\Blog;
 
 use core\entities\Blog\Post\Comment;
 use core\forms\Blog\CommentForm;

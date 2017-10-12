@@ -6,7 +6,7 @@
  * Time: 13:06
  */
 
-namespace core\services\manage\Blog;
+namespace core\useCases\manage\Blog;
 
 
 use core\entities\Blog\Category;

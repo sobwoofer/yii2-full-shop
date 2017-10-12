@@ -6,7 +6,7 @@
  * Time: 16:08
  */
 
-namespace core\services\manage\Blog;
+namespace core\useCases\manage\Blog;
 
 use core\forms\manage\Blog\Post\CommentEditForm;
 use core\repositories\Blog\PostRepository;

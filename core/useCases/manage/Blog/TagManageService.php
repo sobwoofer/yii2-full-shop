@@ -6,7 +6,7 @@
  * Time: 11:59
  */
 
-namespace core\services\manage\Blog;
+namespace core\useCases\manage\Blog;
 
 use core\entities\Blog\Tag;
 use core\forms\manage\Blog\TagForm;

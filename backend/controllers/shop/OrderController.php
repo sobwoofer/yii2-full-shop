@@ -9,7 +9,7 @@
 namespace backend\controllers\shop;
 
 use core\forms\manage\Shop\Order\OrderEditForm;
-use core\services\manage\Shop\OrderManageService;
+use core\useCases\manage\Shop\OrderManageService;
 use Yii;
 use core\entities\Shop\Order\Order;
 use backend\forms\Shop\OrderSearch;

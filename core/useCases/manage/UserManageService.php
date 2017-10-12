@@ -1,6 +1,6 @@
 <?php
 
-namespace core\services\manage;
+namespace core\useCases\manage;
 
 use core\entities\User\User;
 use core\forms\manage\User\UserCreateForm;

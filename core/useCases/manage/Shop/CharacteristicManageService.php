@@ -1,6 +1,6 @@
 <?php
 
-namespace core\services\manage\Shop;
+namespace core\useCases\manage\Shop;
 
 use core\entities\Shop\Characteristic;
 use core\forms\manage\Shop\CharacteristicForm;

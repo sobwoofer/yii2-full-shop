@@ -11,7 +11,7 @@ namespace backend\controllers\blog;
 use backend\forms\Blog\CategorySearch;
 use yii\web\NotFoundHttpException;
 use core\entities\Blog\Category;
-use core\services\manage\Blog\CategoryManageService;
+use core\useCases\manage\Blog\CategoryManageService;
 use core\forms\manage\Blog\CategoryForm;
 use yii\filters\VerbFilter;
 use yii\web\Controller;

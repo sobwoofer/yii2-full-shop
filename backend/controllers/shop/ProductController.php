@@ -14,7 +14,7 @@ use core\forms\manage\Shop\Product\PhotosForm;
 use core\forms\manage\Shop\Product\PriceForm;
 use core\forms\manage\Shop\Product\ProductCreateForm;
 use core\forms\manage\Shop\Product\ProductEditForm;
-use core\services\manage\Shop\ProductManageService;
+use core\useCases\manage\Shop\ProductManageService;
 use Yii;
 use core\entities\Shop\Product\Product;
 use backend\forms\Shop\ProductSearch;

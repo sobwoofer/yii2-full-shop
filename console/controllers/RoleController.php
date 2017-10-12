@@ -9,7 +9,7 @@
 namespace console\controllers;
 
 use core\entities\User\User;
-use core\services\manage\UserManageService;
+use core\useCases\manage\UserManageService;
 use Yii;
 use yii\console\Controller;
 use yii\console\Exception;

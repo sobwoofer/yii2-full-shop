@@ -9,7 +9,7 @@
 namespace backend\controllers;
 
 use core\forms\manage\PageForm;
-use core\services\manage\PageManageService;
+use core\useCases\manage\PageManageService;
 use Yii;
 use core\entities\Page;
 use backend\forms\PageSearch;

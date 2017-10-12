@@ -3,7 +3,7 @@
  * This class is registered and confirmed user into system.
  */
 
-namespace core\services\auth;
+namespace core\useCases\auth;
 
 use core\entities\User\User;
 use core\forms\auth\SignupForm;

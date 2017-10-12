@@ -11,7 +11,7 @@ namespace backend\controllers\shop;
 
 
 use core\forms\manage\Shop\TagForm;
-use core\services\manage\Shop\TagManageService;
+use core\useCases\manage\Shop\TagManageService;
 use Yii;
 use core\entities\Shop\Tag;
 use backend\forms\Shop\TagSearch;

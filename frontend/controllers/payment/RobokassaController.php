@@ -12,7 +12,7 @@ namespace core\controllers\payment;
 
 use core\entities\Shop\Order\Order;
 use core\readModels\Shop\OrderReadRepository;
-use core\services\Shop\OrderService;
+use core\useCases\Shop\OrderService;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

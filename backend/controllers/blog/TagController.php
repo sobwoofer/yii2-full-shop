@@ -10,7 +10,7 @@
 namespace backend\controllers\blog;
 
 use core\forms\manage\Blog\TagForm;
-use core\services\manage\Blog\TagManageService;
+use core\useCases\manage\Blog\TagManageService;
 use Yii;
 use core\entities\Blog\Tag;
 use backend\forms\Blog\TagSearch;

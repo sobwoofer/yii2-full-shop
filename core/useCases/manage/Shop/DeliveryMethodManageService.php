@@ -6,7 +6,7 @@
  * Time: 16:17
  */
 
-namespace core\services\manage\Shop;
+namespace core\useCases\manage\Shop;
 
 use core\entities\Shop\DeliveryMethod;
 use core\forms\manage\Shop\DeliveryMethodForm;

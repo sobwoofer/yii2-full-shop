@@ -14,7 +14,7 @@ use core\readModels\Blog\TagReadRepository;
 use core\readModels\Blog\PostReadRepository;
 use core\readModels\Blog\CategoryReadRepository;
 use core\repositories\Blog\PostRepository;
-use core\services\Blog\CommentService;
+use core\useCases\Blog\CommentService;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use Yii;

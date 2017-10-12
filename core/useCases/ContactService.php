@@ -6,7 +6,7 @@
  * Time: 10:05
  */
 
-namespace core\services;
+namespace core\useCases;
 
 use core\forms\ContactForm;
 use yii\mail\MailerInterface;

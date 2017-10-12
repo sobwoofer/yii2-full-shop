@@ -9,7 +9,7 @@
 namespace backend\controllers\blog;
 
 use core\forms\manage\Blog\Post\PostForm;
-use core\services\manage\Blog\PostManageService;
+use core\useCases\manage\Blog\PostManageService;
 use Yii;
 use core\entities\Blog\Post\Post;
 use backend\forms\Blog\PostSearch;

@@ -2,7 +2,7 @@
 
 namespace common\bootstrap;
 
-use core\services\ContactService;
+use core\useCases\ContactService;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
 use core\cart\Cart;

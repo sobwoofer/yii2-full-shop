@@ -2,7 +2,7 @@
 namespace frontend\controllers\auth;
 
 use common\auth\Identity;
-use core\services\auth\AuthService;
+use core\useCases\auth\AuthService;
 use Yii;
 use yii\web\Controller;
 use core\forms\auth\LoginForm;

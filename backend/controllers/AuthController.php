@@ -1,7 +1,7 @@
 <?php
 namespace backend\controllers;
 
-use core\services\auth\AuthService;
+use core\useCases\auth\AuthService;
 use common\auth\Identity;
 use Yii;
 use yii\web\Controller;

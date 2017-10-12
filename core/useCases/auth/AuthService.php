@@ -6,7 +6,7 @@
  * Time: 16:27
  */
 
-namespace core\services\auth;
+namespace core\useCases\auth;
 
 use core\entities\User\User;
 use core\forms\auth\LoginForm;

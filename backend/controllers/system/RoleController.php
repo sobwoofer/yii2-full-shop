@@ -9,7 +9,7 @@
 namespace backend\controllers\system;
 
 
-use core\services\manage\UserManageService;
+use core\useCases\manage\UserManageService;
 use core\services\RoleManager;
 use yii\data\ArrayDataProvider;
 use yii\web\Controller;

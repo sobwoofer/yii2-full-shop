@@ -7,7 +7,7 @@
  */
 
 
-namespace core\services\manage\Blog;
+namespace core\useCases\manage\Blog;
 
 use core\entities\Meta;
 use core\entities\Blog\Post\Post;

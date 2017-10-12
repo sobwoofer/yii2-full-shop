@@ -1,6 +1,6 @@
 <?php
 
-namespace core\services\auth;
+namespace core\useCases\auth;
 
 use core\entities\User\User;
 use core\repositories\UserRepository;

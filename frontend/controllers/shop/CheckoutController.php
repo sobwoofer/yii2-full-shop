@@ -10,7 +10,7 @@ namespace frontend\controllers\shop;
 
 use core\cart\Cart;
 use core\forms\Shop\Order\OrderForm;
-use core\services\Shop\OrderService;
+use core\useCases\Shop\OrderService;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;

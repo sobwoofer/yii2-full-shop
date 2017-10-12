@@ -26,13 +26,13 @@ class FeedController extends Controller
 
     public function actionIndex(): Response
     {
-        $xml = \Yii::$app->cache->getOrSet('yandex-market', function () {
+        $xml = \Yii::$app->cache->getOrSet('feed-market', function () {
             return $this->generator->generate(function (Product $product) {
                 return Url::to(['/shop/catalog/product', 'id' => $product->id], true);
             });
         });
 
-        return \Yii::$app->response->sendContentAsFile($xml, 'yandex-market.xml', [
+        return \Yii::$app->response->sendContentAsFile($xml, 'feed-market.xml', [
             'mimeType' => 'application/xml',
             'inline' => true,
         ]);

@@ -15,7 +15,7 @@ return [
         'signup/<_a:[\w-]+>' => 'auth/signup/<_a>',
         '<_a:login|logout>' => 'auth/auth/<_a>',
 
-        ['pattern' => 'yandex-market', 'route' => 'feed/index', 'suffix' => '.xml'],
+        ['pattern' => 'feed-market', 'route' => 'feed/index', 'suffix' => '.xml'],
 
         'blog' => 'blog/post/index',
         'blog/tag/<slug:[\w\-]+>' => 'blog/post/tag',

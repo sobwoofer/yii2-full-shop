@@ -11,7 +11,7 @@ use core\cart\cost\calculator\SimpleCost;
 use core\cart\storage\CookieStorage;
 use core\cart\storage\SessionStorage;
 use core\services\feed\Market;
-use shop\services\feed\ShopInfo;
+use core\services\feed\ShopInfo;
 use core\cart\cost\calculator\DynamicCost;
 use yii\base\BootstrapInterface;
 use yii\mail\MailerInterface;

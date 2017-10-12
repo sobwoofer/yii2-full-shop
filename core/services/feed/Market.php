@@ -14,7 +14,7 @@ use core\readModels\Shop\CategoryReadRepository;
 use core\readModels\Shop\DeliveryMethodReadRepository;
 use core\readModels\Shop\ProductReadRepository;
 use yii\helpers\Html;
-use shop\services\feed\ShopInfo;
+use core\services\feed\ShopInfo;
 
 class Market
 {

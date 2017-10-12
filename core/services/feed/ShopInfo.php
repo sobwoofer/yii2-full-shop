@@ -6,7 +6,7 @@
  * Time: 15:23
  */
 
-namespace shop\services\feed;
+namespace core\services\feed;
 
 class ShopInfo
 {

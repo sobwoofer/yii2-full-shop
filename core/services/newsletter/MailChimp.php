@@ -9,6 +9,13 @@
 
 namespace core\services\newsletter;
 
+/**
+ * В качестве примера создан Клас для сервиса рассылки Мейлчимп, если нужно будет
+ * подулючить другой - просто в эту папку покладем новый клас с этими методами но для нужного
+ * дополнения.
+ * Class MailChimp
+ * @package core\services\newsletter
+ */
 class MailChimp implements Newsletter
 {
     private $client;

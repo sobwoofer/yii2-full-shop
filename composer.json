@@ -40,7 +40,8 @@
         "mihaildev/yii2-ckeditor": "*",
         "mihaildev/yii2-elfinder": "*",
         "fishvision/yii2-migrate": "*",
-        "filsh/yii2-oauth2-server": "^2.0"
+        "filsh/yii2-oauth2-server": "^2.0",
+        "drewm/mailchimp-api": "^2.4"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

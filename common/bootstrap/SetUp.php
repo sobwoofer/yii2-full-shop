@@ -10,6 +10,8 @@ use core\cart\storage\HybridStorage;
 use core\cart\cost\calculator\SimpleCost;
 use core\cart\storage\CookieStorage;
 use core\cart\storage\SessionStorage;
+use core\services\newsletter\MailChimp;
+use core\services\newsletter\Newsletter;
 use core\services\feed\Market;
 use core\services\feed\ShopInfo;
 use core\cart\cost\calculator\DynamicCost;
@@ -55,5 +57,12 @@ class SetUp implements BootstrapInterface
         $container->setSingleton(Market::class, [], [
             new ShopInfo($app->name, $app->name, $app->params['frontendHostInfo']),
         ]);
+
+        $container->setSingleton(Newsletter::class, function () use ($app) {
+            return new MailChimp(
+                new \DrewM\MailChimp\MailChimp($app->params['mailChimpKey']),
+                $app->params['mailChimpListId']
+            );
+        });
     }
 }

@@ -7,6 +7,7 @@ use core\forms\manage\User\UserCreateForm;
 use core\forms\manage\User\UserEditForm;
 use core\repositories\UserRepository;
 use core\services\RoleManager;
+use core\services\newsletter\Newsletter;
 use core\services\TransactionManager;
 
 class UserManageService
@@ -14,12 +15,21 @@ class UserManageService
     private $repository;
     private $roles;
     private $transaction;
+    /**
+     * @var Newsletter
+     */
+    private $newsletter;
 
-    public function __construct(UserRepository $repository, RoleManager $roles, TransactionManager $transaction)
-    {
+    public function __construct(
+        UserRepository $repository,
+        RoleManager $roles,
+        TransactionManager $transaction,
+        Newsletter $newsletter
+    )    {
         $this->repository = $repository;
         $this->roles = $roles;
         $this->transaction = $transaction;
+        $this->newsletter = $newsletter;
     }
 
     public function create(UserCreateForm $form): User
@@ -32,6 +42,7 @@ class UserManageService
         $this->transaction->wrap(function () use ($user, $form) {
             $this->repository->save($user);
             $this->roles->assign($user->id, $form->role);
+            $this->newsletter->subscribe($user->email);
         });
         return $user;
     }
@@ -59,6 +70,7 @@ class UserManageService
     {
         $user = $this->repository->get($id);
         $this->repository->remove($user);
+        $this->newsletter->unsubscribe($user->email);
     }
 
     public function getAll(): array

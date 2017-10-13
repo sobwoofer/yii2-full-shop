@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "49fffc993d480007b532e88bcffeace5",
+    "content-hash": "78e98f75e8833bc24b972e1266b7b1b7",
     "packages": [
         {
             "name": "alfa6661/yii2-raty",
@@ -289,16 +289,16 @@
         },
         {
             "name": "bower-asset/swiper",
-            "version": "v3.4.2",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nolimits4web/Swiper.git",
-                "reference": "94d064f5f52b50f0a31a09ae47e85b760963953c"
+                "url": "git@github.com:nolimits4web/Swiper.git",
+                "reference": "15cefa0bfc3b31033010228be5e6f4a9008607f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nolimits4web/Swiper/zipball/94d064f5f52b50f0a31a09ae47e85b760963953c",
-                "reference": "94d064f5f52b50f0a31a09ae47e85b760963953c",
+                "url": "https://api.github.com/repos/nolimits4web/Swiper/zipball/15cefa0bfc3b31033010228be5e6f4a9008607f9",
+                "reference": "15cefa0bfc3b31033010228be5e6f4a9008607f9",
                 "shasum": null
             },
             "type": "bower-asset",
@@ -581,6 +581,49 @@
                 "yii2"
             ],
             "time": "2016-05-31T15:42:01+00:00"
+        },
+        {
+            "name": "drewm/mailchimp-api",
+            "version": "v2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drewm/mailchimp-api.git",
+                "reference": "fe480bb652f85270227bf6d639b0026a531f21fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drewm/mailchimp-api/zipball/fe480bb652f85270227bf6d639b0026a531f21fc",
+                "reference": "fe480bb652f85270227bf6d639b0026a531f21fc",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.0.*",
+                "vlucas/phpdotenv": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DrewM\\MailChimp\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Drew McLellan",
+                    "email": "drew.mclellan@gmail.com",
+                    "homepage": "http://allinthehead.com/"
+                }
+            ],
+            "description": "Super-simple, minimum abstraction MailChimp API v3 wrapper",
+            "homepage": "https://github.com/drewm/mailchimp-api",
+            "time": "2017-02-16T13:24:20+00:00"
         },
         {
             "name": "elasticsearch/elasticsearch",
@@ -2371,16 +2414,16 @@
         },
         {
             "name": "la-haute-societe/yii2-save-relations-behavior",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/la-haute-societe/yii2-save-relations-behavior.git",
-                "reference": "2b3d61a9468ec32794b5263f186ad81a08f9e8b6"
+                "reference": "8f82fab3751a70e8f722dd8a5e265dbc51680834"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/la-haute-societe/yii2-save-relations-behavior/zipball/2b3d61a9468ec32794b5263f186ad81a08f9e8b6",
-                "reference": "2b3d61a9468ec32794b5263f186ad81a08f9e8b6",
+                "url": "https://api.github.com/repos/la-haute-societe/yii2-save-relations-behavior/zipball/8f82fab3751a70e8f722dd8a5e265dbc51680834",
+                "reference": "8f82fab3751a70e8f722dd8a5e265dbc51680834",
                 "shasum": ""
             },
             "require": {
@@ -2414,7 +2457,7 @@
                 "relations",
                 "yii2"
             ],
-            "time": "2017-04-08T16:12:54+00:00"
+            "time": "2017-10-12T16:05:15+00:00"
         },
         {
             "name": "masterexploder/phpthumb",
@@ -3320,30 +3363,26 @@
         },
         {
             "name": "yiisoft/yii2-bootstrap",
-            "version": "2.0.6",
+            "version": "2.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "3fd2b8c950cce79d60e9702d6bcb24eb3c80f6c5"
+                "reference": "02a54d868343ed11d02f0f0f8cbbecb590e0cb3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/3fd2b8c950cce79d60e9702d6bcb24eb3c80f6c5",
-                "reference": "3fd2b8c950cce79d60e9702d6bcb24eb3c80f6c5",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/02a54d868343ed11d02f0f0f8cbbecb590e0cb3f",
+                "reference": "02a54d868343ed11d02f0f0f8cbbecb590e0cb3f",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/bootstrap": "3.3.* | 3.2.* | 3.1.*",
-                "yiisoft/yii2": ">=2.0.6"
+                "yiisoft/yii2": "~2.0.6"
             },
             "type": "yii2-extension",
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.0.x-dev"
-                },
-                "asset-installer-paths": {
-                    "npm-asset-library": "vendor/npm",
-                    "bower-asset-library": "vendor/bower"
                 }
             },
             "autoload": {
@@ -3366,7 +3405,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2016-03-17T03:29:28+00:00"
+            "time": "2017-10-09T19:48:22+00:00"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -6101,16 +6140,16 @@
         },
         {
             "name": "yiisoft/yii2-debug",
-            "version": "2.0.11",
+            "version": "2.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "372fbf0d47303b7d68275d6720935e5116915418"
+                "reference": "93082f46d3568b4431a26f264e0d16a12c42bd50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/372fbf0d47303b7d68275d6720935e5116915418",
-                "reference": "372fbf0d47303b7d68275d6720935e5116915418",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/93082f46d3568b4431a26f264e0d16a12c42bd50",
+                "reference": "93082f46d3568b4431a26f264e0d16a12c42bd50",
                 "shasum": ""
             },
             "require": {
@@ -6144,7 +6183,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2017-09-05T23:21:05+00:00"
+            "time": "2017-10-09T20:30:01+00:00"
         },
         {
             "name": "yiisoft/yii2-faker",

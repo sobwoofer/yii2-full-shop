@@ -5,4 +5,6 @@ return [
     'frontendHostInfo' => 'http://yii2-shop.dev',
     'backendHostInfo' => 'http://admin.yii2-shop.dev',
     'staticHostInfo' => 'http://static.yii2-shop.dev/',
+    'mailChimpKey' => '',
+    'mailChimpListId' => '',
 ];

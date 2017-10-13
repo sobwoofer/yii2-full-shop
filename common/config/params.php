@@ -9,4 +9,6 @@ return [
     'backendHostInfo' => 'http://admin.yii2-shop.dev/',
     'staticHostInfo' => 'http://static.yii2-shop.dev/',
     'staticPath' => dirname(__DIR__, 2) . '/static',
+    'mailChimpKey' => '',
+    'mailChimpListId' => '',
 ];

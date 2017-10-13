@@ -9,6 +9,7 @@ use core\entities\User\User;
 use core\forms\auth\SignupForm;
 use core\repositories\UserRepository;
 use yii\mail\MailerInterface;
+use core\services\newsletter\Newsletter;
 use core\access\Rbac;
 use core\services\RoleManager;
 use core\services\TransactionManager;
@@ -19,18 +20,21 @@ class SignupService
     private $users;
     private $roles;
     private $transaction;
+    private $newsletter;
 
     public function __construct(
         UserRepository $users,
         MailerInterface $mailer,
         RoleManager $roles,
-        TransactionManager $transaction
+        TransactionManager $transaction,
+        Newsletter $newsletter
     )
     {
         $this->mailer = $mailer;
         $this->users = $users;
         $this->roles = $roles;
         $this->transaction = $transaction;
+        $this->newsletter = $newsletter;
     }
 
     public function signup(SignupForm $form): void
@@ -67,5 +71,6 @@ class SignupService
         $user = $this->users->getByEmailConfirmToken($token);
         $user->confirmSignup();
         $this->users->save($user);
+        $this->newsletter->subscribe($user->email);
     }
 }

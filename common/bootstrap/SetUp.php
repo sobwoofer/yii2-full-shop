@@ -2,6 +2,7 @@
 
 namespace common\bootstrap;
 
+use core\services\sms\DumpSmsSender;
 use core\useCases\ContactService;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
@@ -10,6 +11,7 @@ use core\cart\storage\HybridStorage;
 use core\cart\cost\calculator\SimpleCost;
 use core\cart\storage\CookieStorage;
 use core\cart\storage\SessionStorage;
+use core\services\sms\LoggedSender;
 use core\services\newsletter\MailChimp;
 use core\services\newsletter\Newsletter;
 use core\services\feed\Market;
@@ -67,8 +69,11 @@ class SetUp implements BootstrapInterface
             );
         });
 
-        $container->setSingleton(SmsSender::class, SmsRu::class, [
-            $app->params['smsRuKey'],
-        ]);
+        $container->setSingleton(SmsSender::class, function () use ($app) {
+            return new LoggedSender(
+                new SmsRu($app->params['smsRuKey']),
+                \Yii::getLogger()
+            );
+        });
     }
 }

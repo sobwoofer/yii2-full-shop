@@ -2,7 +2,7 @@
 
 namespace common\bootstrap;
 
-use core\services\sms\DumpSmsSender;
+use core\services\sms\DummySmsSender;
 use core\useCases\ContactService;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;

@@ -14,7 +14,7 @@ namespace core\services\sms;
  * Class DumpSmsSender
  * @package core\services\sms
  */
-class DumpSmsSender implements SmsSender
+class DummySmsSender implements SmsSender
 {
     public function send($number, $text): void
     {

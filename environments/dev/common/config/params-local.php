@@ -7,4 +7,5 @@ return [
     'staticHostInfo' => 'http://static.yii2-shop.dev/',
     'mailChimpKey' => '',
     'mailChimpListId' => '',
+    'smsRuKey' => '',
 ];

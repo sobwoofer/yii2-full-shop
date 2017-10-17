@@ -14,6 +14,8 @@ use core\services\newsletter\MailChimp;
 use core\services\newsletter\Newsletter;
 use core\services\feed\Market;
 use core\services\feed\ShopInfo;
+use core\services\sms\SmsRu;
+use core\services\sms\SmsSender;
 use core\cart\cost\calculator\DynamicCost;
 use yii\base\BootstrapInterface;
 use yii\mail\MailerInterface;
@@ -64,5 +66,9 @@ class SetUp implements BootstrapInterface
                 $app->params['mailChimpListId']
             );
         });
+
+        $container->setSingleton(SmsSender::class, SmsRu::class, [
+            $app->params['smsRuKey'],
+        ]);
     }
 }

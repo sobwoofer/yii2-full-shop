@@ -1,8 +1,11 @@
 <?php
 
 /* @var $this yii\web\View */
+/* @var $model core\forms\manage\User\UserEditForm */
+/* @var $user core\entities\User\User */
 
 use yii\helpers\Html;
+use kartik\form\ActiveForm;
 
 $this->title = 'Cabinet';
 $this->params['breadcrumbs'][] = $this->title;
@@ -17,19 +20,23 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-sm-7">
 
             <div class="box" >
-                <form action="">
-                    <input type="text" placeholder="Константин Иванович">
-                    <input type="text" placeholder="kostantin@ukr.net">
-                    <input type="text" placeholder="(029) 353-29-64">
-                    <input type="text" placeholder="Телефон №2">
-                    <input type="text" placeholder="Киев">
-                    <input type="text" placeholder="ул. Вольная, 32/47">
-                    <input type="text" placeholder="Старый пароль">
-                    <input type="text" placeholder="Новый пароль">
-                    <input type="text" placeholder="Повтор пароля">
-                    <input type="submit" value="Сохранить" class="btn">
+                <?php $form = ActiveForm::begin(); ?>
 
-                </form>
+                <input type="text" placeholder="Константин Иванович">
+                <?= $form->field($model, 'email')->textInput(['maxLength' => true, 'placeholder' => 'Email'])->label(false) ?>
+                <?= $form->field($model, 'phone',
+                    ['addon' => ['prepend' => ['content'=>'+']]])->textInput(['maxLength' => true])->label(false) ?>
+                <input type="text" placeholder="Телефон №2">
+                <input type="text" placeholder="Киев">
+                <input type="text" placeholder="ул. Вольная, 32/47">
+                <input type="text" placeholder="Старый пароль">
+                <input type="text" placeholder="Новый пароль">
+                <input type="text" placeholder="Повтор пароля">
+
+                <?= Html::submitButton('Save', ['class' => 'btn']) ?>
+
+                <?php ActiveForm::end(); ?>
+
 
             </div>
             <br>

@@ -27,7 +27,7 @@ use yii\db\ActiveRecord;
  * @property WishlistItem[] $wishlistItems
  */
 
-//TODO need add yii2 multilanguage behavior. video elisDn 7th - 1:39
+//TODO need add yii2 multilingual behavior. video elisDn 7th - 1:39 and 11en 10:45
 class User extends ActiveRecord
 {
 //    const STATUS_DELETED = 0;

@@ -5,9 +5,12 @@
 
 namespace core\useCases\auth;
 
+use core\dispatchers\EventDispatcher;
 use core\entities\User\User;
 use core\forms\auth\SignupForm;
 use core\repositories\UserRepository;
+use core\useCases\auth\events\UserSignUpConfirmed;
+use core\useCases\auth\events\UserSignUpRequested;
 use yii\mail\MailerInterface;
 use core\services\newsletter\Newsletter;
 use core\access\Rbac;
@@ -21,13 +24,15 @@ class SignupService
     private $roles;
     private $transaction;
     private $newsletter;
+    private $dispatcher;
 
     public function __construct(
         UserRepository $users,
         MailerInterface $mailer,
         RoleManager $roles,
         TransactionManager $transaction,
-        Newsletter $newsletter
+        Newsletter $newsletter,
+        EventDispatcher $dispatcher
     )
     {
         $this->mailer = $mailer;
@@ -35,6 +40,7 @@ class SignupService
         $this->roles = $roles;
         $this->transaction = $transaction;
         $this->newsletter = $newsletter;
+        $this->dispatcher = $dispatcher;
     }
 
     public function signup(SignupForm $form): void
@@ -51,6 +57,8 @@ class SignupService
             $this->roles->assign($user->id, Rbac::ROLE_USER);
         });
 
+        $this->dispatcher->dispatch(new UserSignUpRequested($user));
+
         $send = $this->mailer
             ->compose(
                 ['html' => 'auth/signup/confirm-html', 'text' => 'auth/signup/confirm-text'],
@@ -62,6 +70,7 @@ class SignupService
         if (!$send) {
             throw new \RuntimeException('Email sending error.');
         }
+
     }
 
     public function confirm($token): void
@@ -72,6 +81,7 @@ class SignupService
         $user = $this->users->getByEmailConfirmToken($token);
         $user->confirmSignup();
         $this->users->save($user);
+        $this->dispatcher->dispatch(new UserSignUpConfirmed($user));
         $this->newsletter->subscribe($user->email);
     }
 }

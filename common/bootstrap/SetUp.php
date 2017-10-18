@@ -11,6 +11,10 @@ use core\cart\storage\HybridStorage;
 use core\cart\cost\calculator\SimpleCost;
 use core\cart\storage\CookieStorage;
 use core\cart\storage\SessionStorage;
+use core\dispatchers\EventDispatcher;
+use core\dispatchers\SimpleEventDispatcher;
+use core\listeners\User\UserSignupConfirmedListener;
+use core\listeners\User\UserSignupRequestedListener;
 use core\services\sms\LoggedSender;
 use core\services\newsletter\MailChimp;
 use core\services\newsletter\Newsletter;
@@ -18,9 +22,12 @@ use core\services\feed\Market;
 use core\services\feed\ShopInfo;
 use core\services\sms\SmsRu;
 use core\services\sms\SmsSender;
+use core\useCases\auth\events\UserSignUpConfirmed;
+use core\useCases\auth\events\UserSignUpRequested;
 use core\cart\cost\calculator\DynamicCost;
 use yii\base\BootstrapInterface;
 use yii\mail\MailerInterface;
+use yii\di\Container;
 use yii\caching\Cache;
 use yii\rbac\ManagerInterface;
 use Yii;
@@ -74,6 +81,17 @@ class SetUp implements BootstrapInterface
                 new SmsRu($app->params['smsRuKey']),
                 \Yii::getLogger()
             );
+        });
+
+        $container->setSingleton(EventDispatcher::class, function (Container $container) {
+            return new SimpleEventDispatcher([
+                UserSignUpRequested::class => [
+                    [$container->get(UserSignupRequestedListener::class), 'handle'],
+                ],
+                UserSignUpConfirmed::class => [
+                    [$container->get(UserSignupConfirmedListener::class), 'handle'],
+                ],
+            ]);
         });
     }
 }

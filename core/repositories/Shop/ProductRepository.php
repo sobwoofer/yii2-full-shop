@@ -8,12 +8,19 @@
 
 namespace core\repositories\Shop;
 
-
+use core\dispatchers\EventDispatcher;
 use core\entities\Shop\Product\Product;
 use core\repositories\NotFoundException;
 
 class ProductRepository
 {
+    private $dispatcher;
+
+    public function __construct(EventDispatcher $dispatcher)
+    {
+        $this->dispatcher = $dispatcher;
+    }
+
     public function get($id): Product
     {
         if (!$product = Product::findOne($id)) {
@@ -37,7 +44,7 @@ class ProductRepository
         if (!$product->save()) {
             throw new \RuntimeException('Saving error');
         }
-
+        $this->dispatcher->dispatchAll($product->releaseEvents());
     }
 
     public function remove(Product $product): void
@@ -45,6 +52,7 @@ class ProductRepository
         if (!$product->delete()) {
             throw new \RuntimeException('Removing Error');
         }
+        $this->dispatcher->dispatchAll($product->releaseEvents());
     }
 
 }

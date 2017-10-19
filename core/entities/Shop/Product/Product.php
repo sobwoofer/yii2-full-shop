@@ -8,11 +8,13 @@
 
 namespace core\entities\Shop\Product;
 
-
+use core\entities\EventTrait;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
+use core\entities\AggregateRoot;
 use core\entities\behaviors\MetaBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
+use core\entities\Shop\Product\events\ProductAppearedInStock;
 use yii\db\Exception;
 use core\entities\User\WishlistItem;
 use core\entities\Shop\Product\queries\ProductQuery;
@@ -52,8 +54,10 @@ use yii\web\UploadedFile;
  * @property Photo $mainPhoto
  * @property Review[] $reviews
  */
-class Product extends ActiveRecord
+class Product extends ActiveRecord implements AggregateRoot
 {
+    use EventTrait;
+
     const STATUS_DRAFT = 0;
     const STATUS_ACTIVE = 1;
 
@@ -81,12 +85,12 @@ class Product extends ActiveRecord
         $this->price_old = $old;
     }
 
-    public function setQuantity($quantity): void
+    public function changeQuantity($quantity): void
     {
         if ($this->modifications) {
             throw new \DomainException('Change modifications quantity.');
         }
-        $this->quantity = $quantity;
+        $this->setQuantity($quantity);
     }
 
     public function edit($brandId, $code, $name, $description, $weight, Meta $meta): void
@@ -169,7 +173,15 @@ class Product extends ActiveRecord
         if ($quantity > $this->quantity) {
             throw new \DomainException('Only ' . $this->quantity . ' items are available.');
         }
-        $this->quantity -= $quantity;
+        $this->setQuantity($this->quantity - 1);
+    }
+
+    private function setQuantity($quantity): void
+    {
+        if ($this->quantity == 0 && $quantity > 0) {
+            $this->recordEvent(new ProductAppearedInStock($this));
+        }
+        $this->quantity = $quantity;
     }
 
     public function setValue($id, $value): void
@@ -260,9 +272,9 @@ class Product extends ActiveRecord
     private function updateModifications(array $modifications): void
     {
         $this->modifications = $modifications;
-        $this->quantity = array_sum(array_map(function (Modification $modification) {
+        $this->setQuantity(array_sum(array_map(function (Modification $modification) {
             return $modification->quantity;
-        }, $this->modifications));
+        }, $this->modifications)));
     }
 
     // Categories

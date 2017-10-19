@@ -9,7 +9,7 @@
 namespace core\listeners\User;
 
 use core\services\newsletter\Newsletter;
-use core\useCases\auth\events\UserSignUpConfirmed;
+use core\entities\User\events\UserSignUpConfirmed;
 
 class UserSignupConfirmedListener
 {

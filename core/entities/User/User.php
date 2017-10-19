@@ -2,6 +2,10 @@
 namespace core\entities\User;
 
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
+use core\entities\AggregateRoot;
+use core\entities\EventTrait;
+use core\entities\User\events\UserSignUpConfirmed;
+use core\entities\User\events\UserSignUpRequested;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
@@ -28,8 +32,10 @@ use yii\db\ActiveRecord;
  */
 
 //TODO need add yii2 multilingual behavior. video elisDn 7th - 1:39 and 11en 10:45
-class User extends ActiveRecord
+class User extends ActiveRecord implements AggregateRoot
 {
+    use EventTrait;
+
 //    const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
     const STATUS_WAIT = 0;
@@ -73,6 +79,7 @@ class User extends ActiveRecord
         $user->status = self::STATUS_WAIT;
         $user->email_confirm_token = Yii::$app->security->generateRandomString();
         $user->generateAuthKey();
+        $user->recordEvent(new UserSignUpRequested($user));
         return $user;
     }
 
@@ -84,6 +91,7 @@ class User extends ActiveRecord
         $this->status = self::STATUS_ACTIVE;
         $this->email_confirm_token = null;
         $this->removeEmailConfirmToken();
+        $this->recordEvent(new UserSignUpConfirmed($this));
     }
 
     public static function signupByNetwork($network, $identity): self

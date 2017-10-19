@@ -3,15 +3,14 @@
  * Created by PhpStorm.
  * User: volynets
  * Date: 18.10.17
- * Time: 15:19
+ * Time: 15:21
  */
 
-namespace core\useCases\auth\events;
-
+namespace core\entities\User\events;
 
 use core\entities\User\User;
 
-class UserSignUpRequested
+class UserSignUpConfirmed
 {
     public $user;
 

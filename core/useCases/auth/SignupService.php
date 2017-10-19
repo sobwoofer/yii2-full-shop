@@ -9,8 +9,6 @@ use core\dispatchers\EventDispatcher;
 use core\entities\User\User;
 use core\forms\auth\SignupForm;
 use core\repositories\UserRepository;
-use core\useCases\auth\events\UserSignUpConfirmed;
-use core\useCases\auth\events\UserSignUpRequested;
 use core\access\Rbac;
 use core\services\RoleManager;
 use core\services\TransactionManager;
@@ -49,7 +47,7 @@ class SignupService
             $this->roles->assign($user->id, Rbac::ROLE_USER);
         });
 
-        $this->dispatcher->dispatch(new UserSignUpRequested($user));
+        $this->dispatcher->dispatchAll($user->releaseEvents());
 
     }
 
@@ -62,6 +60,6 @@ class SignupService
         $user->confirmSignup();
         $this->users->save($user);
 
-        $this->dispatcher->dispatch(new UserSignUpConfirmed($user));
+        $this->dispatcher->dispatchAll($user->releaseEvents());
     }
 }

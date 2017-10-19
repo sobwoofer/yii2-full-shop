@@ -8,8 +8,8 @@
 
 namespace core\listeners\User;
 
-use core\useCases\auth\events\UserSignUpRequested;
 use yii\mail\MailerInterface;
+use core\entities\User\events\UserSignUpRequested;
 
 class UserSignupRequestedListener
 {

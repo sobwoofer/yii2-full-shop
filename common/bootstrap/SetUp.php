@@ -30,6 +30,7 @@ use yii\mail\MailerInterface;
 use yii\di\Container;
 use yii\caching\Cache;
 use yii\rbac\ManagerInterface;
+use yii\queue\Queue;
 use Yii;
 
 class SetUp implements BootstrapInterface
@@ -52,6 +53,10 @@ class SetUp implements BootstrapInterface
         //Подключение компонента кеширования
         $container->setSingleton(Cache::class, function () use ($app) {
             return $app->cache;
+        });
+
+        $container->setSingleton(Queue::class, function () use ($app) {
+            return $app->get('queue');
         });
 
         //Подключение менеджера RBAC ролей пользователей

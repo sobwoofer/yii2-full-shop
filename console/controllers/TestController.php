@@ -16,8 +16,13 @@ class TestController extends Controller
     public function actionAddQueue()
     {
         Yii::$app->queue->push(new TestQueueJob([
-            'name' => 'vasya'
+            'name' => 'vasya pupkin'
         ]));
+    }
+
+    public function actionWriteText($text)
+    {
+        $this->stdout('Text: ' . $text . PHP_EOL);
     }
 
 

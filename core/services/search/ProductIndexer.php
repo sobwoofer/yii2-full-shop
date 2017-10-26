@@ -6,7 +6,7 @@
  * Time: 12:12
  */
 
-namespace shop\services\search;
+namespace core\services\search;
 
 use Elasticsearch\Client;
 use core\entities\Shop\Category;

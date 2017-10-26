@@ -9,6 +9,8 @@ use Elasticsearch\ClientBuilder;
 use core\cart\Cart;
 use core\cart\storage\HybridStorage;
 use core\cart\cost\calculator\SimpleCost;
+use core\listeners\Shop\Product\ProductSearchPersistListener;
+use core\listeners\Shop\Product\ProductSearchRemoveListener;
 use core\cart\storage\CookieStorage;
 use core\cart\storage\SessionStorage;
 use core\dispatchers\DeferredEventDispatcher;
@@ -17,6 +19,8 @@ use core\dispatchers\EventDispatcher;
 use core\dispatchers\SimpleEventDispatcher;
 use core\jobs\AsyncEventJobHandler;
 use core\entities\Shop\Product\events\ProductAppearedInStock;
+use core\repositories\events\EntityPersisted;
+use core\repositories\events\EntityRemoved;
 use core\listeners\User\UserSignupConfirmedListener;
 use core\listeners\User\UserSignupRequestedListener;
 use core\listeners\Shop\Product\ProductAppearedInStockListener;
@@ -114,6 +118,8 @@ class SetUp implements BootstrapInterface
                 UserSignUpRequested::class => [UserSignupRequestedListener::class],
                 UserSignUpConfirmed::class => [UserSignupConfirmedListener::class],
                 ProductAppearedInStock::class => [ProductAppearedInStockListener::class],
+                EntityPersisted::class => [ProductSearchPersistListener::class],
+                EntityRemoved::class => [ProductSearchRemoveListener::class],
             ]);
         });
 

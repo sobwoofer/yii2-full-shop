@@ -24,6 +24,7 @@ use core\repositories\events\EntityRemoved;
 use core\listeners\User\UserSignupConfirmedListener;
 use core\listeners\User\UserSignupRequestedListener;
 use core\listeners\Shop\Product\ProductAppearedInStockListener;
+use core\listeners\Shop\Category\CategoryPersistenceListener;
 use core\services\sms\LoggedSender;
 use core\services\newsletter\MailChimp;
 use core\services\newsletter\Newsletter;
@@ -120,8 +121,15 @@ class SetUp implements BootstrapInterface
                 UserSignUpRequested::class => [UserSignupRequestedListener::class],
                 UserSignUpConfirmed::class => [UserSignupConfirmedListener::class],
                 ProductAppearedInStock::class => [ProductAppearedInStockListener::class],
-                EntityPersisted::class => [ProductSearchPersistListener::class],
-                EntityRemoved::class => [ProductSearchRemoveListener::class],
+                EntityPersisted::class => [
+                    ProductSearchPersistListener::class,
+                    CategoryPersistenceListener::class,
+                ],
+                EntityRemoved::class => [
+                    ProductSearchRemoveListener::class,
+                    CategoryPersistenceListener::class,
+                ],
+
             ]);
         });
 

@@ -11,6 +11,7 @@ namespace frontend\controllers;
 use core\entities\Shop\Product\Product;
 use core\services\feed\Market;
 use yii\helpers\Url;
+use yii\caching\TagDependency;
 use yii\web\Controller;
 use yii\web\Response;
 
@@ -30,7 +31,7 @@ class FeedController extends Controller
             return $this->generator->generate(function (Product $product) {
                 return Url::to(['/shop/catalog/product', 'id' => $product->id], true);
             });
-        });
+        }, null, new TagDependency(['tags' => ['categories']]));
 
         return \Yii::$app->response->sendContentAsFile($xml, 'feed-market.xml', [
             'mimeType' => 'application/xml',

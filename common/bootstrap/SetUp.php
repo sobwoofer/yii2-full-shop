@@ -109,6 +109,8 @@ class SetUp implements BootstrapInterface
         });
 
         //Подключение обработчика событий
+        $container->setSingleton(EventDispatcher::class, DeferredEventDispatcher::class);
+
         $container->setSingleton(DeferredEventDispatcher::class, function (Container $container) {
             return new DeferredEventDispatcher(new AsyncEventDispatcher($container->get(Queue::class)));
         });

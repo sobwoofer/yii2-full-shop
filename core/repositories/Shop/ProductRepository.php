@@ -11,6 +11,8 @@ namespace core\repositories\Shop;
 use core\dispatchers\EventDispatcher;
 use core\entities\Shop\Product\Product;
 use core\repositories\NotFoundException;
+use core\repositories\events\EntityPersisted;
+use core\repositories\events\EntityRemoved;
 
 class ProductRepository
 {
@@ -45,6 +47,7 @@ class ProductRepository
             throw new \RuntimeException('Saving error');
         }
         $this->dispatcher->dispatchAll($product->releaseEvents());
+        $this->dispatcher->dispatch(new EntityPersisted($product));
     }
 
     public function remove(Product $product): void
@@ -53,6 +56,7 @@ class ProductRepository
             throw new \RuntimeException('Removing Error');
         }
         $this->dispatcher->dispatchAll($product->releaseEvents());
+        $this->dispatcher->dispatch(new EntityRemoved($product));
     }
 
 }

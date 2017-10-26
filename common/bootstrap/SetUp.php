@@ -11,10 +11,15 @@ use core\cart\storage\HybridStorage;
 use core\cart\cost\calculator\SimpleCost;
 use core\cart\storage\CookieStorage;
 use core\cart\storage\SessionStorage;
+use core\dispatchers\DeferredEventDispatcher;
+use core\dispatchers\AsyncEventDispatcher;
 use core\dispatchers\EventDispatcher;
 use core\dispatchers\SimpleEventDispatcher;
+use core\jobs\AsyncEventJobHandler;
+use core\entities\Shop\Product\events\ProductAppearedInStock;
 use core\listeners\User\UserSignupConfirmedListener;
 use core\listeners\User\UserSignupRequestedListener;
+use core\listeners\Shop\Product\ProductAppearedInStockListener;
 use core\services\sms\LoggedSender;
 use core\services\newsletter\MailChimp;
 use core\services\newsletter\Newsletter;
@@ -28,6 +33,7 @@ use core\cart\cost\calculator\DynamicCost;
 use yii\base\BootstrapInterface;
 use yii\mail\MailerInterface;
 use yii\di\Container;
+use yii\di\Instance;
 use yii\caching\Cache;
 use yii\rbac\ManagerInterface;
 use yii\queue\Queue;
@@ -99,11 +105,20 @@ class SetUp implements BootstrapInterface
         });
 
         //Подключение обработчика событий
-        $container->setSingleton(EventDispatcher::class, function (Container $container) {
+        $container->setSingleton(DeferredEventDispatcher::class, function (Container $container) {
+            return new DeferredEventDispatcher(new AsyncEventDispatcher($container->get(Queue::class)));
+        });
+
+        $container->setSingleton(SimpleEventDispatcher::class, function (Container $container) {
             return new SimpleEventDispatcher($container, [
                 UserSignUpRequested::class => [UserSignupRequestedListener::class],
                 UserSignUpConfirmed::class => [UserSignupConfirmedListener::class],
+                ProductAppearedInStock::class => [ProductAppearedInStockListener::class],
             ]);
         });
+
+        $container->setSingleton(AsyncEventJobHandler::class, [], [
+            Instance::of(SimpleEventDispatcher::class)
+        ]);
     }
 }

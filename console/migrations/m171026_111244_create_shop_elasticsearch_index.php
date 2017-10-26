@@ -4,7 +4,7 @@ use Elasticsearch\Client;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use yii\db\Migration;
 
-class m890504_050559_create_shop_elasticsearch_index extends Migration
+class m171026_111244_create_shop_elasticsearch_index extends Migration
 {
     public function up()
     {

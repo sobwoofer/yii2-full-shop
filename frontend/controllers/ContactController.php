@@ -1,7 +1,7 @@
 <?php
 namespace frontend\controllers;
 
-use core\services\ContactService;
+use core\useCases\ContactService;
 use Yii;
 use yii\web\Controller;
 use core\forms\ContactForm;
@@ -9,6 +9,7 @@ use core\forms\ContactForm;
 class ContactController extends Controller
 {
     private $service;
+    public $layout = 'main';
 
     public function __construct($id, $module, ContactService $service, $config = [])
     {
@@ -34,5 +35,11 @@ class ContactController extends Controller
         return $this->render('index', [
             'model' => $form,
         ]);
+    }
+
+    public function actionAboutUs()
+    {
+
+        return $this->render('about-us', []);
     }
 }

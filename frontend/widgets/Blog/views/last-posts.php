@@ -39,6 +39,9 @@ use yii\helpers\Url;
                     </div>
                 </div>
             </div>
+            <div class="hidden visible-sm visible-xs">
+                <br>
+            </div>
             <div class="col-md-6 promotions_and_news__block__wrp">
                 <a href="<?= Url::to(['/blog/' . $secondCategory->slug]) ?>" class="read_more">
                     смотреть все <span></span></a>

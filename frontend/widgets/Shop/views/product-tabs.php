@@ -23,38 +23,40 @@ use yii\helpers\Url;
     <div class="product-line__tabs__wrp">
         <!-- Nav tabs -->
         <div class="container">
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="col-md-4">
-                    <a href="#tab-1" aria-controls="tab-1" role="tab" data-toggle="tab">
-                        <div class="product-line__title__wrp">
-                            <p class="product-line__title"><?= $title1 ?></p>
-                            <?php if ($viewLink1): ?>
-                                <p onclick="document.location.href = '<?= Url::to([$viewLink1]) ?>'" class="more">смотреть все<span></span></p>
-                            <?php endif; ?>
-                        </div>
-                    </a>
-                </li>
-                <li role="presentation" class="active col-md-4">
-                    <a href="#tab-2" aria-controls="tab-2" role="tab" data-toggle="tab">
-                        <div class="product-line__title__wrp">
-                            <p class="product-line__title"><?= $title2 ?></p>
-                            <?php if ($viewLink2): ?>
-                                <p onclick="document.location.href = '<?= Url::to([$viewLink2]) ?>'" class="more">смотреть все<span></span></p>
-                            <?php endif; ?>
-                        </div>
-                    </a>
-                </li>
-                <li role="presentation" class="col-md-4">
-                    <a href="#tab-3" aria-controls="tab-3" role="tab" data-toggle="tab">
-                        <div class="product-line__title__wrp">
-                            <p class="product-line__title"><?= $title3 ?></p>
-                            <?php if ($viewLink3): ?>
-                                <p onclick="document.location.href = '<?= Url::to([$viewLink3]) ?>'" class="more">смотреть все<span></span></p>
-                            <?php endif; ?>
-                        </div>
-                    </a>
-                </li>
-            </ul>
+            <div class="row">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="col-md-4" id="tabBtn1">
+                        <a href="#tab-1" aria-controls="tab-1" role="tab" data-toggle="tab">
+                            <div class="product-line__title__wrp">
+                                <p class="product-line__title"><?= $title1 ?></p>
+                                <?php if ($viewLink1): ?>
+                                    <p onclick="document.location.href = '<?= Url::to([$viewLink1]) ?>'" class="more">смотреть все<span></span></p>
+                                <?php endif; ?>
+                            </div>
+                        </a>
+                    </li>
+                    <li role="presentation" class="active col-md-4" id="tabBtn2">
+                        <a href="#tab-2" aria-controls="tab-2" role="tab" data-toggle="tab">
+                            <div class="product-line__title__wrp">
+                                <p class="product-line__title"><?= $title2 ?></p>
+                                <?php if ($viewLink2): ?>
+                                    <p onclick="document.location.href = '<?= Url::to([$viewLink2]) ?>'" class="more">смотреть все<span></span></p>
+                                <?php endif; ?>
+                            </div>
+                        </a>
+                    </li>
+                    <li role="presentation" class="col-md-4" id="tabBtn3">
+                        <a href="#tab-3" aria-controls="tab-3" role="tab" data-toggle="tab">
+                            <div class="product-line__title__wrp">
+                                <p class="product-line__title"><?= $title3 ?></p>
+                                <?php if ($viewLink3): ?>
+                                    <p onclick="document.location.href = '<?= Url::to([$viewLink3]) ?>'" class="more">смотреть все<span></span></p>
+                                <?php endif; ?>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="container">

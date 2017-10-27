@@ -534,6 +534,28 @@ if ($('#clock').length) {
         });
     });
 }
+
+$('#tabBtn1').click(() => {
+    setTimeout(()=>{
+    product_line_swiper_1.update()
+},100)
+
+
+})
+$('#tabBtn2').click(() => {
+
+    setTimeout(()=>{
+    product_line_swiper_2.update()
+},100)
+
+})
+$('#tabBtn3').click(() => {
+    setTimeout(()=>{
+    product_line_swiper_3.update()
+},100)
+
+})
+
 //slick slider
 // $('.slider-for').slick({
 //     slidesToShow: 1,

@@ -17,11 +17,12 @@ use yii\helpers\Html;
 
 <div class="main-block">
     <div class="container">
-        <div class="col-md-3 col-lg-2">
+        <div class="col-md-3">
         </div>
-        <div class="col-md-9 col-lg-10 ">
+        <div class="col-md-9">
             <div class="row">
-                <div class="col-sm-12 col-md-8  left-main-block">
+                <div class="row">
+                <div class="col-sm-12 left-main-block">
                     <?= Swiper::widget( [
                         'items'         => [
                             Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
@@ -147,21 +148,20 @@ use yii\helpers\Html;
                         </div>
                     </div>
                 </div>
-                <div class="hidden-md col-md-4 right-block">
-                    <div class="responsive-img">
-                        <a href="#">
-                            <img src="http://static.yii2-shop.dev/dev/b3.png" alt="">
-                        </a>
-                    </div>
-                    <div class="responsive-img">
-                        <a href="#">
-                            <img src="http://static.yii2-shop.dev/dev/b4.png" alt="">
-                        </a>
-                    </div>
-
-                </div>
+<!--                <div class="hidden-md col-md-4 right-block">-->
+<!--                    <div class="responsive-img">-->
+<!--                        <a href="#">-->
+<!--                            <img src="http://static.yii2-shop.dev/dev/b3.png" alt="">-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                    <div class="responsive-img">-->
+<!--                        <a href="#">-->
+<!--                            <img src="http://static.yii2-shop.dev/dev/b4.png" alt="">-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
-
+            </div>
         </div>
     </div>
 </div>

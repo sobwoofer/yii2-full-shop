@@ -18,14 +18,9 @@ use yii\helpers\Url;
     <div class="container">
         <div class="row">
             <div class="product-line__title__wrp">
-
-                <div class="col-sm-4">
-                    <p class="product-line__title"><?= $title ?></p>
-                </div>
+                <p class="product-line__title"><?= $title ?></p>
                 <?php if ($viewAll): ?>
-                    <div class="col-md-2">
-                        <a href="<?= Url::to([$viewAll]) ?>" class="read_more">смотреть <span></span></a>
-                    </div>
+                    <a href="<?= Url::to([$viewAll]) ?>" class="read_more">смотреть <span></span></a>
                 <?php endif; ?>
             </div>
         </div>

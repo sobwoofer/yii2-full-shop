@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <div class="cart-table-wrp">
+            <div class="cart-table-wrp-overflow" style="    overflow-x: auto;">
             <table>
                 <tr>
                     <td></td>
@@ -81,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </tr>
                 <?php endforeach; ?>
             </table>
-
+            </div>
             <div class="table-nav">
                 <ul>
                     <li><a href="#">Выделить все</a></li>
@@ -94,7 +95,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p class=" delivery-time"> Срок поставки: <span class="red">3-4 дня</span></p>
                     <p>(в корзине присутствует товар под заказ)</p>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6 text-left-xs">
                     <p class="text-right link-in-p">Доставка согласно <a href="#/">тарифов перевозчика </a>Новая почта</p>
                     <p class="text-right"><b>Стоимость (включая НДС): <span class="red price"><?= PriceHelper::format($cost->getOrigin()) ?></span></b></p>
                     <?php foreach ($cost->getDiscounts() as $discount): ?>
@@ -105,7 +106,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
 
             <div class="box" style="margin-top: 30px;">
-                <div class="col-sm-6">
+                <div class="col-sm-6 col-xs-12">
                     <form action="#">
 
                         <p>Быстрое добавление товара в корзину по артикулу</p>
@@ -115,7 +116,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     </form>
 
                 </div>
-                <div class="col-sm-6">
+                <div class="hidden visible-xs clearfix">
+                    <br>
+                </div>
+                <div class="col-sm-6 col-xs-12">
                     <form action="#">
 
                         <p>Множественное добавление товаров в корзину из файла</p>

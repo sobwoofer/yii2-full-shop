@@ -24,13 +24,6 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Add Favicon ico
-    <link rel="apple-touch-icon" href="/fav16.png">
-    <link rel="apple-touch-icon" sizes="32x32" href="/fav32.png">
-    <link rel="apple-touch-icon" sizes="96x96" href="/fav96.png">
-    <link rel="icon" type="image/png" href="/fav16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="/fav32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/fav96.png" sizes="96x96"> -->
 
     <?= Html::csrfMetaTags() ?>
 
@@ -209,7 +202,7 @@ AppAsset::register($this);
             </div>
             <div class="clearfix"></div>
             <div class="row">
-                <div class="col-xs-12 col-md-3 col-lg-2">
+                <div class="col-xs-12 col-md-3">
                     <div class="catalog active">
                         <!--<div class="catalog active">-->
                         <button class="catalog-btn"><i>Каталог</i> <span></span></button>
@@ -449,7 +442,7 @@ AppAsset::register($this);
                     <!-- end .catalog -->
                 </div>
                 <!-- end md2 -->
-                <div class="col-xs-12 col-md-4 col-lg-5">
+                <div class="col-xs-12 col-md-4">
                     <div class="top-search-block">
                         <?= Html::beginForm(['/shop/catalog/search'], 'get') ?>
                             <input type="text" name="text" value="" id="serach-input" placeholder="Что ищете?">
@@ -619,7 +612,7 @@ AppAsset::register($this);
                                             </div>
 
                                         </form>
-
+                                        <span>или</span></p>
                                         <ul class="soc-reg">
                                             <li>
                                                 <a href="#">
@@ -794,7 +787,7 @@ AppAsset::register($this);
                     }(document, 'script', 'facebook-jssdk'));
                 </script>
                 <div class="col-md-4">
-                    <div class="pull-left" style="margin-right: 25px;">
+                    <div class="pull-left" style="margin-right: 43px;">
 
                         <img src="images/system/visa.png" alt="">
 

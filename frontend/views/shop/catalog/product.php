@@ -36,11 +36,14 @@ $this->params['active_category'] = $product->category;
 
 <div class="container">
     <section class="section section__gutter_top">
-        <div class="bread_crumbs">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                'options' => ['class' => '']
-            ]) ?>
+
+        <div class="hidden-sm hidden-xs">
+            <div class="bread_crumbs">
+                <?= Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    'options' => ['class' => '']
+                ]) ?>
+            </div>
         </div>
         <div class="row" xmlns:fb="http://www.w3.org/1999/xhtml">
 

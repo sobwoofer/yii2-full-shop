@@ -19,7 +19,7 @@ use yii\helpers\Url;
         <div class="col-md-9 col-lg-10">
             <div class="categories">
                 <?php foreach ($category->children as $child): ?>
-                    <div class="col-sm-4 col-lg-2">
+                    <div class="col-sm-4 col-xs-6">
                         <div class="categories-item">
                             <div class="categories-item-img">
                                 <a href="<?= Html::encode(Url::to(['category', 'id' => $child->id])) ?>">

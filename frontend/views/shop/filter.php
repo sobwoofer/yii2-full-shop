@@ -52,28 +52,41 @@
 
             </div>
             <hr>
-            <div class="Availability">
-                <p class="title"><b>Наличие </b></p>
-                <label><input type="checkbox" value="1">Economix <span>(20)</span></label>
-                <label><input type="checkbox" value="1">Optima <span>(10)</span></label>
+            <div class="filter_cat_wrp active">
+                <p class="title"><b>Наличие </b><span class="pull-right toggle-btn"></span></p>
+                <div class="filter_cat_block">
+                    <div class="Availability">
+
+                        <label><input type="checkbox" value="1">Economix <span>(20)</span></label>
+                        <label><input type="checkbox" value="1">Optima <span>(10)</span></label>
+                    </div>
+                </div>
             </div>
             <hr>
-            <div class="line_thickness">
-                <p class="title"><b>Толщина линий </b></p>
-                <label><input type="checkbox" value="1">Economix <span>(20)</span></label>
-                <label><input type="checkbox" value="1">Optima <span>(10)</span></label>
-                <label><input type="checkbox" value="1">Schneider <span>(7)</span></label>
+            <div class="filter_cat_wrp active">
+                <p class="title"><b>Толщина линий</b><span class="pull-right toggle-btn"></span></p>
+                <div class="filter_cat_block">
+                    <div class="line_thickness">
+                        <label><input type="checkbox" value="1">Economix <span>(20)</span></label>
+                        <label><input type="checkbox" value="1">Optima <span>(10)</span></label>
+                        <label><input type="checkbox" value="1">Schneider <span>(7)</span></label>
+                    </div>
+                </div>
             </div>
             <hr>
-            <div class="replacement">
-                <p class="title"><b>Сменность стержня</b></p>
-                <label><input type="checkbox" value="1">Economix <span>(20)</span></label>
-                <label><input type="checkbox" value="1">Optima <span>(10)</span></label>
-                <label><input type="checkbox" value="1">Waldmann <span>(3)</span></label>
+            <div class="filter_cat_wrp active">
+                <p class="title"><b>Сменность стержня</b><span class="pull-right toggle-btn"></span></p>
+                <div class="filter_cat_block">
+                    <div class="replacement">
+                        <label><input type="checkbox" value="1">Economix <span>(20)</span></label>
+                        <label><input type="checkbox" value="1">Optima <span>(10)</span></label>
+                        <label><input type="checkbox" value="1">Waldmann <span>(3)</span></label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="responsive-img">
+    <div class="responsive-img hidden-xs hidden-sm">
         <a href="#">
             <img src="images/b.png" alt="">
         </a>

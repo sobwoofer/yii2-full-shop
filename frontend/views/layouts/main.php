@@ -132,12 +132,12 @@ AppAsset::register($this);
                 <div class="col-xs-12 col-md-2 col-lg-1 pull-right">
                     <!-- .lang-btn -->
                     <div class="lang">
-                        <span class="ua">укр</span>
+                        <label for="lang-btn"><span class="ua">укр</span></label>
                         <div class="lang-btn">
                             <input type="checkbox" value="None" id="lang-btn" name="check" checked/>
                             <label for="lang-btn"></label>
                         </div>
-                        <span class="ru act">рус</span>
+                        <label for="lang-btn"><span class="ru act">рус</span></label>
                     </div>
                     <!-- end .lang-btn -->
                 </div>
@@ -467,7 +467,9 @@ AppAsset::register($this);
                                 <div class="col-sm-3 add-wrp">
                                     <a href="#" class="add uppercase">в корзину</a>
                                 </div>
+
                                 <div class="clearfix"></div>
+
                             </div>
 
                             <div class="serch-row">
@@ -718,6 +720,28 @@ AppAsset::register($this);
         </div>
         <div class="search">
             <div class="search-icon"></div>
+
+
+            <div class="find">
+                <form action="">
+                    <input class="input_search" type="text" value="" placeholder="Поиск товара" autocomplete="off" style="">
+                    <input class="button_search" value="" type="submit">
+                    <div class="find__result">
+                        <div class="find__item">
+                            <img src="http://placehold.it/40x40" alt="">
+                            <p class="find__name">РУЧКА SCHNEIDER ESSENTIAL</p>
+                        </div>
+                        <div class="find__item">
+                            <img src="http://placehold.it/40x40" alt="">
+                            <p class="find__name">РУЧКА SCHNEIDER ESSENTIAL</p>
+                        </div>
+                        <div class="find__item">
+                            <img src="http://placehold.it/40x40" alt="">
+                            <p class="find__name">РУЧКА SCHNEIDER ESSENTIAL</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="cart">
             <div class="cart-icon"></div>

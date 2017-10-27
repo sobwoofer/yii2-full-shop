@@ -16,18 +16,21 @@ use yii\widgets\Breadcrumbs;
 
 <div class="content">
     <div class="col-sm-9 col-lg-10">
-        <div class="bread_crumbs">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                'options' => ['class' => '']
-            ]) ?>
+
+        <div class="hidden-sm hidden-xs">
+            <div class="bread_crumbs">
+                <?= Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    'options' => ['class' => '']
+                ]) ?>
+            </div>
         </div>
 
         <div class="row">
-            <div class="col-sm-6"><h2 class="catalog-title"><b>Шариковые ручки</b></h2></div>
+            <div class="col-sm-6 hidden-xs"><h2 class="catalog-title"><b>Шариковые ручки</b></h2></div>
             <div class="col-sm-6">
 
-                <div class="display-wrp pull-right">
+                <div class="display-wrp pull-right hidden-xs">
                     <!--<p>Отображение</p>-->
                     <a href="/catalog.html" class="grid"><i class="fa fa-th-large" aria-hidden="true"></i></a>
                     <a href="/catalog_list.html" class="list"><i class="fa fa-list" aria-hidden="true"></i></a>
@@ -66,7 +69,7 @@ use yii\widgets\Breadcrumbs;
 
         <div class="product_content">
             <?php foreach ($dataProvider->getModels() as $product): ?>
-                <div class="col-sm-4 col-lg-3">
+                <div class="col-sm-4">
                     <?=  $this->render('/shop/catalog/_product',[
                     'product' => $product
                     ]) ?>

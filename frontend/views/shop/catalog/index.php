@@ -15,13 +15,15 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="main-block">
+
     <div class="container">
         <div class="row">
-            <div class="col-md-3 col-lg-2">
+
+            <div class="col-md-3 ">
             </div>
-            <div class="col-md-9 col-lg-10">
+            <div class="col-md-9 ">
                 <div class="row">
-                    <div class="col-sm-12 col-lg-8 left-main-block">
+                    <div class="col-sm-12  left-main-block">
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide"><img src="images/categories-slider-img.png" alt=""></div>
@@ -38,19 +40,20 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                     </div>
-                    <div class="hidden-md col-lg-4 right-block">
-                        <div class="responsive-img">
-                            <a href="#">
-                                <img src="images/b2.png" alt="" style="max-height: 401px;">
-                            </a>
-                        </div>
+                    <!--<div class="hidden-md col-lg-4 right-block">-->
+                    <!--<div class="responsive-img">-->
+                    <!--<a href="#">-->
+                    <!--<img src="images/b2.png" alt="" style="max-height: 401px;">-->
+                    <!--</a>-->
+                    <!--</div>-->
 
-                    </div>
+                    <!--</div>-->
                 </div>
 
             </div>
         </div>
     </div>
+
 </div>
 
 

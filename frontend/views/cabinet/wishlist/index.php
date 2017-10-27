@@ -26,11 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="content">
     <div class="col-sm-9 col-lg-10">
-        <div class="bread_crumbs">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                'options' => ['class' => '']
-            ]) ?>
+
+        <div class="hidden-sm hidden-xs">
+            <div class="bread_crumbs">
+                <?= Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    'options' => ['class' => '']
+                ]) ?>
+            </div>
         </div>
 
         <div class="row">
@@ -76,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="product_content">
             <?php foreach ($dataProvider->getModels() as $product): ?>
-            <div class="col-sm-4 col-lg-3">
+            <div class="col-sm-4">
                 <?=  $this->render('/shop/catalog/_product',[
                 'product' => $product
                 ]) ?>

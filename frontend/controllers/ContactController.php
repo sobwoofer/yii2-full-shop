@@ -42,4 +42,10 @@ class ContactController extends Controller
 
         return $this->render('about-us', []);
     }
+
+    public function actionPayDeliver()
+    {
+
+        return $this->render('pay-deliver', []);
+    }
 }

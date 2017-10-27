@@ -39,6 +39,10 @@ $this->params['active_category'] = $category;
 <div class="container">
     <div class="row">
         <div class="catalog-page">
+            <div class="wrpper_filterToggler  hidden-sm hidden-md hidden-lg">
+                <h2 class="catalog-title"><b>Шариковые ручки</b></h2>
+                <button id="showFilter" class="btn btn_blue btn_show_filter">Показать фильтр</button>
+            </div>
             <?=  $this->render('/shop/filter') ?>
 
             <?= $this->render('_list', [

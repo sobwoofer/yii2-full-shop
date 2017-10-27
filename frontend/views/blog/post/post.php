@@ -29,7 +29,7 @@ foreach ($post->tags as $tag) {
 ?>
 
 <h1 class="article-title"><?= Html::encode($post->title) ?> - <?= Yii::$app->formatter->asDatetime($post->created_at); ?></h1>
-<div class="responsive-img img">
+<div class="responsive-img img full-img ">
     <?php if ($post->photo): ?>
         <p><img src="<?= Html::encode($post->getThumbFileUrl('photo', 'origin')) ?>" alt="" class="img-responsive" /></p>
     <?php endif; ?>

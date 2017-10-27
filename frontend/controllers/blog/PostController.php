@@ -76,6 +76,17 @@ class PostController extends Controller
         ]);
     }
 
+    public function actionFaq()
+    {
+
+        $dataProvider = $this->posts->getAll();
+
+        //TODO need add controller and backend for this page type
+        return $this->render('faq', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * @param $id
      * @return mixed

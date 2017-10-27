@@ -23,11 +23,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="col-sm-9 col-lg-10" >
-    <div class="bread_crumbs">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            'options' => ['class' => '']
-        ]) ?>
+    <div class="hidden-sm hidden-xs">
+        <div class="bread_crumbs">
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                'options' => ['class' => '']
+            ]) ?>
+        </div>
     </div>
 
     <h2 class="catalog-title"><b><?= Html::encode($this->title); ?></b></h2>

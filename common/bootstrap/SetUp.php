@@ -4,6 +4,8 @@ namespace common\bootstrap;
 
 use core\services\sms\DummySmsSender;
 use core\useCases\ContactService;
+use League\Flysystem\Adapter\Ftp;
+use League\Flysystem\Filesystem;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
 use core\cart\Cart;
@@ -19,6 +21,7 @@ use core\dispatchers\EventDispatcher;
 use core\dispatchers\SimpleEventDispatcher;
 use core\jobs\AsyncEventJobHandler;
 use core\entities\Shop\Product\events\ProductAppearedInStock;
+use core\entities\behaviors\FlySystemImageUploadBehavior;
 use core\repositories\events\EntityPersisted;
 use core\repositories\events\EntityRemoved;
 use core\listeners\User\UserSignupConfirmedListener;
@@ -43,6 +46,7 @@ use yii\caching\Cache;
 use yii\rbac\ManagerInterface;
 use yii\queue\Queue;
 use Yii;
+use yiidreamteam\upload\ImageUploadBehavior;
 
 class SetUp implements BootstrapInterface
 {
@@ -136,5 +140,17 @@ class SetUp implements BootstrapInterface
         $container->setSingleton(AsyncEventJobHandler::class, [], [
             Instance::of(SimpleEventDispatcher::class)
         ]);
+
+        //Подключаем библиотеку Flysystem если будем использовать хранение файлов на удаленном сервере
+        /*
+        $container->setSingleton(Filesystem::class, function () use ($app) {
+            return new Filesystem(new Ftp($app->params['ftp']));
+        });
+
+        //Заменяем Клас поведения изображений на свой переопределенный для использования стореджа файлов
+        //на удаленном сервере через Flysystem
+        $container->set(ImageUploadBehavior::class, FlySystemImageUploadBehavior::class);
+        */
+
     }
 }

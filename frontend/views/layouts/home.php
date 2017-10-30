@@ -224,62 +224,9 @@ use yii\helpers\Html;
 
 <?= \frontend\widgets\Banners\OurBrandsWidget::widget(['limit' => 20]) ?>
 
-<div class="news">
-    <div class="container">
-        <div class="news_title_block">
-            <p>СТАТЬИ, ОБЗОРЫ НОВИНОК</p>
-            <a href="#" class="read_more">смотреть все<span></span></a>
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-lg-3">
-                <div class="news__item">
-                    <div class="news__item__img">
-                        <a href="#"><img src="http://static.yii2-shop.dev/dev/main-news-1.png" alt=""></a>
-                    </div>
+<?= \frontend\widgets\Blog\ArticlesWidget::widget(['limit' => 4]) ?>
 
-                    <a href="#" class="news__item__title">ИДЕИ ДЛЯ ДЕЛОВЫХ ПОДАРКОВ</a>
-                    <p>Есть очень много способов, помогающих наладить отношения с партнерами, коллегами, руководством, сотрудниками. Один из самых проверенных – преподнесение презентов. Однако при этом не стоит забывать о том, что существует особая культура дарения и выбора.</p>
-                    <a href="#" class="read_more"> читать дальше. <span></span></a>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-3">
-                <div class="news__item">
-                    <div class="news__item__img">
-                        <a href="#"><img src="http://static.yii2-shop.dev/dev/main-news-2.png" alt=""></a>
-                    </div>
 
-                    <a href="#" class="news__item__title">ИДЕИ ДЛЯ ДЕЛОВЫХ ПОДАРКОВ</a>
-                    <p>Есть очень много способов, помогающих наладить отношения с партнерами, коллегами, руководством, сотрудниками. Один из самых проверенных – преподнесение презентов. Однако при этом не стоит забывать о том, что существует особая культура дарения и выбора.</p>
-                    <a href="#" class="read_more"> читать дальше. <span></span></a>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-3 ">
-                <div class="news__item">
-                    <div class="news__item__img">
-                        <a href="#"><img src="http://static.yii2-shop.dev/dev/main-news-3.png" alt=""></a>
-                    </div>
-
-                    <a href="#" class="news__item__title">ИДЕИ ДЛЯ ДЕЛОВЫХ ПОДАРКОВ</a>
-                    <p>Есть очень много способов, помогающих наладить отношения с партнерами, коллегами, руководством, сотрудниками. Один из самых проверенных – преподнесение презентов. Однако при этом не стоит забывать о том, что существует особая культура дарения и выбора.</p>
-                    <a href="#" class="read_more"> читать дальше. <span></span></a>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-lg-3 hidden visible-lg">
-                <div class="news__item">
-                    <div class="news__item__img">
-                        <a href="#"><img src="http://static.yii2-shop.dev/dev/main-news-3.png" alt=""></a>
-                    </div>
-
-                    <a href="#" class="news__item__title">ИДЕИ ДЛЯ ДЕЛОВЫХ ПОДАРКОВ</a>
-                    <p>Есть очень много способов, помогающих наладить отношения с партнерами, коллегами, руководством, сотрудниками. Один из самых проверенных – преподнесение презентов. Однако при этом не стоит забывать о том, что существует особая культура дарения и выбора.</p>
-                    <a href="#" class="read_more"> читать дальше. <span></span></a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
 <hr>
 <div class="seo-text-block">
     <div class="container">

@@ -58,6 +58,7 @@ class PostReadRepository
     {
         return Post::find()
             ->with('category')
+            ->active()
             ->orderBy(['id' => SORT_DESC])
             ->where(['category_id' => $category->id])
             ->limit($limit)

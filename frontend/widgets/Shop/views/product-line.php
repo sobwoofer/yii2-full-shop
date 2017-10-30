@@ -41,6 +41,32 @@ use yii\helpers\Url;
                 'slidesPerView'  => 4,
                 'effect'         => 'slide',
                 'autoplay'=> 4000,
+                'paginationClickable' => true,
+                'breakpoints' => [
+                     480 => [
+                         'slidesPerView' => 1,
+                         'spaceBetween' => 20
+                     ],
+                     900 => [
+                         'slidesPerView' => 2
+                     ],
+                     1100 => [
+                         'slidesPerView' => 3
+                     ],
+                     1200 => [
+                         'slidesPerView' => 4
+                     ],
+                     1390 => [
+                         'slidesPerView' => 5
+                     ],
+                     1400 => [
+                         'slidersPreView' => 6
+                     ]
+                     // 1920: {
+                     //     slidesPerView: 5
+                     // }
+                    ],
+                'spaceBetween' => 30
             ]
         ] ); ?>
 

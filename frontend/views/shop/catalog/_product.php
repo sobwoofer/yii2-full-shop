@@ -37,7 +37,7 @@ $url = Url::to(['catalog/product', 'id' =>$product->id]);
         <div class="image">
             <a href="<?= Html::encode($url) ?>">
                 <?php if ($product->mainPhoto): ?>
-                    <img src="<?= Html::encode($product->mainPhoto->getThumbFileUrl('file', 'catalog_list')) ?>" alt="" class="img-responsive" />
+                    <img src="<?= Html::encode($product->mainPhoto->getThumbFileUrl('file', 'catalog_list')) ?>" alt="" class="" />
                 <?php else: ?>
                     <img src="http://static.yii2-shop.dev/dev/product-img-1.png" alt="">
                 <?php endif; ?>
@@ -54,11 +54,10 @@ $url = Url::to(['catalog/product', 'id' =>$product->id]);
     <!-- .price_block -->
     <div class="price_block price_stock
         ">
-        <p class="prace_new"><?= PriceHelper::format($product->price_new) ?></p>
         <?php if ($product->price_old): ?>
             <p class="price_old"><?= PriceHelper::format($product->price_old) ?></p>
         <?php endif; ?>
-
+        <p class="prace_new"><?= PriceHelper::format($product->price_new) ?></p>
     </div>
     <!-- .price_block -->
     <!-- .product-line__item__action-block -->

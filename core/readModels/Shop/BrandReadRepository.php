@@ -17,5 +17,10 @@ class BrandReadRepository
         return Brand::findOne($id);
     }
 
+    public function getAll($limit = null)
+    {
+        return Brand::find()->orderBy(['id' => SORT_DESC])->limit($limit)->all();
+    }
+
 }
 

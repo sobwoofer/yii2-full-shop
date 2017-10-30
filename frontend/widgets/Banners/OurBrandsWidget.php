@@ -30,8 +30,8 @@ class OurBrandsWidget extends Widget
     public function run(): string
     {
         return $this->render('banners-carousel', [
-            'banners' => array_map(function($value){
-                return Html::a($value->name, $value->slug);
+            'banners' => array_map(function($brand){
+                return Html::a(Html::img($brand->getThumbFileUrl('image', 'home')), $brand->slug);
             }, $this->repository->getAll($this->limit)),
             'class' => $this->class,
             'title' => $this->title

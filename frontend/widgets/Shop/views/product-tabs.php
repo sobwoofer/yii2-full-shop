@@ -94,15 +94,6 @@ use yii\helpers\Url;
                             1200 => [
                                 'slidesPerView' => 4
                             ],
-                            1390 => [
-                                'slidesPerView' => 5
-                            ],
-                            1400 => [
-                                'slidersPreView' => 6
-                            ]
-                            // 1920: {
-                            //     slidesPerView: 5
-                            // }
                         ],
                         'spaceBetween' => 30
                     ]
@@ -140,15 +131,6 @@ use yii\helpers\Url;
                             1200 => [
                                 'slidesPerView' => 4
                             ],
-                            1390 => [
-                                'slidesPerView' => 5
-                            ],
-                            1400 => [
-                                'slidersPreView' => 6
-                            ]
-                            // 1920: {
-                            //     slidesPerView: 5
-                            // }
                         ],
                         'spaceBetween' => 30
                     ]
@@ -186,15 +168,6 @@ use yii\helpers\Url;
                             1200 => [
                                 'slidesPerView' => 4
                             ],
-                            1390 => [
-                                'slidesPerView' => 5
-                            ],
-                            1400 => [
-                                'slidersPreView' => 6
-                            ]
-                            // 1920: {
-                            //     slidesPerView: 5
-                            // }
                         ],
                         'spaceBetween' => 30
                     ]

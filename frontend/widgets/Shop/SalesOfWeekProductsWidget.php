@@ -12,13 +12,14 @@ namespace frontend\widgets\Shop;
 use core\readModels\Shop\ProductReadRepository;
 use yii\base\Widget;
 
-class NewProductsWidget extends Widget
+class SalesOfWeekProductsWidget extends Widget
 {
     private $repository;
-    public $title = 'НОВИНКИ';
+    public $title = 'Скидки недели';
     public $limit;
-    public $class = 'news';
-    public $viewAll = 'news-products';
+    public $class = 'sales-of-week';
+    public $viewAll = 'sales-of-week-products';
+    public $banner = false;
 
     public function __construct(ProductReadRepository $repository, array $config = [])
     {
@@ -28,11 +29,12 @@ class NewProductsWidget extends Widget
 
     public function run()
     {
-        return $this->render('product-line', [
+        return $this->render('product-banner-line', [
             'products' => $this->repository->getNew($this->limit),
             'title' => $this->title,
             'class' => $this->class,
             'viewAll' => $this->viewAll,
+            'banner' => $this->banner,
         ]);
     }
 

@@ -30,6 +30,10 @@ class BrandManageService
                 $form->meta->keywords
             )
         );
+        if ($form->image) {
+            $brand->setPhoto($form->image);
+        }
+
         $this->brands->save($brand);
         return $brand;
     }
@@ -46,6 +50,9 @@ class BrandManageService
                 $form->meta->keywords
             )
         );
+        if ($form->image) {
+            $brand->setPhoto($form->image);
+        }
         $this->brands->save($brand);
     }
 

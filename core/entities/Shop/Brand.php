@@ -11,6 +11,8 @@ namespace core\entities\Shop;
 use core\entities\behaviors\MetaBehavior;
 use yii\db\ActiveRecord;
 use core\entities\Meta;
+use yiidreamteam\upload\ImageUploadBehavior;
+use yii\web\UploadedFile;
 
 /**
  * Class Brand
@@ -19,6 +21,7 @@ use core\entities\Meta;
  * @property string $slug
  * @property Meta $meta
  * @property string $name
+ * @property string $image
  */
 class Brand extends ActiveRecord
 {
@@ -45,6 +48,11 @@ class Brand extends ActiveRecord
         return $this->meta->title ?: $this->name;
     }
 
+    public function setPhoto(UploadedFile $image): void
+    {
+        $this->image = $image;
+    }
+
     ##########################
 
     public static function tableName(): string
@@ -56,6 +64,18 @@ class Brand extends ActiveRecord
     {
         return [
             MetaBehavior::className(),
+            [
+                'class' => ImageUploadBehavior::className(),
+                'attribute' => 'image',
+                'createThumbsOnRequest' => true,
+                'filePath' => '@staticRoot/origin/brands/[[id]].[[extension]]',
+                'fileUrl' => '@static/origin/brands/[[id]].[[extension]]',
+                'thumbPath' => '@staticRoot/cache/brands/[[profile]]_[[id]].[[extension]]',
+                'thumbUrl' => '@static/cache/brands/[[profile]]_[[id]].[[extension]]',
+                'thumbs' => [
+                    'home' => ['width' => 236, 'height' => 147],
+                ],
+            ],
         ];
     }
 

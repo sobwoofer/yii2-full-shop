@@ -44,6 +44,18 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="box">
+        <div class="box-header with-border">Photo</div>
+        <div class="box-body">
+            <?php if ($brand->image): ?>
+                <?= Html::a(Html::img($brand->getThumbFileUrl('image', 'home')), $brand->getUploadedFileUrl('image'), [
+                    'class' => 'thumbnail',
+                    'target' => '_blank'
+                ]) ?>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <div class="box">
         <div class="box-header with-border">SEO</div>
         <div class="box-body">
             <?= DetailView::widget([

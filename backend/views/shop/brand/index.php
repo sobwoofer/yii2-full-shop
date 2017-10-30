@@ -29,6 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
+                    [
+                        'value' => function (Brand $model) {
+                            return $model->image ? Html::img($model->getThumbFileUrl('image', 'home')) : null;
+                        },
+                        'format' => 'raw',
+                        'contentOptions' => ['style' => 'width: 100px'],
+                    ],
                     'id',
                     [
                         'attribute' => 'name',

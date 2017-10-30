@@ -6,6 +6,7 @@ use core\entities\Shop\Brand;
 use core\forms\CompositeForm;
 use core\forms\manage\MetaForm;
 use core\validators\SlugValidator;
+use yii\web\UploadedFile;
 
 /**
  * @property MetaForm $meta;
@@ -13,8 +14,8 @@ use core\validators\SlugValidator;
 class BrandForm extends CompositeForm
 {
     public $name;
+    public $image;
     public $slug;
-
     private $_brand;
 
     public function __construct(Brand $brand = null, $config = [])
@@ -35,6 +36,7 @@ class BrandForm extends CompositeForm
         return [
             [['name', 'slug'], 'required'],
             [['name', 'slug'], 'string', 'max' => 255],
+            [['image'], 'image'],
             ['slug', SlugValidator::class],
             [['name', 'slug'], 'unique', 'targetClass' => Brand::class, 'filter' => $this->_brand ? ['<>', 'id', $this->_brand->id] : null]
         ];
@@ -43,5 +45,14 @@ class BrandForm extends CompositeForm
     public function internalForms(): array
     {
         return ['meta'];
+    }
+
+    public function beforeValidate(): bool
+    {
+        if (parent::beforeValidate()) {
+            $this->image = UploadedFile::getInstance($this, 'image');
+            return true;
+        }
+        return false;
     }
 }

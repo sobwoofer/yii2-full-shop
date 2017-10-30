@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model core\forms\manage\Shop\BrandForm */
@@ -18,6 +19,17 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
+        </div>
+    </div>
+
+    <div class="box box-default">
+        <div class="box-header with-border">Image</div>
+        <div class="box-body">
+            <?= $form->field($model, 'image')->label(false)->widget(FileInput::class, [
+                'options' => [
+                    'accept' => 'image/*',
+                ]
+            ]) ?>
         </div>
     </div>
 

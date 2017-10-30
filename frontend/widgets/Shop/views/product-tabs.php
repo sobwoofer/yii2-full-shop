@@ -76,16 +76,9 @@ use yii\helpers\Url;
                     ],
                     'pluginOptions' => [
                         'grabCursor'     => true,
-                        'centeredSlides' => true,
-                        'slidesPerView'  => 'auto',
-                        'effect'         => 'coverflow',
-                        'coverflow'      => [
-                            'rotate'       => 50,
-                            'stretch'      => 0,
-                            'depth'        => 100,
-                            'modifier'     => 2,
-                            'slideShadows' => true
-                        ]
+                        'slidesPerView'  => 4,
+                        'effect'         => 'slide',
+                        'autoplay'=> 4000,
                     ]
                 ] ); ?>
             </div>
@@ -103,16 +96,9 @@ use yii\helpers\Url;
                     ],
                     'pluginOptions' => [
                         'grabCursor'     => true,
-                        'centeredSlides' => true,
-                        'slidesPerView'  => 'auto',
-                        'effect'         => 'coverflow',
-                        'coverflow'      => [
-                            'rotate'       => 50,
-                            'stretch'      => 0,
-                            'depth'        => 100,
-                            'modifier'     => 2,
-                            'slideShadows' => true
-                        ]
+                        'slidesPerView'  => 4,
+                        'effect'         => 'slide',
+                        'autoplay'=> 4000,
                     ]
                 ] ); ?>
             </div>
@@ -130,16 +116,9 @@ use yii\helpers\Url;
                     ],
                     'pluginOptions' => [
                         'grabCursor'     => true,
-                        'centeredSlides' => true,
-                        'slidesPerView'  => 'auto',
-                        'effect'         => 'coverflow',
-                        'coverflow'      => [
-                            'rotate'       => 50,
-                            'stretch'      => 0,
-                            'depth'        => 100,
-                            'modifier'     => 2,
-                            'slideShadows' => true
-                        ]
+                        'slidesPerView'  => 4,
+                        'effect'         => 'slide',
+                        'autoplay'=> 4000,
                     ]
                 ] ); ?>
             </div>

@@ -17,7 +17,7 @@ class OurClientsWidget extends Widget
 
     private $banners;
     public $title = 'НАШИ КЛИЕНТЫ';
-    public $limit;
+    public $limit = null;
     public $class = 'our_clients';
 //
 //    public function __construct(BannersReadRepository $banners, $config = [])

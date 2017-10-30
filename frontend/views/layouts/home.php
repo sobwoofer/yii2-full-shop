@@ -218,29 +218,12 @@ use yii\helpers\Html;
     </div>
 </div>
 
-<?//= \frontend\widgets\Banners\OurClientsWidget::widget(['limit' => 20]) ?>
+<?php
+// \frontend\widgets\Banners\OurClientsWidget::widget(['limit' => 20])
+?>
 
-<div class="our_brends">
-    <div class="container">
-        <p class="our_clients__title">Наши бренды</p>
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="http://static.yii2-shop.dev/dev/client-1.png" alt=""></div>
-                <div class="swiper-slide"><img src="http://static.yii2-shop.dev/dev/client-2.png" alt=""></div>
-                <div class="swiper-slide"><img src="http://static.yii2-shop.dev/dev/client-3.png" alt=""></div>
-                <div class="swiper-slide"><img src="http://static.yii2-shop.dev/dev/client-4.png" alt=""></div>
-                <div class="swiper-slide"><img src="http://static.yii2-shop.dev/dev/client-1.png" alt=""></div>
-                <div class="swiper-slide"><img src="http://static.yii2-shop.dev/dev/client-2.png" alt=""></div>
-                <div class="swiper-slide"><img src="http://static.yii2-shop.dev/dev/client-3.png" alt=""></div>
-                <div class="swiper-slide"><img src="http://static.yii2-shop.dev/dev/client-4.png" alt=""></div>
-            </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-    </div>
-</div>
+<?= \frontend\widgets\Banners\OurBrandsWidget::widget(['limit' => 20]) ?>
+
 <div class="news">
     <div class="container">
         <div class="news_title_block">

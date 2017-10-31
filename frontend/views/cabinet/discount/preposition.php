@@ -5,18 +5,24 @@
  * Date: 27.10.17
  * Time: 16:51
  */
+
+$this->title = 'Preposition';
+$this->params['breadcrumbs'][] = ['label' => 'Cabinet', 'url' => ['cabinet/index']];
+$this->params['breadcrumbs'][] = $this->title;
+
+use yii\widgets\Breadcrumbs;
+
 ?>
 
 <div class="catalog-page">
-        <div class="hidden-xs">
-            <div class="bread_crumbs">
-                <ul>
-                    <li><a href="#">Вы здесь: Канцтовары </a></li>
-                    <li><a href="#">Письменные принадлежности</a></li>
-                </ul>
-            </div>
-
+    <div class="hidden-sm hidden-xs">
+        <div class="bread_crumbs">
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                'options' => ['class' => '']
+            ]) ?>
         </div>
+    </div>
 
         <div class="row">
             <div class="col-sm-6"><h2 class="catalog-title"><b>Персональное предложение</b></h2></div>

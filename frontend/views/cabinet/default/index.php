@@ -24,8 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <input type="text" placeholder="Константин Иванович">
                 <?= $form->field($model, 'email')->textInput(['maxLength' => true, 'placeholder' => 'Email'])->label(false) ?>
-                <?= $form->field($model, 'phone',
-                    ['addon' => ['prepend' => ['content'=>'+']]])->textInput(['maxLength' => true])->label(false) ?>
+                <?= $form->field($model, 'phone'
+//                    ['addon' => ['prepend' => ['content'=>'+']]]
+                )->textInput(['maxLength' => true])->label(false) ?>
                 <input type="text" placeholder="Телефон №2">
                 <input type="text" placeholder="Киев">
                 <input type="text" placeholder="ул. Вольная, 32/47">

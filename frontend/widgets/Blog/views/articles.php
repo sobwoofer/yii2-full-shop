@@ -26,7 +26,7 @@ use yii\helpers\Url;
                 <div class="col-md-4 col-lg-3">
                     <div class="news__item">
                         <div class="news__item__img">
-                            <a href="#"><img src="<?= $post->getThumbFileUrl('photo','home') ?>" alt=""></a>
+                            <a href="<?= Url::to(['/blog/' . $post->id]) ?>"><img src="<?= $post->getThumbFileUrl('photo','home') ?>" alt=""></a>
                         </div>
 
                         <a href="#" class="news__item__title"><?= $post->title ?></a>

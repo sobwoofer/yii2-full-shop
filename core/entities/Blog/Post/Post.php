@@ -276,9 +276,8 @@ class Post extends ActiveRecord
                 'thumbs' => [
                     'admin' => ['width' => 100, 'height' => 70],
                     'thumb' => ['width' => 640, 'height' => 480],
-                    'grid' => ['width' => 189, 'height' => 115],
                     'home' => ['width' => 263, 'height' => 131],
-                    'blog_list' => ['width' => 1000, 'height' => 150],
+                    'blog_list' => ['width' => 189, 'height' => 115],
                     'origin' => ['processor' => [new WaterMarker(1024, 768, '@frontend/web/images/system/logo-papirus.png'), 'process']],
                 ],
             ],

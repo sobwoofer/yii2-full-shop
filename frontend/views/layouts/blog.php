@@ -11,26 +11,20 @@
 
 ?>
 <?php $this->beginContent('@frontend/views/layouts/main.php') ?>
+
 <div class="container">
-    <div class="row">
-
-        <div class="col-md-3 col-lg-2">
-
-            <?= \frontend\widgets\Blog\CategoriesWidget::widget() ?>
-
-            <div class="responsive-img">
-                <img src="images/b.png" alt="">
+    <div class="news-page">
+<!--        TODO this will be xs and sm breadcrumbs -->
+        <div class="row">
+            <div class="col-md-3">
+                <?= \frontend\widgets\Blog\CategoriesWidget::widget() ?>
+                <div class="responsive-img">
+                    <img src="images/b.png" alt="">
+                </div>
             </div>
-
-        </div>
-        <div class="col-md-9 col-lg-10">
-            <div class="bread_crumbs">
-                <ul>
-                    <li><a href="#">Главная</a></li>
-                    <li><a href="#">Статьи</a></li>
-                </ul>
+            <div class="col-md-9">
+                <?= $content ?>
             </div>
-            <?= $content ?>
         </div>
     </div>
 

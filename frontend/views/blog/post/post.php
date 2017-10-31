@@ -27,24 +27,27 @@ foreach ($post->tags as $tag) {
     $tagLinks[] = Html::a(Html::encode($tag->name), ['tag', 'slug' => $tag->slug]);
 }
 ?>
+<div class="article-page">
+    <h1 class="article-title"><?= Html::encode($post->title) ?></h1>
+    <div class="responsive-img img full-img ">
+        <?php if ($post->photo): ?>
+            <p><img src="<?= Html::encode($post->getThumbFileUrl('photo', 'origin')) ?>" alt="" class="img-responsive" /></p>
+        <?php endif; ?>
+    </div>
 
-<h1 class="article-title"><?= Html::encode($post->title) ?> - <?= Yii::$app->formatter->asDatetime($post->created_at); ?></h1>
-<div class="responsive-img img full-img ">
-    <?php if ($post->photo): ?>
-        <p><img src="<?= Html::encode($post->getThumbFileUrl('photo', 'origin')) ?>" alt="" class="img-responsive" /></p>
-    <?php endif; ?>
+    <?= Yii::$app->formatter->asHtml($post->content, [
+        'Attr.AllowedRel' => array('nofollow'),
+        'HTML.SafeObject' => true,
+        'Output.FlashCompat' => true,
+        'HTML.SafeIframe' => true,
+        'URI.SafeIframeRegexp'=>'%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
+    ]) ?>
 </div>
 
-<?= Yii::$app->formatter->asHtml($post->content, [
-    'Attr.AllowedRel' => array('nofollow'),
-    'HTML.SafeObject' => true,
-    'Output.FlashCompat' => true,
-    'HTML.SafeIframe' => true,
-    'URI.SafeIframeRegexp'=>'%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
-]) ?>
+<?php
+//\frontend\widgets\Blog\CommentsWidget::widget([
+//    'post' => $post,
+//])
+?>
 
-<?= \frontend\widgets\Blog\CommentsWidget::widget([
-    'post' => $post,
-]) ?>
-
-<p>Tags: <?= implode(', ', $tagLinks) ?></p>
+<p> <?= $tagLinks ? 'Tags:' . implode(', ', $tagLinks) : '' ?></p>

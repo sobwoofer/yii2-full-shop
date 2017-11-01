@@ -188,7 +188,7 @@ AppAsset::register($this);
                     <!-- end .catalog -->
                 </div>
                 <!-- end md2 -->
-                <div class="col-xs-12 col-md-4">
+                <div class="col-xs-12 col-md-3">
                     <div class="top-search-block">
                         <?= Html::beginForm(['/shop/catalog/search'], 'get') ?>
                             <input type="text" name="text" value="" id="serach-input" placeholder="Что ищете?">
@@ -307,6 +307,9 @@ AppAsset::register($this);
                     </div>
                 </div>
                 <!-- end md6 -->
+                <div class="col-md-1">
+                    <div class="alphabetbtn active"><a class="btn btn-sm btn-yellow" href="javascript:;">А-я</a></div>
+                </div>
                 <div class="col-xs-12 col-md-5 col-lg-5">
                     <div class="top-action">
                         <div class="authorization" data-toggle="modal" data-target="#authorization_modal">

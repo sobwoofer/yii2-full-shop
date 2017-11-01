@@ -7,7 +7,11 @@
  */
 ?>
 
-<div class="col-sm-3 col-lg-2">
+<div class="col-sm-3">
+    <div class="wrpper_filterToggler  hidden-sm hidden-md hidden-lg">
+        <h2 class="catalog-title"><b>Шариковые ручки</b></h2>
+        <button id="showFilter" class="btn btn_blue btn_show_filter">Показать фильтр</button>
+    </div>
     <div class="catalog-filter">
         <div class="gray">
             <p class="filter-title pull-left"><span class="icon"><img src="images/system/yes-icon.png" alt=""></span>ВЫБРАНО</p>
@@ -28,7 +32,7 @@
                     <span>&nbsp;-&nbsp;</span>
                     <input type="text" id="maxCost" value="1000"/>
                     <span> &nbsp;грн
-                    <input type="submit" value="ok" class="ok"></span>
+                                <input type="submit" value="ok" class="ok"></span>
                     <span class="clearfix"></span>
                 </p>
                 <p><span class="pull-left">100грн</span><span class="pull-right">5000.00грн</span></p>

@@ -8,6 +8,8 @@
 
 namespace core\readModels\Shop;
 
+use core\entities\Blog\Post\Post;
+use core\readModels\Shop\views\CatalogMenuView;
 use Elasticsearch\Client;
 use core\entities\Shop\Category;
 use core\readModels\Shop\views\CategoryView;
@@ -43,6 +45,39 @@ class CategoryReadRepository
     public function findBySlug($slug): ?Category
     {
         return Category::find()->andWhere(['slug' => $slug])->andWhere(['>', 'depth', 0])->one();
+    }
+
+    private function regulateCategory(CatalogMenuView $object, Category $category): CatalogMenuView
+    {
+        if ($children = $this->getChildrenOfParent($category)) {
+            array_map(function (Category $child) use ($object){
+                $item = $object->addChild($child);
+                $this->regulateCategory($item, $child);
+            }, $children);
+        }
+        return $object;
+    }
+
+    public function getAllTree(): array
+    {
+        $results = [];
+        foreach ($this->getChildrenOfParent() as $child) {
+            $parent = $this->regulateCategory(new CatalogMenuView($child), $child);
+            $results[] = $parent;
+        }
+        return $results;
+    }
+
+    public function getChildrenOfParent(Category $prent = null): array
+    {
+        if (!$prent) {
+            $prent = $this->getRoot();
+        }
+
+        return Category::find()->andWhere(['>', 'depth', 0])->orderBy('lft')
+            ->andWhere(['and', ['>', 'lft', $prent->lft], ['<', 'rgt', $prent->rgt], ['depth' => $prent->depth + 1]])
+            ->orderBy('lft')
+            ->all();
     }
 
     public function getTreeWithSubsOf(Category $category = null): array

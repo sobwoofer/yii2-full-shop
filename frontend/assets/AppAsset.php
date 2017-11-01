@@ -27,7 +27,9 @@ class AppAsset extends AssetBundle
         'yii\bootstrap\BootstrapPluginAsset',
         'yii\jquery\formstyler\FormStylerAsset',
         'rmrevin\yii\fontawesome\AssetBundle',
-        'russ666\widgets\CountdownAsset'
+        'russ666\widgets\CountdownAsset',
+        'ezoterik\html5shivAsset\Html5ShivAsset',
+        'ezoterik\respondAsset\RespondAsset',
     ];
     public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
 }

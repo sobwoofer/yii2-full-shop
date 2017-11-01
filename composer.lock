@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "36ccbf6b48de8b6bc7e3fd8edcf5251f",
+    "content-hash": "ef8e35a804ed37480929c09346388cfd",
     "packages": [
         {
             "name": "alfa6661/yii2-raty",
@@ -111,6 +111,22 @@
             ]
         },
         {
+            "name": "bower-asset/html5shiv",
+            "version": "3.7.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aFarkas/html5shiv.git",
+                "reference": "ed28c56c071bddfe7d635ad88995674957a016be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aFarkas/html5shiv/zipball/ed28c56c071bddfe7d635ad88995674957a016be",
+                "reference": "ed28c56c071bddfe7d635ad88995674957a016be",
+                "shasum": null
+            },
+            "type": "bower-asset"
+        },
+        {
             "name": "bower-asset/jquery",
             "version": "2.2.4",
             "source": {
@@ -194,16 +210,16 @@
         },
         {
             "name": "bower-asset/jquery.inputmask",
-            "version": "3.3.9",
+            "version": "3.3.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobinHerbots/Inputmask.git",
-                "reference": "1fadb54be8a94e879fd1e9693b5222fb36aea04f"
+                "reference": "14873e5775964275d13621cbe2b52e4448af3707"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/Inputmask/zipball/1fadb54be8a94e879fd1e9693b5222fb36aea04f",
-                "reference": "1fadb54be8a94e879fd1e9693b5222fb36aea04f",
+                "url": "https://api.github.com/repos/RobinHerbots/Inputmask/zipball/14873e5775964275d13621cbe2b52e4448af3707",
+                "reference": "14873e5775964275d13621cbe2b52e4448af3707",
                 "shasum": null
             },
             "require": {
@@ -266,6 +282,22 @@
             "type": "bower-asset"
         },
         {
+            "name": "bower-asset/respond",
+            "version": "1.4.2",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:scottjehl/Respond.git",
+                "reference": "20b7f4a192bb910c8c7e067b961de38519d334e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/scottjehl/Respond/zipball/20b7f4a192bb910c8c7e067b961de38519d334e4",
+                "reference": "20b7f4a192bb910c8c7e067b961de38519d334e4",
+                "shasum": null
+            },
+            "type": "bower-asset"
+        },
+        {
             "name": "bower-asset/slick-carousel",
             "version": "v1.8.1",
             "source": {
@@ -289,16 +321,16 @@
         },
         {
             "name": "bower-asset/swiper",
-            "version": "v4.0.1",
+            "version": "v4.0.3",
             "source": {
                 "type": "git",
-                "url": "git@github.com:nolimits4web/Swiper.git",
-                "reference": "15cefa0bfc3b31033010228be5e6f4a9008607f9"
+                "url": "https://github.com/nolimits4web/Swiper.git",
+                "reference": "b2c814b0d0028112563c44e1d69f305a89a0dc4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nolimits4web/Swiper/zipball/15cefa0bfc3b31033010228be5e6f4a9008607f9",
-                "reference": "15cefa0bfc3b31033010228be5e6f4a9008607f9",
+                "url": "https://api.github.com/repos/nolimits4web/Swiper/zipball/b2c814b0d0028112563c44e1d69f305a89a0dc4c",
+                "reference": "b2c814b0d0028112563c44e1d69f305a89a0dc4c",
                 "shasum": null
             },
             "type": "bower-asset",
@@ -724,6 +756,98 @@
             "time": "2017-03-31T07:00:27+00:00"
         },
         {
+            "name": "ezoterik/yii2-html5shiv-asset",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ezoterik/yii2-html5shiv-asset.git",
+                "reference": "520d1bbafd43c6101dbbc6c7e5857e2411a0af4e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ezoterik/yii2-html5shiv-asset/zipball/520d1bbafd43c6101dbbc6c7e5857e2411a0af4e",
+                "reference": "520d1bbafd43c6101dbbc6c7e5857e2411a0af4e",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/html5shiv": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "ezoterik\\html5shivAsset\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oleg Balykin",
+                    "email": "ezoterik.h@gmail.com",
+                    "homepage": "http://ezoterik.name",
+                    "role": "Developer"
+                }
+            ],
+            "description": "HTML5 Shiv asset for Yii2 framework",
+            "keywords": [
+                "HTML5",
+                "JS",
+                "extension",
+                "html5shiv",
+                "yii2"
+            ],
+            "time": "2016-03-09T16:03:38+00:00"
+        },
+        {
+            "name": "ezoterik/yii2-respond-asset",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ezoterik/yii2-respond-asset.git",
+                "reference": "9a50f8b2ceed326815ba6f8a4780a8b89ad96ed5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ezoterik/yii2-respond-asset/zipball/9a50f8b2ceed326815ba6f8a4780a8b89ad96ed5",
+                "reference": "9a50f8b2ceed326815ba6f8a4780a8b89ad96ed5",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/respond": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "ezoterik\\respondAsset\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oleg Balykin",
+                    "email": "ezoterik.h@gmail.com",
+                    "homepage": "http://ezoterik.name",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Respond.js asset for Yii2 framework",
+            "keywords": [
+                "HTML5",
+                "JS",
+                "extension",
+                "respond",
+                "yii2"
+            ],
+            "time": "2016-03-09T15:53:05+00:00"
+        },
+        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.9.3",
             "source": {
@@ -911,16 +1035,16 @@
         },
         {
             "name": "fxp/composer-asset-plugin",
-            "version": "v1.4.1",
+            "version": "v1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fxpio/composer-asset-plugin.git",
-                "reference": "aaaf9c040cd309afb43f51b097f388354d6f842e"
+                "reference": "61352d99940d2b2392a5d2db83b8c0ef5faf222a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fxpio/composer-asset-plugin/zipball/aaaf9c040cd309afb43f51b097f388354d6f842e",
-                "reference": "aaaf9c040cd309afb43f51b097f388354d6f842e",
+                "url": "https://api.github.com/repos/fxpio/composer-asset-plugin/zipball/61352d99940d2b2392a5d2db83b8c0ef5faf222a",
+                "reference": "61352d99940d2b2392a5d2db83b8c0ef5faf222a",
                 "shasum": ""
             },
             "require": {
@@ -966,7 +1090,7 @@
                 "npm",
                 "package"
             ],
-            "time": "2017-09-27T16:59:09+00:00"
+            "time": "2017-10-20T06:53:56+00:00"
         },
         {
             "name": "guzzlehttp/ringphp",
@@ -2414,16 +2538,16 @@
         },
         {
             "name": "la-haute-societe/yii2-save-relations-behavior",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/la-haute-societe/yii2-save-relations-behavior.git",
-                "reference": "8f82fab3751a70e8f722dd8a5e265dbc51680834"
+                "reference": "acbbeceea7e05a7c843dd49e994689a30a78b069"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/la-haute-societe/yii2-save-relations-behavior/zipball/8f82fab3751a70e8f722dd8a5e265dbc51680834",
-                "reference": "8f82fab3751a70e8f722dd8a5e265dbc51680834",
+                "url": "https://api.github.com/repos/la-haute-societe/yii2-save-relations-behavior/zipball/acbbeceea7e05a7c843dd49e994689a30a78b069",
+                "reference": "acbbeceea7e05a7c843dd49e994689a30a78b069",
                 "shasum": ""
             },
             "require": {
@@ -2457,7 +2581,7 @@
                 "relations",
                 "yii2"
             ],
-            "time": "2017-10-12T16:05:15+00:00"
+            "time": "2017-10-28T10:36:27+00:00"
         },
         {
             "name": "league/flysystem",
@@ -3294,16 +3418,16 @@
         },
         {
             "name": "yii-dream-team/yii2-upload-behavior",
-            "version": "1.1.1",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yii-dream-team/yii2-upload-behavior.git",
-                "reference": "0bfbb77dd7dc7ea57560572aa87db9d154c6c90f"
+                "reference": "cdb45e68014476765188c387fafcb7fd30d2ad0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yii-dream-team/yii2-upload-behavior/zipball/0bfbb77dd7dc7ea57560572aa87db9d154c6c90f",
-                "reference": "0bfbb77dd7dc7ea57560572aa87db9d154c6c90f",
+                "url": "https://api.github.com/repos/yii-dream-team/yii2-upload-behavior/zipball/cdb45e68014476765188c387fafcb7fd30d2ad0a",
+                "reference": "cdb45e68014476765188c387fafcb7fd30d2ad0a",
                 "shasum": ""
             },
             "require": {
@@ -3339,7 +3463,7 @@
                 "thumb",
                 "upload"
             ],
-            "time": "2016-03-25T05:52:20+00:00"
+            "time": "2017-10-26T15:44:40+00:00"
         },
         {
             "name": "yiisoft/yii2",
@@ -3927,7 +4051,7 @@
             "version": "v0.11.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twitter/typeahead.js.git",
+                "url": "git@github.com:twitter/typeahead.js.git",
                 "reference": "588440f66559714280628a4f9799f0c4eb880a4a"
             },
             "dist": {
@@ -4403,37 +4527,40 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.6.1",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "8e6e04167378abf1ddb4d3522d8755c5fd90d102"
+                "reference": "3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/8e6e04167378abf1ddb4d3522d8755c5fd90d102",
-                "reference": "8e6e04167378abf1ddb4d3522d8755c5fd90d102",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e",
+                "reference": "3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
-                "doctrine/collections": "1.*",
-                "phpunit/phpunit": "~4.1"
+                "doctrine/collections": "^1.0",
+                "doctrine/common": "^2.6",
+                "phpunit/phpunit": "^4.1"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "DeepCopy\\": "src/DeepCopy/"
-                }
+                },
+                "files": [
+                    "src/DeepCopy/deep_copy.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "Create deep copies (clones) of your objects",
-            "homepage": "https://github.com/myclabs/DeepCopy",
             "keywords": [
                 "clone",
                 "copy",
@@ -4441,7 +4568,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2017-04-12T18:52:22+00:00"
+            "time": "2017-10-19T19:58:43+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -6544,22 +6671,22 @@
         },
         {
             "name": "zircote/swagger-php",
-            "version": "2.0.11",
+            "version": "2.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zircote/swagger-php.git",
-                "reference": "d010ab67536784f8b578cb4ba7d15c906f3e1a45"
+                "reference": "5393727e0c2fe822252f82230a5975572ca32d45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zircote/swagger-php/zipball/d010ab67536784f8b578cb4ba7d15c906f3e1a45",
-                "reference": "d010ab67536784f8b578cb4ba7d15c906f3e1a45",
+                "url": "https://api.github.com/repos/zircote/swagger-php/zipball/5393727e0c2fe822252f82230a5975572ca32d45",
+                "reference": "5393727e0c2fe822252f82230a5975572ca32d45",
                 "shasum": ""
             },
             "require": {
                 "doctrine/annotations": "*",
                 "php": ">=5.6",
-                "symfony/finder": "*"
+                "symfony/finder": ">=2.2"
             },
             "require-dev": {
                 "phpunit/phpunit": ">=4.8 <=5.6",
@@ -6602,7 +6729,7 @@
                 "rest",
                 "service discovery"
             ],
-            "time": "2017-08-16T08:32:59+00:00"
+            "time": "2017-10-27T13:08:09+00:00"
         }
     ],
     "aliases": [],

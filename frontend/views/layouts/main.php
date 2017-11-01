@@ -363,7 +363,7 @@ AppAsset::register($this);
                                             </div>
 
                                         </form>
-                                        <span>или</span></p>
+                                        <p class="or-link"><span>или</span></p>
                                         <ul class="soc-reg">
                                             <li>
                                                 <a href="#">
@@ -506,7 +506,7 @@ AppAsset::register($this);
 </main>
 <footer role="contentinfo">
     <div id="toTop">
-        <img src="images/system/toTop.png" alt="">
+        <img src="/images/system/toTop.png" alt="">
         <p>наверх</p>
     </div>
     <div class="footer_wrp">
@@ -562,7 +562,7 @@ AppAsset::register($this);
                 <div class="col-md-4">
                     <div class="pull-left" style="margin-right: 43px;">
 
-                        <img src="images/system/visa.png" alt="">
+                        <img src="/images/system/visa.png" alt="">
 
                     </div>
 

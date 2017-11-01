@@ -180,20 +180,23 @@ $('.catalog button').click(function (event) {
 //     start: 4
 // });
 $('[data-toggle="tooltip"]').tooltip();
-// $("#slider-range").slider({
-//     min: 0,
-//     max: 1000,
-//     values: [0, 1000],
-//     range: true,
-//     stop: function (event, ui) {
-//         $("input#minCost").val($("#slider-range").slider("values", 0));
-//         $("input#maxCost").val($("#slider-range").slider("values", 1));
-//     },
-//     slide: function (event, ui) {
-//         $("input#minCost").val($("#slider-range").slider("values", 0));
-//         $("input#maxCost").val($("#slider-range").slider("values", 1));
-//     }
-// });
+$(window).on('load', function () {
+    $("#slider-range").slider({
+        min: 0,
+        max: 1000,
+        values: [0, 1000],
+        range: true,
+        stop: function (event, ui) {
+            $("input#minCost").val($("#slider-range").slider("values", 0));
+            $("input#maxCost").val($("#slider-range").slider("values", 1));
+        },
+        slide: function (event, ui) {
+            $("input#minCost").val($("#slider-range").slider("values", 0));
+            $("input#maxCost").val($("#slider-range").slider("values", 1));
+        }
+    });
+});
+
 $('.like').click(function (e) {
     e.preventDefault();
     $(this).toggleClass('active')
@@ -506,3 +509,19 @@ $(document).ready(function () {
         $('.review_wrapper').fadeIn()
     });
 });
+
+
+
+$('.alphabetbtn').click(()=>{
+    $('.mainalphabet').addClass('active');
+$('.alphabetbtn').removeClass('active')
+// $('#alphabet').removeClass('active')
+})
+$('.alphabet_btn_close').click(()=>{
+    $('.mainalphabet').removeClass('active')
+$('.alphabetbtn').addClass('active')
+})
+
+$('.search .search-icon').click(()=>{
+    $('.search .find').toggleClass('active')
+})

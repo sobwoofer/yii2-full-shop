@@ -23,7 +23,7 @@ use yii\helpers\Url;
                         <div class="categories-item">
                             <div class="categories-item-img">
                                 <a href="<?= Html::encode(Url::to(['category', 'id' => $child->id])) ?>">
-                                    <img src="images/paper.png" alt="">
+                                    <img src="/images/paper.png" alt="">
                                 </a>
                             </div>
                             <span><?= Html::encode($child->name) ?></span>

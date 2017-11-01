@@ -72,7 +72,7 @@ use yii\widgets\Breadcrumbs;
 
         <div class="product_content">
             <?php foreach ($dataProvider->getModels() as $product): ?>
-                <div class="col-sm-4">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <?=  $this->render('/shop/catalog/_product',[
                     'product' => $product
                     ]) ?>

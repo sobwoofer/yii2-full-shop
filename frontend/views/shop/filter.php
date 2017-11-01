@@ -14,9 +14,9 @@
     </div>
     <div class="catalog-filter">
         <div class="gray">
-            <p class="filter-title pull-left"><span class="icon"><img src="images/system/yes-icon.png" alt=""></span>ВЫБРАНО</p>
+            <p class="filter-title pull-left"><span class="icon"><img src="/images/system/yes-icon.png" alt=""></span>ВЫБРАНО</p>
             <a href="#/" class="filter-title pull-right">
-                <small><span class="icon"><img src="images/system/trash.png" alt=""></span>сбросить</small>
+                <small><span class="icon"><img src="/images/system/trash.png" alt=""></span>сбросить</small>
             </a>
             <div class="clearfix"></div>
             <a href="#" class="fiter-select-item">Economix </a>
@@ -24,7 +24,7 @@
             <a href="#" class="fiter-select-item">Economix </a>
         </div>
         <div class="gray">
-            <p class="filter-title"><span class="icon"><img src="images/system/filter-icon.png" alt=""></span>ФИЛЬТР ХАРАКТЕРИСТИК</p>
+            <p class="filter-title"><span class="icon"><img src="/images/system/filter-icon.png" alt=""></span>ФИЛЬТР ХАРАКТЕРИСТИК</p>
             <p><b>Цена</b></p>
             <div class="manufacturer">
                 <p>

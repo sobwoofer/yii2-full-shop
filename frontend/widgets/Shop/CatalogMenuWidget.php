@@ -8,12 +8,8 @@
 
 namespace frontend\widgets\Shop;
 
-
 use core\readModels\Shop\CategoryReadRepository;
 use yii\base\Widget;
-use core\readModels\Shop\views\CategoryView;
-use yii\helpers\Html;
-use core\entities\Shop\Category;
 
 class CatalogMenuWidget extends Widget
 {

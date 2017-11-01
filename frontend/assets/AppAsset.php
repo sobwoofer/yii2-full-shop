@@ -18,7 +18,8 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/common.js',
         //TODO need move someone libraries into packagist.org and require from composer
-        'libs/selectric/jquery.selectric.min.js'
+        'libs/selectric/jquery.selectric.min.js',
+        'libs/lodash/2.4.1/lodash.min.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

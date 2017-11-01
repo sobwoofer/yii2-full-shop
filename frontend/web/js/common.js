@@ -198,6 +198,7 @@ $('.like').click(function (e) {
     e.preventDefault();
     $(this).toggleClass('active')
 })
+
 if ($('#clock').length) {
     $(window).on('load', function () {
         var labels = ['дни', 'часы', 'мин', 'сек'],

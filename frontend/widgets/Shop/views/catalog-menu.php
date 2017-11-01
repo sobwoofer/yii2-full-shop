@@ -5,9 +5,10 @@
  * Date: 31.10.17
  * Time: 11:43
  */
-/** @var $categories \core\readModels\Shop\views\CatalogMenuView[]*/
-?>
+/** @var $categories \core\readModels\Shop\views\CatalogMenuView[] */
 
+use yii\helpers\Html;
+?>
 
 
 <div class="catalog active">
@@ -15,20 +16,29 @@
     <ul class="menu">
         <?php foreach ($categories as $category): ?>
             <li class="menu__item">
-            <a class="menu__link" href="#"> <?= $category->category->name ?></a>
+                <?= Html::a($category->category->name,
+                    ['/shop/catalog/category', 'id' => $category->category->id],
+                    ['class' => 'menu__link']) ?>
                 <?php if ($category->_children): ?>
                     <ul class="sub_menu">
                         <div class="row">
                             <?php foreach ($category->_children as $child): ?>
                                 <div class="col-md-4">
                                     <?php if (!$child->_children): ?>
-                                        <a class="sub_menu__title" href="#"><?= $child->category->name ?></a>
+                                        <?= Html::a($child->category->name,
+                                            ['/shop/catalog/category', 'id' => $child->category->id],
+                                            ['class' => 'sub_menu__title']) ?>
                                     <?php else: ?>
-                                        <li class="menu__item"><a class="sub_menu__link" href="#"><?= $child->category->name ?></a>
+                                        <li class="menu__item">
+                                            <?= Html::a($child->category->name,
+                                                ['/shop/catalog/category', 'id' => $child->category->id],
+                                                ['class' => 'sub_menu__link']) ?>
                                             <ul class="menu menu_flat">
                                                 <?php foreach ($child->_children as $subChild): ?>
                                                     <li class="menu__item">
-                                                        <a class="menu__link menu__link_flat" href="#"><?= $subChild->category->name ?></a>
+                                                        <?= Html::a($subChild->category->name,
+                                                            ['/shop/catalog/category', 'id' => $subChild->category->id],
+                                                            ['class' => 'menu__link menu__link_flat']) ?>
                                                     </li>
                                                 <?php endforeach; ?>
                                             </ul>

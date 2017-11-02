@@ -54,7 +54,8 @@ class CheckoutController extends Controller
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
                 $order = $this->service->checkout(Yii::$app->user->id, $form);
-                return $this->redirect(['/cabinet/order/view', 'id' => $order->id]);
+//                return $this->redirect(['/cabinet/order/view', 'id' => $order->id]);
+                return $this->redirect(['/cabinet/order']);
             } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());

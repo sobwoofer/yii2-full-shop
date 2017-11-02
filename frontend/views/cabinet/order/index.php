@@ -16,13 +16,13 @@ use core\helpers\PriceHelper;
 use yii\widgets\LinkPager;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $order Order */
 
 $this->title = 'Orders';
 $this->params['breadcrumbs'][] = ['label' => 'Cabinet', 'url' => ['cabinet/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="col-sm-9 col-lg-10" >
     <div class="hidden-sm hidden-xs">
         <div class="bread_crumbs">
             <?= Breadcrumbs::widget([
@@ -41,9 +41,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <?php foreach ($dataProvider->getModels() as $order): ?>
                 <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingThree">
+                    <div class="panel-heading" role="tab" id="headingThree<?= $order->id ?>">
                         <div class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion<?= $order->id ?>" href="#collapseThree<?= $order->id ?>" aria-expanded="true" aria-controls="collapseOne">
                     <span class="col-sm-3 order_item_number text-center">
                         <b>№ <?= $order->id ?></b> <br>
                         <?= Yii::$app->formatter->asDatetime($order->created_at); ?>
@@ -70,12 +70,12 @@ $this->params['breadcrumbs'][] = $this->title;
                             </a>
                         </div>
                     </div>
-                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div id="collapseThree<?= $order->id ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree<?= $order->id ?>">
                         <div class="panel-body">
                             <?php foreach ($order->items as $item): ?>
                                 <div class="row row_items ">
                                     <div class="col-sm-1 col-sm-offset-1">
-                                        <img src="http://placehold.it/30x50" alt="">
+                                        <img src="<?= $item->product->mainPhoto->getThumbFileUrl('file', 'cart_list') ?>" alt="">
                                     </div>
                                     <div class="col-sm-6">
                                         <p class="orders_item__title"><?= $item->product_name ?></p>
@@ -114,4 +114,4 @@ $this->params['breadcrumbs'][] = $this->title;
             'pagination' => $dataProvider->getPagination(),
         ]) ?>
     </div>
-</div>
+

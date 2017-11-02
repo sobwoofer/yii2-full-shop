@@ -13,7 +13,7 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $order core\entities\Shop\Order\Order */
-
+//TODO this page doesn't use
 $this->title = 'Order ' . $order->id;
 $this->params['breadcrumbs'][] = ['label' => 'Cabinet', 'url' => ['cabinet/default/index']];
 $this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];

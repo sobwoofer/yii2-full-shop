@@ -50,159 +50,7 @@ $(document).ready(function () {
     //  //= source/miss-click.js
     $('.product-line__item input[type="number"]').styler();
     $('.product_list_item input[type="number"]').styler();
-    // var main_block_swiper = new Swiper('.main-block .swiper-container', {
-    //     pagination: ' .main-block  .swiper-pagination',
-    //     nextButton: '.main-block  .swiper-button-next',
-    //     prevButton: '.main-block  .swiper-button-prev',
-    //     paginationClickable: true
-    // });
-    // var product_line_swiper = new Swiper('.product-line-1 .swiper-container',
-    //     {
-    //         slidesPerView: 3,
-    //         loop: true,
-    //         nextButton: '.product-line-1 .swiper-button-next',
-    //         prevButton: '.product-line-1 .swiper-button-prev',
-    //         autoplay: 4000,
-    //         // onlyExternal: true,
-    //         paginationClickable: true,
-    //         breakpoints: {
-    //             480: {
-    //                 slidesPerView: 1,
-    //                 spaceBetween: 20
-    //             },
-    //             900: {
-    //                 slidesPerView: 2
-    //             },
-    //             1100: {
-    //                 slidesPerView: 3
-    //             },
-    //             1200: {
-    //                 slidesPerView: 3
-    //             }
-    //
-    //         },
-    //         spaceBetween: 30
-    //     });
 
-    // var product_line_swiper = new Swiper('.product-line-9 .swiper-container',
-    //     {
-    //         slidesPerView: 4,
-    //         loop: true,
-    //         nextButton: '.product-line-9 .swiper-button-next',
-    //         prevButton: '.product-line-9 .swiper-button-prev',
-    //         autoplay: 4000,
-    //         // onlyExternal: true,
-    //         paginationClickable: true,
-    //         breakpoints: {
-    //             480: {
-    //                 slidesPerView: 1,
-    //                 spaceBetween: 20
-    //             },
-    //             900: {
-    //                 slidesPerView: 2
-    //             },
-    //             1100: {
-    //                 slidesPerView: 3
-    //             },
-    //             1200: {
-    //                 slidesPerView: 4
-    //             }
-    //
-    //         },
-    //         spaceBetween: 30
-    //     });
-
-
-    // var product_line_swiper_1 = new Swiper('#tab-1 .swiper-container',
-    //     {
-    //         slidesPerView: 4,
-    //         loop: true,
-    //         autoplay: 4000,
-    //         nextButton: '#tab-1 .swiper-button-next',
-    //         prevButton: '#tab-1 .swiper-button-prev',
-    //
-    //         // onlyExternal: true,
-    //         lazyLoading: true,
-    //         paginationClickable: true,
-    //         spaceBetween: 30,
-    //         breakpoints: {
-    //             480: {
-    //                 slidesPerView: 1,
-    //                 spaceBetween: 20
-    //             },
-    //             900: {
-    //                 slidesPerView: 2
-    //             },
-    //             1100: {
-    //                 slidesPerView: 3
-    //             },
-    //             1200: {
-    //                 slidesPerView: 4
-    //             }
-    //
-    //             // 1920: {
-    //             //     slidesPerView: 5
-    //             // }
-    //
-    //         }
-    //     });
-
-    // var product_line_swiper_2 = new Swiper('#tab-2 .swiper-container',
-    //     {
-    //         slidesPerView: 4,
-    //         loop: true,
-    //         autoplay: 4000,
-    //         nextButton: '#tab-2 .swiper-button-next',
-    //         prevButton: '#tab-2 .swiper-button-prev',
-    //
-    //         // onlyExternal: true,
-    //         paginationClickable: true,
-    //         lazyLoading: true,
-    //         spaceBetween: 30,
-    //         breakpoints: {
-    //             480: {
-    //                 slidesPerView: 1,
-    //                 spaceBetween: 20
-    //             },
-    //             900: {
-    //                 slidesPerView: 2
-    //             },
-    //             1100: {
-    //                 slidesPerView: 3
-    //             },
-    //             1200: {
-    //                 slidesPerView: 4
-    //             }
-    //         }
-    //     });
-
-    // var product_line_swiper_3 = new Swiper('#tab-3 .swiper-container',
-    //     {
-    //         slidesPerView: 4,
-    //         loop: true,
-    //         autoplay: 4000,
-    //         lazyLoading: true,
-    //         nextButton: '#tab-3 .swiper-button-next',
-    //         prevButton: '#tab-3 .swiper-button-prev',
-    //         // onlyExternal: true,
-    //         paginationClickable: true,
-    //         spaceBetween: 30,
-    //         breakpoints: {
-    //             480: {
-    //                 slidesPerView: 1,
-    //                 spaceBetween: 20
-    //             },
-    //             900: {
-    //                 slidesPerView: 2
-    //             },
-    //             1100: {
-    //                 slidesPerView: 3
-    //             },
-    //             1200: {
-    //                 slidesPerView: 4
-    //             }
-    //         }
-    //     });
 
     $('#tabBtn1').click(() => {
         setTimeout(() => {
@@ -217,6 +65,7 @@ $(document).ready(function () {
         }, 100)
 
     })
+
     $('#tabBtn3').click(() => {
         setTimeout(() => {
             product_line_swiper_3.update()
@@ -224,162 +73,6 @@ $(document).ready(function () {
 
     })
 
-
-    // var popular_line_swiper = new Swiper('.popular .swiper-container', {
-    //     slidesPerView: 4,
-    //     loop: true,
-    //     autoplay: 4000,
-    //     lazyLoading: true,
-    //     nextButton: '.popular .swiper-button-next',
-    //     prevButton: '.popular .swiper-button-prev',
-    //     // onlyExternal: true,
-    //     paginationClickable: true,
-    //     spaceBetween: 30,
-    //     breakpoints: {
-    //         480: {
-    //             slidesPerView: 1,
-    //             spaceBetween: 20
-    //         },
-    //         900: {
-    //             slidesPerView: 2
-    //         },
-    //         1100: {
-    //             slidesPerView: 3
-    //         },
-    //         1200: {
-    //             slidesPerView: 4
-    //         }
-    //
-    //         // 1920: {
-    //         //     slidesPerView: 5
-    //         // }
-    //     }
-    // });
-    // var news_line_swiper = new Swiper('.news .swiper-container', {
-    //     slidesPerView: 4,
-    //     loop: true,
-    //     autoplay: 4000,
-    //     lazyLoading: true,
-    //     nextButton: '.news .swiper-button-next',
-    //     prevButton: '.news .swiper-button-prev',
-    //     // onlyExternal: true,
-    //     paginationClickable: true,
-    //     spaceBetween: 30,
-    //     breakpoints: {
-    //         480: {
-    //             slidesPerView: 1,
-    //             spaceBetween: 20
-    //         },
-    //         900: {
-    //             slidesPerView: 2
-    //         },
-    //         1100: {
-    //             slidesPerView: 3
-    //         },
-    //         1200: {
-    //             slidesPerView: 4
-    //         }
-    //     }
-    // });
-
-    // var sale_line_swiper = new Swiper('.sale .swiper-container', {
-    //     slidesPerView: 4,
-    //     loop: true,
-    //     autoplay: 4000,
-    //     lazyLoading: true,
-    //     nextButton: '.sale .swiper-button-next',
-    //     prevButton: '.sale .swiper-button-prev',
-    //     // onlyExternal: true,
-    //     paginationClickable: true,
-    //     spaceBetween: 30,
-    //     breakpoints: {
-    //         480: {
-    //             slidesPerView: 1,
-    //             spaceBetween: 20
-    //         },
-    //         900: {
-    //             slidesPerView: 2
-    //         },
-    //         1100: {
-    //             slidesPerView: 3
-    //         },
-    //         1200: {
-    //             slidesPerView: 4
-    //         }
-    //     }
-    // });
-
-    // var our_clients_swiper = new Swiper('.our_clients .swiper-container', {
-    //     slidesPerView: 4,
-    //     loop: true,
-    //     autoplay: 4000,
-    //     nextButton: '.our_clients .swiper-button-next',
-    //     prevButton: '.our_clients .swiper-button-prev',
-    //     // onlyExternal: true,
-    //     paginationClickable: true,
-    //     spaceBetween: 30,
-    //     spaceBetween: 30,
-    //     breakpoints: {
-    //         480: {
-    //             slidesPerView: 1,
-    //             spaceBetween: 20
-    //         },
-    //         900: {
-    //             slidesPerView: 2
-    //         },
-    //         1100: {
-    //             slidesPerView: 3
-    //         },
-    //         1200: {
-    //             slidesPerView: 4
-    //         }
-    //     }
-    // });
-    // var our_brends_swiper = new Swiper('.our_brends .swiper-container', {
-    //     slidesPerView: 4,
-    //     loop: true,
-    //     autoplay: 4000,
-    //     nextButton: '.our_brends .swiper-button-next',
-    //     prevButton: '.our_brends .swiper-button-prev',
-    //     // onlyExternal: true,
-    //     paginationClickable: true,
-    //     spaceBetween: 30,
-    //     spaceBetween: 30,
-    //     breakpoints: {
-    //         480: {
-    //             slidesPerView: 1,
-    //             spaceBetween: 20
-    //         },
-    //         900: {
-    //             slidesPerView: 2
-    //         },
-    //         1100: {
-    //             slidesPerView: 3
-    //         },
-    //         1200: {
-    //             slidesPerView: 4
-    //         }
-    //     }
-    // });
-
-    <!-- Initialize Swiper -->
-    // var galleryTop = new Swiper('.slider_wrapper .gallery-top', {
-    //     spaceBetween: 10,
-    // });
-    // var galleryThumbs = new Swiper('.slider_wrapper .gallery-thumbs', {
-    //     spaceBetween: 10,
-    //     centeredSlides: true,
-    //     slidesPerView: 3,
-    //     touchRatio: 0.2,
-    //     nextButton: '.slider_wrapper .sp .swiper-button-next',
-    //     prevButton: '.slider_wrapper .sp .swiper-button-prev',
-    //     direction: 'vertical',
-    //     slideToClickedSlide: true
-    // });
-
-    // galleryTop.params.control = galleryThumbs;
-    // galleryThumbs.params.control = galleryTop;
-    // $(function() {
 
     $('header select').selectric();
     $('.select select').selectric();
@@ -407,122 +100,111 @@ $(document).ready(function () {
     //====================================
     //-------- Only this site ------------
     //====================================
+    $('.menu button').click(function (event) {
+        $('.menu-inner').toggleClass('active');
+    });
+    $('.catalog button').click(function (event) {
+        $('.catalog-inner').toggleClass('active');
+    });
+
 });
-$('.menu button').click(function (event) {
-    $('.menu-inner').toggleClass('active');
-});
-$('.catalog button').click(function (event) {
-    $('.catalog-inner').toggleClass('active');
-});
+
+
 // $('.star').raty({
 //     start: 4
 // });
-$('[data-toggle="tooltip"]').tooltip();
-$("#slider-range").slider({
-    min: 0,
-    max: 1000,
-    values: [0, 1000],
-    range: true,
-    stop: function (event, ui) {
-        $("input#minCost").val($("#slider-range").slider("values", 0));
-        $("input#maxCost").val($("#slider-range").slider("values", 1));
-    },
-    slide: function (event, ui) {
-        $("input#minCost").val($("#slider-range").slider("values", 0));
-        $("input#maxCost").val($("#slider-range").slider("values", 1));
-    }
-});
-$('.like').click(function (e) {
-    e.preventDefault();
-    $(this).toggleClass('active')
-})
-if ($('#clock').length) {
-    $(window).on('load', function () {
-        var labels = ['дни', 'часы', 'мин', 'сек'],
-            nextYear = (new Date().getFullYear() + 1) + '/01/01',
-            template = _.template($('#clock-template').html()),
-            currDate = '00:00:00:00',
-            nextDate = ':00:00:00:00',
-            parser = /([0-9]{2})/gi,
-            $example = $('#clock');
-
-        // Parse countdown string to an object
-        function strfobj(str) {
-            var parsed = str.match(parser),
-                obj = {};
-            labels.forEach(function (label, i) {
-                obj[label] = parsed[i]
-            });
-            return obj;
+$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+    $("#slider-range").slider({
+        min: 0,
+        max: 1000,
+        values: [0, 1000],
+        range: true,
+        stop: function (event, ui) {
+            $("input#minCost").val($("#slider-range").slider("values", 0));
+            $("input#maxCost").val($("#slider-range").slider("values", 1));
+        },
+        slide: function (event, ui) {
+            $("input#minCost").val($("#slider-range").slider("values", 0));
+            $("input#maxCost").val($("#slider-range").slider("values", 1));
         }
+    });
+    $('.like').click(function (e) {
+        e.preventDefault();
+        $(this).toggleClass('active')
+    })
+    });
+$(document).ready(function () {
+    if ($('#clock').length) {
+        $(window).on('load', function () {
+            var labels = ['дни', 'часы', 'мин', 'сек'],
+                nextYear = (new Date().getFullYear() + 1) + '/01/01',
+                template = _.template($('#clock-template').html()),
+                currDate = '00:00:00:00',
+                nextDate = ':00:00:00:00',
+                parser = /([0-9]{2})/gi,
+                $example = $('#clock');
 
-        // Return the time components that diffs
-        function diff(obj1, obj2) {
-            var diff = [];
-            labels.forEach(function (key) {
-                if (obj1[key] !== obj2[key]) {
-                    diff.push(key);
+            // Parse countdown string to an object
+            function strfobj(str) {
+                var parsed = str.match(parser),
+                    obj = {};
+                labels.forEach(function (label, i) {
+                    obj[label] = parsed[i]
+                });
+                return obj;
+            }
+
+            // Return the time components that diffs
+            function diff(obj1, obj2) {
+                var diff = [];
+                labels.forEach(function (key) {
+                    if (obj1[key] !== obj2[key]) {
+                        diff.push(key);
+                    }
+                });
+                return diff;
+            }
+
+            // Build the layout
+            var initData = strfobj(currDate);
+            labels.forEach(function (label, i) {
+                $example.append(template({
+                    curr: initData[label],
+                    next: initData[label],
+                    label: label
+                }));
+            });
+            // Starts the countdown
+            $example.countdown(nextYear, function (event) {
+                var newDate = event.strftime('%w:%d:%H:%S'),
+                    data;
+                if (newDate !== nextDate) {
+                    currDate = nextDate;
+                    nextDate = newDate;
+                    // Setup the data
+                    data = {
+                        'curr': strfobj(currDate),
+                        'next': strfobj(nextDate)
+                    };
+                    // Apply the new values to each node that changed
+                    diff(data.curr, data.next).forEach(function (label) {
+                        var selector = '.%s'.replace(/%s/, label),
+                            $node = $example.find(selector);
+                        // Update the node
+                        $node.removeClass('flip');
+                        $node.find('.curr').text(data.curr[label]);
+                        $node.find('.next').text(data.next[label]);
+                        // Wait for a repaint to then flip
+                        _.delay(function ($node) {
+                            $node.addClass('flip');
+                        }, 50, $node);
+                    });
                 }
             });
-            return diff;
-        }
-
-        // Build the layout
-        var initData = strfobj(currDate);
-        labels.forEach(function (label, i) {
-            $example.append(template({
-                curr: initData[label],
-                next: initData[label],
-                label: label
-            }));
         });
-        // Starts the countdown
-        $example.countdown(nextYear, function (event) {
-            var newDate = event.strftime('%w:%d:%H:%S'),
-                data;
-            if (newDate !== nextDate) {
-                currDate = nextDate;
-                nextDate = newDate;
-                // Setup the data
-                data = {
-                    'curr': strfobj(currDate),
-                    'next': strfobj(nextDate)
-                };
-                // Apply the new values to each node that changed
-                diff(data.curr, data.next).forEach(function (label) {
-                    var selector = '.%s'.replace(/%s/, label),
-                        $node = $example.find(selector);
-                    // Update the node
-                    $node.removeClass('flip');
-                    $node.find('.curr').text(data.curr[label]);
-                    $node.find('.next').text(data.next[label]);
-                    // Wait for a repaint to then flip
-                    _.delay(function ($node) {
-                        $node.addClass('flip');
-                    }, 50, $node);
-                });
-            }
-        });
-    });
-}
-//slick slider
-// $('.slider-for').slick({
-//     slidesToShow: 1,
-//     slidesToScroll: 1,
-//     arrows: true,
-//     prevArrow: '<button type="button" class="custom-next"></button>',
-//     nextArrow: '<button type="button" class="custom-prev"></button>',
-//     fade: true,
-//     asNavFor: '.slider-nav'
-// });
-// $('.slider-nav').slick({
-//     slidesToShow: 3,
-//     slidesToScroll: 1,
-//     asNavFor: '.slider-for',
-//     dots: true,
-//     centerMode: true,
-//     focusOnSelect: true
-// });
+    }
+});
 
 // help page
 $(document).ready(function () {
@@ -534,40 +216,37 @@ $(document).ready(function () {
         }
     });
 });
-// light box
-// $('.slider-for').slickLightbox({
-//     itemSelector: '.light',
-//     navigateByKeyboard: true
-// });
 
-$('.product-line__item').hover(
-    function () {
-        let h = $(this).find('.hover-block').height() + 40;
-        $('<div class="after-style"><style>.product-line__item:after{height: calc(100% + ' + h + 'px )!important;}</style></div>').appendTo('body');
-    },
-    function () {
-        $(".after-style").remove()
-    }
-);
-$('.btn.btn-to-cart').click(function () {
-    let div = document.createElement('div')
-    div.classList.add('add-to-cart-info')
-    div.innerHTML = "<p>товар добавлен <br> в корзину</p>";
-    $(this).append(div)
-    setTimeout(function () {
-        $('.add-to-cart-info').remove()
-    }, 2000)
-})
+$(document).ready(function () {
+    $('.product-line__item').hover(
+        function () {
+            let h = $(this).find('.hover-block').height() + 40;
+            $('<div class="after-style"><style>.product-line__item:after{height: calc(100% + ' + h + 'px )!important;}</style></div>').appendTo('body');
+        },
+        function () {
+            $(".after-style").remove()
+        }
+    );
+    $('.btn.btn-to-cart').click(function () {
+        let div = document.createElement('div')
+        div.classList.add('add-to-cart-info')
+        div.innerHTML = "<p>товар добавлен <br> в корзину</p>";
+        $(this).append(div)
+        setTimeout(function () {
+            $('.add-to-cart-info').remove()
+        }, 2000)
+    })
 
-$('.product-line__item__action-block .like').click(function () {
-    let div = document.createElement('div')
-    div.classList.add('add-to-cart-info')
-    div.innerHTML = "<p>товар добавлен <br> в избранное</p>";
-    $(this).append(div)
-    setTimeout(function () {
-        $('.add-to-cart-info').remove()
-    }, 2000)
-})
+    $('.product-line__item__action-block .like').click(function () {
+        let div = document.createElement('div')
+        div.classList.add('add-to-cart-info')
+        div.innerHTML = "<p>товар добавлен <br> в избранное</p>";
+        $(this).append(div)
+        setTimeout(function () {
+            $('.add-to-cart-info').remove()
+        }, 2000)
+    });
+});
 
 
 $(".seo-text-block").click(function () {
@@ -751,16 +430,18 @@ $(document).ready(function () {
 });
 
 
-$('.alphabetbtn').click(()=>{
-    $('.mainalphabet').addClass('active');
-    $('.alphabetbtn').removeClass('active')
-    // $('#alphabet').removeClass('active')
-})
-$('.alphabet_btn_close').click(()=>{
-    $('.mainalphabet').removeClass('active')
-    $('.alphabetbtn').addClass('active')
-})
+$(document).ready(function () {
+    $('.alphabetbtn').click(()=>{
+        $('.mainalphabet').addClass('active');
+        $('.alphabetbtn').removeClass('active')
+        // $('#alphabet').removeClass('active')
+    });
+    $('.alphabet_btn_close').click(()=>{
+        $('.mainalphabet').removeClass('active')
+        $('.alphabetbtn').addClass('active')
+    });
 
-$('.search .search-icon').click(()=>{
-    $('.search .find').toggleClass('active')
-})
+    $('.search .search-icon').click(()=>{
+        $('.search .find').toggleClass('active')
+    });
+});

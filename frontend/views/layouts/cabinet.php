@@ -26,9 +26,9 @@ use yii\helpers\Url;
                             <li><a href="<?= Html::encode(Url::to(['/cabinet/default/index'])) ?>">Личные данные</a></li>
                             <li><a href="<?= Html::encode(Url::to(['/auth/reset/request'])) ?>">Забыли пароль</a></li>
                             <li><a href="<?= Html::encode(Url::to(['/cabinet/wishlist/index'])) ?>">Избранное</a></li>
-                            <li><a href="#">История заказов</a></li>
+                            <li><a href="<?= Html::encode(Url::to(['/cabinet/order/index'])) ?>">История заказов</a></li>
                             <li><a href="#">Отзывы</a></li>
-                            <li><a href="#">Персональное предложение</a></li>
+                            <li><a href="<?= Html::encode(Url::to(['/cabinet/discount/preposition'])) ?>">Персональное предложение</a></li>
                             <li><a href="#">Просмотренные</a></li>
                         </ul>
                     </div>

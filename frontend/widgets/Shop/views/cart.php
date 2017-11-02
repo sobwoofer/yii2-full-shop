@@ -44,17 +44,18 @@ use yii\helpers\Html;
         <div class="cart__item">
             <?php if ($product->mainPhoto): ?>
                 <a href="<?= $url ?>">
-                    <img src="<?= $product->mainPhoto->getThumbFileUrl('file', 'cart_widget_list') ?>" alt="" class="img-thumbnail" />
+                    <p class="cart__product-icon">
+                        <img src="<?= $product->mainPhoto->getThumbFileUrl('file', 'cart_widget_list') ?>" alt="" class="" />
+                    </p>
                 </a>
             <?php endif; ?>
-<!--            <p class="cart__product-icon"></p>-->
             <div class="wrapper">
                 <p class="cart__product-name"><a href="<?= $url ?>"><?= Html::encode($product->name) ?></a></p>
                 <div class="wrapper_product">
                     <p class="cart__product-price"><?= PriceHelper::format($item->getCost()) ?></p>
                     <p class="cart__product-amount"><?= $item->getQuantity() ?> шт</p>
                 </div>
-                <a href="<?= Url::to(['/shop/cart/remove', 'id' => $item->getId()]) ?>" title="Remove" class="" data-method="post"><i class="fa fa-times"></i></a>
+                <a href="<?= Url::to(['/shop/cart/remove', 'id' => $item->getId()]) ?>" title="Remove" class="remove-cart-item" data-method="post"><i class="fa fa-times"></i></a>
             </div>
         </div>
     <?php endforeach ?>

@@ -12,7 +12,7 @@ $(document).ready(function () {
     // Add <div id="toTop"></div>
     $(function () {
         var btnTop = $('#toTop'); // Button id
-    
+
         $(window).scroll(function () {
             if ($(this).scrollTop() > 0 && !btnTop.hasClass('scrolling')) {
                 btnTop.fadeIn();
@@ -20,22 +20,22 @@ $(document).ready(function () {
                 btnTop.fadeOut();
             }
         });
-    
+
         btnTop.click(function () {
             btnTop.fadeOut().addClass('scrolling');
             $('body,html').animate({
                 scrollTop: 0
             }, 800, function () {
-    
+
                 btnTop.removeClass('scrolling');
             });
         });
-    
+
         $('.smoothScroll').click(function (event) {
             var href = $(this).attr('href');
             var target = $(href);
             var top = target.offset().top;
-    
+
             if (target.length) {
                 event.preventDefault();
                 $('html,body').animate({
@@ -48,83 +48,320 @@ $(document).ready(function () {
     //  //= source/modal.js
     //  //= source/responsive-iframe.js
     //  //= source/miss-click.js
-
     $('.product-line__item input[type="number"]').styler();
     $('.product_list_item input[type="number"]').styler();
+    // var main_block_swiper = new Swiper('.main-block .swiper-container', {
+    //     pagination: ' .main-block  .swiper-pagination',
+    //     nextButton: '.main-block  .swiper-button-next',
+    //     prevButton: '.main-block  .swiper-button-prev',
+    //     paginationClickable: true
+    // });
+    // var product_line_swiper = new Swiper('.product-line-1 .swiper-container',
+    //     {
+    //         slidesPerView: 3,
+    //         loop: true,
+    //         nextButton: '.product-line-1 .swiper-button-next',
+    //         prevButton: '.product-line-1 .swiper-button-prev',
+    //         autoplay: 4000,
+    //         // onlyExternal: true,
+    //         paginationClickable: true,
+    //         breakpoints: {
+    //             480: {
+    //                 slidesPerView: 1,
+    //                 spaceBetween: 20
+    //             },
+    //             900: {
+    //                 slidesPerView: 2
+    //             },
+    //             1100: {
+    //                 slidesPerView: 3
+    //             },
+    //             1200: {
+    //                 slidesPerView: 3
+    //             }
+    //
+    //         },
+    //         spaceBetween: 30
+    //     });
+
+    // var product_line_swiper = new Swiper('.product-line-9 .swiper-container',
+    //     {
+    //         slidesPerView: 4,
+    //         loop: true,
+    //         nextButton: '.product-line-9 .swiper-button-next',
+    //         prevButton: '.product-line-9 .swiper-button-prev',
+    //         autoplay: 4000,
+    //         // onlyExternal: true,
+    //         paginationClickable: true,
+    //         breakpoints: {
+    //             480: {
+    //                 slidesPerView: 1,
+    //                 spaceBetween: 20
+    //             },
+    //             900: {
+    //                 slidesPerView: 2
+    //             },
+    //             1100: {
+    //                 slidesPerView: 3
+    //             },
+    //             1200: {
+    //                 slidesPerView: 4
+    //             }
+    //
+    //         },
+    //         spaceBetween: 30
+    //     });
 
 
-//preposition page
-    if ($('#clock').length) {
-        $(window).on('load', function () {
-            var labels = ['дни', 'часы', 'мин', 'сек'],
-                nextYear = (new Date().getFullYear() + 1) + '/01/01',
-                template = _.template($('#clock-template').html()),
-                currDate = '00:00:00:00',
-                nextDate = ':00:00:00:00',
-                parser = /([0-9]{2})/gi,
-                $example = $('#clock');
+    // var product_line_swiper_1 = new Swiper('#tab-1 .swiper-container',
+    //     {
+    //         slidesPerView: 4,
+    //         loop: true,
+    //         autoplay: 4000,
+    //         nextButton: '#tab-1 .swiper-button-next',
+    //         prevButton: '#tab-1 .swiper-button-prev',
+    //
+    //         // onlyExternal: true,
+    //         lazyLoading: true,
+    //         paginationClickable: true,
+    //         spaceBetween: 30,
+    //         breakpoints: {
+    //             480: {
+    //                 slidesPerView: 1,
+    //                 spaceBetween: 20
+    //             },
+    //             900: {
+    //                 slidesPerView: 2
+    //             },
+    //             1100: {
+    //                 slidesPerView: 3
+    //             },
+    //             1200: {
+    //                 slidesPerView: 4
+    //             }
+    //
+    //             // 1920: {
+    //             //     slidesPerView: 5
+    //             // }
+    //
+    //         }
+    //     });
 
-            // Parse countdown string to an object
-            function strfobj(str) {
-                var parsed = str.match(parser),
-                    obj = {};
-                labels.forEach(function (label, i) {
-                    obj[label] = parsed[i]
-                });
-                return obj;
-            }
+    // var product_line_swiper_2 = new Swiper('#tab-2 .swiper-container',
+    //     {
+    //         slidesPerView: 4,
+    //         loop: true,
+    //         autoplay: 4000,
+    //         nextButton: '#tab-2 .swiper-button-next',
+    //         prevButton: '#tab-2 .swiper-button-prev',
+    //
+    //         // onlyExternal: true,
+    //         paginationClickable: true,
+    //         lazyLoading: true,
+    //         spaceBetween: 30,
+    //         breakpoints: {
+    //             480: {
+    //                 slidesPerView: 1,
+    //                 spaceBetween: 20
+    //             },
+    //             900: {
+    //                 slidesPerView: 2
+    //             },
+    //             1100: {
+    //                 slidesPerView: 3
+    //             },
+    //             1200: {
+    //                 slidesPerView: 4
+    //             }
+    //         }
+    //     });
 
-            // Return the time components that diffs
-            function diff(obj1, obj2) {
-                var diff = [];
-                labels.forEach(function (key) {
-                    if (obj1[key] !== obj2[key]) {
-                        diff.push(key);
-                    }
-                });
-                return diff;
-            }
+    // var product_line_swiper_3 = new Swiper('#tab-3 .swiper-container',
+    //     {
+    //         slidesPerView: 4,
+    //         loop: true,
+    //         autoplay: 4000,
+    //         lazyLoading: true,
+    //         nextButton: '#tab-3 .swiper-button-next',
+    //         prevButton: '#tab-3 .swiper-button-prev',
+    //         // onlyExternal: true,
+    //         paginationClickable: true,
+    //         spaceBetween: 30,
+    //         breakpoints: {
+    //             480: {
+    //                 slidesPerView: 1,
+    //                 spaceBetween: 20
+    //             },
+    //             900: {
+    //                 slidesPerView: 2
+    //             },
+    //             1100: {
+    //                 slidesPerView: 3
+    //             },
+    //             1200: {
+    //                 slidesPerView: 4
+    //             }
+    //         }
+    //     });
 
-            // Build the layout
-            var initData = strfobj(currDate);
-            labels.forEach(function (label, i) {
-                $example.append(template({
-                    curr: initData[label],
-                    next: initData[label],
-                    label: label
-                }));
-            });
-            // Starts the countdown
-            $example.countdown(nextYear, function (event) {
-                var newDate = event.strftime('%w:%d:%H:%S'),
-                    data;
-                if (newDate !== nextDate) {
-                    currDate = nextDate;
-                    nextDate = newDate;
-                    // Setup the data
-                    data = {
-                        'curr': strfobj(currDate),
-                        'next': strfobj(nextDate)
-                    };
-                    // Apply the new values to each node that changed
-                    diff(data.curr, data.next).forEach(function (label) {
-                        var selector = '.%s'.replace(/%s/, label),
-                            $node = $example.find(selector);
-                        // Update the node
-                        $node.removeClass('flip');
-                        $node.find('.curr').text(data.curr[label]);
-                        $node.find('.next').text(data.next[label]);
-                        // Wait for a repaint to then flip
-                        _.delay(function ($node) {
-                            $node.addClass('flip');
-                        }, 50, $node);
-                    });
-                }
-            });
-        });
-    }
+    $('#tabBtn1').click(() => {
+        setTimeout(() => {
+            product_line_swiper_1.update()
+        }, 100)
+    })
 
-    
+    $('#tabBtn2').click(() => {
+
+        setTimeout(() => {
+            product_line_swiper_2.update()
+        }, 100)
+
+    })
+    $('#tabBtn3').click(() => {
+        setTimeout(() => {
+            product_line_swiper_3.update()
+        }, 100)
+
+    })
+
+
+    // var popular_line_swiper = new Swiper('.popular .swiper-container', {
+    //     slidesPerView: 4,
+    //     loop: true,
+    //     autoplay: 4000,
+    //     lazyLoading: true,
+    //     nextButton: '.popular .swiper-button-next',
+    //     prevButton: '.popular .swiper-button-prev',
+    //     // onlyExternal: true,
+    //     paginationClickable: true,
+    //     spaceBetween: 30,
+    //     breakpoints: {
+    //         480: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20
+    //         },
+    //         900: {
+    //             slidesPerView: 2
+    //         },
+    //         1100: {
+    //             slidesPerView: 3
+    //         },
+    //         1200: {
+    //             slidesPerView: 4
+    //         }
+    //
+    //         // 1920: {
+    //         //     slidesPerView: 5
+    //         // }
+    //     }
+    // });
+    // var news_line_swiper = new Swiper('.news .swiper-container', {
+    //     slidesPerView: 4,
+    //     loop: true,
+    //     autoplay: 4000,
+    //     lazyLoading: true,
+    //     nextButton: '.news .swiper-button-next',
+    //     prevButton: '.news .swiper-button-prev',
+    //     // onlyExternal: true,
+    //     paginationClickable: true,
+    //     spaceBetween: 30,
+    //     breakpoints: {
+    //         480: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20
+    //         },
+    //         900: {
+    //             slidesPerView: 2
+    //         },
+    //         1100: {
+    //             slidesPerView: 3
+    //         },
+    //         1200: {
+    //             slidesPerView: 4
+    //         }
+    //     }
+    // });
+
+    // var sale_line_swiper = new Swiper('.sale .swiper-container', {
+    //     slidesPerView: 4,
+    //     loop: true,
+    //     autoplay: 4000,
+    //     lazyLoading: true,
+    //     nextButton: '.sale .swiper-button-next',
+    //     prevButton: '.sale .swiper-button-prev',
+    //     // onlyExternal: true,
+    //     paginationClickable: true,
+    //     spaceBetween: 30,
+    //     breakpoints: {
+    //         480: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20
+    //         },
+    //         900: {
+    //             slidesPerView: 2
+    //         },
+    //         1100: {
+    //             slidesPerView: 3
+    //         },
+    //         1200: {
+    //             slidesPerView: 4
+    //         }
+    //     }
+    // });
+
+    // var our_clients_swiper = new Swiper('.our_clients .swiper-container', {
+    //     slidesPerView: 4,
+    //     loop: true,
+    //     autoplay: 4000,
+    //     nextButton: '.our_clients .swiper-button-next',
+    //     prevButton: '.our_clients .swiper-button-prev',
+    //     // onlyExternal: true,
+    //     paginationClickable: true,
+    //     spaceBetween: 30,
+    //     spaceBetween: 30,
+    //     breakpoints: {
+    //         480: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20
+    //         },
+    //         900: {
+    //             slidesPerView: 2
+    //         },
+    //         1100: {
+    //             slidesPerView: 3
+    //         },
+    //         1200: {
+    //             slidesPerView: 4
+    //         }
+    //     }
+    // });
+    // var our_brends_swiper = new Swiper('.our_brends .swiper-container', {
+    //     slidesPerView: 4,
+    //     loop: true,
+    //     autoplay: 4000,
+    //     nextButton: '.our_brends .swiper-button-next',
+    //     prevButton: '.our_brends .swiper-button-prev',
+    //     // onlyExternal: true,
+    //     paginationClickable: true,
+    //     spaceBetween: 30,
+    //     spaceBetween: 30,
+    //     breakpoints: {
+    //         480: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20
+    //         },
+    //         900: {
+    //             slidesPerView: 2
+    //         },
+    //         1100: {
+    //             slidesPerView: 3
+    //         },
+    //         1200: {
+    //             slidesPerView: 4
+    //         }
+    //     }
+    // });
+
     <!-- Initialize Swiper -->
     // var galleryTop = new Swiper('.slider_wrapper .gallery-top', {
     //     spaceBetween: 10,
@@ -139,26 +376,27 @@ $(document).ready(function () {
     //     direction: 'vertical',
     //     slideToClickedSlide: true
     // });
+
     // galleryTop.params.control = galleryThumbs;
     // galleryThumbs.params.control = galleryTop;
     // $(function() {
-    
+
     $('header select').selectric();
     $('.select select').selectric();
     // });
-    
+
     $(".lang label ").click(function(event) {
-        
+
         if (!$(".lang input").is( ":checked" )) {
             console.log('ru')
             $('.lang .ua').removeClass('act')
             $('.lang .ru').addClass('act')
         } else {
             console.log('ua')
-    		$('.lang .ru').removeClass('act')
-    		$('.lang .ua').addClass('act')
+            $('.lang .ru').removeClass('act')
+            $('.lang .ua').addClass('act')
         }
-    
+
     });
     //====================================
     //--------- Setting libs -------------
@@ -180,28 +418,24 @@ $('.catalog button').click(function (event) {
 //     start: 4
 // });
 $('[data-toggle="tooltip"]').tooltip();
-$(window).on('load', function () {
-    $("#slider-range").slider({
-        min: 0,
-        max: 1000,
-        values: [0, 1000],
-        range: true,
-        stop: function (event, ui) {
-            $("input#minCost").val($("#slider-range").slider("values", 0));
-            $("input#maxCost").val($("#slider-range").slider("values", 1));
-        },
-        slide: function (event, ui) {
-            $("input#minCost").val($("#slider-range").slider("values", 0));
-            $("input#maxCost").val($("#slider-range").slider("values", 1));
-        }
-    });
+$("#slider-range").slider({
+    min: 0,
+    max: 1000,
+    values: [0, 1000],
+    range: true,
+    stop: function (event, ui) {
+        $("input#minCost").val($("#slider-range").slider("values", 0));
+        $("input#maxCost").val($("#slider-range").slider("values", 1));
+    },
+    slide: function (event, ui) {
+        $("input#minCost").val($("#slider-range").slider("values", 0));
+        $("input#maxCost").val($("#slider-range").slider("values", 1));
+    }
 });
-
 $('.like').click(function (e) {
     e.preventDefault();
     $(this).toggleClass('active')
 })
-
 if ($('#clock').length) {
     $(window).on('load', function () {
         var labels = ['дни', 'часы', 'мин', 'сек'],
@@ -271,28 +505,6 @@ if ($('#clock').length) {
         });
     });
 }
-
-$('#tabBtn1').click(() => {
-    setTimeout(()=>{
-    product_line_swiper_1.update()
-},100)
-
-
-})
-$('#tabBtn2').click(() => {
-
-    setTimeout(()=>{
-    product_line_swiper_2.update()
-},100)
-
-})
-$('#tabBtn3').click(() => {
-    setTimeout(()=>{
-    product_line_swiper_3.update()
-},100)
-
-})
-
 //slick slider
 // $('.slider-for').slick({
 //     slidesToShow: 1,
@@ -471,29 +683,51 @@ $(document).ready(function () {
 
         if(+now > +price){
 
-        p[0].innerHTML = (+now - +price).toFixed(2) +"грн"
-}
+            p[0].innerHTML = (+now - +price).toFixed(2) +"грн"
+        }
 
     })
+});
 
-    $('#accordion .panel-heading').click(function (e) {
-        console.log(e)
-        // $('#accordion .panel-heading').removeClass('active');
-        $(this).toggleClass('active');
-    });
 
-    $('.filter_cat_wrp .toggle-btn').click(function (e) {
-        $($(this).parent().parent('.filter_cat_wrp')).toggleClass('active')
-    });
+$('#accordion .panel-heading').click(function (e) {
+    console.log(e)
+    // $('#accordion .panel-heading').removeClass('active');
+    $(this).toggleClass('active');
+});
+
+$('.filter_cat_wrp .toggle-btn').click(function (e) {
+    $($(this).parent().parent('.filter_cat_wrp')).toggleClass('active')
+});
+
+$('#showFilter').click(function (e) {
+    $('.catalog-filter').slideToggle()
+});
+
+$(window).resize(function() {
+    clearTimeout(window.resizedFinished);
+    window.resizedFinished = setTimeout(function() {
+        if($( window ).width() >= 768){
+            $('.catalog-filter').show()
+        }else if($( window ).width() <= 768){
+            $('.catalog-filter').hide()
+        }else{
+            return false
+        }
+    }, 250);
+});
+
+$(document).ready(function () {
+    $('.input_search').click(function () {
+        // $(this).toggleClass('act')
+        $('.find__result').slideToggle();
+    })
 
     $('.header_cart_wrp').click(function (e) {
         $(this).toggleClass('active')
         $('.cart__inside').toggleClass('active')
     });
-
 });
-
-
 
 
 // live comment
@@ -509,17 +743,22 @@ $(document).ready(function () {
         $('.review_wrapper').fadeIn()
     });
 });
-
+// phone hide on mobile
+$(document).ready(function () {
+    $('.phone__icon').on('click', function(){
+        $('.phonenumbersMob').fadeToggle();
+    })
+});
 
 
 $('.alphabetbtn').click(()=>{
     $('.mainalphabet').addClass('active');
-$('.alphabetbtn').removeClass('active')
-// $('#alphabet').removeClass('active')
+    $('.alphabetbtn').removeClass('active')
+    // $('#alphabet').removeClass('active')
 })
 $('.alphabet_btn_close').click(()=>{
     $('.mainalphabet').removeClass('active')
-$('.alphabetbtn').addClass('active')
+    $('.alphabetbtn').addClass('active')
 })
 
 $('.search .search-icon').click(()=>{

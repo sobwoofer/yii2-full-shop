@@ -16,6 +16,7 @@ use core\helpers\WeightHelper;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
+//TODO this page doesn't use
 //TODO need refactor checkout and cart to one view page
 $this->title = 'Checkout';
 $this->params['breadcrumbs'][] = ['label' => 'Catalog', 'url' => ['/shop/catalog/index']];
@@ -86,8 +87,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel panel-default">
         <div class="panel-heading">Customer</div>
         <div class="panel-body">
-            <?= $form->field($model->customer, 'phone')->textInput() ?>
             <?= $form->field($model->customer, 'name')->textInput() ?>
+            <?= $form->field($model->customer, 'phone')->textInput() ?>
         </div>
     </div>
 

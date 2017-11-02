@@ -61,7 +61,7 @@ class Photo extends ActiveRecord
                 'thumbs' => [
                     'admin' => ['width' => 100, 'height' => 70],
                     'thumb' => ['width' => 640, 'height' => 480],
-                    'cart_list' => ['width' => 150, 'height' => 150],
+                    'cart_list' => ['width' => 47, 'height' => 47],
                     'cart_widget_list' => ['width' => 33, 'height' => 33],
                     'catalog_list' => ['width' => 154, 'height' => 151],
                     'catalog_product_main' => ['processor' => [new WaterMarker(616, 516, '@frontend/web/images/system/logo-papirus.png'), 'process']],

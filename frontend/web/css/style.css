@@ -4811,6 +4811,15 @@ a.filter-title {
     margin: 20px auto;
 }
 
+.wrp-input .field-deliveryform-method{
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    max-width: 470px;
+    margin: 10px auto;
+    border-radius: 6px;
+    outline: none;
+}
 .wrp-input {
     position: relative;
 }

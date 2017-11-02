@@ -8,6 +8,7 @@
 
 namespace frontend\controllers\shop;
 
+use core\cart\Cart;
 use core\forms\Shop\AddToCartForm;
 use core\readModels\Shop\ProductReadRepository;
 use core\useCases\Shop\CartService;
@@ -15,6 +16,7 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use core\forms\Shop\Order\OrderForm;
 
 class CartController extends Controller
 {
@@ -22,12 +24,14 @@ class CartController extends Controller
 
     private $products;
     private $service;
+    private $cart;
 
-    public function __construct($id, $module, CartService $service, ProductReadRepository $products, $config = [])
+    public function __construct($id, $module, CartService $service, Cart $cart, ProductReadRepository $products, $config = [])
     {
         parent::__construct($id, $module, $config);
         $this->products = $products;
         $this->service = $service;
+        $this->cart = $cart;
     }
 
     public function behaviors(): array
@@ -49,9 +53,11 @@ class CartController extends Controller
     public function actionIndex()
     {
         $cart = $this->service->getCart();
+        $form = new OrderForm($this->cart->getWeight());
 
         return $this->render('index', [
             'cart' => $cart,
+            'model' => $form,
         ]);
     }
 

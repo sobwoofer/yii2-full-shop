@@ -8,10 +8,12 @@
 
 /* @var $this yii\web\View */
 /* @var $cart \core\cart\Cart */
+/* @var $model \core\forms\Shop\Order\OrderForm */
 
 use core\helpers\PriceHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\bootstrap\ActiveForm;
 
 $this->title = 'Shopping Cart';
 $this->params['breadcrumbs'][] = ['label' => 'Catalog', 'url' => ['/shop/catalog/index']];
@@ -23,8 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <h1 class="main-title uppercase"><?= Html::encode($this->title) ?></h1>
 
         <div class="custom-btn-wrp">
-            <button class="custom-btn"><span class="icon"><img src="images/system/printer.png" alt="">&nbsp;&nbsp;Распечатать</span></button>
-            <button class="custom-btn"><span class="icon"><img src="images/system/download.png" alt="">&nbsp;&nbsp;Скачать</span></button>
+            <button class="custom-btn"><span class="icon"><img src="/images/system/printer.png" alt="">&nbsp;&nbsp;Распечатать</span></button>
+            <button class="custom-btn"><span class="icon"><img src="/images/system/download.png" alt="">&nbsp;&nbsp;Скачать</span></button>
         </div>
 
         <div class="cart-table-wrp">
@@ -52,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <input type="checkbox">
                             <a href="<?= $url ?>">
                                 <?php if ($product->mainPhoto): ?>
-                                    <img src="<?= $product->mainPhoto->getThumbFileUrl('file', 'cart_list') ?>" alt="" class="img-thumbnail" />
+                                    <img src="<?= $product->mainPhoto->getThumbFileUrl('file', 'cart_list') ?>" alt="" class="" />
                                 <?php endif; ?>
                             </a>
                         </td>
@@ -159,13 +161,29 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
             <div class="col-sm-10 col-sm-offset-1 box checkout ">
-                <form action="#">
+                <?php $form = ActiveForm::begin(['action' => '/shop/checkout']) ?>
                     <p class="form-title">Заполните контактные данные</p>
-                    <input type="text" placeholder="Имя и фамилия *">
-                    <input type="text" placeholder="Адрес *">
-                    <input type="text" placeholder="Телефон *">
-                    <input type="text" placeholder="Эл. почта *">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Комментарии к заказу"></textarea>
+                <?= $form->field($model->customer, 'name')->textInput([
+                        'placeholder' => 'First and Last Name'])->label(false) ?>
+                <?= $form->field($model->delivery, 'address')->textarea([
+                        'rows' => 3,
+                        'placeholder' => 'Address'])->label(false) ?>
+                <?= $form->field($model->customer, 'phone')->textInput([
+                    'placeholder' => 'Phone number'])->label(false) ?>
+                <?= $form->field($model->delivery, 'index')->textInput([
+                        'placeholder' => 'post index'
+                ])->label(false) ?>
+
+
+
+<!--TODO need add all under fields-->
+<!--                    <input type="text" placeholder="Эл. почта *">-->
+
+                <?= $form->field($model, 'note')->textarea([
+                    'rows' => 3,
+                    'cols' => 30,
+                    'placeholder' => 'Comment for order'])->label(false) ?>
+
                     <p class="info"><span class="red">*</span> поля обязательные к заполнению</p>
                     <p class="form-title">Заполните контактные данные</p>
 
@@ -176,7 +194,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div class="wrp-input">
                         <p class="wrp-input-title">Способ доставки</p>
-                        <input type="text" placeholder="Курьером по Киеву">
+                        <?= $form->field($model->delivery, 'method')
+                            ->dropDownList($model->delivery->deliveryMethodsList(), ['prompt' => '--- Select ---'])
+                            ->label(false) ?>
+
+<!--                        <input type="text" placeholder="Курьером по Киеву">-->
                         <a href="#/" class="wrp-input_more">подробнее</a>
                     </div>
                     <div class="adress-wrp">
@@ -187,7 +209,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php if ($cart->getItems()): ?>
                         <input type="submit" value="Оформить заказ" href="index.php?route=checkout/checkout" class="btn uppercase">
                     <?php endif; ?>
-                </form>
+                <?php ActiveForm::end() ?>
             </div>
         </div>
     </div>

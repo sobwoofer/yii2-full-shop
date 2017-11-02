@@ -364,20 +364,9 @@ AppAsset::register($this);
 
                                         </form>
                                         <p class="or-link"><span>или</span></p>
-                                        <ul class="soc-reg">
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-google-plus-square" aria-hidden="true"></i>
-                                                    Google+
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-facebook-official" aria-hidden="true"></i>
-                                                    Facebook
-                                                </a>
-                                            </li>
-                                        </ul>
+                                        <?= \frontend\widgets\auth\AuthWidget::widget([
+                                            'baseAuthUrl' => ['auth/network/auth']
+                                        ]); ?>
                                     </div>
 
                                 </div>

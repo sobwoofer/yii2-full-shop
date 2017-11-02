@@ -25,8 +25,6 @@ class CatalogMenuView
     public function addChild(Category $child)
     {
         return $this->_children[] = new self($child);
-
-//        return static();
     }
 
 }

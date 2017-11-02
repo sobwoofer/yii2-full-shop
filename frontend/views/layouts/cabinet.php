@@ -19,14 +19,7 @@ use yii\helpers\Url;
     <div class="container">
         <div class="profile-page">
             <div class="row">
-                <div class="hidden visible-xs">
-                    <div class="bread_crumbs">
-                        <ul>
-                            <li><a href="#">Вы здесь: Канцтовары </a></li>
-                            <li><a href="#">Письменные принадлежности</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <!--        TODO this will be xs and sm breadcrumbs -->
                 <div class="col-sm-3">
                     <div class="left-nav-block">
                         <ul>

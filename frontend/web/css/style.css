@@ -1785,7 +1785,7 @@ fieldset {
     right: 0;
 
     width: 100%;
-    max-width: 287px;
+    max-width: 487px;
     padding: 20px;
 
     border-radius: 0 0 4px 4px;
@@ -1804,11 +1804,22 @@ fieldset {
     justify-content: space-around;
 }
 
+.top-action .cart__item .wrapper .remove-cart-item{
+    right: -3px;
+    top: 17px;
+    position: absolute;
+}
+
+.top-action .cart__item .wrapper {
+    width: 100%;
+    position: relative;
+}
+
 .top-action .cart__item {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-
+    padding-bottom: 5px;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -2076,7 +2087,7 @@ fieldset {
 }
 
 .header_cart_wrp .cart_full {
-    display: none;
+    /*display: none;*/
 }
 
 .cart__inside {

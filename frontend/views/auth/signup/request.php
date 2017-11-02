@@ -74,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         </p>
                                     </div>
                                     <div class="box">
-                                        <?= \frontend\widgets\auth\AuthWidget::widget([
+                                        <?= \frontend\widgets\auth\SocialAuthWidget::widget([
                                             'baseAuthUrl' => ['auth/network/auth']
                                         ]); ?>
                                         <p class="agreement">

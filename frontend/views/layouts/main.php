@@ -324,51 +324,17 @@ AppAsset::register($this);
                             </p>
                         </div>
 
-
-
-
                         <!-- Modal -->
                         <div class="modal fade" id="authorization_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
-
                                     <div class="modal-body">
-                                        <form action="#">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="E-mail">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Пароль">
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <label >
-                                                        <input type="checkbox">
-                                                        Запомнить пароль
-                                                    </label>
-
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <button type="button" class="btn-link forget" >Забыли пароль?</button>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <button type="button" class="btn enter" >Войти</button>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <a href="<?= Html::encode(Url::to(['/signup'])) ?>" class="btn-link reg" >Зарегестрироваться</a>
-                                                </div>
-                                            </div>
-
-                                        </form>
+                                        <?= \frontend\widgets\auth\LoginWidget::widget() ?>
                                         <p class="or-link"><span>или</span></p>
-                                        <?= \frontend\widgets\auth\AuthWidget::widget([
+                                        <?= \frontend\widgets\auth\SocialAuthWidget::widget([
                                             'baseAuthUrl' => ['auth/network/auth']
                                         ]); ?>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

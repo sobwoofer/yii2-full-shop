@@ -21,7 +21,7 @@ use yii\base\Widget;
  * Class AuthWidget
  * @package frontend\widgets\auth
  */
-class AuthWidget extends AuthChoice
+class SocialAuthWidget extends AuthChoice
 {
 
     /**

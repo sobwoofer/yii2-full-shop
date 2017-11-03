@@ -8,16 +8,20 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property int $created_at
  * @property int $user_id
+ * @property string $username
+ * @property int $parent_id
  * @property int $vote
  * @property string $text
  * @property bool $active
  */
 class Review extends ActiveRecord
 {
-    public static function create($userId, int $vote, string $text): self
+    public static function create($userId,  $userName, $parentId, $vote, string $text): self
     {
         $review = new static();
         $review->user_id = $userId;
+        $review->username = $userName;
+        $review->parent_id = $parentId;
         $review->vote = $vote;
         $review->text = $text;
         $review->created_at = time();

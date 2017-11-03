@@ -438,11 +438,12 @@ class Product extends ActiveRecord implements AggregateRoot
 
     // Reviews
 
-    public function addReview($userId, $vote, $text): void
+    public function addReview($userId, $userName, $parentId, $vote, $text): Review
     {
         $reviews = $this->reviews;
-        $reviews[] = Review::create($userId, $vote, $text);
+        $reviews[] = $review = Review::create($userId, $userName, $parentId, $vote, $text);
         $this->updateReviews($reviews);
+        return $review;
     }
 
     public function editReview($id, $vote, $text): void

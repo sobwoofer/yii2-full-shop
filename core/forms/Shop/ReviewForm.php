@@ -15,6 +15,7 @@ class ReviewForm extends Model
 {
     public $vote;
     public $text;
+    public $parentId;
 
     public function  rules()
     {
@@ -22,6 +23,7 @@ class ReviewForm extends Model
             [['vote', 'text'], 'required'],
             [['vote'], 'in', 'range' => array_keys($this->votesList())],
             ['text', 'string'],
+            ['parentId', 'integer'],
         ];
     }
 

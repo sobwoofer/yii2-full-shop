@@ -15,9 +15,11 @@ use core\readModels\Shop\CategoryReadRepository;
 use core\readModels\Shop\ProductReadRepository;
 use core\readModels\Shop\TagReadRepository;
 use core\forms\Shop\ReviewForm;
+use core\useCases\Shop\ReviewService;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use core\forms\Shop\Search\SearchForm;
+use Yii;
 
 class CatalogController extends Controller
 {
@@ -27,6 +29,7 @@ class CatalogController extends Controller
     private $categories;
     private $brands;
     private $tags;
+    private $reviewService;
 
     public function __construct(
         $id,
@@ -35,6 +38,7 @@ class CatalogController extends Controller
         CategoryReadRepository $categories,
         BrandReadRepository $brands,
         TagReadRepository $tags,
+        ReviewService $reviewService,
         $config = []
     )
     {
@@ -42,6 +46,7 @@ class CatalogController extends Controller
         $this->products = $products;
         $this->categories = $categories;
         $this->brands = $brands;
+        $this->reviewService = $reviewService;
         $this->tags = $tags;
     }
 
@@ -147,6 +152,18 @@ class CatalogController extends Controller
 
         $cartForm = new AddToCartForm($product);
         $reviewForm = new ReviewForm();
+
+        if ($reviewForm->load(Yii::$app->request->post()) && $reviewForm->validate()) {
+            try {
+                $review = $this->reviewService->create($product->id, Yii::$app->user->id, $reviewForm);
+                return $this->redirect(['product', 'id' => $product->id, '#' => 'review_' . $review->id]);
+            } catch (\DomainException $e) {
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
+        }
+
+
 
         return $this->render('product', [
             'product' => $product,

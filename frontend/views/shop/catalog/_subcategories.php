@@ -23,17 +23,23 @@ use yii\helpers\Url;
                         <div class="categories-item">
                             <div class="categories-item-img">
                                 <a href="<?= Html::encode(Url::to(['category', 'id' => $child->id])) ?>">
-                                    <img src="/images/paper.png" alt="">
+                                    <?= Html::img($child->getThumbFileUrl('image', 'catalog')) ?>
                                 </a>
                             </div>
-                            <span><?= Html::encode($child->name) ?></span>
-                            <ul>
-                                <li><a href="#">все товары</a></li>
-                            </ul>
-                            <span>Конверты</span>
-                            <ul>
-                                <li><a href="#">все товары</a></li>
-                            </ul>
+                            <span>
+                                <a href="<?= Html::encode(Url::to(['category', 'id' => $child->id])) ?>">
+                                    <?= Html::encode($child->name) ?>
+                                </a>
+                            </span>
+                            <?php if ($category->children): ?>
+                                <ul>
+                                <?php foreach ($child->children as $subChild): ?>
+                                    <li><a href="<?= Html::encode(Url::to(['category', 'id' => $subChild->id])) ?>">
+                                            <?= Html::encode($subChild->name) ?></a>
+                                    </li>
+                                <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>

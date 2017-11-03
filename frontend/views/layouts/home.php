@@ -166,13 +166,13 @@ use yii\helpers\Html;
     </div>
 </div>
 <hr>
-<?= \frontend\widgets\Shop\ViewedProductsWidget::widget(['limit' => 4]) ?>
-<?= \frontend\widgets\Shop\PnsTabsProductWidget::widget(['limit' => 4]) ?>
-<?= \frontend\widgets\Shop\SalesOfWeekProductsWidget::widget(['limit' => 4, 'banner' => [
+<?= \frontend\widgets\Shop\ViewedProductsWidget::widget(['limit' => 6]) ?>
+<?= \frontend\widgets\Shop\PnsTabsProductWidget::widget(['limit' => 6]) ?>
+<?= \frontend\widgets\Shop\SalesOfWeekProductsWidget::widget(['limit' => 6, 'banner' => [
     'link' => '/',
     'image' => '/images/system/ba2.png'
 ]]) ?>
-<?= \frontend\widgets\Shop\PopularProductsWidget::widget(['limit' => 4]) ?>
+<?= \frontend\widgets\Shop\PopularProductsWidget::widget(['limit' => 6]) ?>
 <?= \frontend\widgets\Shop\SaleProductsWidget::widget(['limit' => 4]) ?>
 
 <?= \frontend\widgets\Blog\LastPostsWidget::widget(['limit' => 3]) ?>

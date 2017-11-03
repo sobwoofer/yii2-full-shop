@@ -79,14 +79,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'category' => $category
     ]) ?>
 
-    //= modules/product-line.html <!-- //TODO widget product-line -->
+    <?= \frontend\widgets\Shop\ViewedProductsWidget::widget(['limit' => 6]) ?>
+
+    <?= \frontend\widgets\Shop\SalesOfWeekProductsWidget::widget(['limit' => 6, 'banner' => [
+        'link' => '/',
+        'image' => '/images/system/ba2.png'
+    ]]) ?>
 
     <?= $this->render('/shop/seoblock', [
         'shortText' => 'descriptiondescriptiondescription', //TODO var description
-    ]) ?>
-
-    <?= $this->render('_list', [
-        'dataProvider' => $dataProvider
     ]) ?>
 
 </div>

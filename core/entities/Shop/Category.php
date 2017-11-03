@@ -14,6 +14,9 @@ use core\entities\Meta;
 use yii\db\ActiveRecord;
 use paulzi\nestedsets\NestedSetsBehavior;
 use core\entities\Shop\queries\CategoryQuery;
+use yii\web\UploadedFile;
+use yiidreamteam\upload\ImageUploadBehavior;
+
 /**
  * @property integer $id
  * @property string $name
@@ -23,6 +26,7 @@ use core\entities\Shop\queries\CategoryQuery;
  * @property integer $lft
  * @property integer $rgt
  * @property integer $depth
+ * @property string $image
  * @property Meta $meta
  * @property Category[] $children
  *
@@ -66,6 +70,11 @@ class Category extends ActiveRecord
         return $this->title ?: $this->name;
     }
 
+    public function setPhoto(UploadedFile $image): void
+    {
+        $this->image = $image;
+    }
+
     public static function tableName(): string
     {
         return '{{%shop_categories}}';
@@ -76,6 +85,20 @@ class Category extends ActiveRecord
         return [
             MetaBehavior::className(),
             NestedSetsBehavior::className(),
+            [
+                'class' => ImageUploadBehavior::className(),
+                'attribute' => 'image',
+                'createThumbsOnRequest' => true,
+                'filePath' => '@staticRoot/origin/category/[[id]].[[extension]]',
+                'fileUrl' => '@static/origin/category/[[id]].[[extension]]',
+                'thumbPath' => '@staticRoot/cache/category/[[profile]]_[[id]].[[extension]]',
+                'thumbUrl' => '@static/cache/category/[[profile]]_[[id]].[[extension]]',
+                'thumbs' => [
+                    'catalog' => ['width' => 151, 'height' => 122],
+                    'thumb' => ['width' => 150, 'height' => 150],
+                    'thumb_list' => ['width' => 30, 'height' => 30],
+                ],
+            ],
         ];
     }
 

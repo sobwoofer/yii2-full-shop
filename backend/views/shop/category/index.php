@@ -33,6 +33,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     'id',
                     [
+                        'value' => function (Category $model) {
+                            return $model->image ? Html::img($model->getThumbFileUrl('image', 'thumb_list')) : null;
+                        },
+                        'format' => 'raw',
+                        'contentOptions' => ['style' => 'width: 100px'],
+                    ],
+                    [
                         'attribute' => 'name',
                         'value' => function (Category $model) {
                             $indent = ($model->depth > 1 ? str_repeat('&nbsp;&nbsp;', $model->depth - 1) . ' ' : '');

@@ -14,6 +14,7 @@ use yii\base\Model;
 use core\entities\Shop\Category;
 use core\validators\SlugValidator;
 use yii\helpers\ArrayHelper;
+use yii\web\UploadedFile;
 
 /**
  * @property MetaForm $meta;
@@ -21,6 +22,7 @@ use yii\helpers\ArrayHelper;
 class CategoryForm extends CompositeForm
 {
     public $name;
+    public $image;
     public $slug;
     public $title;
     public $description;
@@ -48,6 +50,7 @@ class CategoryForm extends CompositeForm
     {
         return [
             [['name', 'slug'], 'required'],
+            [['image'], 'image'],
             [['parentId'], 'integer'],
             [['name', 'slug', 'title'], 'string', 'max' => 255],
             [['description'], 'string'],
@@ -66,6 +69,15 @@ class CategoryForm extends CompositeForm
     public function internalForms(): array
     {
         return ['meta'];
+    }
+
+    public function beforeValidate(): bool
+    {
+        if (parent::beforeValidate()) {
+            $this->image = UploadedFile::getInstance($this, 'image');
+            return true;
+        }
+        return false;
     }
 
 }

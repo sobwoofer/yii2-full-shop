@@ -10,6 +10,9 @@
 /* @var $dataProvider yii\data\DataProviderInterface */
 /* @var $category core\entities\Shop\Category */
 
+use romkaChev\yii2\swiper\Swiper;
+use yii\helpers\Html;
+
 $this->title = 'Catalog';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -24,21 +27,34 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-md-9 ">
                 <div class="row">
                     <div class="col-sm-12  left-main-block">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img src="images/categories-slider-img.png" alt=""></div>
-                                <div class="swiper-slide"><img src="images/categories-slider-img.png" alt=""></div>
-                                <div class="swiper-slide"><img src="images/categories-slider-img.png" alt=""></div>
-                                <div class="swiper-slide"><img src="images/categories-slider-img.png" alt=""></div>
-                                <div class="swiper-slide"><img src="images/categories-slider-img.png" alt=""></div>
-                                <div class="swiper-slide"><img src="images/categories-slider-img.png" alt=""></div>
-                            </div>
-                            <!-- Add Pagination -->
-                            <div class="swiper-pagination"></div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                        </div>
-
+                        <?= Swiper::widget( [
+                            'items'         => [
+                                Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
+                                Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
+                                Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
+                                Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
+                                Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
+                                Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png')
+                            ],
+                            'behaviours'    => [
+                                'pagination',
+                                'nextButton',
+                                'prevButton'
+                            ],
+                            'pluginOptions' => [
+                                'grabCursor'     => true,
+                                'centeredSlides' => true,
+                                'slidesPerView'  => 'auto',
+                                'effect'         => 'coverflow',
+                                'coverflow'      => [
+                                    'rotate'       => 50,
+                                    'stretch'      => 0,
+                                    'depth'        => 100,
+                                    'modifier'     => 1,
+                                    'slideShadows' => true
+                                ]
+                            ]
+                        ] ); ?>
                     </div>
                     <!--<div class="hidden-md col-lg-4 right-block">-->
                     <!--<div class="responsive-img">-->

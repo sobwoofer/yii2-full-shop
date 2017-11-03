@@ -41,6 +41,9 @@ class CategoryManageService
             )
         );
         $category->appendTo($parent);
+        if ($form->image) {
+            $category->setPhoto($form->image);
+        }
         $this->categories->save($category);
         return $category;
     }
@@ -63,6 +66,9 @@ class CategoryManageService
         if ($form->parentId !== $category->parent->id) {
             $parent = $this->categories->get($form->parentId);
             $category->appendTo($parent);
+        }
+        if ($form->image) {
+            $category->setPhoto($form->image);
         }
         $this->categories->save($category);
     }

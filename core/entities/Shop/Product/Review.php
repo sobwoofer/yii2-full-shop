@@ -2,12 +2,14 @@
 
 namespace core\entities\Shop\Product;
 
+use core\entities\Shop\Product\queries\ProductQuery;
 use yii\db\ActiveRecord;
 
 /**
  * @property int $id
  * @property int $created_at
  * @property int $user_id
+ * @property int $product_id
  * @property string $username
  * @property int $parent_id
  * @property int $vote
@@ -58,6 +60,11 @@ class Review extends ActiveRecord
     public function isIdEqualTo($id): bool
     {
         return $this->id == $id;
+    }
+
+    public function getProduct(): ProductQuery
+    {
+        return $this->hasOne(Product::class, ['id' => 'product_id']);
     }
 
     public static function tableName(): string

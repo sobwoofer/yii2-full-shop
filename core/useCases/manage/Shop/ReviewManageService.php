@@ -1,6 +1,6 @@
 <?php
 
-namespace core\useCases;
+namespace core\useCases\manage\Shop;
 
 use core\forms\manage\Shop\Product\ReviewEditForm;
 use core\repositories\Shop\ProductRepository;

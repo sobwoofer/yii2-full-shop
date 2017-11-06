@@ -467,6 +467,16 @@ class Product extends ActiveRecord implements AggregateRoot
         });
     }
 
+    public function getReview($id): Review
+    {
+        foreach ($this->reviews as $review) {
+            if ($review->isIdEqualTo($id)) {
+                return $review;
+            }
+        }
+        throw new \DomainException('Review is not found.');
+    }
+
     /**
      * @param $id
      * @param callable $callback

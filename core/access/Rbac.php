@@ -45,4 +45,6 @@ class Rbac
     const PERMISSION_BLOG_POST_EDIT = 'permBlogPostEdit';
     const PERMISSION_BLOG_TAG_VIEW = 'permBlogTagView';
     const PERMISSION_BLOG_TAG_EDIT = 'permBlogTagEdit';
+    const PERMISSION_PRODUCT_REVIEW_VIEW = 'permProductReviewView';
+    const PERMISSION_PRODUCT_REVIEW_EDIT = 'permProductReviewEdit';
 }

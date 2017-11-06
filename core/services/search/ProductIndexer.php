@@ -13,6 +13,7 @@ use core\entities\Shop\Category;
 use core\entities\Shop\Product\Product;
 use core\entities\Shop\Product\Value;
 use yii\helpers\ArrayHelper;
+use core\entities\Shop\Product\CategoryAssignment;
 
 class ProductIndexer
 {
@@ -53,9 +54,11 @@ class ProductIndexer
                     [$product->category->id],
                     ArrayHelper::getColumn($product->category->parents, 'id'),
                     ArrayHelper::getColumn($product->categoryAssignments, 'category_id'),
+
                     array_reduce(array_map(function (Category $category) {
-                        return ArrayHelper::getColumn($category->parents, 'id');
-                    }, $product->categoryAssignments),'array_merge', [])
+                            return ArrayHelper::getColumn($category->parents, 'id');
+                        }, $product->categories),'array_merge', [])
+
                 ),
                 'tags' => ArrayHelper::getColumn($product->tagAssignments, 'tag_id'),
                 'values' => array_map(function (Value $value) {

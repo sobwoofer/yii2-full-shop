@@ -98,7 +98,9 @@ $this->params['active_category'] = $product->category;
                 <h2 class="catalog-title catalog-title__one_product">
                     <strong><?= Html::encode($product->name) ?></strong>
                 </h2>
-                <div class="logo_economix"></div>
+                <div class="logo_economix"><?= Html::img($product->brand->getThumbFileUrl('image', 'product_page')) ?></div>
+
+
                 <div class="product-line__item product-line__item__one_product">
                     <?php if ($product->isAvailable()): ?>
                     <?php $form = ActiveForm::begin([

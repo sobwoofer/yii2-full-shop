@@ -74,6 +74,7 @@ class Brand extends ActiveRecord
                 'thumbUrl' => '@static/cache/brands/[[profile]]_[[id]].[[extension]]',
                 'thumbs' => [
                     'home' => ['width' => 232, 'height' => 100],
+                    'product_page' => ['width' => 170, 'height' => 27],
                 ],
             ],
         ];

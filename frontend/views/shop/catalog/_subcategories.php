@@ -10,13 +10,23 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\Breadcrumbs;
+
 ?>
 
 <?php if ($category->children): ?>
 
     <div class="row">
-        <div class="col-md-3 col-lg-2"></div>
-        <div class="col-md-9 col-lg-10">
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+            <div class="hidden-sm hidden-xs">
+                <div class="bread_crumbs">
+                    <?= Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        'options' => ['class' => '']
+                    ]) ?>
+                </div>
+            </div>
             <div class="categories">
                 <?php foreach ($category->children as $child): ?>
                     <div class="col-sm-4 col-xs-6">

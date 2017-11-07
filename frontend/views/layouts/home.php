@@ -23,34 +23,7 @@ use yii\helpers\Html;
             <div class="row">
                 <div class="row">
                 <div class="col-sm-12 left-main-block">
-                    <?= Swiper::widget( [
-                        'items'         => [
-                            Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
-                            Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
-                            Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
-                            Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
-                            Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
-                            Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png')
-                        ],
-                        'behaviours'    => [
-                            'pagination',
-                            'nextButton',
-                            'prevButton'
-                        ],
-                        'pluginOptions' => [
-                            'grabCursor'     => true,
-                            'centeredSlides' => true,
-                            'slidesPerView'  => 'auto',
-                            'effect'         => 'coverflow',
-                            'coverflow'      => [
-                                'rotate'       => 50,
-                                'stretch'      => 0,
-                                'depth'        => 100,
-                                'modifier'     => 1,
-                                'slideShadows' => true
-                            ]
-                        ]
-                    ] ); ?>
+                    <?= \frontend\widgets\content\SliderForBannersWidget::widget() ?>
                     <div class="row">
                         <div class="">
                             <div class="categories-items">

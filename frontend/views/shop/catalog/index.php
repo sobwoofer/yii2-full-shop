@@ -17,60 +17,7 @@ $this->title = 'Catalog';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="main-block">
 
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-3 ">
-            </div>
-            <div class="col-md-9 ">
-                <div class="row">
-                    <div class="col-sm-12  left-main-block">
-                        <?= Swiper::widget( [
-                            'items'         => [
-                                Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
-                                Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
-                                Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
-                                Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
-                                Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
-                                Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png')
-                            ],
-                            'behaviours'    => [
-                                'pagination',
-                                'nextButton',
-                                'prevButton'
-                            ],
-                            'pluginOptions' => [
-                                'grabCursor'     => true,
-                                'centeredSlides' => true,
-                                'slidesPerView'  => 'auto',
-                                'effect'         => 'coverflow',
-                                'coverflow'      => [
-                                    'rotate'       => 50,
-                                    'stretch'      => 0,
-                                    'depth'        => 100,
-                                    'modifier'     => 1,
-                                    'slideShadows' => true
-                                ]
-                            ]
-                        ] ); ?>
-                    </div>
-                    <!--<div class="hidden-md col-lg-4 right-block">-->
-                    <!--<div class="responsive-img">-->
-                    <!--<a href="#">-->
-                    <!--<img src="images/b2.png" alt="" style="max-height: 401px;">-->
-                    <!--</a>-->
-                    <!--</div>-->
-
-                    <!--</div>-->
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-</div>
 
 
 <div class="container">

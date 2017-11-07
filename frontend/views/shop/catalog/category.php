@@ -31,32 +31,51 @@ $this->params['breadcrumbs'][] = $category->name;
 $this->params['active_category'] = $category;
 ?>
 
-<?= $this->render('_subcategories', [
-    'category' => $category
-]) ?>
-
-
+<?php if ($category->children): ?>
 <div class="container">
-    <div class="row">
-        <div class="catalog-page">
-            <div class="wrpper_filterToggler  hidden-sm hidden-md hidden-lg">
-                <h2 class="catalog-title"><b>Шариковые ручки</b></h2>
-                <button id="showFilter" class="btn btn_blue btn_show_filter">Показать фильтр</button>
+    <div class="main-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 ">
+                </div>
+                <div class="col-md-9 ">
+                    <div class="row">
+                        <div class="col-sm-12  left-main-block">
+                            <?= \frontend\widgets\content\SliderForBannersWidget::widget() ?>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <?=  $this->render('/shop/filter') ?>
-
-            <?= $this->render('_list', [
-                'dataProvider' => $dataProvider
-            ]) ?>
-
         </div>
     </div>
+    <?= $this->render('_subcategories', [
+        'category' => $category
+    ]) ?>
+<?php endif; ?>
+
+
+<?php if (!$category->children): ?>
+
+        <div class="row">
+            <div class="catalog-page">
+                <div class="wrpper_filterToggler  hidden-sm hidden-md hidden-lg">
+                    <h2 class="catalog-title"><b>Шариковые ручки</b></h2>
+                    <button id="showFilter" class="btn btn_blue btn_show_filter">Показать фильтр</button>
+                </div>
+                <?=  $this->render('/shop/filter') ?>
+
+                <?= $this->render('_list', [
+                    'dataProvider' => $dataProvider
+                ]) ?>
+
+            </div>
+        </div>
+
+    <div class="clearfix"></div>
+    <?= \frontend\widgets\Shop\ViewedProductsWidget::widget() ?>
+<?php endif; ?>
 </div>
-
-<div class="clearfix"></div>
-
-
-//= modules/product-line.html
+<?= \frontend\widgets\Shop\SalesOfWeekProductsWidget::widget() ?>
 
 <?= $this->render('/shop/seoblock', [
     'shortText' => $category->description

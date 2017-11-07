@@ -16,7 +16,7 @@ class SaleProductsWidget extends Widget
 {
     private $repository;
     public $title = 'РАСПРОДАЖИ';
-    public $limit;
+    public $limit = 4;
     public $class = 'sale';
     public $viewAll = 'sale-products';
 

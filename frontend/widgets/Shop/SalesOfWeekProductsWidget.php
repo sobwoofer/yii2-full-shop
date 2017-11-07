@@ -16,7 +16,7 @@ class SalesOfWeekProductsWidget extends Widget
 {
     private $repository;
     public $title = 'Скидки недели';
-    public $limit;
+    public $limit = 4;
     public $class = 'sales-of-week';
     public $viewAll = 'sales-of-week-products';
     public $banner = false;

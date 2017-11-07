@@ -16,7 +16,7 @@ class ViewedProductsWidget extends Widget
 {
     private $repository;
     public $title = 'ПРОСМОТРЕННЫЕ';
-    public $limit;
+    public $limit = 4;
     public $class = 'product-line-1';
     public $viewAll = 'viewed-products';
 

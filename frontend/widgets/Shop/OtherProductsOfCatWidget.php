@@ -16,7 +16,7 @@ class OtherProductsOfCatWidget extends Widget
 {
     private $repository;
     public $title = 'ДРУГИЕ ТОВАРЫ КАТЕГОРИИ';
-    public $limit;
+    public $limit = 4;
     public $class = 'product-of-cat';
     public $productId;
     public $viewAll = null;

@@ -21,7 +21,7 @@ class PnsTabsProductWidget extends Widget
     public $viewAllPopular = 'popular-products';
     public $viewAllNew = 'new-products';
     public $viewAllSale = 'sale-products';
-    public $limit;
+    public $limit = 4;
     public $class = 'product-line__tabs';
 
 

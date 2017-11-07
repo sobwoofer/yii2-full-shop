@@ -16,7 +16,7 @@ class PopularProductsWidget extends Widget
 {
     private $repository;
     public $title = 'ПОПУЛЯРНЫЕ';
-    public $limit;
+    public $limit = 4;
     public $class = 'popular';
     public $viewAll = 'popular-products';
 

@@ -46,22 +46,7 @@ $(document).ready(function () {
     });
     // End Button Top script
 
-    <!-- Initialize Swiper -->
-    var galleryTop = new Swiper('.slider_wrapper .gallery-top', {
-        spaceBetween: 10,
-    });
-    var galleryThumbs = new Swiper('.slider_wrapper .gallery-thumbs', {
-        spaceBetween: 10,
-        centeredSlides: true,
-        slidesPerView: 3,
-        touchRatio: 0.2,
-        nextButton: '.slider_wrapper .sp .swiper-button-next',
-        prevButton: '.slider_wrapper .sp .swiper-button-prev',
-        direction: 'vertical',
-        slideToClickedSlide: true
-    });
-    galleryTop.params.control = galleryThumbs;
-    galleryThumbs.params.control = galleryTop;
+
 
 
     //  //= source/modal.js

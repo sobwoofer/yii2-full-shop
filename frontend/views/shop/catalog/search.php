@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="catalog-page">
 
-        <div class="col-sm-3 col-lg-2">
+        <div class="col-sm-3">
             <div class="left-nav-block">
                 <p class="left-serch-title text-center">Найдено 123 товара</p>
                 <ul>
@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-<!-- TODO maybe delete this code of detail filter because there is not was in design -->
+<!-- TODO maybe delete this code under of detail filter because there is not was in design -->
 <div class="panel panel-default">
     <div class="panel-body">
         <?php $form = ActiveForm::begin(['action' => [''], 'method' => 'get']) ?>

@@ -14,6 +14,7 @@ use core\entities\Shop\Product\Product;
 use core\forms\manage\Shop\CategoryForm;
 use core\repositories\Shop\CategoryRepository;
 use core\repositories\Shop\ProductRepository;
+use yii\helpers\Inflector;
 
 class CategoryManageService
 {
@@ -31,7 +32,7 @@ class CategoryManageService
         $parent = $this->categories->get($form->parentId);
         $category = Category::create(
             $form->name,
-            $form->slug,
+            $form->slug ?: Inflector::slug($form->name),
             $form->title,
             $form->description,
             new Meta(
@@ -54,7 +55,7 @@ class CategoryManageService
         $this->assertIsNotRoot($category);
         $category->edit(
             $form->name,
-            $form->slug,
+            $form->slug ?: Inflector::slug($form->name),
             $form->title,
             $form->description,
             new Meta(

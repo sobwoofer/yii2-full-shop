@@ -52,7 +52,7 @@ class CategoryForm extends CompositeForm
     public function rules()
     {
         return [
-            [['name', 'slug'], 'required'],
+            [['name'], 'required'],
             [['name', 'slug', 'title'], 'string', 'max' => 255],
             [['description'], 'string'],
             ['slug', SlugValidator::class],

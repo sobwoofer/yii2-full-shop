@@ -7,6 +7,7 @@ use core\entities\Shop\Brand;
 use core\forms\manage\Shop\BrandForm;
 use core\repositories\Shop\BrandRepository;
 use core\repositories\Shop\ProductRepository;
+use yii\helpers\Inflector;
 
 class BrandManageService
 {
@@ -23,7 +24,7 @@ class BrandManageService
     {
         $brand = Brand::create(
             $form->name,
-            $form->slug,
+            $form->slug ?: Inflector::slug($form->name),
             new Meta(
                 $form->meta->title,
                 $form->meta->description,
@@ -43,7 +44,7 @@ class BrandManageService
         $brand = $this->brands->get($id);
         $brand->edit(
             $form->name,
-            $form->slug,
+            $form->slug ?: Inflector::slug($form->name),
             new Meta(
                 $form->meta->title,
                 $form->meta->description,

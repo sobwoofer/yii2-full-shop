@@ -34,7 +34,7 @@ class BrandForm extends CompositeForm
     public function rules(): array
     {
         return [
-            [['name', 'slug'], 'required'],
+            [['name'], 'required'],
             [['name', 'slug'], 'string', 'max' => 255],
             [['image'], 'image'],
             ['slug', SlugValidator::class],

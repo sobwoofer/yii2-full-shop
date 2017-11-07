@@ -15,6 +15,7 @@ use core\forms\manage\MetaForm;
 use core\repositories\Blog\CategoryRepository;
 use core\forms\manage\Blog\CategoryForm;
 use core\repositories\Blog\PostRepository;
+use yii\helpers\Inflector;
 
 class CategoryManageService
 {
@@ -35,7 +36,7 @@ class CategoryManageService
     {
         $category = Category::create(
             $form->name,
-            $form->slug,
+            $form->slug ?: Inflector::slug($form->name),
             $form->title,
             $form->description,
             $form->sort,
@@ -54,7 +55,7 @@ class CategoryManageService
         $category = $this->categories->get($id);
         $category->edit(
             $form->name,
-            $form->slug,
+            $form->slug ?: Inflector::slug($form->name),
             $form->title,
             $form->description,
             $form->sort,

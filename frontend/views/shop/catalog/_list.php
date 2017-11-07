@@ -16,19 +16,7 @@ use yii\widgets\Breadcrumbs;
 
 <div class="content">
     <div class="col-sm-9">
-
-        <div class="hidden-sm hidden-xs">
-            <div class="bread_crumbs">
-                <?= Breadcrumbs::widget([
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                    'options' => ['class' => '']
-                ]) ?>
-            </div>
-        </div>
         <?= $this->render('/shop/alphabet', []) ?>
-
-        <br>
-        <br>
         <div class="row">
             <div class="col-sm-6 hidden-xs"><h2 class="catalog-title"><b>Шариковые ручки</b></h2></div>
             <div class="col-sm-6">

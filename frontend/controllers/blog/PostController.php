@@ -113,6 +113,7 @@ class PostController extends Controller
      */
     public function actionPost($id)
     {
+//        Yii::$app->language = 'uk';
         if (!$post = $this->posts->find($id)) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

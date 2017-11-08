@@ -47,7 +47,8 @@
         "league/flysystem": "^1.0",
         "ezoterik/yii2-html5shiv-asset": "*",
         "ezoterik/yii2-respond-asset": "*",
-        "omgdef/yii2-multilingual-behavior": "^2.1"
+        "omgdef/yii2-multilingual-behavior": "^2.1",
+        "cetver/yii2-language-url-manager": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

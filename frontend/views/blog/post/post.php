@@ -27,6 +27,11 @@ foreach ($post->tags as $tag) {
     $tagLinks[] = Html::a(Html::encode($tag->name), ['tag', 'slug' => $tag->slug]);
 }
 ?>
+<?php
+
+//var_dump(Yii::$app->request->queryParams['language']);
+//die();
+?>
 <div class="article-page">
     <h1 class="article-title"><?= Html::encode($post->title) ?></h1>
     <div class="responsive-img img full-img ">

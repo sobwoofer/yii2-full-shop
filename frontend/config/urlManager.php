@@ -3,12 +3,16 @@
 /** @var array $params */
 
 return [
-    'class' => 'yii\web\UrlManager',
+    'class' => 'cetver\LanguageUrlManager\UrlManager',
     'hostInfo' => $params['frontendHostInfo'],
     'baseUrl' => '',
     'enablePrettyUrl' => true,
     'showScriptName' => false,
     'cache' => false,
+    //begin setting url language
+    'languages' => ['ua'],
+    'existsLanguageSubdomain' => true,
+    //end setting url language
     'rules' => [
         '' => 'site/index',
         'contact' => 'contact/index',

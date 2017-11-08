@@ -72,7 +72,7 @@ class PostReadRepository
 
     public function find($id): ?Post
     {
-        return Post::find()->active()->andWhere(['id' => $id])->one();
+        return Post::find()->localized()->active()->andWhere(['id' => $id])->one();
     }
 
     private function getProvider(ActiveQuery $query): ActiveDataProvider

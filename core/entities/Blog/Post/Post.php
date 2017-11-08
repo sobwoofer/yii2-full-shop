@@ -23,6 +23,7 @@ use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
 use yiidreamteam\upload\ImageUploadBehavior;
 use omgdef\multilingual\MultilingualBehavior;
+use omgdef\multilingual\MultilingualQuery;
 
 /**
  * @property integer $id
@@ -285,20 +286,20 @@ class Post extends ActiveRecord
             'ml' => [
                 'class' => MultilingualBehavior::className(),
                 'languages' => [
-                    'ru-RU' => 'Russian',
-                    'uk-UA' => 'Ukrainian',
-//                    'en-US' => 'English',
+                    'ru' => 'Russian',
+                    'uk' => 'Ukrainian',
+//                    'en' => 'English',
                 ],
                 //'languageField' => 'language',
                 //'localizedPrefix' => '',
                 //'requireTranslations' => false',
-                //'dynamicLangClass' => true',
+                'dynamicLangClass' => true,
                 //'langClassName' => PostLang::className(), // or namespace/for/a/class/PostLang
                 'defaultLanguage' => 'ru',
                 'langForeignKey' => 'post_id',
-                'tableName' => "{{%postLang}}",
+                'tableName' => "{{%blog_posts_lang}}",
                 'attributes' => [
-                    'title', 'content',
+                    'title', 'description', 'content', 'meta_json',
                 ]
             ],
         ];

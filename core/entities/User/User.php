@@ -31,7 +31,6 @@ use yii\db\ActiveRecord;
  * @property WishlistItem[] $wishlistItems
  */
 
-//TODO need add yii2 multilingual behavior. video elisDn 7th - 1:39 and 11en 10:45
 class User extends ActiveRecord implements AggregateRoot
 {
     use EventTrait;

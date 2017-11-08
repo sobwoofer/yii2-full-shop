@@ -22,6 +22,7 @@ use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
 use yiidreamteam\upload\ImageUploadBehavior;
+use omgdef\multilingual\MultilingualBehavior;
 
 /**
  * @property integer $id
@@ -280,6 +281,25 @@ class Post extends ActiveRecord
                     'blog_list' => ['width' => 189, 'height' => 115],
                     'origin' => ['processor' => [new WaterMarker(1024, 768, '@frontend/web/images/system/logo-papirus.png'), 'process']],
                 ],
+            ],
+            'ml' => [
+                'class' => MultilingualBehavior::className(),
+                'languages' => [
+                    'ru-RU' => 'Russian',
+                    'uk-UA' => 'Ukrainian',
+//                    'en-US' => 'English',
+                ],
+                //'languageField' => 'language',
+                //'localizedPrefix' => '',
+                //'requireTranslations' => false',
+                //'dynamicLangClass' => true',
+                //'langClassName' => PostLang::className(), // or namespace/for/a/class/PostLang
+                'defaultLanguage' => 'ru',
+                'langForeignKey' => 'post_id',
+                'tableName' => "{{%postLang}}",
+                'attributes' => [
+                    'title', 'content',
+                ]
             ],
         ];
     }

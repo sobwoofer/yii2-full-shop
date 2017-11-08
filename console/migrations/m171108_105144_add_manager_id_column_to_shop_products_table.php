@@ -27,9 +27,8 @@ class m171108_105144_add_manager_id_column_to_shop_products_table extends Migrat
 
     public function down()
     {
-        echo "m171108_105144_add_columns_to_shop_products_table cannot be reverted.\n";
-
-        return false;
+        $this->dropForeignKey('{{%fk-shop_products-manager_id}}', '{{%shop_products}}');
+        $this->dropColumn('{{%shop_products}}', 'manager_id');
     }
 
 }

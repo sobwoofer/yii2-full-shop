@@ -12,6 +12,15 @@
 ?>
 <?php $this->beginContent('@frontend/views/layouts/main.php') ?>
 
-        <?= $content ?>
+<div class="container">
+    <?= $content ?>
+</div>
+
+<?= \frontend\widgets\Shop\ViewedProductsWidget::widget(['limit' => 6]) ?>
+
+<?= \frontend\widgets\Shop\SalesOfWeekProductsWidget::widget(['limit' => 6, 'banner' => [
+    'link' => '/',
+    'image' => '/images/system/ba2.png'
+]]) ?>
 
 <?php $this->endContent() ?>

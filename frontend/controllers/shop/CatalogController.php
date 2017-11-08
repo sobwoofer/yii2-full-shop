@@ -55,12 +55,10 @@ class CatalogController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = $this->products->getAll();
         $category = $this->categories->getRoot();
 
         return $this->render('index', [
             'category' => $category,
-            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -77,7 +75,7 @@ class CatalogController extends Controller
 
         $dataProvider = $this->products->getAllByCategory($category);
 
-        return $this->render('category', [
+        return $this->render($category->children ? 'index' : 'category', [
             'category' => $category,
             'dataProvider' => $dataProvider,
         ]);

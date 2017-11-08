@@ -18,7 +18,7 @@ use yii\widgets\Breadcrumbs;
     <div class="col-sm-9">
         <?= $this->render('/shop/alphabet', []) ?>
         <div class="row">
-            <div class="col-sm-6 hidden-xs"><h2 class="catalog-title"><b>Шариковые ручки</b></h2></div>
+            <div class="col-sm-6 hidden-xs"><h2 class="catalog-title"><b><?= Html::encode($this->title) ?></b></h2></div>
             <div class="col-sm-6">
 
                 <div class="display-wrp pull-right hidden-xs">

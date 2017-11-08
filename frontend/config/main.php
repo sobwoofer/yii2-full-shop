@@ -14,6 +14,7 @@ return [
     'bootstrap' => [
         'log',
         'common\bootstrap\SetUp',
+        'languagesDispatcher',
         'frontend\bootstrap\SetUp',
     ],
     'aliases' => [
@@ -23,6 +24,18 @@ return [
     'layout' => 'blank',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        // dispatcher for get to apps query where id language from url
+        'languagesDispatcher' => [
+            'class' => 'cetver\LanguagesDispatcher\Component',
+            'languages' => ['ua'],
+            'handlers' => [
+                [
+                    // Detects a language from the query parameter.
+                    'class' => 'cetver\LanguagesDispatcher\handlers\QueryParamHandler',
+                ],
+
+            ]
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
             'cookieValidationKey' => $params['cookieValidationKey'],

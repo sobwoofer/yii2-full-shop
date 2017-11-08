@@ -28,8 +28,10 @@ foreach ($post->tags as $tag) {
 }
 ?>
 <?php
-
-//var_dump(Yii::$app->request->queryParams['language']);
+if (isset(Yii::$app->request->queryParams['language'])) {
+    var_dump(Yii::$app->request->queryParams['language']);
+}
+//var_dump(Yii::$app->language);
 //die();
 ?>
 <div class="article-page">

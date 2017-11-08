@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b4fe849c97eae8bbe572a7a3ba43b74",
+    "content-hash": "1ab8db0a951a0fa99b71695dd8a13063",
     "packages": [
         {
             "name": "alfa6661/yii2-raty",
@@ -613,6 +613,63 @@
                 "yii2"
             ],
             "time": "2017-07-19T16:48:10+00:00"
+        },
+        {
+            "name": "cetver/yii2-languages-dispatcher",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cetver/yii2-languages-dispatcher.git",
+                "reference": "07f83f9221f9eb01861524ea941ec1523d375718"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cetver/yii2-languages-dispatcher/zipball/07f83f9221f9eb01861524ea941ec1523d375718",
+                "reference": "07f83f9221f9eb01861524ea941ec1523d375718",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "require-dev": {
+                "codeception/base": "^2.2.3",
+                "codeception/specify": "~0.4.3",
+                "codeception/verify": "~0.3.1",
+                "ext-sqlite3": "*",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "cetver\\LanguagesDispatcher\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Alexandr Cetvertacov",
+                    "email": "cetver@gmail.com"
+                }
+            ],
+            "description": "Sets the web-application language for the Yii framework 2.0",
+            "keywords": [
+                "Active Record",
+                "accept language header",
+                "cookie",
+                "default",
+                "extension",
+                "language",
+                "locale",
+                "query parameter",
+                "session",
+                "url",
+                "user",
+                "yii2"
+            ],
+            "time": "2017-07-14T15:28:28+00:00"
         },
         {
             "name": "dmstr/yii2-adminlte-asset",

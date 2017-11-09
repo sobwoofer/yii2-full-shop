@@ -28,11 +28,7 @@ foreach ($post->tags as $tag) {
 }
 ?>
 <?php
-if (isset(Yii::$app->request->queryParams['language'])) {
-    var_dump(Yii::$app->request->queryParams['language']);
-}
-//var_dump(Yii::$app->language);
-//die();
+
 ?>
 <div class="article-page">
     <h1 class="article-title"><?= Html::encode($post->title) ?></h1>

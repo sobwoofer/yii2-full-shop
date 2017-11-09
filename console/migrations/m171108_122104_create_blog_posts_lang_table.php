@@ -17,7 +17,7 @@ class m171108_122104_create_blog_posts_lang_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('blog_posts_lang', [
+        $this->createTable('{{%blog_posts_lang}}', [
             'id' => $this->primaryKey(),
             'post_id' => $this->integer()->notNull(),
             'language' => $this->string(6)->notNull(),
@@ -45,6 +45,6 @@ class m171108_122104_create_blog_posts_lang_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('blog_posts_lang');
+        $this->dropTable('{{%blog_posts_lang}}');
     }
 }

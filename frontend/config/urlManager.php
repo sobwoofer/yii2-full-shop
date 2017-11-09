@@ -11,6 +11,7 @@ return [
     'cache' => false,
     //begin setting url language
     'languages' => ['ua'],
+
     'existsLanguageSubdomain' => true,
     //end setting url language
     'rules' => [

@@ -6,7 +6,7 @@
  * Time: 12:59
  */
 
-namespace readModels;
+namespace core\readModels;
 
 
 use core\entities\Lang;

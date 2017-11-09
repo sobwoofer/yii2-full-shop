@@ -11,6 +11,7 @@ namespace core\entities\Blog\Post;
 
 //use core\entities\Blog\Post\Comment;
 //use core\entities\Blog\Post\queries\CommentQuery;
+use core\entities\behaviors\FilledMultilingualBehavior;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use core\entities\behaviors\MetaBehavior;
 use core\entities\Blog\Post\queries\PostQuery;
@@ -284,20 +285,14 @@ class Post extends ActiveRecord
                 ],
             ],
             'ml' => [
-                'class' => MultilingualBehavior::className(),
-                'languages' => [
-                    'ru' => 'Russian',
-                    'uk' => 'Ukrainian',
-//                    'en' => 'English',
-                ],
-                //'languageField' => 'language',
+                'class' => FilledMultilingualBehavior::className(),
+                'languageField' => 'lang_id',
                 //'localizedPrefix' => '',
                 //'requireTranslations' => false',
                 'dynamicLangClass' => true,
                 //'langClassName' => PostLang::className(), // or namespace/for/a/class/PostLang
-                'defaultLanguage' => 'ru',
                 'langForeignKey' => 'post_id',
-                'tableName' => "{{%blog_posts_lang}}",
+                'tableName' => '{{%blog_posts_lang}}',
                 'attributes' => [
                     'title', 'description', 'content', 'meta_json',
                 ]

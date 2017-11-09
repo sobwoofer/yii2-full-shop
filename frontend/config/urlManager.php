@@ -10,8 +10,9 @@ return [
     'showScriptName' => false,
     'cache' => false,
     //begin setting url language
-    'languages' => ['ua'],
-
+    'languages' => function () {
+        return \core\entities\Lang::find()->select('url')->column();
+    },
     'existsLanguageSubdomain' => true,
     //end setting url language
     'rules' => [

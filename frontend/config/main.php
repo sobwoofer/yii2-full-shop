@@ -7,8 +7,8 @@ $params = array_merge(
 );
 
 return [
-    'sourceLanguage'=>'ru',
-    'language'=>'ru',
+//    'sourceLanguage'=> 'ru',
+    'language'=> 'ru',
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => [

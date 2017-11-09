@@ -28,7 +28,7 @@ class m171108_155636_create_lang_table extends Migration
         $this->batchInsert('{{%lang}}', ['url', 'local', 'name', 'default', 'date_update', 'date_create', 'status'], [
             ['en', 'en-US', 'English', 0, time(), time(), 0],
             ['ru', 'ru-RU', 'Русский', 1, time(), time(), 1],
-            ['ua', 'uk-UA', 'Русский', 1, time(), time(), 1],
+            ['ua', 'uk-UA', 'Русский', 0, time(), time(), 1],
         ]);
     }
 

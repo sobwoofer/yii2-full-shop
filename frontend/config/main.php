@@ -14,8 +14,8 @@ return [
     'bootstrap' => [
         'log',
         'common\bootstrap\SetUp',
-        'languagesDispatcher',
         'frontend\bootstrap\SetUp',
+        'languagesDispatcher',
     ],
     'aliases' => [
         '@staticRoot' => $params['staticPath'],

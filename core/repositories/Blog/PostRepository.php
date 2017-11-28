@@ -15,10 +15,10 @@ class PostRepository
 {
     public function get($id): Post
     {
-        if (!$brand = Post::findOne($id)) {
+        if (!$post = Post::find()->multilingual()->andWhere(['id' => $id])->one()) {
             throw new NotFoundException('Post is not found.');
         }
-        return $brand;
+        return $post;
     }
 
     public function existsByCategory($id): bool
@@ -26,16 +26,16 @@ class PostRepository
         return Post::find()->andWhere(['category_id' => $id])->exists();
     }
 
-    public function save(Post $brand): void
+    public function save(Post $post): void
     {
-        if (!$brand->save()) {
+        if (!$post->save()) {
             throw new \RuntimeException('Saving error.');
         }
     }
 
-    public function remove(Post $brand): void
+    public function remove(Post $post): void
     {
-        if (!$brand->delete()) {
+        if (!$post->delete()) {
             throw new \RuntimeException('Removing error.');
         }
     }

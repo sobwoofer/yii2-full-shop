@@ -112,8 +112,10 @@ class PostController extends Controller
     public function actionUpdate($id)
     {
         $post = $this->findModel($id);
-
         $form = new PostForm($post);
+
+
+
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
                 $this->service->edit($post->id, $form);
@@ -178,7 +180,7 @@ class PostController extends Controller
      */
     protected function findModel($id): Post
     {
-        if (($model = Post::findOne($id)) !== null) {
+        if (($model = Post::find()->multilingual()->andWhere(['id' => $id])->one()) !== null) {
             return $model;
         }
         throw new NotFoundHttpException('The requested page does not exist.');

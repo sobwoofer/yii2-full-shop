@@ -11,6 +11,7 @@ namespace core\forms\manage\Blog\Post;
 
 use core\entities\Blog\Category;
 use core\entities\Blog\Post\Post;
+use core\entities\Blog\Post\PostLang;
 use core\forms\CompositeForm;
 use core\forms\manage\MetaForm;
 use core\validators\SlugValidator;
@@ -20,11 +21,13 @@ use yii\web\UploadedFile;
 /**
  * @property MetaForm $meta
  * @property TagsForm $tags
+ * @property PostLang[] $translation
  */
 class PostForm extends CompositeForm
 {
     public $categoryId;
     public $title;
+    public $title_ua;
     public $description;
     public $content;
     public $photo;
@@ -34,6 +37,7 @@ class PostForm extends CompositeForm
         if ($post) {
             $this->categoryId = $post->category_id;
             $this->title = $post->title;
+//            $this->title_ua = $post->title_ua;
             $this->description = $post->description;
             $this->content = $post->content;
             $this->meta = new MetaForm($post->meta);
@@ -48,7 +52,7 @@ class PostForm extends CompositeForm
     public function rules(): array
     {
         return [
-            [['categoryId', 'title'], 'required'],
+            [['categoryId'], 'required'],
             [['title'], 'string', 'max' => 255],
             [['categoryId'], 'integer'],
             [['description', 'content'], 'string'],

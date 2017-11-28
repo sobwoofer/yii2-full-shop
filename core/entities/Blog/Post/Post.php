@@ -31,6 +31,7 @@ use omgdef\multilingual\MultilingualQuery;
  * @property integer $category_id
  * @property integer $created_at
  * @property string $title
+ * @property string $title_ua
  * @property string $description
  * @property string $content
  * @property string $photo
@@ -49,8 +50,8 @@ class Post extends ActiveRecord
 {
     const STATUS_DRAFT = 0;
     const STATUS_ACTIVE = 1;
-
-    public $meta;
+//    public $title_ru;
+//    public $title_ua;
 
     public static function create($categoryId, $title, $description, $content, Meta $meta): self
     {
@@ -238,6 +239,7 @@ class Post extends ActiveRecord
         return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 
+
     public function getTagAssignments(): ActiveQuery
     {
         return $this->hasMany(TagAssignment::class, ['post_id' => 'id']);
@@ -253,6 +255,11 @@ class Post extends ActiveRecord
         return $this->hasMany(Comment::class, ['post_id' => 'id']);
     }
 
+//    public function getTranslations(): ActiveQuery
+//    {
+//        return $this->hasMany(PostLang::class, ['post_id' => 'id']);
+//    }
+
     ##########################
 
     public static function tableName(): string
@@ -263,7 +270,7 @@ class Post extends ActiveRecord
     public function behaviors(): array
     {
         return [
-            MetaBehavior::className(),
+//            MetaBehavior::className(),
             [
                 'class' => SaveRelationsBehavior::className(),
                 'relations' => ['tagAssignments', 'comments'],
@@ -286,17 +293,19 @@ class Post extends ActiveRecord
             ],
             'ml' => [
                 'class' => FilledMultilingualBehavior::className(),
-                'languageField' => 'lang_id',
+//                'languageField' => 'language',
                 //'localizedPrefix' => '',
+                'defaultLanguage' => 'ru',
                 //'requireTranslations' => false',
-                'dynamicLangClass' => true,
-                //'langClassName' => PostLang::className(), // or namespace/for/a/class/PostLang
+                'dynamicLangClass' => false,
+                'langClassName' => PostLang::className(), // or namespace/for/a/class/PostLang
                 'langForeignKey' => 'post_id',
                 'tableName' => '{{%blog_posts_lang}}',
                 'attributes' => [
-                    'title', 'description', 'content', 'meta_json',
+                    'title', 'description', 'content', 'meta'
                 ]
             ],
+
         ];
     }
 
@@ -311,4 +320,6 @@ class Post extends ActiveRecord
     {
         return new PostQuery(static::class);
     }
+
+
 }

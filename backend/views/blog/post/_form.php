@@ -44,7 +44,14 @@ use mihaildev\ckeditor\CKEditor;
 
     <div class="box box-default">
         <div class="box-body">
+            <?php
+
+            ?>
+
+
+
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+<!--            --><?php //echo $form->field($model, 'title_ua')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'description')->textarea(['rows' => 5]) ?>
             <?= $form->field($model, 'content')->widget(CKEditor::className()) ?>
         </div>
@@ -64,6 +71,9 @@ use mihaildev\ckeditor\CKEditor;
     <div class="box box-default">
         <div class="box-header with-border">SEO</div>
         <div class="box-body">
+            <?php
+
+            ?>
             <?= $form->field($model->meta, 'title')->textInput() ?>
             <?= $form->field($model->meta, 'description')->textarea(['rows' => 2]) ?>
             <?= $form->field($model->meta, 'keywords')->textInput() ?>

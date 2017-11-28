@@ -94,10 +94,10 @@ class PostManageService
             )
         );
 
+
         if ($form->photo) {
             $post->setPhoto($form->photo);
         }
-
         $this->transaction->wrap(function () use ($post, $form) {
 
             $post->revokeTags();
@@ -114,6 +114,7 @@ class PostManageService
                 }
                 $post->assignTag($tag->id);
             }
+
             $this->posts->save($post);
         });
     }

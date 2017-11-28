@@ -50,12 +50,16 @@ class MetaBehavior extends Behavior
     public function onAfterFind(Event $event): void
     {
         $model = $event->sender;
+
         $meta = Json::decode($model->getAttribute($this->jsonAttribute));
+
         $model->{$this->attribute} = new Meta(
             ArrayHelper::getValue($meta, 'title'),
             ArrayHelper::getValue($meta, 'description'),
             ArrayHelper::getValue($meta, 'keywords')
         );
+
+
     }
 
     /**
@@ -65,6 +69,7 @@ class MetaBehavior extends Behavior
     public function onBeforeSave(Event $event): void
     {
         $model = $event->sender;
+
         $model->setAttribute('meta_json', Json::encode([
             'title' => $model->{$this->attribute}->title,
             'description' => $model->{$this->attribute}->description,

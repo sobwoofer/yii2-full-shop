@@ -31,8 +31,8 @@ class FilledMultilingualBehavior extends MultilingualBehavior
 
     public function fillLanguages()
     {
-//        $this->languages = ArrayHelper::map($this->langs->findAllActive(), 'id', 'name');
-        $this->languages = ['ru', 'ua'];
+        $this->languages = ArrayHelper::map($this->langs->findAllActive(), 'url', 'name');
+//        $this->languages = ['ru', 'ua'];
     }
 
     /**

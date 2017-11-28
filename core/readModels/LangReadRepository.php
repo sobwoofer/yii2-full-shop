@@ -18,6 +18,11 @@ class LangReadRepository
         return Lang::find()->andWhere(['status' => true])->all();
     }
 
+    public function getDefault()
+    {
+        return Lang::find()->andWhere(['default' => 1])->one();
+    }
+
     public function findAll()
     {
         return Lang::find()->all();

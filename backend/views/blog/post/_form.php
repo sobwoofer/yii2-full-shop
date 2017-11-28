@@ -14,6 +14,7 @@ use mihaildev\ckeditor\CKEditor;
 /* @var $this yii\web\View */
 /* @var $model core\forms\manage\Blog\Post\PostForm */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $langs \core\entities\Lang[] */
 ?>
 
 <div class="post-form">
@@ -44,14 +45,16 @@ use mihaildev\ckeditor\CKEditor;
 
     <div class="box box-default">
         <div class="box-body">
-            <?php
-
-            ?>
+            <?php foreach ($langs as $lang) : ?>
+                <div class="row">
+                    <?php echo $form->field($model, 'title')->textInput(['maxlength' => true]); ?> <?php echo $lang->name; ?><br />
+                    <?php echo $form->field($model, 'title_' . $lang->url)->textInput(['maxlength' => true]) ?><br />
+                </div>
+            <?php endforeach; ?>
 
 
 
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-<!--            --><?php //echo $form->field($model, 'title_ua')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'description')->textarea(['rows' => 5]) ?>
             <?= $form->field($model, 'content')->widget(CKEditor::className()) ?>
         </div>

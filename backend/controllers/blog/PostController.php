@@ -9,6 +9,7 @@
 namespace backend\controllers\blog;
 
 use core\forms\manage\Blog\Post\PostForm;
+use core\readModels\LangReadRepository;
 use core\useCases\manage\Blog\PostManageService;
 use Yii;
 use core\entities\Blog\Post\Post;
@@ -22,11 +23,13 @@ use core\access\Rbac;
 class PostController extends Controller
 {
     private $service;
+    private $langs;
 
-    public function __construct($id, $module, PostManageService $service, $config = [])
+    public function __construct($id, $module, PostManageService $service, LangReadRepository $langs, $config = [])
     {
         parent::__construct($id, $module, $config);
         $this->service = $service;
+        $this->langs = $langs;
     }
 
     public function behaviors(): array
@@ -114,8 +117,6 @@ class PostController extends Controller
         $post = $this->findModel($id);
         $form = new PostForm($post);
 
-
-
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
                 $this->service->edit($post->id, $form);
@@ -128,6 +129,7 @@ class PostController extends Controller
         return $this->render('update', [
             'model' => $form,
             'post' => $post,
+            'langs' => $this->langs->findAllActive(),
         ]);
     }
 

@@ -143,7 +143,9 @@ abstract class CompositeForm extends Model
         if (in_array($name, $this->internalForms(), true)) {
             $this->forms[$name] = $value;
         } else {
-            parent::__set($name, $value);
+            $this->$name = $value;
+            return; //for can set dynamic multi language property
+//            parent::__set($name, $value);
         }
     }
 

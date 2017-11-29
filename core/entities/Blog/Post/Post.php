@@ -23,6 +23,7 @@ use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
 use yiidreamteam\upload\ImageUploadBehavior;
+use core\forms\manage\Blog\Post\PostForm;
 use omgdef\multilingual\MultilingualBehavior;
 use omgdef\multilingual\MultilingualQuery;
 
@@ -31,9 +32,11 @@ use omgdef\multilingual\MultilingualQuery;
  * @property integer $category_id
  * @property integer $created_at
  * @property string $title
- * @property string $title_ua
  * @property string $description
  * @property string $content
+ * @property string $title_ua
+ * @property string $description_ua
+ * @property string $content_ua
  * @property string $photo
  * @property integer $status
  * @property integer $comments_count
@@ -50,8 +53,6 @@ class Post extends ActiveRecord
 {
     const STATUS_DRAFT = 0;
     const STATUS_ACTIVE = 1;
-//    public $title_ru;
-//    public $title_ua;
 
     public static function create($categoryId, $title, $description, $content, Meta $meta): self
     {
@@ -73,14 +74,29 @@ class Post extends ActiveRecord
     }
 
 
-    public function edit($categoryId, $title, $description, $content, Meta $meta): void
+    public function edit($categoryId, array $titles, array $descriptions, array $contents, array $meta): void
     {
         $this->category_id = $categoryId;
-        $this->title = $title;
-        $this->description = $description;
-        $this->content = $content;
-        $this->meta = $meta;
+
+        //$this->title, $this->title_ua...
+        foreach ($titles as $name => $value) {
+            $this->{$name} = $value;
+        }
+        //$this->description, $this->description_ua...
+        foreach ($descriptions as $name => $value) {
+            $this->{$name} = $value;
+        }
+        //$this->content, $this->content_ua...
+        foreach ($contents as $name => $value) {
+            $this->{$name} = $value;
+        }
+
+        //$this->meta, $this->meta_ua...
+        foreach ($contents as $name => $value) {
+            $this->{$name} = $value;
+        }
     }
+
 
     public function activate(): void
     {
@@ -254,11 +270,6 @@ class Post extends ActiveRecord
     {
         return $this->hasMany(Comment::class, ['post_id' => 'id']);
     }
-
-//    public function getTranslations(): ActiveQuery
-//    {
-//        return $this->hasMany(PostLang::class, ['post_id' => 'id']);
-//    }
 
     ##########################
 

@@ -8,6 +8,7 @@ use yii\base\Model;
 class MetaForm extends Model
 {
     public $title;
+    public $title_ua;
     public $description;
     public $keywords;
 
@@ -24,7 +25,7 @@ class MetaForm extends Model
     public function rules(): array
     {
         return [
-            [['title'], 'string', 'max' => 255],
+            [['title', 'title_ua'], 'string', 'max' => 255],
             [['description', 'keywords'], 'string'],
         ];
     }

@@ -123,3 +123,7 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.flag-icon {
+    margin-left: 5px;
+}

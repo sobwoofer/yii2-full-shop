@@ -13,6 +13,7 @@ use core\entities\Meta;
 use core\entities\Blog\Post\Post;
 use core\entities\Blog\Tag;
 use core\forms\manage\Blog\Post\PostForm;
+use core\helpers\LangsHelper;
 use core\repositories\Blog\CategoryRepository;
 use core\repositories\Blog\PostRepository;
 use core\repositories\Blog\TagRepository;
@@ -82,17 +83,31 @@ class PostManageService
         $post = $this->posts->get($id);
         $category = $this->categories->get($form->categoryId);
 
+        $titles = [];
+        $descriptions = [];
+        $contents = [];
+        $metas = [];
+
+        //fulled variables of multi lang data
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $titles['title' . $suffix] = $form->{'title' . $suffix};
+            $descriptions['description' . $suffix] = $form->{'description' . $suffix};
+            $contents['content' . $suffix] = $form->{'content' . $suffix};
+            $metas['meta' . $suffix] = new Meta(
+                $form->{'meta' . $suffix}->title,
+                $form->{'meta' . $suffix}->description,
+                $form->{'meta' . $suffix}->keywords
+            );
+        }
+
         $post->edit(
             $category->id,
-            $form->title,
-            $form->description,
-            $form->content,
-            new Meta(
-                $form->meta->title,
-                $form->meta->description,
-                $form->meta->keywords
-            )
+            $titles,
+            $descriptions,
+            $contents,
+            $metas
         );
+
 
 
         if ($form->photo) {

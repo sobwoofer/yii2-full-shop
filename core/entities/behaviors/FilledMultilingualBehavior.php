@@ -16,6 +16,23 @@ use yii\helpers\ArrayHelper;
 use yii\base\UnknownPropertyException;
 use yii\db\ActiveRecord;
 
+/**
+ * Что было сделано для мультиленгвича:
+ * Привязан к каждой сущьности и настроено поведения "MultilingualBehavior" который был унаследован и переопределен
+ * Этим собственно классом.
+ * Видоизменен конструктор менеджментской формы сущности чтобы поля заполнялись автоматически, тоесть
+ * свойства созданного обьекта формы динамически создаются в цыкле конструктора, для этого пришлось отключить
+ * родительский метод __set() в композитной форме от которой наследуются всне формы "CompositeForm".
+ * Создан хелпер "LangsHelper" для удобного извлечения суфиксов а также автоматического мультиленгвистического
+ * не врот ебись заполнения rules форм для валидаций.
+ * Создана таблица с действующими языками, сущность к ней и Рид репозиторий в ReadModels для извлечения всей языковой
+ * лабуды.
+ * Создано по таблице с переводами к каждой сущности что имеет мультиязычные поля а также по сущьности к этим таблицам
+ * MetaBehavior перенесены именно туда.
+ *
+ * Class FilledMultilingualBehavior
+ * @package core\entities\behaviors
+ */
 class FilledMultilingualBehavior extends MultilingualBehavior
 {
     private $langs;
@@ -32,7 +49,6 @@ class FilledMultilingualBehavior extends MultilingualBehavior
     public function fillLanguages()
     {
         $this->languages = ArrayHelper::map($this->langs->findAllActive(), 'url', 'name');
-//        $this->languages = ['ru', 'ua'];
     }
 
     /**
@@ -42,6 +58,7 @@ class FilledMultilingualBehavior extends MultilingualBehavior
     {
         /** @var ActiveRecord $owner */
         $owner = $this->owner;
+
         $owner->populateRelation('translations', $owner->translations);
 
        parent::afterUpdate();

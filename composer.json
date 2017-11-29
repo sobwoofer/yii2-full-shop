@@ -49,7 +49,8 @@
         "ezoterik/yii2-respond-asset": "*",
         "omgdef/yii2-multilingual-behavior": "^2.1",
         "cetver/yii2-language-url-manager": "^1.0",
-        "cetver/yii2-languages-dispatcher": "^1.0"
+        "cetver/yii2-languages-dispatcher": "^1.0",
+        "powerkernel/yii2-flag-icon-css": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

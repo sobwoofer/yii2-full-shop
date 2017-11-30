@@ -49,8 +49,8 @@ class MetaBehavior extends Behavior
      */
     public function onAfterFind(Event $event): void
     {
-        $model = $event->sender;
 
+        $model = $event->sender;
         $meta = Json::decode($model->getAttribute($this->jsonAttribute));
 
         $model->{$this->attribute} = new Meta(

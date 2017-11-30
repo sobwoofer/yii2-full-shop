@@ -54,14 +54,29 @@ class Post extends ActiveRecord
     const STATUS_DRAFT = 0;
     const STATUS_ACTIVE = 1;
 
-    public static function create($categoryId, $title, $description, $content, Meta $meta): self
+    public static function create($categoryId, array $titles, array $descriptions, array $contents, array $metas): self
     {
         $post = new static();
         $post->category_id = $categoryId;
-        $post->title = $title;
-        $post->description = $description;
-        $post->content = $content;
-        $post->meta = $meta;
+
+        //$this->title, $this->title_ua...
+        foreach ($titles as $name => $value) {
+            $post->{$name} = $value;
+        }
+        //$this->description, $this->description_ua...
+        foreach ($descriptions as $name => $value) {
+            $post->{$name} = $value;
+        }
+        //$this->content, $this->content_ua...
+        foreach ($contents as $name => $value) {
+            $post->{$name} = $value;
+        }
+
+        //$this->meta, $this->meta_ua...
+        foreach ($metas as $name => $value) {
+            $post->{$name} = $value;
+        }
+
         $post->status = self::STATUS_DRAFT;
         $post->created_at = time();
         $post->comments_count = 0;
@@ -74,7 +89,7 @@ class Post extends ActiveRecord
     }
 
 
-    public function edit($categoryId, array $titles, array $descriptions, array $contents, array $meta): void
+    public function edit($categoryId, array $titles, array $descriptions, array $contents, array $metas): void
     {
         $this->category_id = $categoryId;
 
@@ -92,7 +107,7 @@ class Post extends ActiveRecord
         }
 
         //$this->meta, $this->meta_ua...
-        foreach ($contents as $name => $value) {
+        foreach ($metas as $name => $value) {
             $this->{$name} = $value;
         }
     }

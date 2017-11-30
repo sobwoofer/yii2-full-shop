@@ -94,6 +94,7 @@ class PostController extends Controller
     public function actionCreate()
     {
         $form = new PostForm();
+
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
                 $post = $this->service->create($form);
@@ -103,8 +104,10 @@ class PostController extends Controller
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
+
         return $this->render('create', [
             'model' => $form,
+            'langs' => $this->langs->findAllActive(),
         ]);
     }
 
@@ -126,6 +129,7 @@ class PostController extends Controller
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
+
         return $this->render('update', [
             'model' => $form,
             'post' => $post,
@@ -185,6 +189,7 @@ class PostController extends Controller
         if (($model = Post::find()->multilingual()->andWhere(['id' => $id])->one()) !== null) {
             return $model;
         }
+
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

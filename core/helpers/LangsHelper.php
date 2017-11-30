@@ -34,7 +34,7 @@ class LangsHelper
         return $results;
     }
 
-    public static function rules(array $attributes): array
+    public static function getNamesWithSuffix(array $attributes): array
     {
         $results = [];
         foreach ($attributes as $attribute) {
@@ -42,8 +42,6 @@ class LangsHelper
                 $results[] = $attribute . $suffix;
             }
         }
-
-
         return $results;
     }
 

@@ -8,7 +8,16 @@
 
 namespace core\entities;
 
-
+/**
+ * Class Meta
+ * @package core\entities
+ * @property string $title
+ * @property string $description
+ * @property string $keywords
+ * @property string $title_ua
+ * @property string $description_ua
+ * @property string $keywords_ua
+ */
 class Meta
 {
     public $title;
@@ -21,4 +30,6 @@ class Meta
         $this->description = $description;
         $this->keywords = $keywords;
     }
+
+
 }

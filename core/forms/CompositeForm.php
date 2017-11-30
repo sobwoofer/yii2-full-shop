@@ -37,7 +37,9 @@ abstract class CompositeForm extends Model
 
     public function load($data, $formName = null): bool
     {
+
         $success = parent::load($data, $formName);
+
 
         foreach ($this->forms as $name => $form) {
             if (is_array($form)) {
@@ -46,6 +48,7 @@ abstract class CompositeForm extends Model
                 $success = $form->load($data, $formName !== '' ? null : $name) && $success;
             }
         }
+
         return $success;
     }
 
@@ -63,6 +66,7 @@ abstract class CompositeForm extends Model
     public function validate($attributeNames = null, $clearErrors = true): bool
     {
 
+
         $parentNames = $attributeNames !== null ? array_filter((array)$attributeNames, 'is_string') : null;
         $success = parent::validate($parentNames, $clearErrors);
 
@@ -79,12 +83,17 @@ abstract class CompositeForm extends Model
 
     public function hasErrors($attribute = null): bool
     {
+
+//        var_dump($this->forms);
+//        die();
         if ($attribute !== null) {
             return parent::hasErrors($attribute);
         }
+
         if (parent::hasErrors($attribute)) {
             return true;
         }
+
         foreach ($this->forms as $name => $form) {
             if (is_array($form)) {
                 foreach ($form as $i => $item) {
@@ -103,6 +112,7 @@ abstract class CompositeForm extends Model
 
     public function getFirstErrors(): array
     {
+
         $errors = parent::getFirstErrors();
         foreach ($this->forms as $name => $form) {
             if (is_array($form)) {
@@ -127,10 +137,27 @@ abstract class CompositeForm extends Model
      */
     public function __get($name)
     {
+
         if (isset($this->forms[$name])) {
             return $this->forms[$name];
         }
-        return parent::__get($name);
+        $getter = 'get' . $name;
+        if (method_exists($this, $getter)) {
+            // read property, e.g. getName()
+            return $this->$getter();
+        }
+
+        // behavior property
+//        $this->ensureBehaviors();
+//        foreach ($this->_behaviors as $behavior) {
+//            if ($behavior->canGetProperty($name)) {
+//                return $behavior->$name;
+//            }
+//        }
+
+        return $this->$name = ''; //for can set dynamic multi language property
+
+//        return parent::__get($name);
     }
 
     /**
@@ -140,12 +167,22 @@ abstract class CompositeForm extends Model
      */
     public function __set($name, $value)
     {
-        if (in_array($name, $this->internalForms(), true)) {
-            $this->forms[$name] = $value;
-        } else {
-            $this->$name = $value;
-            return; //for can set dynamic multi language property
-//            parent::__set($name, $value);
+
+        foreach ($this->internalForms() as $internalForm) {
+            if ($internalForm == $name) {
+                $this->forms[$name] = $value;
+            } elseif (is_array($internalForm)){
+                foreach ($internalForm as $item) {
+                    if ($item == $name) {
+                        $this->forms[$name] = $value;
+                    }
+                }
+            } else {
+                $this->$name = $value;
+                return; //for can set dynamic multi language property
+//                parent::__set($name, $value);
+            }
+
         }
     }
 

@@ -62,9 +62,10 @@ use powerkernel\flagiconcss\Flag;
                     <?php foreach (LangsHelper::getWithSuffix() as $suffix => $lang): ?>
                         <div class="chart tab-pane <?= !$suffix ? 'active' : '' ?>" id="langTab-<?= $lang->url ?>">
                             <div class="col-sm-12">
-                                <?= $form->field($model, 'title'.$suffix)->textInput(['maxlength' => true]) ?>
-                                <?= $form->field($model, 'description'.$suffix)->textarea(['rows' => 5]) ?>
-                                <?= $form->field($model, 'content'.$suffix)->widget(CKEditor::className()) ?>
+
+                                <?= $form->field($model, 'title' . $suffix)->textInput(['maxlength' => true]) ?>
+                                <?= $form->field($model, 'description' . $suffix)->textarea(['rows' => 5]) ?>
+                                <?= $form->field($model, 'content' . $suffix)->widget(CKEditor::className()) ?>
                             </div>
                             <div class="">SEO<?= Flag::widget(['country' => $lang->url]) ?></div>
                             <div class="box-body">

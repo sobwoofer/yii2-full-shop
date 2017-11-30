@@ -38,6 +38,13 @@ class PostForm extends CompositeForm
     public $content;
     public $photo;
 
+//    public $title_ua;
+//    public $description_ua;
+//    public $content_ua;
+//    public $meta;
+//    public $tags;
+//    public $meta_ua;
+
     public function __construct(Post $post = null, $config = [])
     {
         if ($post) {
@@ -50,7 +57,10 @@ class PostForm extends CompositeForm
             }
             $this->tags = new TagsForm($post);
         } else {
-            $this->meta = new MetaForm();
+            foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+                $this->{'meta' . $suffix} = new MetaForm();
+            }
+//            $this->meta = new MetaForm();
             $this->tags = new TagsForm();
         }
         parent::__construct($config);
@@ -61,9 +71,9 @@ class PostForm extends CompositeForm
     {
         return [
             [['categoryId'], 'required'],
-            [LangsHelper::rules(['title']), 'string', 'max' => 255],
+            [LangsHelper::getNamesWithSuffix(['title']), 'string', 'max' => 255],
             [['categoryId'], 'integer'],
-            [LangsHelper::rules(['description', 'content']), 'string'],
+            [LangsHelper::getNamesWithSuffix(['description', 'content']), 'string'],
             [['photo'], 'image'],
         ];
     }
@@ -75,7 +85,7 @@ class PostForm extends CompositeForm
 
     protected function internalForms(): array
     {
-        return ['meta', 'tags', 'translates'];
+        return [LangsHelper::getNamesWithSuffix(['meta']), 'tags', 'translates'];
     }
 
     public function beforeValidate(): bool

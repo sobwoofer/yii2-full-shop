@@ -43,6 +43,11 @@ class PostManageService
     {
         $category = $this->categories->get($form->categoryId);
 
+        $titles = [];
+        $descriptions = [];
+        $contents = [];
+        $metas = [];
+
         //fulled variables of multi lang data
         foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
             $titles['title' . $suffix] = $form->{'title' . $suffix};
@@ -50,10 +55,11 @@ class PostManageService
             $contents['content' . $suffix] = $form->{'content' . $suffix};
             $metas['meta' . $suffix] = new Meta(
                 $form->{'meta' . $suffix}->{'title' . $suffix},
-                $form->{'meta' . $suffix}->description,
-                $form->{'meta' . $suffix}->keywords
+                $form->{'meta' . $suffix}->{'description' . $suffix},
+                $form->{'meta' . $suffix}->{'keywords' . $suffix}
             );
         }
+
 
         $post = Post::create(
             $category->id,
@@ -103,8 +109,8 @@ class PostManageService
             $contents['content' . $suffix] = $form->{'content' . $suffix};
             $metas['meta' . $suffix] = new Meta(
                 $form->{'meta' . $suffix}->{'title' . $suffix},
-                $form->{'meta' . $suffix}->description,
-                $form->{'meta' . $suffix}->keywords
+                $form->{'meta' . $suffix}->{'description' . $suffix},
+                $form->{'meta' . $suffix}->{'keywords' . $suffix}
             );
         }
 

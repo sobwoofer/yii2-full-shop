@@ -41,14 +41,17 @@ abstract class CompositeForm extends Model
         $success = parent::load($data, $formName);
 
 
+
         foreach ($this->forms as $name => $form) {
             if (is_array($form)) {
+
                 $success = Model::loadMultiple($form, $data, $formName === null ? null : $name) && $success;
             } else {
+
                 $success = $form->load($data, $formName !== '' ? null : $name) && $success;
             }
         }
-
+//        die();
         return $success;
     }
 
@@ -70,22 +73,26 @@ abstract class CompositeForm extends Model
         $parentNames = $attributeNames !== null ? array_filter((array)$attributeNames, 'is_string') : null;
         $success = parent::validate($parentNames, $clearErrors);
 
+
         foreach ($this->forms as $name => $form) {
+
             if (is_array($form)) {
+
                 $success = Model::validateMultiple($form) && $success;
             } else {
+
                 $innerNames = $attributeNames !== null ? ArrayHelper::getValue($attributeNames, $name) : null;
                 $success = $form->validate($innerNames ?: null, $clearErrors) && $success;
             }
         }
+
         return $success;
     }
 
     public function hasErrors($attribute = null): bool
     {
 
-//        var_dump($this->forms);
-//        die();
+
         if ($attribute !== null) {
             return parent::hasErrors($attribute);
         }
@@ -141,48 +148,50 @@ abstract class CompositeForm extends Model
         if (isset($this->forms[$name])) {
             return $this->forms[$name];
         }
+
         $getter = 'get' . $name;
         if (method_exists($this, $getter)) {
             // read property, e.g. getName()
             return $this->$getter();
         }
 
-        // behavior property
-//        $this->ensureBehaviors();
-//        foreach ($this->_behaviors as $behavior) {
-//            if ($behavior->canGetProperty($name)) {
-//                return $behavior->$name;
-//            }
-//        }
+        $this->$name = '';
 
-        return $this->$name = ''; //for can set dynamic multi language property
 
+        return;  //for can set dynamic multi language property
 //        return parent::__get($name);
+
     }
 
     /**
      * @param string $name
      * @param mixed $value
      * этим мы записываем данные масив свойства $forms по ключу названия формы.
+     * емли значение вложенной формы является масивом то это значит что вложенная форма мультиязычна и так же
+     * проверяем есть ли там имена свойст которые скрипт пытается присвоить на лету
      */
     public function __set($name, $value)
     {
 
         foreach ($this->internalForms() as $internalForm) {
-            if ($internalForm == $name) {
-                $this->forms[$name] = $value;
-            } elseif (is_array($internalForm)){
+           if (is_array($internalForm)){
                 foreach ($internalForm as $item) {
                     if ($item == $name) {
                         $this->forms[$name] = $value;
+                        return;
                     }
                 }
-            } else {
-                $this->$name = $value;
-                return; //for can set dynamic multi language property
-//                parent::__set($name, $value);
             }
+        }
 
+
+        if (in_array($name, $this->internalForms())) {
+            $this->forms[$name] = $value;
+            return;
+        } else {
+            $this->$name = $value;
+            return; //for can set dynamic multi language property
+//                parent::__set($name, $value);
         }
     }
 

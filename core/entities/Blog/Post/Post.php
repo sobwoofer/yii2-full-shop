@@ -9,11 +9,8 @@
 
 namespace core\entities\Blog\Post;
 
-//use core\entities\Blog\Post\Comment;
-//use core\entities\Blog\Post\queries\CommentQuery;
 use core\entities\behaviors\FilledMultilingualBehavior;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
-use core\entities\behaviors\MetaBehavior;
 use core\entities\Blog\Post\queries\PostQuery;
 use core\entities\Meta;
 use core\entities\Blog\Category;
@@ -23,9 +20,7 @@ use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
 use yiidreamteam\upload\ImageUploadBehavior;
-use core\forms\manage\Blog\Post\PostForm;
-use omgdef\multilingual\MultilingualBehavior;
-use omgdef\multilingual\MultilingualQuery;
+
 
 /**
  * @property integer $id
@@ -59,20 +54,20 @@ class Post extends ActiveRecord
         $post = new static();
         $post->category_id = $categoryId;
 
-        //$this->title, $this->title_ua...
+        //$post->title, $post->title_ua...
         foreach ($titles as $name => $value) {
             $post->{$name} = $value;
         }
-        //$this->description, $this->description_ua...
+        //$post->description, $post->description_ua...
         foreach ($descriptions as $name => $value) {
             $post->{$name} = $value;
         }
-        //$this->content, $this->content_ua...
+        //$post->content, $post->content_ua...
         foreach ($contents as $name => $value) {
             $post->{$name} = $value;
         }
 
-        //$this->meta, $this->meta_ua...
+        //$post->meta, $post->meta_ua...
         foreach ($metas as $name => $value) {
             $post->{$name} = $value;
         }
@@ -296,7 +291,6 @@ class Post extends ActiveRecord
     public function behaviors(): array
     {
         return [
-//            MetaBehavior::className(),
             [
                 'class' => SaveRelationsBehavior::className(),
                 'relations' => ['tagAssignments', 'comments'],
@@ -319,10 +313,7 @@ class Post extends ActiveRecord
             ],
             'ml' => [
                 'class' => FilledMultilingualBehavior::className(),
-//                'languageField' => 'language',
-                //'localizedPrefix' => '',
                 'defaultLanguage' => 'ru',
-                //'requireTranslations' => false',
                 'dynamicLangClass' => false,
                 'langClassName' => PostLang::className(), // or namespace/for/a/class/PostLang
                 'langForeignKey' => 'post_id',

@@ -43,7 +43,6 @@ class MetaForm extends Model
 
     public function __get($name)
     {
-
         $getter = 'get' . $name;
         if (method_exists($this, $getter)) {
             // read property, e.g. getName()

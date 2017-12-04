@@ -72,7 +72,9 @@ class CategoryController extends Controller
     public function actionCreate()
     {
         $form = new CategoryForm();
+
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+
             try {
 
                 $category = $this->service->create($form);
@@ -96,6 +98,7 @@ class CategoryController extends Controller
         $category = $this->findModel($id);
 
         $form = new CategoryForm($category);
+
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
                 $this->service->edit($category->id, $form);
@@ -145,7 +148,7 @@ class CategoryController extends Controller
      */
     public function findModel($id)
     {
-        if (($model = Category::findOne($id)) !== null) {
+        if (($model = Category::find()->multilingual()->andWhere(['id' => $id])->one()) !== null) {
             return $model;
         }
         throw new NotFoundHttpException('The requested page does not exist.');

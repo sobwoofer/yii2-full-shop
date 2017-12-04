@@ -16,7 +16,6 @@ use powerkernel\flagiconcss\Flag;
 /* @var $this yii\web\View */
 /* @var $model core\forms\manage\Blog\Post\PostForm */
 /* @var $form yii\widgets\ActiveForm */
-/* @var $langs \core\entities\Lang[] */
 ?>
 
 <div class="post-form">

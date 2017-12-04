@@ -16,6 +16,7 @@ use core\repositories\Blog\CategoryRepository;
 use core\forms\manage\Blog\CategoryForm;
 use core\repositories\Blog\PostRepository;
 use yii\helpers\Inflector;
+use core\helpers\LangsHelper;
 
 class CategoryManageService
 {
@@ -34,38 +35,73 @@ class CategoryManageService
      */
     public function create(CategoryForm $form): Category
     {
+        $names = [];
+        $titles = [];
+        $descriptions = [];
+        $metas = [];
+
+        //fulled variables of multi lang data
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $names['name' . $suffix] = $form->{'name' . $suffix};
+            $titles['title' . $suffix] = $form->{'title' . $suffix};
+            $descriptions['description' . $suffix] = $form->{'description' . $suffix};
+            $metas['meta' . $suffix] = new Meta(
+                $form->{'meta' . $suffix}->{'title' . $suffix},
+                $form->{'meta' . $suffix}->{'description' . $suffix},
+                $form->{'meta' . $suffix}->{'keywords' . $suffix}
+            );
+        }
+
+//        var_dump($form);
+//        die();
+
         $category = Category::create(
-            $form->name,
             $form->slug ?: Inflector::slug($form->name),
-            $form->title,
-            $form->description,
             $form->sort,
-            new Meta(
-                $form->meta->title,
-                $form->meta->description,
-                $form->meta->keywords
-            )
+            $names,
+            $titles,
+            $descriptions,
+            $metas
         );
+
         $this->categories->save($category);
         return $category;
     }
 
     public function edit($id, CategoryForm $form): void
     {
+
+        $names = [];
+        $titles = [];
+        $descriptions = [];
+        $metas = [];
+
+        //fulled variables of multi lang data
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $names['name' . $suffix] = $form->{'name' . $suffix};
+            $titles['title' . $suffix] = $form->{'title' . $suffix};
+            $descriptions['description' . $suffix] = $form->{'description' . $suffix};
+            $metas['meta' . $suffix] = new Meta(
+                $form->{'meta' . $suffix}->{'title' . $suffix},
+                $form->{'meta' . $suffix}->{'description' . $suffix},
+                $form->{'meta' . $suffix}->{'keywords' . $suffix}
+            );
+        }
+
+
         $category = $this->categories->get($id);
         $category->edit(
-            $form->name,
             $form->slug ?: Inflector::slug($form->name),
-            $form->title,
-            $form->description,
             $form->sort,
-            new Meta(
-                $form->meta->title,
-                $form->meta->description,
-                $form->meta->keywords
-            )
+            $names,
+            $titles,
+            $descriptions,
+            $metas
         );
+
+
         $this->categories->save($category);
+
     }
 
     public function remove($id): void

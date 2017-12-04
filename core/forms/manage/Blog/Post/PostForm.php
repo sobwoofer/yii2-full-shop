@@ -74,7 +74,8 @@ class PostForm extends CompositeForm
 
     public function categoriesList(): array
     {
-        return ArrayHelper::map(Category::find()->orderBy('sort')->asArray()->all(), 'id', 'name');
+
+        return ArrayHelper::map(Category::find()->orderBy('sort')->localized()->asArray()->all(), 'id', 'translation.name');
     }
 
     protected function internalForms(): array

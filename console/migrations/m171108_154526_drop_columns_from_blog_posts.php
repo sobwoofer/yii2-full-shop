@@ -22,6 +22,7 @@ class m171108_154526_drop_columns_from_blog_posts extends Migration
         $this->addColumn('{{%blog_posts}}', 'title', $this->string()->notNull());
         $this->addColumn('{{%blog_posts}}', 'description', $this->text());
         $this->addColumn('{{%blog_posts}}', 'content', 'MEDIUMTEXT');
+        $this->addColumn('{{%blog_posts}}', 'meta_json', 'JSON NOT NULL');
     }
 
 }

@@ -60,7 +60,7 @@ class MetaForm extends Model
     {
         return [
             [LangsHelper::getNamesWithSuffix(['title']), 'string', 'max' => 255],
-            [['description', 'keywords'], 'string'],
+            [LangsHelper::getNamesWithSuffix(['description', 'keywords']), 'string'],
         ];
     }
 }

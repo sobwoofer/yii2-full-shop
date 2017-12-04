@@ -99,8 +99,10 @@ class CategoryController extends Controller
 
         $form = new CategoryForm($category);
 
+
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
+
                 $this->service->edit($category->id, $form);
                 return $this->redirect(['view', 'id' => $category->id]);
             } catch (\DomainException $e) {

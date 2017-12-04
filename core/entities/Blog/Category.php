@@ -24,8 +24,12 @@ use omgdef\multilingual\MultilingualQuery;
  * @property string $title
  * @property string $name
  * @property string $description
+ * @property string $title_ua
+ * @property string $name_ua
+ * @property string $description_ua
  * @property integer $sort
  * @property Meta $meta
+ * @property Meta $meta_ua
  */
 class Category extends ActiveRecord
 {

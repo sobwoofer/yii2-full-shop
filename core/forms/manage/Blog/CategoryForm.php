@@ -16,6 +16,7 @@ use yii\base\Model;
 use core\helpers\LangsHelper;
 use core\validators\SlugValidator;
 use core\forms\CompositeForm;
+use core\entities\Blog\CategoryLang;
 
 
 /**
@@ -54,12 +55,14 @@ class CategoryForm extends CompositeForm
             $this->slug = $category->slug;
             $this->sort = $category->sort;
             $this->_category = $category;
+
         } else {
             foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
                 $this->{'meta' . $suffix} = new MetaForm();
             }
             $this->sort = Category::find()->max('sort') + 1;
         }
+
 
 
         parent::__construct($config);
@@ -73,7 +76,8 @@ class CategoryForm extends CompositeForm
             [['slug'], 'string', 'max' => 255],
             [LangsHelper::getNamesWithSuffix(['description']), 'string'],
             ['slug', SlugValidator::class],
-            [['name', 'slug'], 'unique', 'targetClass' => Category::class, 'filter' => $this->_category ? ['<>', 'id', $this->_category->id] : null]
+            [['slug'], 'unique', 'targetClass' => Category::class, 'filter' => $this->_category ? ['<>', 'id', $this->_category->id] : null],
+            ['name', 'unique', 'targetClass' => CategoryLang::class, 'filter' => $this->_category ? ['<>', 'category_id', $this->_category->id] : null]
         ];
     }
 

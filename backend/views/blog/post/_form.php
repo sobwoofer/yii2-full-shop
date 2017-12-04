@@ -69,8 +69,8 @@ use powerkernel\flagiconcss\Flag;
                             <div class="">SEO<?= Flag::widget(['country' => $lang->url]) ?></div>
                             <div class="box-body">
                                 <?= $form->field($model->{'meta' . $suffix}, 'title' . $suffix)->textInput() ?>
-                                <?= $form->field($model->{'meta' . $suffix}, 'description')->textarea(['rows' => 2]) ?>
-                                <?= $form->field($model->{'meta' . $suffix}, 'keywords')->textInput() ?>
+                                <?= $form->field($model->{'meta' . $suffix}, 'description' . $suffix)->textarea(['rows' => 2]) ?>
+                                <?= $form->field($model->{'meta' . $suffix}, 'keywords' . $suffix)->textInput() ?>
                             </div>
                         </div>
 

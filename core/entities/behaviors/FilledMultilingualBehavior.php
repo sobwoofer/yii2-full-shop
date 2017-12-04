@@ -64,6 +64,7 @@ class FilledMultilingualBehavior extends MultilingualBehavior
      */
     public function afterUpdate()
     {
+
         /** @var ActiveRecord $owner */
         $owner = $this->owner;
 

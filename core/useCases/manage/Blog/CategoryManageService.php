@@ -52,8 +52,6 @@ class CategoryManageService
             );
         }
 
-//        var_dump($form);
-//        die();
 
         $category = Category::create(
             $form->slug ?: Inflector::slug($form->name),
@@ -63,6 +61,7 @@ class CategoryManageService
             $descriptions,
             $metas
         );
+
 
         $this->categories->save($category);
         return $category;
@@ -76,6 +75,8 @@ class CategoryManageService
         $descriptions = [];
         $metas = [];
 
+
+
         //fulled variables of multi lang data
         foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
             $names['name' . $suffix] = $form->{'name' . $suffix};
@@ -87,7 +88,6 @@ class CategoryManageService
                 $form->{'meta' . $suffix}->{'keywords' . $suffix}
             );
         }
-
 
         $category = $this->categories->get($id);
         $category->edit(

@@ -71,6 +71,7 @@ abstract class CompositeForm extends Model
 
 
         $parentNames = $attributeNames !== null ? array_filter((array)$attributeNames, 'is_string') : null;
+
         $success = parent::validate($parentNames, $clearErrors);
 
 

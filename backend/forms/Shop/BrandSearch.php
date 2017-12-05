@@ -33,7 +33,7 @@ class BrandSearch extends Model
      */
     public function search(array $params): ActiveDataProvider
     {
-        $query = Brand::find()->joinWith('translations');
+        $query = Brand::find()->joinWith('translation');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

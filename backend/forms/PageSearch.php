@@ -33,7 +33,7 @@ class PageSearch extends Model
      */
     public function search(array $params): ActiveDataProvider
     {
-        $query = Page::find()->andWhere(['>', 'depth', 0]);
+        $query = Page::find()->joinWith('translations')->andWhere(['>', 'depth', 0]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

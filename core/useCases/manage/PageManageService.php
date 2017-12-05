@@ -11,6 +11,7 @@ namespace core\useCases\manage;
 use core\entities\Meta;
 use core\entities\Page\Page;
 use core\forms\manage\PageForm;
+use core\helpers\LangsHelper;
 use core\repositories\PageRepository;
 
 class PageManageService
@@ -25,15 +26,26 @@ class PageManageService
     public function create(PageForm $form): Page
     {
         $parent = $this->pages->get($form->parentId);
+
+        $titles = [];
+        $contents = [];
+        $metas = [];
+
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $titles['title' . $suffix] = $form->{'title' . $suffix};
+            $contents['content' . $suffix] = $form->{'content' . $suffix};
+            $metas['meta' . $suffix] = new Meta(
+                $form->{'meta' . $suffix}->{'title' . $suffix},
+                $form->{'meta' . $suffix}->{'description' . $suffix},
+                $form->{'meta' . $suffix}->{'keywords' . $suffix}
+            );
+        }
+
         $page = Page::create(
-            $form->title,
-            $form->slug,
-            $form->content,
-            new Meta(
-                $form->meta->title,
-                $form->meta->description,
-                $form->meta->keywords
-            )
+            $titles,
+            $contents,
+            $metas,
+            $form->slug
         );
         $page->appendTo($parent);
         $this->pages->save($page);
@@ -44,16 +56,29 @@ class PageManageService
     {
         $page = $this->pages->get($id);
         $this->assertIsNotRoot($page);
+
+        $titles = [];
+        $contents = [];
+        $metas = [];
+
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $titles['title' . $suffix] = $form->{'title' . $suffix};
+            $contents['content' . $suffix] = $form->{'content' . $suffix};
+            $metas['meta' . $suffix] = new Meta(
+                $form->{'meta' . $suffix}->{'title' . $suffix},
+                $form->{'meta' . $suffix}->{'description' . $suffix},
+                $form->{'meta' . $suffix}->{'keywords' . $suffix}
+            );
+        }
+
+
         $page->edit(
-            $form->title,
-            $form->slug,
-            $form->content,
-            new Meta(
-                $form->meta->title,
-                $form->meta->description,
-                $form->meta->keywords
-            )
+            $titles,
+            $contents,
+            $metas,
+            $form->slug
         );
+
         if ($form->parentId !== $page->parent->id) {
             $parent = $this->pages->get($form->parentId);
             $page->appendTo($parent);

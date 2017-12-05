@@ -10,11 +10,19 @@ namespace core\forms\manage;
 
 use core\entities\Page\Page;
 use core\forms\CompositeForm;
+use core\helpers\LangsHelper;
 use core\validators\SlugValidator;
 use yii\helpers\ArrayHelper;
 
 /**
- * @property MetaForm $meta;
+ * @property string $slug
+ * @property string $title
+ * @property string $content
+ * @property MetaForm $meta
+ * @property string $title_ua
+ * @property string $content_ua
+ * @property MetaForm $meta_ua
+* @property integer $parentId
  */
 class PageForm extends CompositeForm
 {
@@ -27,15 +35,21 @@ class PageForm extends CompositeForm
 
     public function __construct(Page $page = null, $config = [])
     {
+
         if ($page) {
-            $this->title = $page->title;
+            foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+                $this->{'title' . $suffix} = $page->{'title' . $suffix};
+                $this->{'content' . $suffix} = $page->{'content' . $suffix};
+                $this->{'meta' . $suffix} = new MetaForm($page->{'meta' . $suffix});
+            }
             $this->slug = $page->slug;
-            $this->content = $page->content;
             $this->parentId = $page->parent ? $page->parent->id : null;
-            $this->meta = new MetaForm($page->meta);
             $this->_page = $page;
         } else {
-            $this->meta = new MetaForm();
+            foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+                $this->{'meta' . $suffix} = new MetaForm();
+            }
+
         }
         parent::__construct($config);
     }
@@ -43,10 +57,12 @@ class PageForm extends CompositeForm
     public function rules(): array
     {
         return [
-            [['title', 'slug'], 'required'],
+            [LangsHelper::getNamesWithSuffix(['title']), 'required'],
+            ['slug', 'required'],
             [['parentId'], 'integer'],
-            [['title', 'slug'], 'string', 'max' => 255],
-            [['content'], 'string'],
+            [LangsHelper::getNamesWithSuffix(['title']), 'string', 'max' => 255],
+            ['slug', 'string', 'max' => 255],
+            [LangsHelper::getNamesWithSuffix(['content']), 'string'],
             ['slug', SlugValidator::class],
             [['slug'], 'unique', 'targetClass' => Page::class, 'filter' => $this->_page ? ['<>', 'id', $this->_page->id] : null]
         ];
@@ -54,13 +70,14 @@ class PageForm extends CompositeForm
 
     public function parentsList(): array
     {
-        return ArrayHelper::map(Page::find()->orderBy('lft')->asArray()->all(), 'id', function (array $page) {
-            return ($page['depth'] > 1 ? str_repeat('-- ', $page['depth'] - 1) . ' ' : '') . $page['title'];
+        return ArrayHelper::map(Page::find()->orderBy('lft')->localized()->asArray()->all(), 'id', function (array $page) {
+            return ('translation.'.$page['depth'] > 1 ? str_repeat('-- ', $page['depth'] - 1) . ' ' : '')
+                . $page['translation']['title'];
         });
     }
 
     public function internalForms(): array
     {
-        return ['meta'];
+        return [LangsHelper::getNamesWithSuffix(['meta'])];
     }
 }

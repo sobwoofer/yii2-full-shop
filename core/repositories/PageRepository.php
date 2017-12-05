@@ -14,7 +14,7 @@ class PageRepository
 {
     public function get($id): Page
     {
-        if (!$page = Page::findOne($id)) {
+        if (!$page = Page::find()->multilingual()->andWhere(['id' => $id])->one()) {
             throw new NotFoundException('Page is not found.');
         }
         return $page;

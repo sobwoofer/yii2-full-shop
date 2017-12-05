@@ -166,7 +166,7 @@ class PageController extends Controller
      */
     protected function findModel($id): Page
     {
-        if (($model = Page::findOne($id)) !== null) {
+        if (($model = Page::find()->multilingual()->andWhere(['id' => $id])->one()) !== null) {
             return $model;
         }
         throw new NotFoundHttpException('The requested page does not exist.');

@@ -19,7 +19,7 @@ use yii\db\Exception;
 use core\entities\User\WishlistItem;
 use core\entities\Shop\Product\queries\ProductQuery;
 use core\entities\Meta;
-use core\entities\Shop\Brand;
+use core\entities\Shop\Brand\Brand;
 use core\entities\Shop\Category;
 use core\entities\Shop\Tag;
 use yii\web\UploadedFile;

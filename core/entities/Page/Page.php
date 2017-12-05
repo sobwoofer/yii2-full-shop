@@ -96,7 +96,6 @@ class Page extends ActiveRecord
     public function behaviors(): array
     {
         return [
-//            MetaBehavior::className(),
             NestedSetsBehavior::className(),
             'ml' => [
                 'class' => FilledMultilingualBehavior::className(),

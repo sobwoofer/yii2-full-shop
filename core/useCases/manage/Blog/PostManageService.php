@@ -107,8 +107,6 @@ class PostManageService
             $descriptions['description' . $suffix] = $form->{'description' . $suffix};
             $contents['content' . $suffix] = $form->{'content' . $suffix};
 
-
-
             $metas['meta' . $suffix] = new Meta(
                 $form->{'meta' . $suffix}->{'title' . $suffix},
                 $form->{'meta' . $suffix}->{'description' . $suffix},

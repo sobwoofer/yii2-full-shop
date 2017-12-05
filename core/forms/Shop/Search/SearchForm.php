@@ -8,7 +8,7 @@
 
 namespace core\forms\Shop\Search;
 
-use core\entities\Shop\Brand;
+use core\entities\Shop\Brand\Brand;
 use core\entities\Shop\Category;
 use core\entities\Shop\Characteristic;
 use core\forms\CompositeForm;

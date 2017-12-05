@@ -9,7 +9,7 @@
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\DataProviderInterface */
-/* @var $brand core\entities\Shop\Brand */
+/* @var $brand core\entities\Shop\Brand\Brand */
 
 use yii\helpers\Html;
 

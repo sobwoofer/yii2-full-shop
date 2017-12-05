@@ -7,7 +7,7 @@
  */
 
 /* @var $this yii\web\View */
-/* @var $brand core\entities\Shop\Brand */
+/* @var $brand core\entities\Shop\Brand\Brand */
 /* @var $model core\forms\manage\Shop\BrandForm */
 
 $this->title = 'Update Brand: ' . $brand->name;

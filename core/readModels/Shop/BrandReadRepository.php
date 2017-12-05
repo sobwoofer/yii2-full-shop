@@ -8,7 +8,7 @@
 
 namespace core\readModels\Shop;
 
-use core\entities\Shop\Brand;
+use core\entities\Shop\Brand\Brand;
 
 class BrandReadRepository
 {

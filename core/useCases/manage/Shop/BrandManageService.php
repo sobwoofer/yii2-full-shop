@@ -3,8 +3,9 @@
 namespace core\useCases\manage\Shop;
 
 use core\entities\Meta;
-use core\entities\Shop\Brand;
+use core\entities\Shop\Brand\Brand;
 use core\forms\manage\Shop\BrandForm;
+use core\helpers\LangsHelper;
 use core\repositories\Shop\BrandRepository;
 use core\repositories\Shop\ProductRepository;
 use yii\helpers\Inflector;
@@ -22,14 +23,26 @@ class BrandManageService
 
     public function create(BrandForm $form): Brand
     {
+        $names = [];
+        $descriptions = [];
+        $metas = [];
+
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $names['name' . $suffix] = $form->{'name' . $suffix};
+            $descriptions['description' . $suffix] = $form->{'description' . $suffix};
+
+            $metas['meta' . $suffix] = new Meta(
+                $form->{'meta' . $suffix}->{'title' . $suffix},
+                $form->{'meta' . $suffix}->{'description' . $suffix},
+                $form->{'meta' . $suffix}->{'keywords' . $suffix}
+            );
+        }
+
         $brand = Brand::create(
-            $form->name,
-            $form->slug ?: Inflector::slug($form->name),
-            new Meta(
-                $form->meta->title,
-                $form->meta->description,
-                $form->meta->keywords
-            )
+            $names,
+            $descriptions,
+            $metas,
+            $form->slug ?: Inflector::slug($form->name)
         );
         if ($form->image) {
             $brand->setPhoto($form->image);
@@ -41,16 +54,30 @@ class BrandManageService
 
     public function edit($id, BrandForm $form): void
     {
+
+        $names = [];
+        $descriptions = [];
+        $metas = [];
+
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $names['name' . $suffix] = $form->{'name' . $suffix};
+            $descriptions['description' . $suffix] = $form->{'description' . $suffix};
+
+            $metas['meta' . $suffix] = new Meta(
+                $form->{'meta' . $suffix}->{'title' . $suffix},
+                $form->{'meta' . $suffix}->{'description' . $suffix},
+                $form->{'meta' . $suffix}->{'keywords' . $suffix}
+            );
+        }
+
         $brand = $this->brands->get($id);
         $brand->edit(
-            $form->name,
-            $form->slug ?: Inflector::slug($form->name),
-            new Meta(
-                $form->meta->title,
-                $form->meta->description,
-                $form->meta->keywords
-            )
+            $names,
+            $descriptions,
+            $metas,
+            $form->slug ?: Inflector::slug($form->name)
         );
+
         if ($form->image) {
             $brand->setPhoto($form->image);
         }

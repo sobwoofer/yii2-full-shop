@@ -2,14 +2,14 @@
 
 namespace core\repositories\Shop;
 
-use core\entities\Shop\Brand;
+use core\entities\Shop\Brand\Brand;
 use core\repositories\NotFoundException;
 
 class BrandRepository
 {
     public function get($id): Brand
     {
-        if (!$brand = Brand::findOne($id)) {
+        if (!$brand = Brand::find()->multilingual()->andWhere(['id' => $id])->one()) {
             throw new NotFoundException('Brand is not found.');
         }
         return $brand;

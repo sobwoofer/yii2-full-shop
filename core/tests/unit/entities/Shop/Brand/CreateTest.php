@@ -3,7 +3,7 @@
 namespace core\tests\unit\entities\Shop\Brand;
 
 use Codeception\Test\Unit;
-use core\entities\Shop\Brand;
+use core\entities\Shop\Brand\Brand;
 use core\entities\Meta;
 
 class CreateTest extends Unit

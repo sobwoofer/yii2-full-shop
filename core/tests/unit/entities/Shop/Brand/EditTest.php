@@ -3,7 +3,7 @@
 namespace core\tests\unit\entities\Shop\Brand;
 
 use core\entities\Meta;
-use core\entities\Shop\Brand;
+use core\entities\Shop\Brand\Brand;
 use Codeception\Test\Unit;
 
 class EditTest extends Unit

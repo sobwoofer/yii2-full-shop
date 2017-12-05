@@ -9,7 +9,7 @@
 namespace backend\forms\Shop;
 
 
-use core\entities\Shop\Brand;
+use core\entities\Shop\Brand\Brand;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -33,12 +33,13 @@ class BrandSearch extends Model
      */
     public function search(array $params): ActiveDataProvider
     {
-        $query = Brand::find();
-
+        $query = Brand::find()->localized();
+//        var_dump($query->orderBy('name')->all());
+//        die();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
-                'defaultOrder' => ['name' => SORT_ASC]
+                'defaultOrder' => ['id' => SORT_ASC]
             ]
         ]);
 

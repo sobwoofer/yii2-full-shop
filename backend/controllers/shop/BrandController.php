@@ -10,7 +10,7 @@ namespace backend\controllers\shop;
 
 
 use backend\forms\Shop\BrandSearch;
-use core\entities\Shop\Brand;
+use core\entities\Shop\Brand\Brand;
 use core\forms\manage\Shop\BrandForm;
 use core\repositories\NotFoundException;
 use core\useCases\manage\Shop\BrandManageService;
@@ -144,7 +144,7 @@ class BrandController extends Controller
      */
     protected function findModel($id): Brand
     {
-        if (($model = Brand::findOne($id)) !== null) {
+        if (($model = Brand::find()->multilingual()->andWhere(['id' => $id])->one()) !== null) {
             return $model;
         }
         throw new NotFoundException('The requested page does not exist.');

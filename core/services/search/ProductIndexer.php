@@ -9,7 +9,7 @@
 namespace core\services\search;
 
 use Elasticsearch\Client;
-use core\entities\Shop\Category;
+use core\entities\Shop\Category\Category;
 use core\entities\Shop\Product\Product;
 use core\entities\Shop\Product\Value;
 use yii\helpers\ArrayHelper;

@@ -8,7 +8,7 @@
 
 namespace frontend\urls;
 
-use core\entities\Shop\Category;
+use core\entities\Shop\Category\Category;
 use core\readModels\Shop\CategoryReadRepository;
 use yii\caching\TagDependency;
 use yii\base\InvalidParamException;

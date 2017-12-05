@@ -9,7 +9,7 @@
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\DataProviderInterface */
-/* @var $category core\entities\Shop\Category */
+/* @var $category core\entities\Shop\Category\Category */
 
 use yii\helpers\Html;
 use yii\helpers\Url;

@@ -10,7 +10,7 @@ namespace core\tests\unit\entities\Shop\Category;
 
 
 use Codeception\Test\Unit;
-use core\entities\Shop\Category;
+use core\entities\Shop\Category\Category;
 use core\entities\Meta;
 
 class CreateTest extends Unit

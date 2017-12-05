@@ -10,7 +10,7 @@ namespace core\readModels\Shop;
 
 use Elasticsearch\Client;
 use core\entities\Shop\Brand\Brand;
-use core\entities\Shop\Category;
+use core\entities\Shop\Category\Category;
 use core\entities\Shop\Product\Product;
 use core\entities\Shop\Tag;
 use core\forms\Shop\Search\SearchForm;

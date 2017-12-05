@@ -9,7 +9,7 @@
 
 namespace backend\forms\Shop;
 
-use core\entities\Shop\Category;
+use core\entities\Shop\Category\Category;
 use core\helpers\ProductHelper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;

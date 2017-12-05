@@ -7,7 +7,7 @@
  */
 
 /* @var $this yii\web\View */
-/* @var $category core\entities\Shop\Category */
+/* @var $category core\entities\Shop\Category\Category */
 
 use romkaChev\yii2\swiper\Swiper;
 use yii\helpers\Html;

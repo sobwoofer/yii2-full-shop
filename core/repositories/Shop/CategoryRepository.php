@@ -9,7 +9,7 @@
 namespace core\repositories\Shop;
 
 
-use core\entities\Shop\Category;
+use core\entities\Shop\Category\Category;
 use core\repositories\NotFoundException;
 use core\dispatchers\EventDispatcher;
 use core\repositories\events\EntityPersisted;

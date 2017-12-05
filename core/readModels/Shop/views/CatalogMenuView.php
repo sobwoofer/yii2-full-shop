@@ -9,7 +9,7 @@
 namespace core\readModels\Shop\views;
 
 
-use core\entities\Shop\Category;
+use core\entities\Shop\Category\Category;
 
 class CatalogMenuView
 {

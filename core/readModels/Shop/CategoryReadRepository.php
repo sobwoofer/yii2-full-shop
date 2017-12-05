@@ -11,7 +11,7 @@ namespace core\readModels\Shop;
 use core\entities\Blog\Post\Post;
 use core\readModels\Shop\views\CatalogMenuView;
 use Elasticsearch\Client;
-use core\entities\Shop\Category;
+use core\entities\Shop\Category\Category;
 use core\readModels\Shop\views\CategoryView;
 use yii\helpers\ArrayHelper;
 

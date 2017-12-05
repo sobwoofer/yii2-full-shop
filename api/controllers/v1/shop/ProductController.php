@@ -10,7 +10,7 @@
 namespace api\controllers\v1\shop;
 
 use api\providers\MapDataProvider;
-use core\entities\Shop\Category;
+use core\entities\Shop\Category\Category;
 use core\entities\Shop\Product\Modification;
 use core\entities\Shop\Product\Photo;
 use core\entities\Shop\Product\Product;

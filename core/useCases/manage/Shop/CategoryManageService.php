@@ -9,7 +9,7 @@
 namespace core\useCases\manage\Shop;
 
 use core\entities\Meta;
-use core\entities\Shop\Category;
+use core\entities\Shop\Category\Category;
 use core\entities\Shop\Product\Product;
 use core\forms\manage\Shop\CategoryForm;
 use core\repositories\Shop\CategoryRepository;

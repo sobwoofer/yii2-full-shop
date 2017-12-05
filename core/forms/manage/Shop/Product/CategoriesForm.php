@@ -7,7 +7,7 @@
  */
 namespace core\forms\manage\Shop\Product;
 
-use core\entities\Shop\Category;
+use core\entities\Shop\Category\Category;
 use yii\base\Model;
 use core\entities\Shop\Product\Product;
 use yii\helpers\ArrayHelper;

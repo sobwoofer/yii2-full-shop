@@ -8,7 +8,7 @@
 
 
 /* @var $this yii\web\View */
-/* @var $category core\entities\Shop\Category */
+/* @var $category core\entities\Shop\Category\Category */
 /* @var $model core\forms\manage\Shop\CategoryForm */
 
 $this->title = 'Update Category: ' . $category->name;

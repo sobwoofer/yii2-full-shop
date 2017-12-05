@@ -11,7 +11,7 @@ namespace core\forms\manage\Shop;
 use core\forms\CompositeForm;
 use core\forms\manage\MetaForm;
 use yii\base\Model;
-use core\entities\Shop\Category;
+use core\entities\Shop\Category\Category;
 use core\validators\SlugValidator;
 use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;

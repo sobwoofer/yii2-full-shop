@@ -9,7 +9,7 @@
 
 namespace frontend\widgets\Shop;
 
-use core\entities\Shop\Category;
+use core\entities\Shop\Category\Category;
 use core\readModels\Shop\CategoryReadRepository;
 use core\readModels\Shop\views\CategoryView;
 use yii\base\Widget;

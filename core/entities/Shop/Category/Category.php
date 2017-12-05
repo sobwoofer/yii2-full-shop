@@ -6,7 +6,7 @@
  * Time: 13:17
  */
 
-namespace core\entities\Shop;
+namespace core\entities\Shop\Category;
 
 
 use core\entities\behaviors\MetaBehavior;

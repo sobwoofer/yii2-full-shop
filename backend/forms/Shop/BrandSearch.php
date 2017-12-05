@@ -33,9 +33,8 @@ class BrandSearch extends Model
      */
     public function search(array $params): ActiveDataProvider
     {
-        $query = Brand::find()->localized();
-//        var_dump($query->orderBy('name')->all());
-//        die();
+        $query = Brand::find()->joinWith('translations');
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [

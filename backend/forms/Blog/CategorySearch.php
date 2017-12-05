@@ -30,7 +30,7 @@ class CategorySearch extends Model
 
     public function search(array $params): ActiveDataProvider
     {
-        $query = Category::find();
+        $query = Category::find()->joinWith('translations');;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

@@ -10,7 +10,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $page core\entities\Page */
+/* @var $page core\entities\Page\Page */
 
 $this->title = $page->title;
 $this->params['breadcrumbs'][] = ['label' => 'Pages', 'url' => ['index']];

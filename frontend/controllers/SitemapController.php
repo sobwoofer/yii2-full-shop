@@ -11,7 +11,7 @@ namespace frontend\controllers;
 
 use core\entities\Blog\Category as BlogCategory;
 use core\entities\Blog\Post\Post;
-use core\entities\Page;
+use core\entities\Page\Page;
 use core\entities\Shop\Category as ShopCategory;
 use core\entities\Shop\Product\Product;
 use core\readModels\Blog\CategoryReadRepository as BlogCategoryReadRepository;

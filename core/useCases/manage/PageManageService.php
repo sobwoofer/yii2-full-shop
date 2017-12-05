@@ -9,7 +9,7 @@
 namespace core\useCases\manage;
 
 use core\entities\Meta;
-use core\entities\Page;
+use core\entities\Page\Page;
 use core\forms\manage\PageForm;
 use core\repositories\PageRepository;
 

@@ -10,7 +10,7 @@ namespace backend\forms;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use core\entities\Page;
+use core\entities\Page\Page;
 
 class PageSearch extends Model
 {

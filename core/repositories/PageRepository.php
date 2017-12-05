@@ -8,7 +8,7 @@
 
 namespace core\repositories;
 
-use core\entities\Page;
+use core\entities\Page\Page;
 
 class PageRepository
 {

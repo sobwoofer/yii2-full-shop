@@ -9,7 +9,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $page \core\entities\Page */
+/* @var $page \core\entities\Page\Page */
 
 $this->title = $page->getSeoTitle();
 

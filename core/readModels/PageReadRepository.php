@@ -9,7 +9,7 @@
 
 namespace core\readModels;
 
-use core\entities\Page;
+use core\entities\Page\Page;
 
 class PageReadRepository
 {

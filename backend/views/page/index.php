@@ -7,7 +7,7 @@
  */
 
 
-use core\entities\Page;
+use core\entities\Page\Page;
 use yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;

@@ -8,7 +8,7 @@
 
 namespace frontend\urls;
 
-use core\entities\Page;
+use core\entities\Page\Page;
 use core\readModels\PageReadRepository;
 use yii\base\InvalidParamException;
 use yii\base\Object;

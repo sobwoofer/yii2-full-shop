@@ -7,7 +7,7 @@
  */
 
 /* @var $this yii\web\View */
-/* @var $page core\entities\Page */
+/* @var $page core\entities\Page\Page */
 /* @var $model core\forms\manage\PageForm */
 
 $this->title = 'Update Page: ' . $page->title;

@@ -6,11 +6,12 @@
  * Time: 17:30
  */
 
-namespace core\entities;
+namespace core\entities\Page;
 
 use paulzi\nestedsets\NestedSetsBehavior;
 use core\entities\behaviors\MetaBehavior;
 use yii\db\ActiveRecord;
+use core\entities\Meta;
 
 /**
  * @property integer $id

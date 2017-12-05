@@ -11,7 +11,7 @@ namespace backend\controllers;
 use core\forms\manage\PageForm;
 use core\useCases\manage\PageManageService;
 use Yii;
-use core\entities\Page;
+use core\entities\Page\Page;
 use backend\forms\PageSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

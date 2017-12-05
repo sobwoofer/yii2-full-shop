@@ -8,7 +8,7 @@
 
 namespace core\forms\manage;
 
-use core\entities\Page;
+use core\entities\Page\Page;
 use core\forms\CompositeForm;
 use core\validators\SlugValidator;
 use yii\helpers\ArrayHelper;

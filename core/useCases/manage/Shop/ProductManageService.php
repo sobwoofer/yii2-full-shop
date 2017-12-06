@@ -12,6 +12,7 @@ use core\forms\manage\Shop\Product\ProductCreateForm;
 use core\forms\manage\Shop\Product\ProductEditForm;
 use core\forms\manage\Shop\Product\ModificationForm;
 use core\forms\manage\Shop\Product\PriceForm;
+use core\helpers\LangsHelper;
 use core\repositories\Shop\BrandRepository;
 use core\repositories\Shop\CategoryRepository;
 use core\repositories\Shop\ProductRepository;
@@ -51,19 +52,32 @@ class ProductManageService
         $brand = $this->brands->get($form->brandId);
         $category = $this->categories->get($form->categories->main);
 
+        $names = [];
+        $titles = [];
+        $descriptions = [];
+        $metas = [];
+
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $names['name' . $suffix] = $form->{'name' . $suffix};
+            $titles['title' . $suffix] = $form->{'title' . $suffix};
+            $descriptions['description' . $suffix] = $form->{'description' . $suffix};
+            $metas['meta' . $suffix] = new Meta(
+                $form->{'meta' . $suffix}->{'title' . $suffix},
+                $form->{'meta' . $suffix}->{'description' . $suffix},
+                $form->{'meta' . $suffix}->{'keywords' . $suffix}
+            );
+        }
+
         $product = Product::create(
             $brand->id,
             $category->id,
             $form->code,
-            $form->name,
-            $form->description,
             $form->weight,
             $form->quantity->quantity,
-            new Meta(
-                $form->meta->title,
-                $form->meta->description,
-                $form->meta->keywords
-            )
+            $names,
+            $titles,
+            $descriptions,
+            $metas
         );
 
         $product->setPrice($form->price->new, $form->price->old);
@@ -107,17 +121,30 @@ class ProductManageService
         $brand = $this->brands->get($form->brandId);
         $category = $this->categories->get($form->categories->main);
 
+        $names = [];
+        $titles = [];
+        $descriptions = [];
+        $metas = [];
+
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $names['name' . $suffix] = $form->{'name' . $suffix};
+            $titles['title' . $suffix] = $form->{'title' . $suffix};
+            $descriptions['description' . $suffix] = $form->{'description' . $suffix};
+            $metas['meta' . $suffix] = new Meta(
+                $form->{'meta' . $suffix}->{'title' . $suffix},
+                $form->{'meta' . $suffix}->{'description' . $suffix},
+                $form->{'meta' . $suffix}->{'keywords' . $suffix}
+                );
+        }
+
         $product->edit(
+            $names,
+            $titles,
+            $descriptions,
+            $metas,
             $brand->id,
             $form->code,
-            $form->name,
-            $form->description,
-            $form->weight,
-            new Meta(
-                $form->meta->title,
-                $form->meta->description,
-                $form->meta->keywords
-            )
+            $form->weight
         );
 
         $product->changeMainCategory($category->id);

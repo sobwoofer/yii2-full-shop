@@ -9,10 +9,12 @@
 namespace core\entities\Shop\Product\queries;
 
 use core\entities\Shop\Product\Product;
+use omgdef\multilingual\MultilingualTrait;
 use yii\db\ActiveQuery;
 
 class ProductQuery extends ActiveQuery
 {
+    use MultilingualTrait;
     /**
      * @param null $alias
      * @return $this

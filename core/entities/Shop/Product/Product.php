@@ -23,13 +23,18 @@ use core\entities\Shop\Brand\Brand;
 use core\entities\Shop\Category\Category;
 use core\entities\Shop\Tag;
 use yii\web\UploadedFile;
+use core\entities\behaviors\FilledMultilingualBehavior;
 
 /**
  * @property integer $id
  * @property integer $created_at
  * @property string $code
  * @property string $name
+ * @property string $title
  * @property string $description
+ * @property string $name_ua
+ * @property string $title_ua
+ * @property string $description_ua
  * @property integer $category_id
  * @property integer $brand_id
  * @property integer $price_old
@@ -41,6 +46,7 @@ use yii\web\UploadedFile;
  * @property integer $quantity
  *
  * @property Meta $meta
+ * @property Meta $meta_ua
  * @property Brand $brand
  * @property Category $category
  * @property RelatedAssignment[] $relatedAssignments
@@ -61,21 +67,44 @@ class Product extends ActiveRecord implements AggregateRoot
     const STATUS_DRAFT = 0;
     const STATUS_ACTIVE = 1;
 
-    public $meta;
-
-    public static function create($brandId, $categoryId, $code, $name, $description, $weight, $quantity, Meta $meta): Product
+    public static function create(
+        $brandId,
+        $categoryId,
+        $code,
+        $weight,
+        $quantity,
+        array $names,
+        array $titles,
+        array $descriptions,
+        array $metas
+    ): Product
     {
         $product = new static();
         $product->brand_id = $brandId;
         $product->category_id = $categoryId;
         $product->code = $code;
-        $product->name = $name;
-        $product->description = $description;
         $product->weight = $weight;
         $product->quantity = $quantity;
         $product->created_at = time();
-        $product->meta = $meta;
         $product->status = self::STATUS_DRAFT;
+
+        //$this->name, $this->name_ua...
+        foreach ($names as $name => $value) {
+            $product->{$name} = $value;
+        }
+        //$this->title, $this->title_ua...
+        foreach ($titles as $name => $value) {
+            $product->{$name} = $value;
+        }
+        //$this->description, $this->description_ua...
+        foreach ($descriptions as $name => $value) {
+            $product->{$name} = $value;
+        }
+        //$this->meta, $this->meta_ua...
+        foreach ($metas as $name => $value) {
+            $product->{$name} = $value;
+        }
+
         return $product;
     }
 
@@ -93,14 +122,29 @@ class Product extends ActiveRecord implements AggregateRoot
         $this->setQuantity($quantity);
     }
 
-    public function edit($brandId, $code, $name, $description, $weight, Meta $meta): void
+    public function edit($names, $titles, $descriptions, $metas, $brandId, $code, $weight): void
     {
+
         $this->brand_id = $brandId;
         $this->code = $code;
-        $this->name = $name;
         $this->weight = $weight;
-        $this->description = $description;
-        $this->meta = $meta;
+
+        //$this->name, $this->name_ua...
+        foreach ($names as $name => $value) {
+            $this->{$name} = $value;
+        }
+        //$this->title, $this->title_ua...
+        foreach ($titles as $name => $value) {
+            $this->{$name} = $value;
+        }
+        //$this->description, $this->description_ua...
+        foreach ($descriptions as $name => $value) {
+            $this->{$name} = $value;
+        }
+        //$this->meta, $this->meta_ua...
+        foreach ($metas as $name => $value) {
+            $this->{$name} = $value;
+        }
     }
 
     public function getSeoTitle(): string
@@ -611,10 +655,21 @@ class Product extends ActiveRecord implements AggregateRoot
     public function behaviors(): array
     {
         return [
-            MetaBehavior::class,
+//            MetaBehavior::class,
             [
                 'class' => SaveRelationsBehavior::className(),
                 'relations' => ['categoryAssignments', 'tagAssignments', 'relatedAssignments', 'modifications', 'values', 'photos', 'reviews'],
+            ],
+            'ml' => [
+                'class' => FilledMultilingualBehavior::className(),
+                'defaultLanguage' => 'ru',
+                'dynamicLangClass' => false,
+                'langClassName' => ProductLang::className(),
+                'langForeignKey' => 'product_id',
+                'tableName' => '{{%shop_products_lang}}',
+                'attributes' => [
+                    'name', 'title', 'description', 'meta'
+                ]
             ],
         ];
     }

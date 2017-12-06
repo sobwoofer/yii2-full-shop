@@ -171,15 +171,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attributes' => [
                     [
                         'attribute' => 'meta.title',
-                        'value' => $product->meta->title,
+                        'value' => $product->translation->meta->title,
                     ],
                     [
                         'attribute' => 'meta.description',
-                        'value' => $product->meta->description,
+                        'value' => $product->translation->meta->description,
                     ],
                     [
                         'attribute' => 'meta.keywords',
-                        'value' => $product->meta->keywords,
+                        'value' => $product->translation->meta->keywords,
                     ],
                 ],
             ]) ?>

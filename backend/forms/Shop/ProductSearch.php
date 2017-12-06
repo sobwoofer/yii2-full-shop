@@ -9,7 +9,7 @@
 
 namespace backend\forms\Shop;
 
-use core\entities\Shop\Category;
+use core\entities\Shop\Category\Category;
 use core\helpers\ProductHelper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -73,8 +73,8 @@ class ProductSearch extends Model
 
     public function categoriesList(): array
     {
-        return ArrayHelper::map(Category::find()->andWhere(['>', 'depth', 0])->orderBy('lft')->asArray()->all(), 'id', function (array $category) {
-            return ($category['depth'] > 1 ? str_repeat('-- ', $category['depth'] - 1) . ' ' : '') . $category['name'];
+        return ArrayHelper::map(Category::find()->localized()->andWhere(['>', 'depth', 0])->orderBy('lft')->asArray()->all(), 'id', function (array $category) {
+            return ($category['depth'] > 1 ? str_repeat('-- ', $category['depth'] - 1) . ' ' : '') . $category['translation']['name'];
         });
     }
 

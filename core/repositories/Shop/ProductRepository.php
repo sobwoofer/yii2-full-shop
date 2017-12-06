@@ -25,7 +25,7 @@ class ProductRepository
 
     public function get($id): Product
     {
-        if (!$product = Product::findOne($id)) {
+        if (!$product = Product::find()->multilingual()->andWhere(['id' => $id])->one()) {
             throw new NotFoundException('Product is not found');
         }
         return $product;

@@ -8,6 +8,7 @@ use core\entities\Shop\Product\Product;
 use core\forms\CompositeForm;
 use core\forms\manage\MetaForm;
 use yii\helpers\ArrayHelper;
+use core\helpers\LangsHelper;
 
 /**
  * @property MetaForm $meta
@@ -20,6 +21,7 @@ class ProductEditForm extends CompositeForm
     public $brandId;
     public $code;
     public $name;
+    public $title;
     public $description;
     public $weight;
 
@@ -27,12 +29,16 @@ class ProductEditForm extends CompositeForm
 
     public function __construct(Product $product, $config = [])
     {
+
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $this->{'name' . $suffix} = $product->{'name' . $suffix};
+            $this->{'title' . $suffix} = $product->{'title' . $suffix};
+            $this->{'description' . $suffix} = $product->{'description' . $suffix};
+            $this->{'meta' . $suffix} = new MetaForm($product->{'meta' . $suffix});
+        }
         $this->brandId = $product->brand_id;
         $this->code = $product->code;
-        $this->name = $product->name;
-        $this->description = $product->description;
         $this->weight = $product->weight;
-        $this->meta = new MetaForm($product->meta);
         $this->categories = new CategoriesForm($product);
         $this->tags = new TagsForm($product);
         $this->values = array_map(function (Characteristic $characteristic) use ($product) {
@@ -45,11 +51,13 @@ class ProductEditForm extends CompositeForm
     public function rules(): array
     {
         return [
-            [['brandId', 'code', 'name', 'weight'], 'required'],
+            [LangsHelper::getNamesWithSuffix(['name']), 'required'],
+            [['brandId', 'code', 'weight'], 'required'],
             [['brandId'], 'integer'],
-            [['code', 'name'], 'string', 'max' => 255],
+            [['code'], 'string', 'max' => 255],
+            [LangsHelper::getNamesWithSuffix(['name']), 'string', 'max' => 255],
             [['code'], 'unique', 'targetClass' => Product::class, 'filter' => $this->_product ? ['<>', 'id', $this->_product->id] : null],
-            ['description', 'string'],
+            [LangsHelper::getNamesWithSuffix(['description', 'title']), 'string'],
             ['weight', 'integer', 'min' => 0],
         ];
     }
@@ -57,11 +65,11 @@ class ProductEditForm extends CompositeForm
     //TODO need move this method into one file, because double with ProductCreateForm
     public function brandsList(): array
     {
-        return ArrayHelper::map(Brand::find()->orderBy('name')->asArray()->all(), 'id', 'name');
+        return ArrayHelper::map(Brand::find()->joinWith('translation')->orderBy('name')->asArray()->all(), 'id', 'translation.name');
     }
 
     protected function internalForms(): array
     {
-        return ['meta', 'tags', 'categories', 'values'];
+        return [LangsHelper::getNamesWithSuffix(['meta']), 'tags', 'categories', 'values'];
     }
 }

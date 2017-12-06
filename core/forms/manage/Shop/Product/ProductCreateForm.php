@@ -8,6 +8,7 @@ use core\entities\Shop\Product\Product;
 use core\forms\CompositeForm;
 use core\forms\manage\MetaForm;
 use yii\helpers\ArrayHelper;
+use core\helpers\LangsHelper;
 
 /**
  * @property PriceForm $price
@@ -39,28 +40,35 @@ class ProductCreateForm extends CompositeForm
         $this->values = array_map(function (Characteristic $characteristic) {
             return new ValueForm($characteristic);
         }, Characteristic::find()->orderBy('sort')->all());
+
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $this->{'meta' . $suffix} = new MetaForm();
+        }
+
         parent::__construct($config);
     }
 
     public function rules(): array
     {
         return [
-            [['brandId', 'code', 'name', 'weight'], 'required'],
-            [['code', 'name'], 'string', 'max' => 255],
+            [LangsHelper::getNamesWithSuffix(['name']), 'required'],
+            [['brandId', 'code', 'weight'], 'required'],
+            [LangsHelper::getNamesWithSuffix(['name']), 'string', 'max' => 255],
+            ['code', 'string', 'max' => 255],
             [['brandId'], 'integer'],
             [['code'], 'unique', 'targetClass' => Product::class],
-            ['description', 'string'],
+            [LangsHelper::getNamesWithSuffix(['description', 'title']), 'string'],
             ['weight', 'integer', 'min' => 0],
         ];
     }
 
     public function brandsList(): array
     {
-        return ArrayHelper::map(Brand::find()->orderBy('name')->asArray()->all(), 'id', 'name');
+        return ArrayHelper::map(Brand::find()->joinWith('translation')->orderBy('name')->asArray()->all(), 'id', 'translation.name');
     }
 
     protected function internalForms(): array
     {
-        return ['price', 'quantity', 'meta','photos', 'categories', 'tags', 'values'];
+        return [LangsHelper::getNamesWithSuffix(['meta']), 'price', 'quantity', 'photos', 'categories', 'tags', 'values'];
     }
 }

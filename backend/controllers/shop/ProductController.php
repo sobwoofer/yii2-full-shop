@@ -296,7 +296,7 @@ class ProductController extends Controller
      */
     protected function findModel($id): Product
     {
-        if (($model = Product::findOne($id)) !== null) {
+        if (($model = Product::find()->multilingual()->andWhere(['id' => $id])->one()) !== null) {
             return $model;
         }
         throw new NotFoundHttpException('The requested page does not exist.');

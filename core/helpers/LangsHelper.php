@@ -12,6 +12,10 @@ namespace core\helpers;
 use core\readModels\LangReadRepository;
 use Yii;
 
+/**
+ * Class LangsHelper
+ * @package core\helpers
+ */
 class LangsHelper
 {
     /**
@@ -34,6 +38,10 @@ class LangsHelper
         return $results;
     }
 
+    /**
+     * @param array $attributes
+     * @return array
+     */
     public static function getNamesWithSuffix(array $attributes): array
     {
         $results = [];

@@ -10,6 +10,7 @@ namespace core\forms\manage\Shop;
 
 use core\forms\CompositeForm;
 use core\forms\manage\MetaForm;
+use core\helpers\LangsHelper;
 use yii\base\Model;
 use core\entities\Shop\Category\Category;
 use core\validators\SlugValidator;
@@ -17,7 +18,16 @@ use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
 
 /**
- * @property MetaForm $meta;
+ * @property string $slug
+ * @property integer $parentId
+ * @property string $name
+ * @property string $title
+ * @property string $description
+ * @property MetaForm $meta
+ * @property string $name_ua
+ * @property string $title_ua
+ * @property string $description_ua
+ * @property MetaForm $meta_ua
  */
 class CategoryForm extends CompositeForm
 {
@@ -33,15 +43,21 @@ class CategoryForm extends CompositeForm
     public function __construct(Category $category = null, array $config = [])
     {
         if ($category) {
-            $this->name = $category->name;
+            foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+                $this->{'name' . $suffix} = $category->{'name' . $suffix};
+                $this->{'title' . $suffix} = $category->{'title' . $suffix};
+                $this->{'description' . $suffix} = $category->{'description' . $suffix};
+                $this->{'meta' . $suffix} = new MetaForm($category->{'meta' . $suffix});
+            }
+
             $this->slug = $category->slug;
-            $this->title = $category->title;
-            $this->description = $category->description;
             $this->parentId = $category->parent ? $category->parent->id : null;
-            $this->meta = new MetaForm($category->meta);
+
             $this->_category = $category;
         } else {
-            $this->meta = new MetaForm();
+            foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+                $this->{'meta' . $suffix} = new MetaForm();
+            }
         }
         parent::__construct($config);
     }
@@ -49,26 +65,29 @@ class CategoryForm extends CompositeForm
     public function rules(): array
     {
         return [
-            [['name'], 'required'],
+            [LangsHelper::getNamesWithSuffix(['name']), 'required'],
             [['image'], 'image'],
             [['parentId'], 'integer'],
-            [['name', 'slug', 'title'], 'string', 'max' => 255],
-            [['description'], 'string'],
+            [LangsHelper::getNamesWithSuffix(['title', 'name']), 'string', 'max' => 255],
+            ['slug', 'string', 'max' => 255],
+            [LangsHelper::getNamesWithSuffix(['description']), 'string'],
             ['slug', SlugValidator::class],
-            [['name', 'slug'], 'unique', 'targetClass' => Category::class, 'filter' => $this->_category ? ['<>', 'id', $this->_category->id] : null]
+            ['slug', 'unique', 'targetClass' => Category::class, 'filter' => $this->_category ? ['<>', 'id', $this->_category->id] : null]
         ];
     }
 
     public function parentCategoriesList(): array
     {
-        return ArrayHelper::map(Category::find()->orderBy('lft')->asArray()->all(), 'id', function (array $category) {
-            return ($category['depth'] > 1 ? str_repeat('-- ', $category['depth'] - 1) . ' ' : '') . $category['name'];
+        return ArrayHelper::map(Category::find()->localized()->orderBy('lft')->asArray()->all(), 'id',
+            function (array $category) {
+            return ($category['depth'] > 1 ? str_repeat('-- ', $category['depth'] - 1) . ' ' : '')
+                . $category['translation']['name'];
         });
     }
 
     public function internalForms(): array
     {
-        return ['meta'];
+        return [LangsHelper::getNamesWithSuffix(['meta'])];
     }
 
     public function beforeValidate(): bool

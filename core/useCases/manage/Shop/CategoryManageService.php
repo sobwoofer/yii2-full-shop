@@ -15,6 +15,7 @@ use core\forms\manage\Shop\CategoryForm;
 use core\repositories\Shop\CategoryRepository;
 use core\repositories\Shop\ProductRepository;
 use yii\helpers\Inflector;
+use core\helpers\LangsHelper;
 
 class CategoryManageService
 {
@@ -30,16 +31,27 @@ class CategoryManageService
     public function create(CategoryForm $form): Category
     {
         $parent = $this->categories->get($form->parentId);
+        $names = [];
+        $titles = [];
+        $descriptions = [];
+        $metas = [];
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $names['name' . $suffix] = $form->{'name' . $suffix};
+            $titles['title' . $suffix] = $form->{'title' . $suffix};
+            $descriptions['description' . $suffix] = $form->{'description' . $suffix};
+            $metas['meta' . $suffix] = new Meta(
+                $form->{'meta' . $suffix}->{'title' . $suffix},
+                $form->{'meta' . $suffix}->{'description' . $suffix},
+                $form->{'meta' . $suffix}->{'keywords' . $suffix}
+            );
+        }
+
         $category = Category::create(
-            $form->name,
-            $form->slug ?: Inflector::slug($form->name),
-            $form->title,
-            $form->description,
-            new Meta(
-                $form->meta->title,
-                $form->meta->description,
-                $form->meta->keywords
-            )
+            $names,
+            $titles,
+            $descriptions,
+            $metas,
+            $form->slug ?: Inflector::slug($form->name)
         );
         $category->appendTo($parent);
         if ($form->image) {
@@ -53,16 +65,28 @@ class CategoryManageService
     {
         $category = $this->categories->get($id);
         $this->assertIsNotRoot($category);
+
+        $names = [];
+        $titles = [];
+        $descriptions = [];
+        $metas = [];
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $names['name' . $suffix] = $form->{'name' . $suffix};
+            $titles['title' . $suffix] = $form->{'title' . $suffix};
+            $descriptions['description' . $suffix] = $form->{'description' . $suffix};
+            $metas['meta' . $suffix] = new Meta(
+                $form->{'meta' . $suffix}->{'title' . $suffix},
+                $form->{'meta' . $suffix}->{'description' . $suffix},
+                $form->{'meta' . $suffix}->{'keywords' . $suffix}
+            );
+        }
+
         $category->edit(
-            $form->name,
-            $form->slug ?: Inflector::slug($form->name),
-            $form->title,
-            $form->description,
-            new Meta(
-                $form->meta->title,
-                $form->meta->description,
-                $form->meta->keywords
-            )
+            $names,
+            $titles,
+            $descriptions,
+            $metas,
+            $form->slug ?: Inflector::slug($form->name)
         );
         if ($form->parentId !== $category->parent->id) {
             $parent = $this->categories->get($form->parentId);

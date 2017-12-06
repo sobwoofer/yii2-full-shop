@@ -26,7 +26,7 @@ class CategoryRepository
 
     public function get($id): Category
     {
-        if (!$category = Category::findOne($id)) {
+        if (!$category = Category::find()->multilingual()->andWhere(['id' => $id])->one()) {
             throw new NotFoundException('Category is not found');
         }
         return $category;

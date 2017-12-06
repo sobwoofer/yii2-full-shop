@@ -34,7 +34,7 @@ class CategorySearch extends Model
      */
     public function search(array $params): ActiveDataProvider
     {
-        $query = Category::find()->andWhere(['>', 'depth', 0]);
+        $query = Category::find()->localized()->andWhere(['>', 'depth', 0]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

@@ -16,18 +16,24 @@ use paulzi\nestedsets\NestedSetsBehavior;
 use core\entities\Shop\queries\CategoryQuery;
 use yii\web\UploadedFile;
 use yiidreamteam\upload\ImageUploadBehavior;
+use core\entities\behaviors\FilledMultilingualBehavior;
+use core\entities\Shop\Category\CategoryLang;
 
 /**
  * @property integer $id
- * @property string $name
  * @property string $slug
+ * @property string $name
  * @property string $title
  * @property string $description
+ * @property Meta $meta
+ * @property string $name_ua
+ * @property string $title_ua
+ * @property string $description_ua
+ * @property Meta $meta_ua
  * @property integer $lft
  * @property integer $rgt
  * @property integer $depth
  * @property string $image
- * @property Meta $meta
  * @property Category[] $children
  *
  * @property Category $prev
@@ -38,26 +44,58 @@ use yiidreamteam\upload\ImageUploadBehavior;
  */
 class Category extends ActiveRecord
 {
-    public $meta;
 
-    public static function create($name, $slug, $title, $description, Meta $meta): self
+    public static function create(array $names, array $titles, array $descriptions, array $metas, $slug): self
     {
         $category = new static();
-        $category->name = $name;
         $category->slug = $slug;
-        $category->title = $title;
-        $category->description = $description;
-        $category->meta = $meta;
+
+        //$category->name, $category->name_ua...
+        foreach ($names as $name => $value) {
+            $category->{$name} = $value;
+        }
+
+        //$category->title, $category->title_ua...
+        foreach ($titles as $name => $value) {
+            $category->{$name} = $value;
+        }
+
+        //$category->description, $category->description_ua...
+        foreach ($descriptions as $name => $value) {
+            $category->{$name} = $value;
+        }
+
+        //$category->meta, $category->meta_ua...
+        foreach ($metas as $name => $value) {
+            $category->{$name} = $value;
+        }
+
         return $category;
     }
 
-    public function edit($name, $slug, $title, $description, Meta $meta): void
+    public function edit(array $names, array $titles, array $descriptions, array $metas, $slug): void
     {
-        $this->name = $name;
         $this->slug = $slug;
-        $this->title = $title;
-        $this->description = $description;
-        $this->meta = $meta;
+
+        //$this->name, $this->name_ua...
+        foreach ($names as $name => $value) {
+            $this->{$name} = $value;
+        }
+
+        //$this->title, $this->title_ua...
+        foreach ($titles as $name => $value) {
+            $this->{$name} = $value;
+        }
+
+        //$this->description, $this->description_ua...
+        foreach ($descriptions as $name => $value) {
+            $this->{$name} = $value;
+        }
+
+        //$this->meta, $this->meta_ua...
+        foreach ($metas as $name => $value) {
+            $this->{$name} = $value;
+        }
     }
 
     public function getSeoTitle(): string
@@ -83,7 +121,6 @@ class Category extends ActiveRecord
     public function behaviors()
     {
         return [
-            MetaBehavior::className(),
             NestedSetsBehavior::className(),
             [
                 'class' => ImageUploadBehavior::className(),
@@ -98,6 +135,17 @@ class Category extends ActiveRecord
                     'thumb' => ['width' => 150, 'height' => 150],
                     'thumb_list' => ['width' => 30, 'height' => 30],
                 ],
+            ],
+            'ml' => [
+                'class' => FilledMultilingualBehavior::className(),
+                'defaultLanguage' => 'ru',
+                'dynamicLangClass' => false,
+                'langClassName' => CategoryLang::className(),
+                'langForeignKey' => 'category_id',
+                'tableName' => '{{%shop_categories_lang}}',
+                'attributes' => [
+                    'name', 'title', 'description', 'meta'
+                ]
             ],
         ];
     }

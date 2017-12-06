@@ -12,7 +12,7 @@ namespace backend\forms\Shop;
 use core\helpers\CharacteristicHelper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use core\entities\Shop\Characteristic;
+use core\entities\Shop\Characteristic\Characteristic;
 
 class CharacteristicSearch extends Model
 {
@@ -35,7 +35,7 @@ class CharacteristicSearch extends Model
      */
     public function search(array $params): ActiveDataProvider
     {
-        $query = Characteristic::find();
+        $query = Characteristic::find()->localized();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

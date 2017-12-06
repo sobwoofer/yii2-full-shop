@@ -10,7 +10,7 @@ namespace core\forms\Shop\Search;
 
 use core\entities\Shop\Brand\Brand;
 use core\entities\Shop\Category\Category;
-use core\entities\Shop\Characteristic;
+use core\entities\Shop\Characteristic\Characteristic;
 use core\forms\CompositeForm;
 use yii\helpers\ArrayHelper;
 

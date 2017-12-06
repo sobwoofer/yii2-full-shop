@@ -8,7 +8,7 @@
 
 namespace core\forms\Shop\Search;
 
-use core\entities\Shop\Characteristic;
+use core\entities\Shop\Characteristic\Characteristic;
 use core\entities\Shop\Product\Value;
 use yii\base\Model;
 

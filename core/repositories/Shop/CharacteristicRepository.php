@@ -8,7 +8,7 @@
 
 namespace core\repositories\Shop;
 
-use core\entities\Shop\Characteristic;
+use core\entities\Shop\Characteristic\Characteristic;
 use core\repositories\NotFoundException;
 
 class CharacteristicRepository

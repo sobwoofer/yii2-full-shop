@@ -2,7 +2,7 @@
 
 namespace core\forms\manage\Shop\Product;
 
-use core\entities\Shop\Characteristic;
+use core\entities\Shop\Characteristic\Characteristic;
 use core\entities\Shop\Product\Value;
 use yii\base\Model;
 

@@ -11,7 +11,7 @@ namespace backend\controllers\shop;
 use core\forms\manage\Shop\CharacteristicForm;
 use core\useCases\manage\Shop\CharacteristicManageService;
 use Yii;
-use core\entities\Shop\Characteristic;
+use core\entities\Shop\Characteristic\Characteristic;
 use backend\forms\Shop\CharacteristicSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -110,6 +110,7 @@ class CharacteristicController extends Controller
 
         $form = new CharacteristicForm($characteristic);
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+
             try {
                 $this->service->edit($characteristic->id, $form);
                 return $this->redirect(['view', 'id' => $characteristic->id]);
@@ -146,7 +147,7 @@ class CharacteristicController extends Controller
      */
     protected function findModel($id): Characteristic
     {
-        if (($model = Characteristic::findOne($id)) !== null) {
+        if (($model = Characteristic::find()->multilingual()->andWhere(['id' => $id])->one()) !== null) {
             return $model;
         }
         throw new NotFoundHttpException('The requested page does not exist.');

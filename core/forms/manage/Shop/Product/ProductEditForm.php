@@ -3,7 +3,7 @@
 namespace core\forms\manage\Shop\Product;
 
 use core\entities\Shop\Brand\Brand;
-use core\entities\Shop\Characteristic;
+use core\entities\Shop\Characteristic\Characteristic;
 use core\entities\Shop\Product\Product;
 use core\forms\CompositeForm;
 use core\forms\manage\MetaForm;

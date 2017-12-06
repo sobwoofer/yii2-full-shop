@@ -10,7 +10,7 @@ namespace core\tests\unit\entities\Shop\Characteristic;
 
 
 use Codeception\Test\Unit;
-use core\entities\Shop\Characteristic;
+use core\entities\Shop\Characteristic\Characteristic;
 
 class CreateTest extends Unit
 {

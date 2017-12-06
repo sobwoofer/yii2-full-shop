@@ -2,7 +2,7 @@
 
 namespace core\helpers;
 
-use core\entities\Shop\Characteristic;
+use core\entities\Shop\Characteristic\Characteristic;
 use yii\helpers\ArrayHelper;
 
 class CharacteristicHelper

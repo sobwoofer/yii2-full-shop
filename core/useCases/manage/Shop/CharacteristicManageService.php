@@ -2,9 +2,10 @@
 
 namespace core\useCases\manage\Shop;
 
-use core\entities\Shop\Characteristic;
+use core\entities\Shop\Characteristic\Characteristic;
 use core\forms\manage\Shop\CharacteristicForm;
 use core\repositories\Shop\CharacteristicRepository;
+use core\helpers\LangsHelper;
 
 class CharacteristicManageService
 {
@@ -17,12 +18,19 @@ class CharacteristicManageService
 
     public function create(CharacteristicForm $form): Characteristic
     {
+        $names = [];
+        $variants = [];
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $names['name' . $suffix] = $form->{'name' . $suffix};
+            $variants['variants' . $suffix] = $form->variants->{$suffix};
+        }
+
         $characteristic = Characteristic::create(
-            $form->name,
+            $names,
+            $variants,
             $form->type,
             $form->required,
             $form->default,
-            $form->variants,
             $form->sort
         );
         $this->characteristics->save($characteristic);
@@ -32,12 +40,19 @@ class CharacteristicManageService
     public function edit($id, CharacteristicForm $form): void
     {
         $characteristic = $this->characteristics->get($id);
+        $names = [];
+        $variants = [];
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $names['name' . $suffix] = $form->{'name' . $suffix};
+            $variants['variants' . $suffix] = $form->variants->{$suffix};
+        }
+
         $characteristic->edit(
-            $form->name,
+            $names,
+            $variants,
             $form->type,
             $form->required,
             $form->default,
-            $form->variants,
             $form->sort
         );
         $this->characteristics->save($characteristic);

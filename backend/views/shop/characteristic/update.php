@@ -7,7 +7,7 @@
  */
 
 /* @var $this yii\web\View */
-/* @var $characteristic core\entities\Shop\Characteristic */
+/* @var $characteristic core\entities\Shop\Characteristic\Characteristic */
 /* @var $model core\forms\manage\Shop\CharacteristicForm */
 
 $this->title = 'Update Characteristic: ' . $characteristic->name;

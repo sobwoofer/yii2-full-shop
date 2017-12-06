@@ -8,7 +8,7 @@
 
 namespace core\entities\Shop\Product;
 
-use core\entities\Shop\Characteristic;
+use core\entities\Shop\Characteristic\Characteristic;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 

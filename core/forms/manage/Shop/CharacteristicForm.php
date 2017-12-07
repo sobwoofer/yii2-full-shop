@@ -3,6 +3,7 @@
 namespace core\forms\manage\Shop;
 
 use core\entities\Shop\Characteristic\Characteristic;
+use core\forms\ForMultiLangFormTrait;
 use core\helpers\LangsHelper;
 use yii\base\Model;
 use core\helpers\CharacteristicHelper;
@@ -14,6 +15,8 @@ use core\helpers\CharacteristicHelper;
  */
 class CharacteristicForm extends Model
 {
+    use ForMultiLangFormTrait;
+
     public $name;
     public $type;
     public $required;
@@ -43,23 +46,6 @@ class CharacteristicForm extends Model
         }
         parent::__construct($config);
 
-    }
-
-    public function __set($name, $value)
-    {
-        $this->$name = $value;
-        return; //for can set dynamic multi language property
-    }
-
-    public function __get($name)
-    {
-        $getter = 'get' . $name;
-        if (method_exists($this, $getter)) {
-            // read property, e.g. getName()
-            return $this->$getter();
-        }
-
-        return $this->$name = ''; //for can set dynamic multi language property
     }
 
     public function rules(): array

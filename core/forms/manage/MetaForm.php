@@ -3,6 +3,7 @@
 namespace core\forms\manage;
 
 use core\entities\Meta;
+use core\forms\ForMultiLangFormTrait;
 use yii\base\Model;
 use core\helpers\LangsHelper;
 
@@ -18,6 +19,8 @@ use core\helpers\LangsHelper;
  */
 class MetaForm extends Model
 {
+    use ForMultiLangFormTrait;
+
     public $title;
     public $description;
     public $keywords;
@@ -33,28 +36,6 @@ class MetaForm extends Model
         }
         parent::__construct($config);
     }
-
-    public function __set($name, $value)
-    {
-        $this->$name = $value;
-        return; //for can set dynamic multi language property
-//        parent::__set($name, $value);
-    }
-
-    public function __get($name)
-    {
-        $getter = 'get' . $name;
-        if (method_exists($this, $getter)) {
-            // read property, e.g. getName()
-            return $this->$getter();
-        }
-
-        return $this->$name = ''; //for can set dynamic multi language property
-//        return parent::__get($name);
-    }
-
-
-
 
     public function rules(): array
     {

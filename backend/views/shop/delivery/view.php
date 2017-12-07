@@ -10,7 +10,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $method core\entities\Shop\DeliveryMethod */
+/* @var $method core\entities\Shop\DeliveryMethod\DeliveryMethod */
 
 $this->title = $method->name;
 $this->params['breadcrumbs'][] = ['label' => 'DeliveryMethods', 'url' => ['index']];

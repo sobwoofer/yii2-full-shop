@@ -7,7 +7,7 @@
  */
 
 /* @var $this yii\web\View */
-/* @var $method core\entities\Shop\DeliveryMethod */
+/* @var $method core\entities\Shop\DeliveryMethod\DeliveryMethod */
 /* @var $model core\forms\manage\Shop\DeliveryMethodForm */
 
 $this->title = 'Update Delivery Method: ' . $method->name;

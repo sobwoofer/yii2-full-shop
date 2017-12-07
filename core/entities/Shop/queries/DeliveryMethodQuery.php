@@ -10,9 +10,12 @@
 namespace core\entities\Shop\queries;
 
 use yii\db\ActiveQuery;
+use omgdef\multilingual\MultilingualTrait;
 
 class DeliveryMethodQuery extends ActiveQuery
 {
+    use MultilingualTrait;
+
     public function availableForWeight($weight)
     {
         return $this->andWhere(['and',

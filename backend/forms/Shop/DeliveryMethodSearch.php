@@ -10,7 +10,7 @@ namespace backend\forms\Shop;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use core\entities\Shop\DeliveryMethod;
+use core\entities\Shop\DeliveryMethod\DeliveryMethod;
 
 class DeliveryMethodSearch extends Model
 {

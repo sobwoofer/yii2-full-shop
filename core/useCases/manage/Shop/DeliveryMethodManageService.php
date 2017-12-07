@@ -8,9 +8,10 @@
 
 namespace core\useCases\manage\Shop;
 
-use core\entities\Shop\DeliveryMethod;
+use core\entities\Shop\DeliveryMethod\DeliveryMethod;
 use core\forms\manage\Shop\DeliveryMethodForm;
 use core\repositories\Shop\DeliveryMethodRepository;
+use core\helpers\LangsHelper;
 
 class DeliveryMethodManageService
 {
@@ -23,8 +24,18 @@ class DeliveryMethodManageService
 
     public function create(DeliveryMethodForm $form): DeliveryMethod
     {
+
+        $names = [];
+        $descriptions = [];
+
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $names['name' . $suffix] = $form->{'name' . $suffix};
+            $descriptions['description' . $suffix] = $form->{'description' . $suffix};
+        }
+
         $method = DeliveryMethod::create(
-            $form->name,
+            $names,
+            $descriptions,
             $form->cost,
             $form->minWeight,
             $form->maxWeight,
@@ -36,9 +47,18 @@ class DeliveryMethodManageService
 
     public function edit($id, DeliveryMethodForm $form): void
     {
+        $names = [];
+        $descriptions = [];
+
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $names['name' . $suffix] = $form->{'name' . $suffix};
+            $descriptions['description' . $suffix] = $form->{'description' . $suffix};
+        }
+
         $method = $this->methods->get($id);
         $method->edit(
-            $form->name,
+            $names,
+            $descriptions,
             $form->cost,
             $form->minWeight,
             $form->maxWeight,

@@ -8,7 +8,7 @@
 
 namespace core\readModels\Shop;
 
-use core\entities\Shop\DeliveryMethod;
+use core\entities\Shop\DeliveryMethod\DeliveryMethod;
 
 class DeliveryMethodReadRepository
 {

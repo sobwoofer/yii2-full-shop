@@ -9,7 +9,7 @@
 
 namespace core\services\feed;
 
-use core\entities\Shop\DeliveryMethod;
+use core\entities\Shop\DeliveryMethod\DeliveryMethod;
 use core\readModels\Shop\CategoryReadRepository;
 use core\readModels\Shop\DeliveryMethodReadRepository;
 use core\readModels\Shop\ProductReadRepository;

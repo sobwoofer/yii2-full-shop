@@ -8,14 +8,14 @@
 
 namespace core\repositories\Shop;
 
-use core\entities\Shop\DeliveryMethod;
+use core\entities\Shop\DeliveryMethod\DeliveryMethod;
 use core\repositories\NotFoundException;
 
 class DeliveryMethodRepository
 {
     public function get($id): DeliveryMethod
     {
-        if (!$method = DeliveryMethod::findOne($id)) {
+        if (!$method = DeliveryMethod::find()->multilingual()->andWhere(['id' => $id])->one()) {
             throw new NotFoundException('DeliveryMethod is not found.');
         }
         return $method;

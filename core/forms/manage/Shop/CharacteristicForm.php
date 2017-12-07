@@ -49,7 +49,6 @@ class CharacteristicForm extends Model
     {
         $this->$name = $value;
         return; //for can set dynamic multi language property
-//        parent::__set($name, $value);
     }
 
     public function __get($name)
@@ -61,7 +60,6 @@ class CharacteristicForm extends Model
         }
 
         return $this->$name = ''; //for can set dynamic multi language property
-//        return parent::__get($name);
     }
 
     public function rules(): array

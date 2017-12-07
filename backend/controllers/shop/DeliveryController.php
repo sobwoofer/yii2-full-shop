@@ -11,7 +11,7 @@ namespace backend\controllers\shop;
 use core\forms\manage\Shop\DeliveryMethodForm;
 use core\useCases\manage\Shop\DeliveryMethodManageService;
 use Yii;
-use core\entities\Shop\DeliveryMethod;
+use core\entities\Shop\DeliveryMethod\DeliveryMethod;
 use backend\forms\Shop\DeliveryMethodSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -146,7 +146,7 @@ class DeliveryController extends Controller
      */
     protected function findModel($id): DeliveryMethod
     {
-        if (($model = DeliveryMethod::findOne($id)) !== null) {
+        if (($model = DeliveryMethod::find()->multilingual()->andWhere(['id' => $id])->one()) !== null) {
             return $model;
         }
         throw new NotFoundHttpException('The requested page does not exist.');

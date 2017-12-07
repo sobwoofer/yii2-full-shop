@@ -8,7 +8,7 @@
 
 namespace core\forms\manage\Shop\Order;
 
-use core\entities\Shop\DeliveryMethod;
+use core\entities\Shop\DeliveryMethod\DeliveryMethod;
 use core\entities\Shop\Order\Order;
 use core\helpers\PriceHelper;
 use yii\base\Model;

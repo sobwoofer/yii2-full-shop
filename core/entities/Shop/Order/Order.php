@@ -9,7 +9,7 @@
 namespace core\entities\Shop\Order;
 
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
-use core\entities\Shop\DeliveryMethod;
+use core\entities\Shop\DeliveryMethod\DeliveryMethod;
 use core\entities\User\User;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;

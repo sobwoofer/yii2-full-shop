@@ -70,6 +70,30 @@ $this->params['breadcrumbs'][] = 'Update';
                 <div class="col-md-2">
                     <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
                 </div>
+                <div class="col-md-2">
+                    <?= $form->field($model, 'caseCode')->textInput(['maxlength' => true]) ?>
+                </div>
+                <div class="col-md-2">
+                    <?= $form->field($model, 'video')->textInput(['maxlength' => true]) ?>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label>
+                    <?php  if ($model->guide): ?>
+                        Guide file was uploaded.
+                        <a href="<?= $model->guide ?>">
+                            <i class="fa fa-check-circle" aria-hidden="true"></i> Download </a>
+                    <?php else: ?>
+                        Guide file wasn't uploaded
+                    <?php endif; ?>
+                    </label>
+                    <?= $form->field($model, 'guideFile')->fileInput()->label(false) ?>
+                </div>
+                <div class="col-md-2">
+                    <?= $form->field($model, 'qtyInPack')->textInput(['maxlength' => true]) ?>
+                </div>
             </div>
         </div>
     </div>

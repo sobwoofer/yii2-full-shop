@@ -60,8 +60,20 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'format' => 'raw',
                             ],
                             [
+                                'attribute' => 'guide',
+                                'value' => $product->guide ? Html::a('download', Yii::getAlias('@static/guides/' . $product->guide)):'',
+                                'format' => 'raw',
+                            ],
+                            [
                                 'attribute' => 'brand_id',
                                 'value' => ArrayHelper::getValue($product, 'brand.name'),
+                            ],
+                            'case_code',
+                            'qty_in_pack',
+                            [
+                                'attribute' => 'video',
+                                'value' => $product->video ? Html::a($product->video, $product->video):'',
+                                'format' => 'raw',
                             ],
                             'code',
                             'name',

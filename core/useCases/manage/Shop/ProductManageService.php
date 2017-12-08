@@ -20,6 +20,8 @@ use core\repositories\Shop\TagRepository;
 use core\services\TransactionManager;
 use core\services\import\Product\Reader;
 use core\forms\manage\Shop\importForm;
+use yii\web\UploadedFile;
+use Yii;
 
 class ProductManageService
 {
@@ -74,11 +76,16 @@ class ProductManageService
             $form->code,
             $form->weight,
             $form->quantity->quantity,
+            $form->caseCode,
+            $form->video,
+            $form->qtyInPack,
             $names,
             $titles,
             $descriptions,
             $metas
         );
+
+
 
         $product->setPrice($form->price->new, $form->price->old);
 
@@ -111,6 +118,10 @@ class ProductManageService
 
             $this->products->save($product);
         });
+        if ($form->guideFile instanceof UploadedFile) {
+            $product->addGuide($form->guideFile);
+            $this->products->save($product);
+        }
 
         return $product;
     }
@@ -144,10 +155,17 @@ class ProductManageService
             $metas,
             $brand->id,
             $form->code,
-            $form->weight
+            $form->weight,
+            $form->caseCode,
+            $form->video,
+            $form->qtyInPack
         );
 
         $product->changeMainCategory($category->id);
+
+        if ($form->guideFile instanceof UploadedFile) {
+            $product->addGuide($form->guideFile);
+        }
 
         $this->transaction->wrap(function () use ($product, $form) {
 
@@ -178,6 +196,8 @@ class ProductManageService
             $this->products->save($product);
         });
     }
+
+
 
     //TODO import this projecting to the test import service
     public function import($id, importForm $form)

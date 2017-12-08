@@ -9,6 +9,7 @@ use core\forms\CompositeForm;
 use core\forms\manage\MetaForm;
 use yii\helpers\ArrayHelper;
 use core\helpers\LangsHelper;
+use yii\web\UploadedFile;
 
 /**
  * @property PriceForm $price
@@ -18,6 +19,13 @@ use core\helpers\LangsHelper;
  * @property PhotosForm $photos
  * @property TagsForm $tags
  * @property ValueForm[] $values
+ * @property string $code
+ * @property integer $weight
+ * @property string $caseCode
+ * @property string $video
+ * @property string $guide
+ * @property UploadedFile $guideFile
+ * @property integer $qtyInPack
  * Общая композитная форма для создания и редактирования товара включает в себя мелкие формы
  */
 class ProductCreateForm extends CompositeForm
@@ -27,6 +35,12 @@ class ProductCreateForm extends CompositeForm
     public $name;
     public $description;
     public $weight;
+
+    public $caseCode;
+    public $video;
+    public $guide;
+    public $guideFile;
+    public $qtyInPack;
 
     public function __construct($config = [])
     {
@@ -45,6 +59,7 @@ class ProductCreateForm extends CompositeForm
             $this->{'meta' . $suffix} = new MetaForm();
         }
 
+
         parent::__construct($config);
     }
 
@@ -52,14 +67,24 @@ class ProductCreateForm extends CompositeForm
     {
         return [
             [LangsHelper::getNamesWithSuffix(['name']), 'required'],
-            [['brandId', 'code', 'weight'], 'required'],
+            [['brandId', 'code'], 'required'],
             [LangsHelper::getNamesWithSuffix(['name']), 'string', 'max' => 255],
-            ['code', 'string', 'max' => 255],
-            [['brandId'], 'integer'],
-            [['code'], 'unique', 'targetClass' => Product::class],
+            [['code', 'caseCode', 'video'], 'string', 'max' => 255],
+            [['brandId', 'weight'], 'integer'],
+            [['code', 'caseCode' => 'case_code'], 'unique', 'targetClass' => Product::class],
             [LangsHelper::getNamesWithSuffix(['description', 'title']), 'string'],
-            ['weight', 'integer', 'min' => 0],
+            [['weight', 'qtyInPack'], 'integer', 'min' => 0],
+            ['guideFile', 'file', 'extensions' => 'pdf, doc, docx, txt, xls, xlsx, csv, zip, rar']
         ];
+    }
+
+    public function beforeValidate(): bool
+    {
+        if (parent::beforeValidate()) {
+            $this->guideFile = UploadedFile::getInstance($this, 'guideFile');
+            return true;
+        }
+        return false;
     }
 
     public function brandsList(): array

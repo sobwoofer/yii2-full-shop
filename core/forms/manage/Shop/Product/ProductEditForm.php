@@ -9,12 +9,21 @@ use core\forms\CompositeForm;
 use core\forms\manage\MetaForm;
 use yii\helpers\ArrayHelper;
 use core\helpers\LangsHelper;
+use yii\web\UploadedFile;
+use Yii;
 
 /**
  * @property MetaForm $meta
  * @property CategoriesForm $categories
  * @property TagsForm $tags
  * @property ValueForm[] $values
+ * @property string $code
+ * @property integer $weight
+ * @property string $caseCode
+ * @property string $video
+ * @property string $guide
+ * @property UploadedFile $guideFile
+ * @property integer $qtyInPack
  */
 class ProductEditForm extends CompositeForm
 {
@@ -24,6 +33,13 @@ class ProductEditForm extends CompositeForm
     public $title;
     public $description;
     public $weight;
+
+    public $caseCode;
+    public $video;
+    public $guide;
+    public $qtyInPack;
+
+    public $guideFile;
 
     private $_product;
 
@@ -39,8 +55,14 @@ class ProductEditForm extends CompositeForm
         $this->brandId = $product->brand_id;
         $this->code = $product->code;
         $this->weight = $product->weight;
+
         $this->categories = new CategoriesForm($product);
         $this->tags = new TagsForm($product);
+        $this->caseCode = $product->case_code;
+        $this->qtyInPack = $product->qty_in_pack;
+        $this->video = $product->video;
+        $this->guide = !$product->guide ? '' : Yii::getAlias('@static/guides/' . $product->guide);
+
         $this->values = array_map(function (Characteristic $characteristic) use ($product) {
             return new ValueForm($characteristic, $product->getValue($characteristic->id));
         }, Characteristic::find()->orderBy('sort')->all());
@@ -52,14 +74,23 @@ class ProductEditForm extends CompositeForm
     {
         return [
             [LangsHelper::getNamesWithSuffix(['name']), 'required'],
-            [['brandId', 'code', 'weight'], 'required'],
-            [['brandId'], 'integer'],
-            [['code'], 'string', 'max' => 255],
+            [['brandId', 'code', 'caseCode'], 'required'],
+            [['brandId', 'qtyInPack', 'weight'], 'integer'],
+            [['code', 'caseCode' => 'case_code', 'video', 'guide'], 'string', 'max' => 255],
             [LangsHelper::getNamesWithSuffix(['name']), 'string', 'max' => 255],
-            [['code'], 'unique', 'targetClass' => Product::class, 'filter' => $this->_product ? ['<>', 'id', $this->_product->id] : null],
+            [['code', 'caseCode' => 'case_code'], 'unique', 'targetClass' => Product::class, 'filter' => $this->_product ? ['<>', 'id', $this->_product->id] : null],
             [LangsHelper::getNamesWithSuffix(['description', 'title']), 'string'],
-            ['weight', 'integer', 'min' => 0],
+            ['guideFile', 'file', 'extensions' => 'pdf, doc, docx, txt, xls, xlsx, csv, zip, rar']
         ];
+    }
+
+    public function beforeValidate(): bool
+    {
+        if (parent::beforeValidate()) {
+            $this->guideFile = UploadedFile::getInstance($this, 'guideFile');
+            return true;
+        }
+        return false;
     }
 
     //TODO need move this method into one file, because double with ProductCreateForm

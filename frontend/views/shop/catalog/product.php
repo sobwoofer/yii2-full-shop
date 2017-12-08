@@ -279,6 +279,15 @@ $this->params['active_category'] = $product->category;
                             </div>
                         </div>
                     </div>
+                    <div class="one_product_deal__item">
+                        <span class="one_product_deal__icon one_product_deal__icon_economy"></span>
+                        <div class="one_product_deal__wrapper">
+                            <div class="one_product_deal__title">Инструкция</div>
+                            <div class="one_product_deal__text">
+                                <a href="<?= Yii::getAlias('@static/guides/' . $product->guide) ?>">Скачать файл</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -306,6 +315,16 @@ $this->params['active_category'] = $product->category;
                         'HTML.SafeIframe' => true,
                         'URI.SafeIframeRegexp'=>'%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
                     ]) ?>
+                </div>
+                <div class="video">
+                    <div class="sub-title sub-title__one_product"><strong>Видео</strong></div>
+                    <iframe width="100%"
+                            height="350"
+                            src="<?= $product->video ?>"
+                            frameborder="0"
+                            gesture="media"
+                            allow="encrypted-media"
+                            allowfullscreen></iframe>
                 </div>
             </div>
             <div class="col-md-5">

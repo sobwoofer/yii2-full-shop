@@ -24,6 +24,7 @@ use core\entities\Shop\Category\Category;
 use core\entities\Shop\Tag;
 use yii\web\UploadedFile;
 use core\entities\behaviors\FilledMultilingualBehavior;
+use Yii;
 
 /**
  * @property integer $id
@@ -44,6 +45,10 @@ use core\entities\behaviors\FilledMultilingualBehavior;
  * @property integer $status
  * @property integer $weight
  * @property integer $quantity
+ * @property string $case_code
+ * @property string $video
+ * @property string $guide
+ * @property integer $qty_in_pack
  *
  * @property Meta $meta
  * @property Meta $meta_ua
@@ -73,6 +78,9 @@ class Product extends ActiveRecord implements AggregateRoot
         $code,
         $weight,
         $quantity,
+        $caseCode,
+        $video,
+        $qtyInPack,
         array $names,
         array $titles,
         array $descriptions,
@@ -85,6 +93,9 @@ class Product extends ActiveRecord implements AggregateRoot
         $product->code = $code;
         $product->weight = $weight;
         $product->quantity = $quantity;
+        $product->case_code = $caseCode;
+        $product->video = $video;
+        $product->qty_in_pack = $qtyInPack;
         $product->created_at = time();
         $product->status = self::STATUS_DRAFT;
 
@@ -122,12 +133,27 @@ class Product extends ActiveRecord implements AggregateRoot
         $this->setQuantity($quantity);
     }
 
-    public function edit($names, $titles, $descriptions, $metas, $brandId, $code, $weight): void
+    public function edit(
+        $names,
+        $titles,
+        $descriptions,
+        $metas,
+        $brandId,
+        $code,
+        $weight,
+        $caseCode,
+        $video,
+        $qtyInPack
+    ): void
     {
 
         $this->brand_id = $brandId;
         $this->code = $code;
         $this->weight = $weight;
+
+        $this->case_code = $caseCode;
+        $this->video = $video;
+        $this->qty_in_pack = $qtyInPack;
 
         //$this->name, $this->name_ua...
         foreach ($names as $name => $value) {
@@ -407,6 +433,15 @@ class Product extends ActiveRecord implements AggregateRoot
         throw new \DomainException('Photo is not found.');
     }
 
+    public function addGuide(UploadedFile $file): void
+    {
+        if ($file) {
+            $file->saveAs(Yii::getAlias('@staticRoot/guides/' . $this->id . '.' . $file->extension));
+            $this->guide = $this->id. '.'. $file->extension;
+        }
+    }
+
+
     public function removePhotos(): void
     {
         $this->updatePhotos([]);
@@ -655,7 +690,6 @@ class Product extends ActiveRecord implements AggregateRoot
     public function behaviors(): array
     {
         return [
-//            MetaBehavior::class,
             [
                 'class' => SaveRelationsBehavior::className(),
                 'relations' => ['categoryAssignments', 'tagAssignments', 'relatedAssignments', 'modifications', 'values', 'photos', 'reviews'],

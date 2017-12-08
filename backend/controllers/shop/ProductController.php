@@ -133,6 +133,7 @@ class ProductController extends Controller
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
+
         return $this->render('create', [
             'model' => $form,
         ]);

@@ -10,6 +10,7 @@ use core\forms\manage\MetaForm;
 use yii\helpers\ArrayHelper;
 use core\helpers\LangsHelper;
 use yii\web\UploadedFile;
+use core\forms\manage\Shop\Product\Photos360Form;
 
 /**
  * @property PriceForm $price
@@ -17,6 +18,7 @@ use yii\web\UploadedFile;
  * @property MetaForm $meta
  * @property CategoriesForm $categories
  * @property PhotosForm $photos
+ * @property Photos360Form $photos360
  * @property TagsForm $tags
  * @property ValueForm[] $values
  * @property string $code
@@ -49,6 +51,7 @@ class ProductCreateForm extends CompositeForm
         $this->meta = new MetaForm();
         $this->categories = new CategoriesForm();
         $this->photos = new PhotosForm();
+        $this->photos360 = new Photos360Form();
         $this->tags = new TagsForm();
         //в values попадает отсортированный массив из форм ValueForm уже заполненных каждая своим значениям
         $this->values = array_map(function (Characteristic $characteristic) {
@@ -94,6 +97,6 @@ class ProductCreateForm extends CompositeForm
 
     protected function internalForms(): array
     {
-        return [LangsHelper::getNamesWithSuffix(['meta']), 'price', 'quantity', 'photos', 'categories', 'tags', 'values'];
+        return [LangsHelper::getNamesWithSuffix(['meta']), 'price', 'quantity', 'photos', 'photos360', 'categories', 'tags', 'values'];
     }
 }

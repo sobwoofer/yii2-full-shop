@@ -8,6 +8,7 @@ use core\entities\Shop\Tag;
 use core\forms\manage\Shop\Product\CategoriesForm;
 use core\forms\manage\Shop\Product\QuantityForm;
 use core\forms\manage\Shop\Product\PhotosForm;
+use core\forms\manage\Shop\Product\Photos360Form;
 use core\forms\manage\Shop\Product\ProductCreateForm;
 use core\forms\manage\Shop\Product\ProductEditForm;
 use core\forms\manage\Shop\Product\ModificationForm;
@@ -100,6 +101,10 @@ class ProductManageService
 
         foreach ($form->photos->files as $file) {
             $product->addPhoto($file);
+        }
+
+        foreach ($form->photos360->files as $file) {
+            $product->addPhoto360($file);
         }
 
         foreach ($form->tags->existing as $tagId) {
@@ -258,6 +263,15 @@ class ProductManageService
         $this->products->save($product);
     }
 
+    public function addPhotos360($id, Photos360Form $form): void
+    {
+        $product = $this->products->get($id);
+        foreach ($form->files as $file) {
+            $product->addPhoto360($file);
+        }
+        $this->products->save($product);
+    }
+
     /**
      * @param $id
      * @param $photoId
@@ -270,15 +284,22 @@ class ProductManageService
         $this->products->save($product);
     }
 
+    public function movePhoto360Up($id, $photoId): void
+    {
+        $product = $this->products->get($id);
+        $product->movePhoto360Up($photoId);
+        $this->products->save($product);
+    }
+
     /**
      * @param $id
      * @param $photoId
      * changed sort photo in the list for product. One item down
      */
-    public function movePhotoDown($id, $photoId): void
+    public function movePhoto360Down($id, $photoId): void
     {
         $product = $this->products->get($id);
-        $product->movePhotoDown($photoId);
+        $product->movePhoto360Down($photoId);
         $this->products->save($product);
     }
 
@@ -286,6 +307,13 @@ class ProductManageService
     {
         $product = $this->products->get($id);
         $product->removePhoto($photoId);
+        $this->products->save($product);
+    }
+
+    public function removePhoto360($id, $photoId): void
+    {
+        $product = $this->products->get($id);
+        $product->removePhoto360($photoId);
         $this->products->save($product);
     }
 

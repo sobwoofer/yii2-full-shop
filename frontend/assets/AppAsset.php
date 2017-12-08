@@ -19,7 +19,9 @@ class AppAsset extends AssetBundle
         'js/common.js',
         //TODO need move someone libraries into packagist.org and require from composer
         'libs/selectric/jquery.selectric.min.js',
-        'libs/lodash/2.4.1/lodash.min.js'
+        'libs/lodash/2.4.1/lodash.min.js',
+        'libs/lightbox/js/lightbox.js', //popup product
+        'libs/slick_light/slick_lightbox.js' //popup product
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -7067,7 +7067,7 @@ body.lb-disable-scrolling {
 
 #lightbox {
     top: 195px !important;
-    left: -77px !important;
+    /*left: -77px !important;*/
 }
 
 .live_review {

@@ -21,6 +21,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $product core\entities\Shop\Product\Product */
 /* @var $photosForm core\forms\manage\Shop\Product\PhotosForm */
+/* @var $photos360Form core\forms\manage\Shop\Product\Photos360Form */
 /* @var $modificationsProvider yii\data\ActiveDataProvider */
 
 $this->title = $product->name;
@@ -232,10 +233,65 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
 
             <?php $form = ActiveForm::begin([
+                'action' => '/shop/product/add-photos?id=' . $product->id,
                 'options' => ['enctype'=>'multipart/form-data'],
             ]); ?>
 
             <?= $form->field($photosForm, 'files[]')->label(false)->widget(FileInput::class, [
+                'options' => [
+                    'accept' => 'image/*',
+                    'multiple' => true,
+                ]
+            ]) ?>
+
+            <div class="form-group">
+                <?= Html::submitButton('Upload', ['class' => 'btn btn-success']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
+
+        </div>
+    </div>
+
+    <div class="box" id="photos360">
+        <div class="box-header with-border">Photos 360</div>
+        <div class="box-body">
+
+            <div class="row">
+                <?php foreach ($product->photos360 as $photo): ?>
+                    <div class="col-md-2 col-xs-3" style="text-align: center">
+                        <div class="btn-group">
+                            <?= Html::a('<span class="glyphicon glyphicon-arrow-left"></span>', ['move-photo-360-up', 'id' => $product->id, 'photo_id' => $photo->id], [
+                                'class' => 'btn btn-default',
+                                'data-method' => 'post',
+                            ]); ?>
+                            <?= Html::a('<span class="glyphicon glyphicon-remove"></span>', ['delete-photo-360', 'id' => $product->id, 'photo_id' => $photo->id], [
+                                'class' => 'btn btn-default',
+                                'data-method' => 'post',
+                                'data-confirm' => 'Remove photo?',
+                            ]); ?>
+                            <?= Html::a('<span class="glyphicon glyphicon-arrow-right"></span>', ['move-photo-360-down', 'id' => $product->id, 'photo_id' => $photo->id], [
+                                'class' => 'btn btn-default',
+                                'data-method' => 'post',
+                            ]); ?>
+                        </div>
+                        <div>
+                            <?= Html::a(
+                                Html::img($photo->getThumbFileUrl('file', 'thumb')),
+                                $photo->getUploadedFileUrl('file'),
+                                ['class' => 'thumbnail', 'target' => '_blank']
+                            ) ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <?php $form = ActiveForm::begin([
+                'action' => '/shop/product/add-photos-360?id=' . $product->id,
+                'options' => ['enctype'=>'multipart/form-data'],
+            ]); ?>
+
+            <?= $form->field($photos360Form, 'files[]')->label(false)->widget(FileInput::class, [
                 'options' => [
                     'accept' => 'image/*',
                     'multiple' => true,

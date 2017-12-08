@@ -46,26 +46,7 @@ $this->params['active_category'] = $product->category;
             </div>
         </div>
         <div class="row" xmlns:fb="http://www.w3.org/1999/xhtml">
-            <script>
-                $(function(){
-                    var galleryTop = new Swiper('.slider_wrapper .gallery-top', {
-                        spaceBetween: 10,
-                    });
-                    var galleryThumbs = new Swiper('.slider_wrapper .gallery-thumbs', {
-                        spaceBetween: 10,
-                        centeredSlides: true,
-                        slidesPerView: 3,
-                        touchRatio: 0.2,
-                        nextButton: '.slider_wrapper .sp .swiper-button-next',
-                        prevButton: '.slider_wrapper .sp .swiper-button-prev',
-                        direction: 'vertical',
-                        slideToClickedSlide: true
-                    });
-                    galleryTop.params.control = galleryThumbs;
-                    galleryThumbs.params.control = galleryTop;
-                });
 
-            </script>
             <div class="col-md-6 col-lg-6">
                 <div class="slider_wrapper">
 
@@ -316,7 +297,7 @@ $this->params['active_category'] = $product->category;
                         'URI.SafeIframeRegexp'=>'%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
                     ]) ?>
                 </div>
-                <div class="video">
+                <div class="about">
                     <div class="sub-title sub-title__one_product"><strong>Видео</strong></div>
                     <iframe width="100%"
                             height="350"
@@ -325,6 +306,7 @@ $this->params['active_category'] = $product->category;
                             gesture="media"
                             allow="encrypted-media"
                             allowfullscreen></iframe>
+
                 </div>
             </div>
             <div class="col-md-5">

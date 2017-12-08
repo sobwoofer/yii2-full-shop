@@ -173,6 +173,18 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
+    <div class="box box-default">
+        <div class="box-header with-border">Photos 360</div>
+        <div class="box-body">
+            <?= $form->field($model->photos360, 'files[]')->widget(FileInput::class, [
+                'options' => [
+                    'accept' => 'image/*',
+                    'multiple' => true,
+                ]
+            ]) ?>
+        </div>
+    </div>
+
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

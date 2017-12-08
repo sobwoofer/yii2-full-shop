@@ -62,6 +62,7 @@ use Yii;
  * @property Tag[] $tags
  * @property Value[] $values
  * @property Photo[] $photos
+ * @property Photo360[] $photos360
  * @property Photo $mainPhoto
  * @property Review[] $reviews
  */
@@ -420,6 +421,13 @@ class Product extends ActiveRecord implements AggregateRoot
         $this->updatePhotos($photos);
     }
 
+    public function addPhoto360(UploadedFile $file): void
+    {
+        $photos = $this->photos360;
+        $photos[] = Photo360::create($file);
+        $this->updatePhotos360($photos);
+    }
+
     public function removePhoto($id): void
     {
         $photos = $this->photos;
@@ -427,6 +435,19 @@ class Product extends ActiveRecord implements AggregateRoot
             if ($photo->isIdEqualTo($id)) {
                 unset($photos[$i]);
                 $this->updatePhotos($photos);
+                return;
+            }
+        }
+        throw new \DomainException('Photo is not found.');
+    }
+
+    public function removePhoto360($id): void
+    {
+        $photos = $this->photos360;
+        foreach ($photos as $i => $photo) {
+            if ($photo->isIdEqualTo($id)) {
+                unset($photos[$i]);
+                $this->updatePhotos360($photos);
                 return;
             }
         }
@@ -447,6 +468,11 @@ class Product extends ActiveRecord implements AggregateRoot
         $this->updatePhotos([]);
     }
 
+    public function removePhotos360(): void
+    {
+        $this->updatePhotos360([]);
+    }
+
     public function movePhotoUp($id): void
     {
         $photos = $this->photos;
@@ -456,6 +482,22 @@ class Product extends ActiveRecord implements AggregateRoot
                     $photos[$i - 1] = $photo;
                     $photos[$i] = $prev;
                     $this->updatePhotos($photos);
+                }
+                return;
+            }
+        }
+        throw new \DomainException('Photo is not found.');
+    }
+
+    public function movePhoto360Up($id): void
+    {
+        $photos = $this->photos360;
+        foreach ($photos as $i => $photo) {
+            if ($photo->isIdEqualTo($id)) {
+                if ($prev = $photos[$i - 1] ?? null) {
+                    $photos[$i - 1] = $photo;
+                    $photos[$i] = $prev;
+                    $this->updatePhotos360($photos);
                 }
                 return;
             }
@@ -479,6 +521,22 @@ class Product extends ActiveRecord implements AggregateRoot
         throw new \DomainException('Photo is not found.');
     }
 
+    public function movePhoto360Down($id): void
+    {
+        $photos = $this->photos360;
+        foreach ($photos as $i => $photo) {
+            if ($photo->isIdEqualTo($id)) {
+                if ($next = $photos[$i + 1] ?? null) {
+                    $photos[$i] = $next;
+                    $photos[$i + 1] = $photo;
+                    $this->updatePhotos360($photos);
+                }
+                return;
+            }
+        }
+        throw new \DomainException('Photo is not found.');
+    }
+
     private function updatePhotos(array $photos): void
     {
         foreach ($photos as $i => $photo) {
@@ -486,6 +544,15 @@ class Product extends ActiveRecord implements AggregateRoot
         }
         $this->photos = $photos;
         $this->populateRelation('mainPhoto', reset($photos));
+    }
+
+    private function updatePhotos360(array $photos): void
+    {
+        foreach ($photos as $i => $photo) {
+            $photo->setSort($i);
+        }
+        $this->photos360 = $photos;
+//        $this->populateRelation('mainPhoto', reset($photos));
     }
 
     // Related products
@@ -655,6 +722,16 @@ class Product extends ActiveRecord implements AggregateRoot
         return $this->hasOne(Photo::class, ['id' => 'main_photo_id']);
     }
 
+    public function getPhotos360(): ActiveQuery
+    {
+        return $this->hasMany(Photo360::class, ['product_id' => 'id'])->orderBy('sort');
+    }
+
+//    public function getMainPhoto360(): ActiveQuery
+//    {
+//        return $this->hasOne(Photo360::class, ['id' => 'main_photo_id']);
+//    }
+
     public function getRelatedAssignments(): ActiveQuery
     {
         return $this->hasMany(RelatedAssignment::class, ['product_id' => 'id']);
@@ -692,7 +769,16 @@ class Product extends ActiveRecord implements AggregateRoot
         return [
             [
                 'class' => SaveRelationsBehavior::className(),
-                'relations' => ['categoryAssignments', 'tagAssignments', 'relatedAssignments', 'modifications', 'values', 'photos', 'reviews'],
+                'relations' => [
+                    'categoryAssignments',
+                    'tagAssignments',
+                    'relatedAssignments',
+                    'modifications',
+                    'values',
+                    'photos',
+                    'photos360',
+                    'reviews'
+                ],
             ],
             'ml' => [
                 'class' => FilledMultilingualBehavior::className(),
@@ -718,7 +804,10 @@ class Product extends ActiveRecord implements AggregateRoot
     public function beforeDelete(): bool
     {
         if (parent::beforeDelete()) {
-            foreach ($this->photos as $photo) {
+            foreach ($this->photos360 as $photo) {
+                $photo->delete();
+            }
+            foreach ($this->photos360 as $photo) {
                 $photo->delete();
             }
             return true;

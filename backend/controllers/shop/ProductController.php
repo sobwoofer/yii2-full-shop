@@ -11,6 +11,7 @@ namespace backend\controllers\shop;
 use core\entities\Shop\Product\Modification;
 use core\forms\manage\Shop\Product\QuantityForm;
 use core\forms\manage\Shop\Product\PhotosForm;
+use core\forms\manage\Shop\Product\Photos360Form;
 use core\forms\manage\Shop\Product\PriceForm;
 use core\forms\manage\Shop\Product\ProductCreateForm;
 use core\forms\manage\Shop\Product\ProductEditForm;
@@ -100,21 +101,53 @@ class ProductController extends Controller
         ]);
 
         $photosForm = new PhotosForm();
-        if ($photosForm->load(Yii::$app->request->post()) && $photosForm->validate()) {
+        $photos360Form = new Photos360Form();
+//        if ($photosForm->load(Yii::$app->request->post()) && $photosForm->validate()) {
+//            try {
+//                $this->service->addPhotos($product->id, $photosForm);
+//                return $this->redirect(['view', 'id' => $product->id]);
+//            } catch (\DomainException $e) {
+//                Yii::$app->errorHandler->logException($e);
+//                Yii::$app->session->setFlash('error', $e->getMessage());
+//            }
+//        }
+
+        return $this->render('view', [
+            'product' => $product,
+            'modificationsProvider' => $modificationsProvider,
+            'photosForm' => $photosForm,
+            'photos360Form' => $photos360Form,
+        ]);
+    }
+
+    public function actionAddPhotos($id)
+    {
+        $photos360Form = new PhotosForm();
+        $product = $this->findModel($id);
+        if ($photos360Form->load(Yii::$app->request->post()) && $photos360Form->validate()) {
             try {
-                $this->service->addPhotos($product->id, $photosForm);
-                return $this->redirect(['view', 'id' => $product->id]);
+                $this->service->addPhotos($product->id, $photos360Form);
+                return $this->redirect(['view', 'id' => $product->id, '#' => 'photos']);
             } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
 
-        return $this->render('view', [
-            'product' => $product,
-            'modificationsProvider' => $modificationsProvider,
-            'photosForm' => $photosForm,
-        ]);
+    }
+    public function actionAddPhotos360($id)
+    {
+        $photos360Form = new Photos360Form();
+        $product = $this->findModel($id);
+        if ($photos360Form->load(Yii::$app->request->post()) && $photos360Form->validate()) {
+            try {
+                $this->service->addPhotos360($product->id, $photos360Form);
+                return $this->redirect(['view', 'id' => $product->id, '#' => 'photos360']);
+            } catch (\DomainException $e) {
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
+        }
     }
 
     /**
@@ -273,6 +306,21 @@ class ProductController extends Controller
      * @param $photo_id
      * @return mixed
      */
+    public function actionDeletePhoto360($id, $photo_id)
+    {
+        try {
+            $this->service->removePhoto360($id, $photo_id);
+        } catch (\DomainException $e) {
+            Yii::$app->session->setFlash('error', $e->getMessage());
+        }
+        return $this->redirect(['view', 'id' => $id, '#' => 'photos360']);
+    }
+
+    /**
+     * @param integer $id
+     * @param $photo_id
+     * @return mixed
+     */
     public function actionMovePhotoUp($id, $photo_id)
     {
         $this->service->movePhotoUp($id, $photo_id);
@@ -284,10 +332,32 @@ class ProductController extends Controller
      * @param $photo_id
      * @return mixed
      */
+    public function actionMovePhoto360Up($id, $photo_id)
+    {
+        $this->service->movePhoto360Up($id, $photo_id);
+        return $this->redirect(['view', 'id' => $id, '#' => 'photos360']);
+    }
+
+    /**
+     * @param integer $id
+     * @param $photo_id
+     * @return mixed
+     */
     public function actionMovePhotoDown($id, $photo_id)
     {
         $this->service->movePhotoDown($id, $photo_id);
         return $this->redirect(['view', 'id' => $id, '#' => 'photos']);
+    }
+
+    /**
+     * @param integer $id
+     * @param $photo_id
+     * @return mixed
+     */
+    public function actionMovePhoto360Down($id, $photo_id)
+    {
+        $this->service->movePhoto360Down($id, $photo_id);
+        return $this->redirect(['view', 'id' => $id, '#' => 'photos360']);
     }
 
     /**

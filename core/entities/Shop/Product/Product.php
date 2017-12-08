@@ -552,7 +552,6 @@ class Product extends ActiveRecord implements AggregateRoot
             $photo->setSort($i);
         }
         $this->photos360 = $photos;
-//        $this->populateRelation('mainPhoto', reset($photos));
     }
 
     // Related products

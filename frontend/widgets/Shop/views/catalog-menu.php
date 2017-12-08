@@ -11,7 +11,7 @@ use yii\helpers\Html;
 ?>
 
 
-<div class="catalog active">
+<div class="catalog ">
     <button class="catalog-btn"><i>Каталог</i> <span></span></button>
     <ul class="menu">
         <?php foreach ($categories as $category): ?>

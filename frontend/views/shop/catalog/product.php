@@ -17,6 +17,8 @@ use core\helpers\PriceHelper;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
+use romkaChev\yii2\swiper\Swiper;
+
 $this->title = $product->name;
 
 $this->registerMetaTag(['name' =>'description', 'content' => $product->meta->description]);
@@ -46,25 +48,48 @@ $this->params['active_category'] = $product->category;
             </div>
         </div>
         <div class="row" xmlns:fb="http://www.w3.org/1999/xhtml">
+            <script>
+                $(function(){
+                    var galleryTop = new Swiper('.slider_wrapper .gallery-top', {
+                        spaceBetween: 10,
+                    });
+                    var galleryThumbs = new Swiper('.slider_wrapper .gallery-thumbs', {
+                        spaceBetween: 10,
+                        centeredSlides: true,
+                        slidesPerView: 3,
+                        touchRatio: 0.2,
+                        nextButton: '.slider_wrapper .sp .swiper-button-next',
+                        prevButton: '.slider_wrapper .sp .swiper-button-prev',
+                        direction: 'vertical',
+                        slideToClickedSlide: true
+                    });
+                    galleryTop.params.control = galleryThumbs;
+                    galleryThumbs.params.control = galleryTop;
+                });
 
+            </script>
             <div class="col-md-6 col-lg-6">
+                <?php Swiper::widget() ?>
                 <div class="slider_wrapper">
 
                     <div class="swiper-container gallery-top">
                         <div class="swiper-wrapper">
                             <!-- //TODO i would like to connect this fancybox v. >=3.0 -->
+
+                            <?php if (count($product->photos360)): ?>
+                                <div class="swiper-slide">
+                                    <a href="http://static.yii2-shop.dev/cache/products360/8/product_big_0.jpg"
+                                       class="Magic360" data-options="filename:product_main_{col}.jpg;
+                       large-filename: product_big_{col}.jpg; columns:<?= count($product->photos360) ?>">
+                                        <img src="http://static.yii2-shop.dev/cache/products360/8/product_main_00.jpg"/>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
                             <?php foreach ($product->photos as $i => $photo): ?>
-                                <?php if ($i == 0): ?>
                                     <div class="swiper-slide">
                                         <img src="<?= $photo->getThumbFileUrl('file', 'catalog_product_main') ?>" alt="<?= Html::encode($product->name) ?>">
                                         <a href="<?= $photo->getThumbFileUrl('file', 'catalog_origin') ?>" class="zoom_in" data-lightbox="image-1" data-title=""></a>
                                     </div>
-                                <?php else: ?>
-                                    <div class="swiper-slide">
-                                        <img src="<?= $photo->getThumbFileUrl('file', 'catalog_product_main') ?>" alt="">
-                                        <a href="<?= $photo->getThumbFileUrl('file', 'catalog_origin') ?>" class="zoom_in" data-lightbox="image-1" data-title=""></a>
-                                    </div>
-                                <?php endif; ?>
                             <?php endforeach; ?>
 
                         </div>
@@ -75,6 +100,11 @@ $this->params['active_category'] = $product->category;
                         <div class="swiper-container gallery-thumbs">
 
                             <div class="swiper-wrapper">
+                                <?php if (count($product->photos360)): ?>
+                                    <div class="swiper-slide">
+                                        <img src="/images/icons/360-Icon.png" alt="">
+                                    </div>
+                                <?php endif; ?>
                                 <?php foreach ($product->photos as $i => $photo): ?>
                                     <div class="swiper-slide">
                                         <img src="<?= $photo->getThumbFileUrl('file', 'catalog_product_additional') ?>" alt="">
@@ -306,7 +336,6 @@ $this->params['active_category'] = $product->category;
                             gesture="media"
                             allow="encrypted-media"
                             allowfullscreen></iframe>
-
                 </div>
             </div>
             <div class="col-md-5">

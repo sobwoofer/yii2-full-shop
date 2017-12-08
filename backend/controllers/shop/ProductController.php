@@ -102,15 +102,6 @@ class ProductController extends Controller
 
         $photosForm = new PhotosForm();
         $photos360Form = new Photos360Form();
-//        if ($photosForm->load(Yii::$app->request->post()) && $photosForm->validate()) {
-//            try {
-//                $this->service->addPhotos($product->id, $photosForm);
-//                return $this->redirect(['view', 'id' => $product->id]);
-//            } catch (\DomainException $e) {
-//                Yii::$app->errorHandler->logException($e);
-//                Yii::$app->session->setFlash('error', $e->getMessage());
-//            }
-//        }
 
         return $this->render('view', [
             'product' => $product,

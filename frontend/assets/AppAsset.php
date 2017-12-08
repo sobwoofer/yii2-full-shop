@@ -13,6 +13,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/media.css',
         'libs/selectric/selectric.css',
+        'libs/magic360/magic360.css',
         'css/style.css',
     ];
     public $js = [
@@ -21,7 +22,8 @@ class AppAsset extends AssetBundle
         'libs/selectric/jquery.selectric.min.js',
         'libs/lodash/2.4.1/lodash.min.js',
         'libs/lightbox/js/lightbox.js', //popup product
-        'libs/slick_light/slick_lightbox.js' //popup product
+        'libs/slick_light/slick_lightbox.js', //popup product
+        'libs/magic360/magic360.js' //popup product
     ];
     public $depends = [
         'yii\web\YiiAsset',

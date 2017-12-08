@@ -296,6 +296,13 @@ class ProductManageService
      * @param $photoId
      * changed sort photo in the list for product. One item down
      */
+    public function movePhotoDown($id, $photoId): void
+    {
+        $product = $this->products->get($id);
+        $product->movePhotoDown($photoId);
+        $this->products->save($product);
+    }
+
     public function movePhoto360Down($id, $photoId): void
     {
         $product = $this->products->get($id);

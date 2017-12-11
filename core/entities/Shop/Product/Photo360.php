@@ -65,8 +65,8 @@ class Photo360 extends ActiveRecord
                 'createThumbsOnRequest' => true,
                 'filePath' => '@staticRoot/origin/products360/[[attribute_product_id]]/[[id]].[[extension]]',
                 'fileUrl' => '@static/origin/products360/[[attribute_product_id]]/[[id]].[[extension]]',
-                'thumbPath' => '@staticRoot/cache/products360/[[attribute_product_id]]/[[profile]]_[[attribute_sort]].[[extension]]',
-                'thumbUrl' => '@static/cache/products360/[[attribute_product_id]]/[[profile]]_[[attribute_sort]].[[extension]]',
+                'thumbPath' => '@staticRoot/cache/products360/[[attribute_product_id]]/[[profile]]_[[id]]_[[attribute_sort]].[[extension]]',
+                'thumbUrl' => '@static/cache/products360/[[attribute_product_id]]/[[profile]]_[[id]]_[[attribute_sort]].[[extension]]',
                 'thumbs' => [
                     'admin' => ['width' => 100, 'height' => 70],
                     'thumb' => ['width' => 320, 'height' => 240],

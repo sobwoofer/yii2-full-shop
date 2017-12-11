@@ -128,7 +128,9 @@ $this->params['active_category'] = $product->category;
                 <h2 class="catalog-title catalog-title__one_product">
                     <strong><?= Html::encode($product->name) ?></strong>
                 </h2>
-                <div class="logo_economix"><?= Html::img($product->brand->getThumbFileUrl('image', 'product_page')) ?></div>
+                <div class="logo_economix">
+                    <a href="<?= Url::to(['/shop/catalog/brand', 'id' => $product->brand->id]) ?>"><?= Html::img($product->brand->getThumbFileUrl('image', 'product_page')) ?></a>
+                </div>
 
 
                 <div class="product-line__item product-line__item__one_product">

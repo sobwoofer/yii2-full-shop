@@ -258,6 +258,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="box-body">
 
             <div class="row">
+                <?php
+//                var_dump($product->photos360);
+
+                ?>
                 <?php foreach ($product->photos360 as $photo): ?>
                     <div class="col-md-2 col-xs-3" style="text-align: center">
                         <div class="btn-group">

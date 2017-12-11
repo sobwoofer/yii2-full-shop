@@ -1780,7 +1780,7 @@ fieldset {
 
 .top-action .cart__inside {
     position: absolute;
-    z-index: 2;
+    z-index: 10;
     top: 112%;
     right: 0;
 
@@ -4697,6 +4697,10 @@ a.filter-title {
     margin-left: 30px;
 }
 
+.cart-table-mobile {
+    display: none;
+}
+
 .table-nav ul li a {
     color: #333;
 }
@@ -7207,4 +7211,8 @@ body.lb-disable-scrolling {
 .section__gutter_top .swiper-wrapper .swiper-slide img {
     max-width: 100%;
     max-height: 100%;
+}
+
+.Magic360, .Magic360-container {
+    border: 0;
 }

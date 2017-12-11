@@ -303,6 +303,87 @@
   .btn_blue {
     display: block;
   }
+  .table-nav,
+  .cart-table-wrp-overflow {
+    display: none;
+  }
+  .mobile--item--img-wrp {
+    text-align: center;
+    overflow: hidden;
+  }
+  .mobile--item--img-wrp img {
+    max-width: 100%;
+  }
+  .mobile--item--nav {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -ms-flex-align: center;
+    -webkit-box-align: center;
+    align-items: center;
+  }
+  .mobile--item--nav .jq-number {
+    margin: 0px 20px;
+  }
+  .mobile--item--nav .like {
+    width: 37px;
+    height: 37px;
+    border: 1px solid #cccccc;
+    color: #cccccc;
+    font-weight: 200;
+    float: left;
+    text-decoration: none;
+    border-radius: 50%;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -ms-flex-align: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 15px;
+    position: relative;
+    font-size: 12px !important;
+    width: 25px !important;
+    height: 25px !important;
+  }
+  .mobile--item--nav .like .add-to-cart-info {
+    min-width: 100px;
+    text-align: center;
+  }
+  .mobile--item--nav .like.active {
+    color: #c00;
+    border: 1px solid #c00;
+  }
+  .mobile--item--nav .btn {
+    background: no-repeat !important;
+    font-size: 21px !important;
+    line-height: 1 !important;
+  }
+  .cart-table-mobile {
+    display: block;
+  }
 }
 
 @media (max-width: 500px) {

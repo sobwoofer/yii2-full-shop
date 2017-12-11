@@ -92,6 +92,158 @@ $this->params['breadcrumbs'][] = $this->title;
                 </ul>
             </div>
             <?php $cost = $cart->getCost() ?>
+            <div class="cart-table-mobile">
+                <div class="mobile--item">
+                    <p class="mobile--item--title">Мультифункциональное устройство MECANIX, красный</p>
+                    <p class="mobile--item--article">Артикул <b>32.034.20</b></p>
+                    <div class="mobile--item--img-wrp">
+                        <img src="http://placehold.it/300x300" alt="">
+                    </div>
+
+                    <div class="mobile--item-info">
+                        <p class="mobile--item--price"></p>
+                        <p class="mobile--item--cout"></p>
+                    </div>
+
+                    <div class="mobile--item--nav">
+
+                        <a href="#" class="like">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                        </a>
+                        <input type="number" value="1">
+                        <button type="button" class="btn " aria-label="Left Align">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+                <div class="mobile--item">
+                    <p class="mobile--item--title">Мультифункциональное устройство MECANIX, красный</p>
+                    <p class="mobile--item--article">Артикул <b>32.034.20</b></p>
+                    <div class="mobile--item--img-wrp">
+                        <img src="http://placehold.it/300x300" alt="">
+                    </div>
+
+                    <div class="mobile--item-info">
+                        <p class="mobile--item--price"></p>
+                        <p class="mobile--item--cout"></p>
+                    </div>
+
+                    <div class="mobile--item--nav">
+
+                        <a href="#" class="like">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                        </a>
+                        <input type="number" value="1">
+                        <button type="button" class="btn " aria-label="Left Align">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+                <div class="mobile--item">
+                    <p class="mobile--item--title">Мультифункциональное устройство MECANIX, красный</p>
+                    <p class="mobile--item--article">Артикул <b>32.034.20</b></p>
+                    <div class="mobile--item--img-wrp">
+                        <img src="http://placehold.it/300x300" alt="">
+                    </div>
+
+                    <div class="mobile--item-info">
+                        <p class="mobile--item--price"></p>
+                        <p class="mobile--item--cout"></p>
+                    </div>
+
+                    <div class="mobile--item--nav">
+
+                        <a href="#" class="like">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                        </a>
+                        <input type="number" value="1">
+                        <button type="button" class="btn " aria-label="Left Align">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+                <div class="mobile--item">
+                    <p class="mobile--item--title">Мультифункциональное устройство MECANIX, красный</p>
+                    <p class="mobile--item--article">Артикул <b>32.034.20</b></p>
+                    <div class="mobile--item--img-wrp">
+                        <img src="http://placehold.it/300x300" alt="">
+                    </div>
+
+                    <div class="mobile--item-info">
+                        <p class="mobile--item--price"></p>
+                        <p class="mobile--item--cout"></p>
+                    </div>
+
+                    <div class="mobile--item--nav">
+
+                        <a href="#" class="like">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                        </a>
+                        <input type="number" value="1">
+                        <button type="button" class="btn " aria-label="Left Align">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+                <div class="mobile--item">
+                    <p class="mobile--item--title">Мультифункциональное устройство MECANIX, красный</p>
+                    <p class="mobile--item--article">Артикул <b>32.034.20</b></p>
+                    <div class="mobile--item--img-wrp">
+                        <img src="http://placehold.it/300x300" alt="">
+                    </div>
+
+                    <div class="mobile--item-info">
+                        <p class="mobile--item--price"></p>
+                        <p class="mobile--item--cout"></p>
+                    </div>
+
+                    <div class="mobile--item--nav">
+
+                        <a href="#" class="like">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                        </a>
+                        <input type="number" value="1">
+                        <button type="button" class="btn " aria-label="Left Align">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+                <div class="mobile--item">
+                    <p class="mobile--item--title">Мультифункциональное устройство MECANIX, красный</p>
+                    <p class="mobile--item--article">Артикул <b>32.034.20</b></p>
+                    <div class="mobile--item--img-wrp">
+                        <img src="http://placehold.it/300x300" alt="">
+                    </div>
+
+                    <div class="mobile--item-info">
+                        <p class="mobile--item--price"></p>
+                        <p class="mobile--item--cout"></p>
+                    </div>
+
+                    <div class="mobile--item--nav">
+
+                        <a href="#" class="like">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                        </a>
+                        <input type="number" value="1">
+                        <button type="button" class="btn " aria-label="Left Align">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            </div>
             <div class="row" style="margin-top: 30px;">
                 <div class="col-sm-6">
                     <p class=" delivery-time"> Срок поставки: <span class="red">3-4 дня</span></p>

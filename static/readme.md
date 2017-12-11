@@ -14,7 +14,7 @@ server {
    listen 80; ## listen for ipv4
    #listen [::]:80 default_server ipv6only=on; ## listen for ipv6
 
-   server_name static.shop.dev;
+   server_name static.shop.test;
    root        /app/static/;
 
    error_log   /app/vagrant/nginx/log/static-error.log;

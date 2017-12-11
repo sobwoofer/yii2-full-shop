@@ -78,10 +78,10 @@ $this->params['active_category'] = $product->category;
 
                             <?php if (count($product->photos360)): ?>
                                 <div class="swiper-slide">
-                                    <a href="http://static.yii2-shop.dev/cache/products360/8/product_big_0.jpg"
+                                    <a href="http://static.yii2-shop.test/cache/products360/8/product_big_0.jpg"
                                        class="Magic360" data-options="filename:product_main_{col}.jpg;
                        large-filename: product_big_{col}.jpg; columns:<?= count($product->photos360) ?>">
-                                        <img src="http://static.yii2-shop.dev/cache/products360/8/product_main_00.jpg"/>
+                                        <img src="http://static.yii2-shop.test/cache/products360/8/product_main_00.jpg"/>
                                     </a>
                                 </div>
                             <?php endif; ?>

@@ -13,12 +13,12 @@ use yii\helpers\Html;
 
 <?= Swiper::widget( [
     'items'         => [
-        Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
-        Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
-        Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
-        Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
-        Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png'),
-        Html::img('http://static.yii2-shop.dev/dev/main-slider-img.png')
+        Html::img('http://static.yii2-shop.test/main-slider-img.png'),
+        Html::img('http://static.yii2-shop.test/main-slider-img.png'),
+        Html::img('http://static.yii2-shop.test/main-slider-img.png'),
+        Html::img('http://static.yii2-shop.test/main-slider-img.png'),
+        Html::img('http://static.yii2-shop.test/main-slider-img.png'),
+        Html::img('http://static.yii2-shop.test/main-slider-img.png')
     ],
     'behaviours'    => [
         'pagination',

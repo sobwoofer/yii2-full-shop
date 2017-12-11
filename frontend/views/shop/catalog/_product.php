@@ -29,7 +29,7 @@ $url = Url::to(['catalog/product', 'id' =>$product->id]);
     <!-- .stock -->
     <!-- .product-line__item__logo -->
     <div class="product-line__item__logo">
-        <img src="http://static.yii2-shop.dev/dev/product-logo.png" alt="">
+        <img src="http://static.yii2-shop.test/product-logo.png" alt="">
     </div>
     <!-- .product-line__item__logo -->
     <!-- .product-line__img -->
@@ -39,7 +39,7 @@ $url = Url::to(['catalog/product', 'id' =>$product->id]);
                 <?php if ($product->mainPhoto): ?>
                     <img src="<?= Html::encode($product->mainPhoto->getThumbFileUrl('file', 'catalog_list')) ?>" alt="" class="" />
                 <?php else: ?>
-                    <img src="http://static.yii2-shop.dev/dev/product-img-1.png" alt="">
+                    <img src="http://static.yii2-shop.test/product-img-1.png" alt="">
                 <?php endif; ?>
             </a>
         </div>

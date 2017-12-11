@@ -68,7 +68,7 @@ use yii\widgets\Breadcrumbs;
             <?php endforeach; ?>
 
                 <div class="load-more">
-                    <img src="http://static.yii-shop.dev/dev/load-more.png" alt="">
+                    <img src="http://static.yii-shop.test/load-more.png" alt="">
                     <p>Загрузить еще <br>15 товаров</p>
                 </div>
 

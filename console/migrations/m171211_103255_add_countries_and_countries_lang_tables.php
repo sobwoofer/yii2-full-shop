@@ -34,7 +34,6 @@ class m171211_103255_add_countries_and_countries_lang_tables extends Migration
                 [1, 'CHINA', 'CN', 'CHN', '156'],
         ])->execute();
 
-//        $this->addColumn('{{%lang}}', 'country_id', $this->integer());
 
         $this->addForeignKey(
             '{{%fk-geo_countries-lang_id}}',

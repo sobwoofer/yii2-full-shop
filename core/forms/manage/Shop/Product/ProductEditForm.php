@@ -9,6 +9,7 @@ use core\forms\CompositeForm;
 use core\forms\manage\MetaForm;
 use yii\helpers\ArrayHelper;
 use core\helpers\LangsHelper;
+use core\entities\Geo\Country;
 use yii\web\UploadedFile;
 use Yii;
 
@@ -24,6 +25,7 @@ use Yii;
  * @property string $guide
  * @property UploadedFile $guideFile
  * @property integer $qtyInPack
+ * @property integer $countryId
  */
 class ProductEditForm extends CompositeForm
 {
@@ -38,6 +40,7 @@ class ProductEditForm extends CompositeForm
     public $video;
     public $guide;
     public $qtyInPack;
+    public $countryId;
 
     public $guideFile;
 
@@ -60,6 +63,7 @@ class ProductEditForm extends CompositeForm
         $this->tags = new TagsForm($product);
         $this->caseCode = $product->case_code;
         $this->qtyInPack = $product->qty_in_pack;
+        $this->countryId = $product->country_id;
         $this->video = $product->video;
         $this->guide = !$product->guide ? '' : Yii::getAlias('@static/guides/' . $product->guide);
 
@@ -75,7 +79,7 @@ class ProductEditForm extends CompositeForm
         return [
             [LangsHelper::getNamesWithSuffix(['name']), 'required'],
             [['brandId', 'code', 'caseCode'], 'required'],
-            [['brandId', 'qtyInPack', 'weight'], 'integer'],
+            [['brandId', 'countryId', 'qtyInPack', 'weight'], 'integer'],
             [['code', 'caseCode' => 'case_code', 'video', 'guide'], 'string', 'max' => 255],
             [LangsHelper::getNamesWithSuffix(['name']), 'string', 'max' => 255],
             [['code', 'caseCode' => 'case_code'], 'unique', 'targetClass' => Product::class, 'filter' => $this->_product ? ['<>', 'id', $this->_product->id] : null],
@@ -93,10 +97,15 @@ class ProductEditForm extends CompositeForm
         return false;
     }
 
-    //TODO need move this method into one file, because double with ProductCreateForm
+    //TODO need move this methods into one file, because double with ProductCreateForm
     public function brandsList(): array
     {
         return ArrayHelper::map(Brand::find()->joinWith('translation')->orderBy('name')->asArray()->all(), 'id', 'translation.name');
+    }
+
+    public function countryList(): array
+    {
+        return ArrayHelper::map(Country::find()->joinWith('translation')->orderBy('name')->asArray()->all(), 'id', 'translation.name');
     }
 
     protected function internalForms(): array

@@ -69,6 +69,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'attribute' => 'brand_id',
                                 'value' => ArrayHelper::getValue($product, 'brand.name'),
                             ],
+                            [
+                                'attribute' => 'country_id',
+                                'value' => ArrayHelper::getValue($product, 'country.name'),
+                            ],
                             'case_code',
                             'qty_in_pack',
                             [

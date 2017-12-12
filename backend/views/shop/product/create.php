@@ -65,9 +65,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="box box-default">
         <div class="box-header with-border">Common</div>
         <div class="box-body">
+
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <?= $form->field($model, 'brandId')->dropDownList($model->brandsList()) ?>
+                </div>
+                <div class="col-md-2">
+                    <?= $form->field($model, 'countryId')->dropDownList($model->countryList(), ['prompt' => '']) ?>
                 </div>
                 <div class="col-md-2">
                     <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
@@ -75,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-md-2">
                     <?= $form->field($model, 'caseCode')->textInput(['maxlength' => true]) ?>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <?= $form->field($model, 'video')->textInput(['maxlength' => true]) ?>
                 </div>
             </div>

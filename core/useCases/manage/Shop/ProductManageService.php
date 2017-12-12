@@ -18,6 +18,7 @@ use core\repositories\Shop\BrandRepository;
 use core\repositories\Shop\CategoryRepository;
 use core\repositories\Shop\ProductRepository;
 use core\repositories\Shop\TagRepository;
+use core\repositories\Geo\CountryRepository;
 use core\services\TransactionManager;
 use core\services\import\Product\Reader;
 use core\forms\manage\Shop\importForm;
@@ -30,12 +31,14 @@ class ProductManageService
     private $brands;
     private $categories;
     private $tags;
+    private $countries;
     private $transaction;
     private $reader;
 
     public function __construct(
         ProductRepository $products,
         BrandRepository $brands,
+        CountryRepository $countries,
         CategoryRepository $categories,
         TagRepository $tags,
         TransactionManager $transaction,
@@ -44,6 +47,7 @@ class ProductManageService
     {
         $this->products = $products;
         $this->brands = $brands;
+        $this->countries = $countries;
         $this->categories = $categories;
         $this->tags = $tags;
         $this->transaction = $transaction;
@@ -54,6 +58,7 @@ class ProductManageService
     {
         $brand = $this->brands->get($form->brandId);
         $category = $this->categories->get($form->categories->main);
+        $countries = $this->countries->get($form->countryId);
 
         $names = [];
         $titles = [];
@@ -80,6 +85,7 @@ class ProductManageService
             $form->caseCode,
             $form->video,
             $form->qtyInPack,
+            $countries->id,
             $names,
             $titles,
             $descriptions,
@@ -135,6 +141,7 @@ class ProductManageService
     {
         $product = $this->products->get($id);
         $brand = $this->brands->get($form->brandId);
+        $country = $this->countries->get($form->countryId);
         $category = $this->categories->get($form->categories->main);
 
         $names = [];
@@ -163,7 +170,8 @@ class ProductManageService
             $form->weight,
             $form->caseCode,
             $form->video,
-            $form->qtyInPack
+            $form->qtyInPack,
+            $country->id
         );
 
         $product->changeMainCategory($category->id);

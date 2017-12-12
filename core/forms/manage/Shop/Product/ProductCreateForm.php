@@ -9,6 +9,7 @@ use core\forms\CompositeForm;
 use core\forms\manage\MetaForm;
 use yii\helpers\ArrayHelper;
 use core\helpers\LangsHelper;
+use core\entities\Geo\Country;
 use yii\web\UploadedFile;
 use core\forms\manage\Shop\Product\Photos360Form;
 
@@ -28,6 +29,7 @@ use core\forms\manage\Shop\Product\Photos360Form;
  * @property string $guide
  * @property UploadedFile $guideFile
  * @property integer $qtyInPack
+ * @property integer $countryId
  * Общая композитная форма для создания и редактирования товара включает в себя мелкие формы
  */
 class ProductCreateForm extends CompositeForm
@@ -43,6 +45,7 @@ class ProductCreateForm extends CompositeForm
     public $guide;
     public $guideFile;
     public $qtyInPack;
+    public $countryId;
 
     public function __construct($config = [])
     {
@@ -73,7 +76,7 @@ class ProductCreateForm extends CompositeForm
             [['brandId', 'code'], 'required'],
             [LangsHelper::getNamesWithSuffix(['name']), 'string', 'max' => 255],
             [['code', 'caseCode', 'video'], 'string', 'max' => 255],
-            [['brandId', 'weight'], 'integer'],
+            [['brandId', 'weight', 'countryId'], 'integer'],
             [['code', 'caseCode' => 'case_code'], 'unique', 'targetClass' => Product::class],
             [LangsHelper::getNamesWithSuffix(['description', 'title']), 'string'],
             [['weight', 'qtyInPack'], 'integer', 'min' => 0],
@@ -93,6 +96,11 @@ class ProductCreateForm extends CompositeForm
     public function brandsList(): array
     {
         return ArrayHelper::map(Brand::find()->joinWith('translation')->orderBy('name')->asArray()->all(), 'id', 'translation.name');
+    }
+
+    public function countryList(): array
+    {
+        return ArrayHelper::map(Country::find()->joinWith('translation')->orderBy('name')->asArray()->all(), 'id', 'translation.name');
     }
 
     protected function internalForms(): array

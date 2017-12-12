@@ -23,6 +23,7 @@ use core\entities\Shop\Brand\Brand;
 use core\entities\Shop\Category\Category;
 use core\entities\Shop\Tag;
 use yii\web\UploadedFile;
+use core\entities\Geo\Country;
 use core\entities\behaviors\FilledMultilingualBehavior;
 use Yii;
 
@@ -49,10 +50,12 @@ use Yii;
  * @property string $video
  * @property string $guide
  * @property integer $qty_in_pack
+ * @property integer $country_id
  *
  * @property Meta $meta
  * @property Meta $meta_ua
  * @property Brand $brand
+ * @property Country $country
  * @property Category $category
  * @property RelatedAssignment[] $relatedAssignments
  * @property CategoryAssignment[] $categoryAssignments
@@ -82,6 +85,7 @@ class Product extends ActiveRecord implements AggregateRoot
         $caseCode,
         $video,
         $qtyInPack,
+        $countryId,
         array $names,
         array $titles,
         array $descriptions,
@@ -97,6 +101,7 @@ class Product extends ActiveRecord implements AggregateRoot
         $product->case_code = $caseCode;
         $product->video = $video;
         $product->qty_in_pack = $qtyInPack;
+        $product->country_id = $countryId;
         $product->created_at = time();
         $product->status = self::STATUS_DRAFT;
 
@@ -144,7 +149,8 @@ class Product extends ActiveRecord implements AggregateRoot
         $weight,
         $caseCode,
         $video,
-        $qtyInPack
+        $qtyInPack,
+        $countryId
     ): void
     {
 
@@ -155,6 +161,7 @@ class Product extends ActiveRecord implements AggregateRoot
         $this->case_code = $caseCode;
         $this->video = $video;
         $this->qty_in_pack = $qtyInPack;
+        $this->country_id = $countryId;
 
         //$this->name, $this->name_ua...
         foreach ($names as $name => $value) {
@@ -674,6 +681,11 @@ class Product extends ActiveRecord implements AggregateRoot
     public function getBrand(): ActiveQuery
     {
         return $this->hasOne(Brand::class, ['id' => 'brand_id']);
+    }
+
+    public function getCountry(): ActiveQuery
+    {
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
     }
 
     public function getCategory(): ActiveQuery

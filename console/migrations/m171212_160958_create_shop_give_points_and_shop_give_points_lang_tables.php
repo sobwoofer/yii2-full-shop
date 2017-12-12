@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `shop_give_points`.
  */
-class m171212_153633_create_shop_give_points_and_shop_give_points_lang_tables extends Migration
+class m171212_160958_create_shop_give_points_and_shop_give_points_lang_tables extends Migration
 {
     /**
      * @inheritdoc
@@ -20,11 +20,7 @@ class m171212_153633_create_shop_give_points_and_shop_give_points_lang_tables ex
         $this->createTable('{{%shop_give_points}}', [
             'id' => $this->primaryKey(),
             'warehouse_id' => $this->integer()->notNull(),
-            'store_id' => $this->integer(),
-            'phone' => $this->string(),
-            'email' => $this->string(),
-            'work_weekdays' => $this->string()->notNull(),
-            'work_weekend' => $this->string()->notNull(),
+            'store_id' => $this->integer()->notNull(),
         ], $tableOptions);
 
         $this->addForeignKey(
@@ -37,42 +33,52 @@ class m171212_153633_create_shop_give_points_and_shop_give_points_lang_tables ex
             'RESTRICT'
         );
 
+        $this->addForeignKey(
+            '{{%fk-shop_give_points-store_id}}',
+            '{{%shop_give_points}}',
+            'store_id',
+            '{{shop_stores}}',
+            'id',
+            'RESTRICT',
+            'RESTRICT'
+        );
+
         $this->createIndex('{{%idx-shop_give_points-warehouse_id}}', '{{%shop_give_points}}', 'warehouse_id');
+        $this->createIndex('{{%idx-shop_give_points-store_id}}', '{{%shop_give_points}}', 'store_id');
 
         Yii::$app->db->createCommand()->batchInsert('{{%shop_give_points}}',
-            ['warehouse_id', 'phone', 'email', 'work_weekdays', 'work_weekend'], [
-                [1, '+38 (044) 501 88 62', 'vyshneve@papyrus.com.ua', '9:00 - 20:00', '10:00 - 18:00'],
-                [2, '+38 (056) 375-74-24', 'dnipro@papirus.ua', '9:00 - 20:00', '10:00 - 18:00']
+            ['warehouse_id', 'store_id'], [
+                [1, 1],
+                [2, 2]
             ])->execute();
 
         $this->createTable('{{%shop_give_points_lang}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string()->notNull(),
-            'address' => $this->string()->notNull(),
+            'give_point_id' => $this->integer()->notNull(),
             'language' => $this->string()->notNull(),
-            'give_points_id' => $this->integer()->notNull(),
+            'name' => $this->string()->notNull(),
             'description' => $this->text(),
 
         ], $tableOptions);
 
         $this->addForeignKey(
-            '{{%fk-shop_give_points_lang-give_points_id}}',
+            '{{%fk-shop_give_points_lang-give_point_id}}',
             '{{%shop_give_points_lang}}',
-            'give_points_id',
+            'give_point_id',
             '{{shop_give_points}}',
             'id',
             'RESTRICT',
             'RESTRICT'
         );
 
-        $this->createIndex('{{%idx-shop_give_points_lang-give_points_id}}', '{{%shop_give_points_lang}}', 'give_points_id');
+        $this->createIndex('{{%idx-shop_give_points_lang-give_point_id}}', '{{%shop_give_points_lang}}', 'give_point_id');
 
         Yii::$app->db->createCommand()->batchInsert('{{%shop_give_points_lang}}',
-            ['name', 'address', 'language', 'give_points_id', 'description'], [
-                ['Пункт выдачи в Вешневом', 'Вишневое Киевская 2а', 'ru', 1, null],
-                ['Пункт видачі у Вешневому', 'Вишневое Київська 2а', 'ua', 1, null],
-                ['Пункт выдачи в Вешневом Днепре', 'Проспект Александра Поля, 59', 'ru', 2, null],
-                ['Пункт видачі у Дніпрі', 'Проспект Олександра Поля, 59', 'ua', 2, null]
+            ['name', 'language', 'give_point_id', 'description'], [
+                ['Пункт выдачи в Вешневом', 'ru', 1, null],
+                ['Пункт видачі у Вешневому', 'ua', 1, null],
+                ['Пункт выдачи в Вешневом Днепре', 'ru', 2, null],
+                ['Пункт видачі у Дніпрі', 'ua', 2, null]
             ])->execute();
     }
 

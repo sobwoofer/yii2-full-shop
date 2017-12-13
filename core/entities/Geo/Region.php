@@ -12,9 +12,18 @@ use omgdef\multilingual\MultilingualQuery;
 use yii\db\ActiveRecord;
 use core\entities\behaviors\FilledMultilingualBehavior;
 
+/**
+ * Class Region
+ * @package core\entities\Geo
+ * @property integer $id
+ * @property string $iso_code
+ * @property integer $sort
+ * @property string $name
+ * @property string $name_ua
+ */
 class Region extends ActiveRecord
 {
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%geo_regions}}';
     }

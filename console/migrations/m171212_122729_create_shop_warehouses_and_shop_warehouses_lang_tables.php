@@ -20,6 +20,7 @@ class m171212_122729_create_shop_warehouses_and_shop_warehouses_lang_tables exte
         $this->createTable('{{%shop_warehouses}}', [
             'id' => $this->primaryKey(),
             'city_id' => $this->integer()->notNull(),
+            'slug' => $this->string()->notNull(),
             'min_order' => $this->float()->notNull()
         ], $tableOptions);
 
@@ -36,9 +37,9 @@ class m171212_122729_create_shop_warehouses_and_shop_warehouses_lang_tables exte
         $this->createIndex('{{%idx-shop_warehouses-city_id}}', '{{%shop_warehouses}}', 'city_id');
 
         Yii::$app->db->createCommand()->batchInsert('{{%shop_warehouses}}',
-            ['id', 'city_id', 'min_order'], [
-            [1, 4098, 750],
-            [2, 3897, 500]
+            ['id', 'city_id', 'slug', 'min_order'], [
+            [1, 4098, 'warehouse-kyiv', 750],
+            [2, 3897, 'warehouse-dnepr', 500]
         ])->execute();
 
         $this->createTable('{{%shop_warehouses_lang}}', [

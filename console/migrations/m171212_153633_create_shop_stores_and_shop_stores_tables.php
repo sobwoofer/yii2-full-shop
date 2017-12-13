@@ -19,6 +19,7 @@ class m171212_153633_create_shop_stores_and_shop_stores_tables extends Migration
         $this->createTable('{{%shop_stores}}', [
             'id' => $this->primaryKey(),
             'city_id' => $this->integer()->notNull(),
+            'slug' => $this->string()->notNull(),
             'phone' => $this->string(),
             'email' => $this->string(),
             'work_weekdays' => $this->string()->notNull(),
@@ -39,9 +40,9 @@ class m171212_153633_create_shop_stores_and_shop_stores_tables extends Migration
         $this->createIndex('{{%idx-shop_stores-city_id}}', '{{%shop_stores}}', 'city_id');
 
         Yii::$app->db->createCommand()->batchInsert('{{%shop_stores}}',
-            ['city_id', 'phone', 'email', 'work_weekdays', 'work_weekend', 'photo'], [
-                [4098, '+38 (044) 501 88 62', 'vyshneve@papyrus.com.ua', '9:00 - 20:00', '10:00 - 18:00', null],
-                [3897, '+38 (056) 375-74-24', 'dnipro@papirus.ua', '9:00 - 20:00', '10:00 - 18:00', null]
+            ['city_id', 'slug', 'phone', 'email', 'work_weekdays', 'work_weekend', 'photo'], [
+                [4098, 'store-vyshneve', '+38 (044) 501 88 62', 'vyshneve@papyrus.com.ua', '9:00 - 20:00', '10:00 - 18:00', null],
+                [3897, 'store-dnepr', '+38 (056) 375-74-24', 'dnipro@papirus.ua', '9:00 - 20:00', '10:00 - 18:00', null]
             ])->execute();
 
         $this->createTable('{{%shop_stores_lang}}', [

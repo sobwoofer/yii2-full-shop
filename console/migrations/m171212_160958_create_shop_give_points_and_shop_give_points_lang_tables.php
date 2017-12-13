@@ -21,6 +21,7 @@ class m171212_160958_create_shop_give_points_and_shop_give_points_lang_tables ex
             'id' => $this->primaryKey(),
             'warehouse_id' => $this->integer()->notNull(),
             'store_id' => $this->integer()->notNull(),
+            'slug' => $this->string()->notNull(),
         ], $tableOptions);
 
         $this->addForeignKey(
@@ -47,9 +48,9 @@ class m171212_160958_create_shop_give_points_and_shop_give_points_lang_tables ex
         $this->createIndex('{{%idx-shop_give_points-store_id}}', '{{%shop_give_points}}', 'store_id');
 
         Yii::$app->db->createCommand()->batchInsert('{{%shop_give_points}}',
-            ['warehouse_id', 'store_id'], [
-                [1, 1],
-                [2, 2]
+            ['warehouse_id', 'store_id', 'slug'], [
+                [1, 1, 'give-point-veshneve'],
+                [2, 2, 'give-point-dnepr']
             ])->execute();
 
         $this->createTable('{{%shop_give_points_lang}}', [

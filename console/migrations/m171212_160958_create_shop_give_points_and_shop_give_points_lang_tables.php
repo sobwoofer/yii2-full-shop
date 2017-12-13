@@ -68,7 +68,7 @@ class m171212_160958_create_shop_give_points_and_shop_give_points_lang_tables ex
             'give_point_id',
             '{{shop_give_points}}',
             'id',
-            'RESTRICT',
+            'CASCADE',
             'RESTRICT'
         );
 

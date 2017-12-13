@@ -58,7 +58,7 @@ class m171212_122729_create_shop_warehouses_and_shop_warehouses_lang_tables exte
             'warehouse_id',
             '{{shop_warehouses}}',
             'id',
-            'RESTRICT',
+            'CASCADE',
             'RESTRICT'
         );
 

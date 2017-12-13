@@ -53,7 +53,7 @@ class m171212_084358_create_geo_regions_and_geo_regions_lang_tables extends Migr
             'region_id',
             '{{%geo_regions}}',
             'id',
-            'RESTRICT',
+            'CASCADE',
             'RESTRICT'
         );
 

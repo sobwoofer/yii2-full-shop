@@ -59,7 +59,7 @@ class m171211_103255_add_countries_and_countries_lang_tables extends Migration
             'country_id',
             '{{%geo_countries}}',
             'id',
-            'RESTRICT',
+            'CASCADE',
             'RESTRICT'
         );
 

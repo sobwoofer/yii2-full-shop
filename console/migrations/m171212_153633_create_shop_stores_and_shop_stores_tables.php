@@ -61,7 +61,7 @@ class m171212_153633_create_shop_stores_and_shop_stores_tables extends Migration
             'store_id',
             '{{%shop_stores}}',
             'id',
-            'RESTRICT',
+            'CASCADE',
             'RESTRICT'
         );
 

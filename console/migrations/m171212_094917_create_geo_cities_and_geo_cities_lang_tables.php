@@ -51,7 +51,7 @@ class m171212_094917_create_geo_cities_and_geo_cities_lang_tables extends Migrat
             'city_id',
             '{{%geo_cities}}',
             'id',
-            'RESTRICT',
+            'CASCADE',
             'RESTRICT'
         );
 

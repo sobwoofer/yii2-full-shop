@@ -39,6 +39,10 @@ class Rbac
     const PERMISSION_SHOP_TAG_EDIT = 'permShopTagEdit';
     const PERMISSION_SHOP_WAREHOUSE_EDIT = 'permShopWarehouseEdit';
     const PERMISSION_SHOP_WAREHOUSE_VIEW = 'permShopWarehouseView';
+    const PERMISSION_SHOP_STORE_EDIT = 'permShopStoreEdit';
+    const PERMISSION_SHOP_STORE_VIEW = 'permShopStoreView';
+    const PERMISSION_SHOP_GIVE_POINT_EDIT = 'permShopGivePointEdit';
+    const PERMISSION_SHOP_GIVE_POINT_VIEW = 'permShopGivePointView';
     const PERMISSION_BLOG_CATEGORY_VIEW = 'permBlogCategoryView';
     const PERMISSION_BLOG_CATEGORY_EDIT = 'permBlogCategoryEdit';
     const PERMISSION_BLOG_COMMENT_VIEW = 'permBlogCommentView';

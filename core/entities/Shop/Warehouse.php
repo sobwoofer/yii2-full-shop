@@ -30,7 +30,7 @@ use omgdef\multilingual\MultilingualQuery;
  */
 class Warehouse extends ActiveRecord
 {
-    public static function create($cityId, $minOrder, $slug, $names, $addresses, $descriptions): self
+    public static function create($cityId, $minOrder, $slug, array $names, array $addresses, array $descriptions): self
     {
         $warehouse = new static();
         $warehouse->city_id = $cityId;
@@ -48,14 +48,14 @@ class Warehouse extends ActiveRecord
         }
 
         //$warehouse->description, $warehouse->$description_ua...
-        foreach ($addresses as $name => $value) {
+        foreach ($descriptions as $name => $value) {
             $warehouse->{$name} = $value;
         }
 
         return $warehouse;
     }
 
-    public function edit($cityId, $minOrder, $slug, $names, $addresses, $descriptions): void
+    public function edit($cityId, $minOrder, $slug, array $names, array $addresses, array $descriptions): void
     {
         $this->city_id = $cityId;
         $this->min_order = $minOrder;
@@ -72,7 +72,7 @@ class Warehouse extends ActiveRecord
         }
 
         //$this->description, $this->$description_ua...
-        foreach ($addresses as $name => $value) {
+        foreach ($descriptions as $name => $value) {
             $this->{$name} = $value;
         }
 

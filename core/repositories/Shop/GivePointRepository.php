@@ -40,4 +40,9 @@ class GivePointRepository
         return GivePoint::find()->andWhere(['warehouse_id' => $id])->exists();
     }
 
+    public function existByStore($id)
+    {
+        return GivePoint::find()->andWhere(['store_id' => $id])->exists();
+    }
+
 }

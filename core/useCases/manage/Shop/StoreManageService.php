@@ -9,26 +9,26 @@
 namespace core\useCases\manage\Shop;
 
 
-use core\entities\Shop\GivePoint;
-use core\entities\Shop\Warehouse;
-use core\repositories\Shop\WarehouseRepository;
-use core\forms\manage\Shop\WarehouseForm;
+use core\entities\Shop\Store;
+use core\forms\manage\Shop\StoreForm;
+use core\repositories\Shop\StoreRepository;
 use core\helpers\LangsHelper;
 use core\repositories\Shop\GivePointRepository;
 use yii\helpers\Inflector;
+use yii\web\UploadedFile;
 
-class WarehouseManageService
+class StoreManageService
 {
-    private $warehouses;
+    private $stores;
     private $givePoints;
 
-    public function __construct(WarehouseRepository $warehouses, GivePointRepository $givePoints)
+    public function __construct(StoreRepository $stores, GivePointRepository $givePoints)
     {
-        $this->warehouses = $warehouses;
+        $this->stores = $stores;
         $this->givePoints = $givePoints;
     }
 
-    public function create(WarehouseForm $form)
+    public function create(StoreForm $form)
     {
         $names = [];
         $addresses = [];
@@ -40,21 +40,28 @@ class WarehouseManageService
             $descriptions['description' . $suffix] = $form->{'description' . $suffix};
         }
 
-        $warehouse = Warehouse::create(
+        $store = Store::create(
             $form->cityId,
-            $form->minOrder,
+            $form->phone,
+            $form->email,
+            $form->workWeekdays,
+            $form->workWeekend,
             $form->slug ?: Inflector::slug($form->name),
             $names,
             $addresses,
             $descriptions
         );
 
-        $this->warehouses->save($warehouse);
+        if ($form->photo) {
+            $store->setPhoto($store->photo);
+        }
 
-        return $warehouse;
+        $this->stores->save($store);
+
+        return $store;
     }
 
-    public function edit($id, WarehouseForm $form)
+    public function edit($id, StoreForm $form)
     {
         $names = [];
         $addresses = [];
@@ -66,25 +73,35 @@ class WarehouseManageService
             $descriptions['description' . $suffix] = $form->{'description' . $suffix};
         }
 
-        $warehouse = $this->warehouses->get($id);
-        $warehouse->edit(
+        $store = $this->stores->get($id);
+        $store->edit(
             $form->cityId,
-            $form->minOrder,
+            $form->phone,
+            $form->email,
+            $form->workWeekdays,
+            $form->workWeekend,
             $form->slug ?: Inflector::slug($form->name),
             $names,
             $addresses,
             $descriptions
         );
-        $this->warehouses->save($warehouse);
+
+
+
+        if ($form->photo) {
+            $store->setPhoto($form->photo);
+        }
+
+        $this->stores->save($store);
     }
 
     public function remove($id): void
     {
-        $warehouse = $this->warehouses->get($id);
-        if ($this->givePoints->existByWarehouse($warehouse->id)) {
+        $store = $this->stores->get($id);
+        if ($this->givePoints->existByStore($store->id)) {
             throw new \DomainException('Unable to remove brand with Give Points.');
         }
-        $this->warehouses->remove($warehouse);
+        $this->stores->remove($store);
     }
 
 }

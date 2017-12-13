@@ -7,20 +7,20 @@
  */
 use yii\helpers\Html;
 use yii\grid\GridView;
-use core\entities\Shop\Warehouse;
+use core\entities\Shop\GivePoint;
 use yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\forms\shop\WarehouseSearch */
+/* @var $searchModel backend\forms\shop\GivePointSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Warehouse';
+$this->title = 'Give point';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="user-index">
     <p>
-        <?= Html::a('Create warehouse', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create give point', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <div class="box">
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id',
                     [
                         'attribute' => 'name',
-                        'value' => function (Warehouse $model) {
+                        'value' => function (GivePoint $model) {
                             return Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
                         },
                         'format' => 'raw'

@@ -41,7 +41,7 @@
                         ['label' => 'Delivery Methods', 'icon' => 'file-o', 'url' => ['/shop/delivery/index'], 'active' => $this->context->id == 'shop/delivery'],
                         ['label' => 'Warehouses', 'icon' => 'file-o', 'url' => ['/shop/warehouse/index'], 'active' => $this->context->id == 'shop/warehouse'],
                         ['label' => 'Give Points', 'icon' => 'file-o', 'url' => ['/shop/give-point/index'], 'active' => $this->context->id == 'shop/give-point'],
-                        ['label' => 'Store', 'icon' => 'file-o', 'url' => ['/shop/store/index'], 'active' => $this->context->id == 'shop/store'],
+                        ['label' => 'Stores', 'icon' => 'file-o', 'url' => ['/shop/store/index'], 'active' => $this->context->id == 'shop/store'],
                     ]],
                     ['label' => 'Blog', 'icon' => 'folder', 'items' => [
                         ['label' => 'Posts', 'icon' => 'file-o', 'url' => ['/blog/post/index'], 'active' => $this->context->id == 'blog/post'],

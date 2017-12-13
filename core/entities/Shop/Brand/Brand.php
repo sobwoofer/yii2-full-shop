@@ -25,6 +25,8 @@ use core\entities\behaviors\FilledMultilingualBehavior;
  * @property Meta $meta
  * @property string $name
  * @property string $image
+ *
+ * @mixin ImageUploadBehavior
  */
 class Brand extends ActiveRecord
 {

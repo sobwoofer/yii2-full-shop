@@ -12,6 +12,7 @@ namespace core\entities\Geo;
 use omgdef\multilingual\MultilingualQuery;
 use yii\db\ActiveRecord;
 use core\entities\behaviors\FilledMultilingualBehavior;
+use yii\db\ActiveQuery;
 
 /**
  * Class City
@@ -33,6 +34,13 @@ class City extends ActiveRecord
     public static function find()
     {
         return new MultilingualQuery(get_called_class());
+    }
+
+    //Relations
+
+    public function getRegion(): ActiveQuery
+    {
+        return $this->hasOne(Region::class, ['id' => 'region_id']);
     }
 
     public function behaviors(): array

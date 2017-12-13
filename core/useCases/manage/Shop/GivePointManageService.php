@@ -10,81 +10,78 @@ namespace core\useCases\manage\Shop;
 
 
 use core\entities\Shop\GivePoint;
-use core\entities\Shop\Warehouse;
+use core\forms\manage\Shop\GivePointForm;
+use core\repositories\Shop\StoreRepository;
 use core\repositories\Shop\WarehouseRepository;
-use core\forms\manage\Shop\WarehouseForm;
 use core\helpers\LangsHelper;
 use core\repositories\Shop\GivePointRepository;
 use yii\helpers\Inflector;
 
-class WarehouseManageService
+class GivePointManageService
 {
+    private $stores;
     private $warehouses;
     private $givePoints;
 
-    public function __construct(WarehouseRepository $warehouses, GivePointRepository $givePoints)
+    public function __construct(
+        WarehouseRepository $warehouses,
+        GivePointRepository $givePoints,
+        StoreRepository $stores
+        )
     {
         $this->warehouses = $warehouses;
+        $this->stores = $stores;
         $this->givePoints = $givePoints;
     }
 
-    public function create(WarehouseForm $form)
+    public function create(GivePointForm $form)
     {
         $names = [];
-        $addresses = [];
         $descriptions = [];
 
         foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
             $names['name' . $suffix] = $form->{'name' . $suffix};
-            $addresses['address' . $suffix] = $form->{'address' . $suffix};
             $descriptions['description' . $suffix] = $form->{'description' . $suffix};
         }
 
-        $warehouse = Warehouse::create(
-            $form->cityId,
-            $form->minOrder,
+        $givePoint = GivePoint::create(
+            $form->warehouseId,
+            $form->storeId,
             $form->slug ?: Inflector::slug($form->name),
             $names,
-            $addresses,
             $descriptions
         );
 
-        $this->warehouses->save($warehouse);
+        $this->givePoints->save($givePoint);
 
-        return $warehouse;
+        return $givePoint;
     }
 
-    public function edit($id, WarehouseForm $form)
+    public function edit($id, GivePointForm $form)
     {
         $names = [];
-        $addresses = [];
         $descriptions = [];
 
         foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
             $names['name' . $suffix] = $form->{'name' . $suffix};
-            $addresses['address' . $suffix] = $form->{'address' . $suffix};
             $descriptions['description' . $suffix] = $form->{'description' . $suffix};
         }
 
-        $warehouse = $this->warehouses->get($id);
-        $warehouse->edit(
-            $form->cityId,
-            $form->minOrder,
+        $givePoint = $this->givePoints->get($id);
+        $givePoint->edit(
+            $form->warehouseId,
+            $form->storeId,
             $form->slug ?: Inflector::slug($form->name),
             $names,
-            $addresses,
             $descriptions
         );
-        $this->warehouses->save($warehouse);
+        $this->givePoints->save($givePoint);
     }
 
     public function remove($id): void
     {
-        $warehouse = $this->warehouses->get($id);
-        if ($this->givePoints->existByWarehouse($warehouse->id)) {
-            throw new \DomainException('Unable to remove brand with Give Points.');
-        }
-        $this->warehouses->remove($warehouse);
+        $givePoint = $this->givePoints->get($id);
+        $this->givePoints->remove($givePoint);
     }
 
 }

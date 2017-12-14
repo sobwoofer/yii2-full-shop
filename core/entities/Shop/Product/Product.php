@@ -73,8 +73,12 @@ class Product extends ActiveRecord implements AggregateRoot
 {
     use EventTrait;
 
-    const STATUS_DRAFT = 0;
-    const STATUS_ACTIVE = 1;
+    const STATUS_DRAFT = 0; //off
+    const STATUS_ACTIVE = 1; //on
+
+    const EXTERNAL_STATUS_NOT_AVAILABLE = 0; //нет в наличии
+    const EXTERNAL_STATUS_ARE_AVAILABLE = 1; //есть в наличии
+    const EXTERNAL_STATUS_EXPECTED = 2; //ожидается
 
     public static function create(
         $brandId,

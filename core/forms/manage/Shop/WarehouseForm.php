@@ -24,6 +24,7 @@ use yii\helpers\ArrayHelper;
  * @property string $slug
  * @property string $name
  * @property string $address
+ * @property integer $default
  * @property string $description
  * @property string $name_ua
  * @property string $address_ua
@@ -36,6 +37,7 @@ class WarehouseForm extends Model
     public  $cityId;
     public  $minOrder;
     public  $slug;
+    public  $default;
     public  $_warehouse;
 
 
@@ -45,6 +47,7 @@ class WarehouseForm extends Model
             $this->cityId = $warehouse->city_id;
             $this->minOrder = $warehouse->min_order;
             $this->slug = $warehouse->slug;
+            $this->default = $warehouse->default;
 
         foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
             $this->{'name' . $suffix} = $warehouse->{'name' . $suffix};
@@ -69,7 +72,7 @@ class WarehouseForm extends Model
             [LangsHelper::getNamesWithSuffix(['name', 'address']), 'string', 'max' => 255],
             [LangsHelper::getNamesWithSuffix(['description']), 'string'],
             [['cityId', 'minOrder'], 'required'],
-            [['cityId'], 'integer'],
+            [['cityId', 'default'], 'integer'],
             ['slug', 'string', 'max' => 255],
             ['minOrder', 'string'],
             ['slug', 'unique', 'targetClass' => Warehouse::class, 'filter' => $this->_warehouse ? ['<>', 'id', $this->_warehouse->id] : null]

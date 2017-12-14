@@ -9,7 +9,9 @@
 namespace core\entities\Shop;
 
 
+use core\entities\Geo\City;
 use core\helpers\LangsHelper;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use core\entities\behaviors\FilledMultilingualBehavior;
 use omgdef\multilingual\MultilingualQuery;
@@ -20,6 +22,7 @@ use omgdef\multilingual\MultilingualQuery;
  * @property integer $id
  * @property integer $city_id
  * @property float $min_order
+ * @property integer $default
  * @property string $slug
  * @property string $name
  * @property string $name_ua
@@ -30,12 +33,13 @@ use omgdef\multilingual\MultilingualQuery;
  */
 class Warehouse extends ActiveRecord
 {
-    public static function create($cityId, $minOrder, $slug, array $names, array $addresses, array $descriptions): self
+    public static function create($cityId, $minOrder, $slug, $default, array $names, array $addresses, array $descriptions): self
     {
         $warehouse = new static();
         $warehouse->city_id = $cityId;
         $warehouse->min_order = $minOrder;
         $warehouse->slug = $slug;
+        $warehouse->default = $default;
 
         //$warehouse->name, $warehouse->name_ua...
         foreach ($names as $name => $value) {
@@ -55,11 +59,12 @@ class Warehouse extends ActiveRecord
         return $warehouse;
     }
 
-    public function edit($cityId, $minOrder, $slug, array $names, array $addresses, array $descriptions): void
+    public function edit($cityId, $minOrder, $slug, $default, array $names, array $addresses, array $descriptions): void
     {
         $this->city_id = $cityId;
         $this->min_order = $minOrder;
         $this->slug = $slug;
+        $this->default = $default;
 
         //$this->name, $this->name_ua...
         foreach ($names as $name => $value) {
@@ -76,6 +81,13 @@ class Warehouse extends ActiveRecord
             $this->{$name} = $value;
         }
 
+    }
+
+    //Relations
+
+    public function getCity(): ActiveQuery
+    {
+        return $this->hasOne(City::class, ['id' => 'city_id']);
     }
 
     public static function find()

@@ -44,6 +44,7 @@ class WarehouseManageService
             $form->cityId,
             $form->minOrder,
             $form->slug ?: Inflector::slug($form->name),
+            $form->default,
             $names,
             $addresses,
             $descriptions
@@ -71,6 +72,7 @@ class WarehouseManageService
             $form->cityId,
             $form->minOrder,
             $form->slug ?: Inflector::slug($form->name),
+            $form->default,
             $names,
             $addresses,
             $descriptions

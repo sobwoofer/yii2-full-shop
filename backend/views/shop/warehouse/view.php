@@ -40,6 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'description',
                     'address',
                     'slug',
+                    'default',
+                    'city.name',
                 ],
             ]) ?>
         </div>

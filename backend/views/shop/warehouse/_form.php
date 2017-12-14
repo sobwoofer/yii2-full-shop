@@ -21,11 +21,14 @@ use powerkernel\flagiconcss\Flag;
             <div class="col-md-4">
                 <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <?= $form->field($model, 'minOrder')->textInput(['maxlength' => true]) ?>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <?= $form->field($model, 'cityId')->dropDownList($model->cityList()) ?>
+            </div>
+            <div class="col-md-2">
+                <?= $form->field($model, 'default')->dropDownList(['0', 1]) ?>
             </div>
         </div>
     </div>

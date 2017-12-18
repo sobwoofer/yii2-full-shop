@@ -9,6 +9,7 @@
 namespace core\entities\Shop\Product;
 
 
+use core\entities\Shop\Product\queries\WarehousesProductQuery;
 use core\entities\Shop\Warehouse;
 use core\forms\manage\Shop\Product\WarehousesProductForm;
 use yii\db\ActiveQuery;
@@ -110,6 +111,11 @@ class WarehousesProduct extends ActiveRecord
     public static function tableName(): string
     {
         return '{{%shop_warehouses_products}}';
+    }
+
+    public static function find(): WarehousesProductQuery
+    {
+        return new WarehousesProductQuery(static::class);
     }
 
 }

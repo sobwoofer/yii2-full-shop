@@ -8,8 +8,11 @@
 
 namespace frontend\bootstrap;
 
+use core\services\location\storage\SessionStorage;
+use core\services\location\LocationManager;
 use yii\base\BootstrapInterface;
 use yii\helpers\ArrayHelper;
+use yii\web\Session;
 use yii\widgets\Breadcrumbs;
 
 class SetUp implements BootstrapInterface
@@ -17,6 +20,12 @@ class SetUp implements BootstrapInterface
     public function bootstrap($app): void
     {
         $container = \Yii::$container;
+
+        //Подключение LocationManager определения местаположения и отображения параметров товара в зависимости
+        $container->setSingleton(LocationManager::class, function () use ($app) {
+            return new LocationManager(new SessionStorage('location', new Session()));
+        });
+
 
         $container->set(Breadcrumbs::class, function ($container, $params, $args) {
             return new Breadcrumbs(ArrayHelper::merge([

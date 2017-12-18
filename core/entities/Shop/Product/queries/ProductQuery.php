@@ -25,4 +25,6 @@ class ProductQuery extends ActiveQuery
             ($alias ? $alias . '.' : '') . 'status' => Product::STATUS_ACTIVE,
         ]);
     }
+
+
 }

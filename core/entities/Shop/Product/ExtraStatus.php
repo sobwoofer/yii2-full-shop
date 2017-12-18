@@ -12,6 +12,13 @@ namespace core\entities\Shop\Product;
 use yii\db\ActiveRecord;
 use core\entities\behaviors\FilledMultilingualBehavior;
 
+/**
+ * Class ExtraStatus
+ * @package core\entities\Shop\Product
+ * @property integer $id
+ * @property string $name
+ * @property string $name_ua
+ */
 class ExtraStatus extends ActiveRecord
 {
 

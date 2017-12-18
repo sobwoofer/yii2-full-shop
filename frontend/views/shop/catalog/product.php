@@ -191,8 +191,8 @@ $this->params['active_category'] = $product->category;
                     </script>
                     <div class="one_product_details">
                         <div class="price_block price_stock">
-                            <div class="goods_amount">Товара много <span class="goods_amount___icon"></span></div>
-                            <p class="price__one_product"><?= PriceHelper::format($product->price_new) ?></p>
+                            <div class="goods_amount"><?= $product->warehousesProduct->extraStatus->name ?> <span class="goods_amount___icon"></span></div>
+                            <p class="price__one_product"><?= PriceHelper::format($product->warehousesProduct->price) ?></p>
                         </div>
                         <!-- .price_block -->
                         <!-- .product-line__item__action-block -->

@@ -9,6 +9,7 @@
 namespace core\entities\Shop\Product;
 
 use core\entities\EventTrait;
+use core\helpers\LocationHelper;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use core\entities\AggregateRoot;
 use core\entities\behaviors\MetaBehavior;
@@ -66,6 +67,7 @@ use Yii;
  * @property Value[] $values
  * @property Photo[] $photos
  * @property WarehousesProduct[] $warehousesProducts
+ * @property WarehousesProduct $warehousesProduct
  * @property Photo360[] $photos360
  * @property Photo $mainPhoto
  * @property Review[] $reviews
@@ -787,6 +789,16 @@ class Product extends ActiveRecord implements AggregateRoot
     public function getWarehousesProducts(): ActiveQuery
     {
         return $this->hasMany(WarehousesProduct::class, ['product_id' => 'id']);
+    }
+
+    /**
+     * @return ActiveQuery current or default warehouse of user
+     */
+    public function getWarehousesProduct(): ActiveQuery
+    {
+        return $this->hasOne(WarehousesProduct::class, ['product_id' => 'id'])->where([
+            'warehouse_id' => LocationHelper::getWarehouseId()
+        ]);
     }
 
     public function getTags(): ActiveQuery

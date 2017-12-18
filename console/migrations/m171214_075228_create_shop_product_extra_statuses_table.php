@@ -52,7 +52,9 @@ class m171214_075228_create_shop_product_extra_statuses_table extends Migration
             '{{%shop_product_extra_statuses_lang}}',
             'extra_status_id',
             '{{shop_product_extra_statuses}}',
-            'id'
+            'id',
+            'CASCADE',
+            'RESTRICT'
         );
 
         Yii::$app->db->createCommand()->batchInsert('{{%shop_product_extra_statuses_lang}}',

@@ -12,7 +12,7 @@ use yii\bootstrap\ActiveForm;
 use mihaildev\ckeditor\CKEditor;
 use core\helpers\LangsHelper;
 use powerkernel\flagiconcss\Flag;
-
+use core\helpers\PostHelper;
 /* @var $this yii\web\View */
 /* @var $model core\forms\manage\Shop\Product\ProductCreateForm */
 
@@ -99,21 +99,75 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-md-2">
                     <?= $form->field($model, 'qtyInPack')->textInput(['maxlength' => true]) ?>
                 </div>
+                <div class="col-md-3">
+                    <?= $form->field($model, 'weight')->textInput(['maxlength' => true]) ?>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="box box-default">
-        <div class="box-header with-border">Warehouse</div>
+        <div class="box-header with-border">Quantity</div>
         <div class="box-body">
             <div class="row">
-                <div class="col-md-6">
-                    <?= $form->field($model, 'weight')->textInput(['maxlength' => true]) ?>
-                </div>
+
                 <div class="col-md-6">
                     <?= $form->field($model->quantity, 'quantity')->textInput(['maxlength' => true]) ?>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="box box-default">
+        <div class="box-header with-border">Warehouses</div>
+        <div class="box-body">
+            <?php foreach ($model->warehousesProducts as $i => $warehouseModel): ?>
+                <div class="box box-warning collapsed-box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><?= $warehouseModel->getWarehouseName() ?><span class="text-danger">*</span></h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                        <!-- /.box-tools -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body" style="">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <?= $form->field($warehouseModel, '[' . $i . ']externalStatus')
+                                    ->dropDownList(PostHelper::externalStatusList()) ?>
+                            </div>
+                            <div class="col-sm-3">
+                                <?= $form->field($warehouseModel, '[' . $i . ']extraStatusId')
+                                    ->dropDownList(PostHelper::extraStatusList()) ?>
+                            </div>
+                            <div class="col-sm-3">
+                                <?= $form->field($warehouseModel, '[' . $i . ']price')->textInput()?>
+                            </div>
+                            <div class="col-sm-3">
+                                <?= $form->field($warehouseModel, '[' . $i . ']quantity')->textInput()?>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <?= $form->field($warehouseModel, '[' . $i . ']special')->textInput()?>
+                            </div>
+                            <div class="col-sm-3">
+                                <?= $form->field($warehouseModel, '[' . $i . ']specialStatus')->dropDownList([1 => 'on', 0 => 'off'])?>
+                            </div>
+                            <div class="col-sm-3">
+                                <?= $form->field($warehouseModel, '[' . $i . ']specialStart')->textInput()?>
+                            </div>
+                            <div class="col-sm-3">
+                                <?= $form->field($warehouseModel, '[' . $i . ']specialEnd')->textInput()?>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 

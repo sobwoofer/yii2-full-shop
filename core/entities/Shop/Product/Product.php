@@ -65,6 +65,7 @@ use Yii;
  * @property Tag[] $tags
  * @property Value[] $values
  * @property Photo[] $photos
+ * @property WarehousesProduct[] $warehousesProducts
  * @property Photo360[] $photos360
  * @property Photo $mainPhoto
  * @property Review[] $reviews
@@ -357,6 +358,77 @@ class Product extends ActiveRecord implements AggregateRoot
         $this->setQuantity(array_sum(array_map(function (Modification $modification) {
             return $modification->quantity;
         }, $this->modifications)));
+    }
+
+    //warehouses products
+    public function addWarehousesProduct(
+        $warehouseId,
+        $productId,
+        $extraStatusId,
+        $externalStatus,
+        $price,
+        $quantity,
+        $special,
+        $specialStatus,
+        $specialStart,
+        $specialEnd
+    ): void
+    {
+
+        $warehousesProducts = $this->warehousesProducts;
+
+        $warehousesProducts[] = WarehousesProduct::create(
+            $warehouseId,
+            $productId,
+            $extraStatusId,
+            $externalStatus,
+            $price,
+            $quantity,
+            $special,
+            $specialStatus,
+            $specialStart,
+            $specialEnd
+        );
+
+        $this->updateWarehousesProducts($warehousesProducts);
+    }
+
+    public function editWarehousesProduct(
+        $id,
+        $extraStatusId,
+        $externalStatus,
+        $price,
+        $quantity,
+        $special,
+        $specialStatus,
+        $specialStart,
+        $specialEnd
+    ): void
+    {
+        $warehousesProducts = $this->warehousesProducts;
+
+        foreach ($warehousesProducts as $i => $warehousesProduct) {
+            if ($warehousesProduct->isIdEqualTo($id)) {
+                $warehousesProduct->edit(
+                    $extraStatusId,
+                    $externalStatus,
+                    $price,
+                    $quantity,
+                    $special,
+                    $specialStatus,
+                    $specialStart,
+                    $specialEnd
+                );
+                $this->updateWarehousesProducts($warehousesProducts);
+                return;
+            }
+        }
+        throw new \DomainException('Modification is not found.');
+    }
+
+    private function updateWarehousesProducts(array $warehousesProducts): void
+    {
+        $this->warehousesProducts = $warehousesProducts;
     }
 
     // Categories
@@ -712,6 +784,11 @@ class Product extends ActiveRecord implements AggregateRoot
         return $this->hasMany(TagAssignment::class, ['product_id' => 'id']);
     }
 
+    public function getWarehousesProducts(): ActiveQuery
+    {
+        return $this->hasMany(WarehousesProduct::class, ['product_id' => 'id']);
+    }
+
     public function getTags(): ActiveQuery
     {
         return $this->hasMany(Tag::class, ['id' => 'tag_id'])->via('tagAssignments');
@@ -788,6 +865,7 @@ class Product extends ActiveRecord implements AggregateRoot
                     'categoryAssignments',
                     'tagAssignments',
                     'relatedAssignments',
+                    'warehousesProducts',
                     'modifications',
                     'values',
                     'photos',

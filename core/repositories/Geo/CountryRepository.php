@@ -17,7 +17,7 @@ class CountryRepository
     public function get($id): Country
     {
         if (!$country = Country::find()->multilingual()->andWhere(['id' => $id])->one()) {
-            throw new NotFoundException('Brand is not found.');
+            throw new NotFoundException('Country is not found.');
         }
         return $country;
     }

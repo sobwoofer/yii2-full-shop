@@ -5,12 +5,14 @@ namespace core\forms\manage\Shop\Product;
 use core\entities\Shop\Brand\Brand;
 use core\entities\Shop\Characteristic\Characteristic;
 use core\entities\Shop\Product\Product;
+use core\entities\Shop\Warehouse;
 use core\forms\CompositeForm;
 use core\forms\manage\MetaForm;
 use yii\helpers\ArrayHelper;
 use core\helpers\LangsHelper;
 use core\entities\Geo\Country;
 use yii\web\UploadedFile;
+use core\entities\Shop\Product\WarehousesProduct;
 use core\forms\manage\Shop\Product\Photos360Form;
 
 /**
@@ -22,6 +24,7 @@ use core\forms\manage\Shop\Product\Photos360Form;
  * @property Photos360Form $photos360
  * @property TagsForm $tags
  * @property ValueForm[] $values
+ * @property WarehousesProductForm[] $warehousesProducts
  * @property string $code
  * @property integer $weight
  * @property string $caseCode
@@ -56,6 +59,15 @@ class ProductCreateForm extends CompositeForm
         $this->photos = new PhotosForm();
         $this->photos360 = new Photos360Form();
         $this->tags = new TagsForm();
+
+        //В товара несколько складов по этому вместо вложенной формы будет массив из вложенных форм
+        $this->warehousesProducts = array_map(function (Warehouse $warehouse) {
+            $form = new WarehousesProductForm();
+            $form->setWarehouseName($warehouse->name);
+            $form->setWarehouseId($warehouse->id);
+            return $form;
+        }, Warehouse::find()->localized()->all());
+
         //в values попадает отсортированный массив из форм ValueForm уже заполненных каждая своим значениям
         $this->values = array_map(function (Characteristic $characteristic) {
             return new ValueForm($characteristic);
@@ -105,6 +117,6 @@ class ProductCreateForm extends CompositeForm
 
     protected function internalForms(): array
     {
-        return [LangsHelper::getNamesWithSuffix(['meta']), 'price', 'quantity', 'photos', 'photos360', 'categories', 'tags', 'values'];
+        return [LangsHelper::getNamesWithSuffix(['meta']), 'price', 'warehousesProducts', 'quantity', 'photos', 'photos360', 'categories', 'tags', 'values'];
     }
 }

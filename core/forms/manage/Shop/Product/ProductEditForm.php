@@ -5,6 +5,8 @@ namespace core\forms\manage\Shop\Product;
 use core\entities\Shop\Brand\Brand;
 use core\entities\Shop\Characteristic\Characteristic;
 use core\entities\Shop\Product\Product;
+use core\entities\Shop\Product\WarehousesProduct;
+use core\entities\Shop\Warehouse;
 use core\forms\CompositeForm;
 use core\forms\manage\MetaForm;
 use yii\helpers\ArrayHelper;
@@ -17,6 +19,7 @@ use Yii;
  * @property MetaForm $meta
  * @property CategoriesForm $categories
  * @property TagsForm $tags
+ * @property WarehousesProductForm[] $warehousesProducts
  * @property ValueForm[] $values
  * @property string $code
  * @property integer $weight
@@ -67,9 +70,16 @@ class ProductEditForm extends CompositeForm
         $this->video = $product->video;
         $this->guide = !$product->guide ? '' : Yii::getAlias('@static/guides/' . $product->guide);
 
+        //В товара несколько складов по этому вместо вложенной формы будет массив из вложенных форм
+        $this->warehousesProducts = array_map(function (WarehousesProduct $warehouse) {
+            return new WarehousesProductForm($warehouse);
+        }, $product->warehousesProducts);
+
+        //в values попадает отсортированный массив из форм ValueForm уже заполненных каждая своим значениям
         $this->values = array_map(function (Characteristic $characteristic) use ($product) {
             return new ValueForm($characteristic, $product->getValue($characteristic->id));
         }, Characteristic::find()->orderBy('sort')->all());
+
         $this->_product = $product;
         parent::__construct($config);
     }
@@ -110,6 +120,6 @@ class ProductEditForm extends CompositeForm
 
     protected function internalForms(): array
     {
-        return [LangsHelper::getNamesWithSuffix(['meta']), 'tags', 'categories', 'values'];
+        return [LangsHelper::getNamesWithSuffix(['meta']), 'tags', 'warehousesProducts', 'categories', 'values'];
     }
 }

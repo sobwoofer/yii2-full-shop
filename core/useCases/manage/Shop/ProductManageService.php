@@ -13,12 +13,14 @@ use core\forms\manage\Shop\Product\ProductCreateForm;
 use core\forms\manage\Shop\Product\ProductEditForm;
 use core\forms\manage\Shop\Product\ModificationForm;
 use core\forms\manage\Shop\Product\PriceForm;
+use core\forms\manage\Shop\Product\WarehousesProductForm;
 use core\helpers\LangsHelper;
 use core\repositories\Shop\BrandRepository;
 use core\repositories\Shop\CategoryRepository;
 use core\repositories\Shop\ProductRepository;
 use core\repositories\Shop\TagRepository;
 use core\repositories\Geo\CountryRepository;
+use core\repositories\Shop\WarehouseRepository;
 use core\services\TransactionManager;
 use core\services\import\Product\Reader;
 use core\forms\manage\Shop\importForm;
@@ -32,6 +34,7 @@ class ProductManageService
     private $categories;
     private $tags;
     private $countries;
+    private $warehouses;
     private $transaction;
     private $reader;
 
@@ -40,6 +43,7 @@ class ProductManageService
         BrandRepository $brands,
         CountryRepository $countries,
         CategoryRepository $categories,
+        WarehouseRepository $warehouses,
         TagRepository $tags,
         TransactionManager $transaction,
         Reader $reader
@@ -49,6 +53,7 @@ class ProductManageService
         $this->brands = $brands;
         $this->countries = $countries;
         $this->categories = $categories;
+        $this->warehouses = $warehouses;
         $this->tags = $tags;
         $this->transaction = $transaction;
         $this->reader = $reader;
@@ -56,9 +61,9 @@ class ProductManageService
 
     public function create(ProductCreateForm $form): Product
     {
+
         $brand = $this->brands->get($form->brandId);
         $category = $this->categories->get($form->categories->main);
-        $countries = $this->countries->get($form->countryId);
 
         $names = [];
         $titles = [];
@@ -76,6 +81,7 @@ class ProductManageService
             );
         }
 
+
         $product = Product::create(
             $brand->id,
             $category->id,
@@ -85,14 +91,12 @@ class ProductManageService
             $form->caseCode,
             $form->video,
             $form->qtyInPack,
-            $countries->id,
+            $form->countryId,
             $names,
             $titles,
             $descriptions,
             $metas
         );
-
-
 
         $product->setPrice($form->price->new, $form->price->old);
 
@@ -126,9 +130,17 @@ class ProductManageService
                 }
                 $product->assignTag($tag->id);
             }
-
             $this->products->save($product);
+
+            foreach ($form->warehousesProducts as $warehousesProduct) {
+                $this->addWarehousesProduct($product->id, $warehousesProduct->getWarehouseId(), $warehousesProduct);
+            }
+
         });
+
+
+
+
         if ($form->guideFile instanceof UploadedFile) {
             $product->addGuide($form->guideFile);
             $this->products->save($product);
@@ -141,7 +153,6 @@ class ProductManageService
     {
         $product = $this->products->get($id);
         $brand = $this->brands->get($form->brandId);
-        $country = $this->countries->get($form->countryId);
         $category = $this->categories->get($form->categories->main);
 
         $names = [];
@@ -171,7 +182,7 @@ class ProductManageService
             $form->caseCode,
             $form->video,
             $form->qtyInPack,
-            $country->id
+            $form->countryId
         );
 
         $product->changeMainCategory($category->id);
@@ -185,6 +196,11 @@ class ProductManageService
             $product->revokeCategories();
             $product->revokeTags();
             $this->products->save($product);
+
+
+            foreach ($form->warehousesProducts as $warehousesProduct) {
+                $this->editWarehousesProduct($product->id, $warehousesProduct->id, $warehousesProduct);
+            }
 
             foreach ($form->categories->others as $otherId) {
                 $category = $this->categories->get($otherId);
@@ -348,6 +364,7 @@ class ProductManageService
         $this->products->save($product);
     }
 
+    //Modifications
     public function addModification($id, ModificationForm $form): void
     {
         $product = $this->products->get($id);
@@ -380,6 +397,47 @@ class ProductManageService
         $this->products->save($product);
     }
 
+    //Warehouses product
+    public function addWarehousesProduct($productId, $warehouseId, WarehousesProductForm $form): void
+    {
+        $product = $this->products->get($productId);
+        $warehouse = $this->warehouses->get($warehouseId);
+
+        $product->addWarehousesProduct(
+            $warehouse->id,
+            $product->id,
+            $form->extraStatusId,
+            $form->externalStatus,
+            $form->price,
+            $form->quantity,
+            $form->special,
+            $form->specialStatus,
+            $form->specialStart,
+            $form->specialEnd
+        );
+
+        $this->products->save($product);
+
+    }
+
+    public function editWarehousesProduct($productId, $warehouseProductId, WarehousesProductForm $form): void
+    {
+        $product = $this->products->get($productId);
+
+        $product->editWarehousesProduct(
+            $warehouseProductId,
+            $form->extraStatusId,
+            $form->externalStatus,
+            $form->price,
+            $form->quantity,
+            $form->special,
+            $form->specialStatus,
+            $form->specialStart,
+            $form->specialEnd
+        );
+
+        $this->products->save($product);
+    }
 
     public function remove($id): void
     {

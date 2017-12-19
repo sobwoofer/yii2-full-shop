@@ -16,6 +16,8 @@ use core\entities\behaviors\FilledMultilingualBehavior;
  * Class ExtraStatus
  * @package core\entities\Shop\Product
  * @property integer $id
+ * @property integer $external_id
+ * @property string $slug
  * @property string $name
  * @property string $name_ua
  */

@@ -21,10 +21,7 @@ class SetUp implements BootstrapInterface
     {
         $container = \Yii::$container;
 
-        //Подключение LocationManager определения местаположения и отображения параметров товара в зависимости
-        $container->setSingleton(LocationManager::class, function () use ($app) {
-            return new LocationManager(new SessionStorage('location', new Session()));
-        });
+
 
 
         $container->set(Breadcrumbs::class, function ($container, $params, $args) {

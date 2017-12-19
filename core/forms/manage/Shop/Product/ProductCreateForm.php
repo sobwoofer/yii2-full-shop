@@ -16,8 +16,6 @@ use core\entities\Shop\Product\WarehousesProduct;
 use core\forms\manage\Shop\Product\Photos360Form;
 
 /**
- * @property PriceForm $price
- * @property QuantityForm $quantity
  * @property MetaForm $meta
  * @property CategoriesForm $categories
  * @property PhotosForm $photos
@@ -52,8 +50,6 @@ class ProductCreateForm extends CompositeForm
 
     public function __construct($config = [])
     {
-        $this->price = new PriceForm();
-        $this->quantity = new QuantityForm();
         $this->meta = new MetaForm();
         $this->categories = new CategoriesForm();
         $this->photos = new PhotosForm();
@@ -117,6 +113,6 @@ class ProductCreateForm extends CompositeForm
 
     protected function internalForms(): array
     {
-        return [LangsHelper::getNamesWithSuffix(['meta']), 'price', 'warehousesProducts', 'quantity', 'photos', 'photos360', 'categories', 'tags', 'values'];
+        return [LangsHelper::getNamesWithSuffix(['meta']), 'warehousesProducts', 'photos', 'photos360', 'categories', 'tags', 'values'];
     }
 }

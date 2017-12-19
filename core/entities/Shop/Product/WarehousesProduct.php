@@ -57,8 +57,8 @@ class WarehousesProduct extends ActiveRecord
         $warehousesProduct->quantity = $quantity;
         $warehousesProduct->special = $special;
         $warehousesProduct->special_status = $specialStatus;
-        $warehousesProduct->special_start = $specialStart;
-        $warehousesProduct->special_end = $specialEnd;
+        $warehousesProduct->special_start = strtotime($specialStart);
+        $warehousesProduct->special_end = strtotime($specialEnd);
 
         return $warehousesProduct;
     }
@@ -80,8 +80,8 @@ class WarehousesProduct extends ActiveRecord
         $this->quantity = $quantity;
         $this->special = $special;
         $this->special_status = $specialStatus;
-        $this->special_start = $specialStart;
-        $this->special_end = $specialEnd;
+        $this->special_start = strtotime($specialStart);
+        $this->special_end = strtotime($specialEnd);
     }
 
     public function isIdEqualTo($id)
@@ -89,7 +89,10 @@ class WarehousesProduct extends ActiveRecord
         return $this->id == $id;
     }
 
-
+    public function isSpecial(): ?bool
+    {
+        return $this->special && $this->special_start < time() && $this->special_end > time() && $this->special;
+    }
 
 
     //Relations

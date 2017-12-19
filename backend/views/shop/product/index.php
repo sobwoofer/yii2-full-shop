@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'rowOptions' => function (Product $model) {
-                    return $model->quantity <= 0 ? ['style' => 'background: #fdc'] : [];
+                    return $model->warehousesProduct->external_status <= 0 ? ['style' => 'background: #fdc'] : [];
                 },
                 'columns' => [
                     [
@@ -56,12 +56,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => 'category.name',
                     ],
                     [
-                        'attribute' => 'price_new',
+                        'attribute' => 'default warehouse price',
                         'value' => function (Product $model) {
-                            return PriceHelper::format($model->price_new);
+                            return PriceHelper::format($model->warehousesProduct->price);
                         },
                     ],
-                    'quantity',
                     [
                         'attribute' => 'status',
                         'filter' => $searchModel->statusList(),

@@ -52,12 +52,15 @@ $url = Url::to(['catalog/product', 'id' =>$product->id]);
     <!-- .product-line__title -->
     <span class="vendor_code">Артикул: s101003</span>
     <!-- .price_block -->
-    <div class="price_block price_stock
-        ">
-        <?php if ($product->price_old): ?>
-            <p class="price_old"><?= PriceHelper::format($product->price_old) ?></p>
+    <div class="price_block price_stock">
+
+        <?php if (!$product->warehousesProduct->isSpecial()): ?>
+            <p class="prace_new"><?= PriceHelper::format($product->warehousesProduct->price) ?></p>
+        <?php else: ?>
+            <p class="price_old"><?= PriceHelper::format($product->warehousesProduct->price) ?></p>
+            <p class="prace_new"><?= PriceHelper::format($product->warehousesProduct->special) ?></p>
         <?php endif; ?>
-        <p class="prace_new"><?= PriceHelper::format($product->price_new) ?></p>
+
     </div>
     <!-- .price_block -->
     <!-- .product-line__item__action-block -->

@@ -12,7 +12,7 @@ namespace core\services\location;
 use core\readModels\WarehouseReadRepository;
 use core\services\location\storage\StorageInterface;
 use Yii;
-
+//TODO need to do over this class
 class LocationManager
 {
     public $warehouseId;

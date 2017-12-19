@@ -167,32 +167,46 @@ $this->params['active_category'] = $product->category;
                         <label for="pink"><span class="pink"></span></label>
                     </div>
                     <div class="clearfix"></div>
-                    <!--color pick-->
 
-                    <div class="timer_wrp one-product">
-                        <p class="timer-title pull-left">
-                            Скидка <br>
-                            действует:
-                        </p>
 
-                        <div id="clock" class="timer"></div>
-                        <div class="clearfix"></div>
 
-                    </div>
+                    <?php if ($product->warehousesProduct->isSpecial() && $product->warehousesProduct->special_end): ?>
+                        <!--color pick-->
+                        <div class="timer_wrp one-product">
+                            <p class="timer-title pull-left">
+                                Скидка <br>
+                                действует:
+                            </p>
 
-                    <script type="text/template" id="clock-template">
-                        <div class="time <%= label %>">
-                            <span class="count curr top"><%= curr %></span>
-                            <span class="count next top"><%= next %></span>
-                            <span class="count next bottom"><%= next %></span>
-                            <span class="count curr bottom"><%= curr %></span>
-                            <span class="label"><%= label.length < 6 ? label : label.substr(0, 3)  %></span>
+                            <div id="clock" class="timer" data-date-to="<?= gmdate('Y/m/d', $product->warehousesProduct->special_end) ?>"></div>
+                            <div class="clearfix"></div>
+
                         </div>
-                    </script>
+                        <script type="text/template" id="clock-template">
+                            <!-- //TODO countdown do not work -->
+                            <div class="time <%= label %>">
+                                <span class="count curr top"><%= curr %></span>
+                                <span class="count next top"><%= next %></span>
+                                <span class="count next bottom"><%= next %></span>
+                                <span class="count curr bottom"><%= curr %></span>
+                                <span class="label"><%= label.length < 6 ? label : label.substr(0, 3)  %></span>
+                            </div>
+                        </script>
+                    <?php endif; ?>
+
+
+
+
                     <div class="one_product_details">
+
                         <div class="price_block price_stock">
                             <div class="goods_amount"><?= $product->warehousesProduct->extraStatus->name ?> <span class="goods_amount___icon"></span></div>
-                            <p class="price__one_product"><?= PriceHelper::format($product->warehousesProduct->price) ?></p>
+                            <?php if (!$product->warehousesProduct->isSpecial()): ?>
+                                <p class="price__one_product"><?= PriceHelper::format($product->warehousesProduct->price) ?></p>
+                            <?php else: ?>
+                                <p class="price__one_product"><?= PriceHelper::format($product->warehousesProduct->price) ?></p>
+                                <p class="price__one_product text-danger"><?= PriceHelper::format($product->warehousesProduct->special) ?></p>
+                            <?php endif; ?>
                         </div>
                         <!-- .price_block -->
                         <!-- .product-line__item__action-block -->

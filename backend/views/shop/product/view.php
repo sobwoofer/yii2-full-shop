@@ -16,7 +16,9 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use core\entities\Shop\Product\Product;
 use yii\widgets\DetailView;
+use core\entities\Shop\Product\WarehousesProduct;
 
 /* @var $this yii\web\View */
 /* @var $product core\entities\Shop\Product\Product */
@@ -94,30 +96,79 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'label' => 'Tags',
                                 'value' => implode(', ', ArrayHelper::getColumn($product->tags, 'name')),
                             ],
-                            'quantity',
                             [
                                 'attribute' => 'weight',
                                 'value' => $product->weight / 1000 . ' kg',
                             ],
                             [
-                                'attribute' => 'price_new',
-                                'value' => PriceHelper::format($product->price_new),
-                            ],
-                            [
-                                'attribute' => 'price_old',
-                                'value' => PriceHelper::format($product->price_old),
+                                'attribute' => 'default warehouse price',
+                                'value' => function (Product $model) {
+                                    return PriceHelper::format($model->warehousesProduct->price);
+                                },
                             ],
                         ],
                     ]) ?>
                     <br />
-                    <p>
-                        <?= Html::a('Change Price', ['price', 'id' => $product->id], ['class' => 'btn btn-primary']) ?>
-                        <?php if ($product->canChangeQuantity()): ?>
-                            <?= Html::a('Change Quantity', ['quantity', 'id' => $product->id], ['class' => 'btn btn-primary']) ?>
-                        <?php endif; ?>
-                    </p>
                 </div>
             </div>
+        </div>
+        <div class="col-md-6">
+            <?php foreach ($product->warehousesProducts as $warehousesProduct): ?>
+                <div class="box box-default">
+                    <div class="box-header with-border"><?= $warehousesProduct->warehouse->name ?></div>
+                    <div class="box-body">
+
+                        <?= DetailView::widget([
+                            'model' => $warehousesProduct,
+                            'attributes' => [
+                                [
+                                    'attribute' => 'price',
+                                    'value' => function (WarehousesProduct $model) {
+                                        return PriceHelper::format($model->price);
+                                    },
+                                ],
+                                'special_status',
+                                [
+                                    'attribute' => 'special',
+                                    'value' => function (WarehousesProduct $model) {
+                                        return PriceHelper::format($model->special);
+                                    },
+                                ],
+                                [
+                                    'attribute' => 'special start',
+                                    'value' => function (WarehousesProduct $model) {
+                                        return $model->special_start;
+                                    },
+                                    'format' => 'datetime'
+                                ],
+                                [
+                                    'attribute' => 'special end',
+                                    'value' => function (WarehousesProduct $model) {
+                                        return $model->special_end;
+                                    },
+                                    'format' => 'datetime'
+                                ],
+                                [
+                                    'attribute' => 'external status',
+                                    'value' => function (WarehousesProduct $model) {
+                                        return ProductHelper::externalStatusLabel($model->external_status);
+                                    },
+                                    'format' => 'raw'
+                                ],
+                                [
+                                    'attribute' => 'extra status',
+                                    'value' => function (WarehousesProduct $model) {
+                                        return $model->extraStatus->name;
+                                    },
+                                    'format' => 'raw'
+                                ],
+                                'quantity'
+                            ],
+                        ]) ?>
+                    </div>
+                </div>
+            <?php endforeach;   ?>
+
         </div>
         <div class="col-md-6">
 

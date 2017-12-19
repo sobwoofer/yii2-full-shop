@@ -40,13 +40,10 @@ use Yii;
  * @property string $description_ua
  * @property integer $category_id
  * @property integer $brand_id
- * @property integer $price_old
- * @property integer $price_new
  * @property integer $rating
  * @property integer $main_photo_id
  * @property integer $status
  * @property integer $weight
- * @property integer $quantity
  * @property string $case_code
  * @property string $video
  * @property string $guide
@@ -88,7 +85,6 @@ class Product extends ActiveRecord implements AggregateRoot
         $categoryId,
         $code,
         $weight,
-        $quantity,
         $caseCode,
         $video,
         $qtyInPack,
@@ -104,7 +100,6 @@ class Product extends ActiveRecord implements AggregateRoot
         $product->category_id = $categoryId;
         $product->code = $code;
         $product->weight = $weight;
-        $product->quantity = $quantity;
         $product->case_code = $caseCode;
         $product->video = $video;
         $product->qty_in_pack = $qtyInPack;
@@ -130,12 +125,6 @@ class Product extends ActiveRecord implements AggregateRoot
         }
 
         return $product;
-    }
-
-    public function setPrice($new, $old): void
-    {
-        $this->price_new = $new;
-        $this->price_old = $old;
     }
 
     public function changeQuantity($quantity): void
@@ -164,7 +153,6 @@ class Product extends ActiveRecord implements AggregateRoot
         $this->brand_id = $brandId;
         $this->code = $code;
         $this->weight = $weight;
-
         $this->case_code = $caseCode;
         $this->video = $video;
         $this->qty_in_pack = $qtyInPack;
@@ -227,7 +215,7 @@ class Product extends ActiveRecord implements AggregateRoot
 
     public function isAvailable(): bool
     {
-        return $this->quantity > 0;
+        return $this->warehousesProduct->extraStatus->external_id != self::EXTERNAL_STATUS_NOT_AVAILABLE;
     }
 
     public function canChangeQuantity(): bool
@@ -235,8 +223,16 @@ class Product extends ActiveRecord implements AggregateRoot
         return !$this->modifications;
     }
 
+    /**
+     * method is disabled because we do not want to validate qty and don't use its
+     * @param $modificationId
+     * @param $quantity
+     * @return bool
+     */
     public function canBeCheckout($modificationId, $quantity): bool
     {
+        return true;
+
         if ($modificationId) {
             return $quantity <= $this->getModification($modificationId)->quantity;
         }
@@ -255,18 +251,19 @@ class Product extends ActiveRecord implements AggregateRoot
                 }
             }
         }
-        if ($quantity > $this->quantity) {
-            throw new \DomainException('Only ' . $this->quantity . ' items are available.');
-        }
-        $this->setQuantity($this->quantity - 1);
+        // Not throw Exception if quantity not available
+//        if ($quantity > $this->warehousesProduct->quantity) {
+//            throw new \DomainException('Only ' . $this->warehousesProduct->quantity . ' items are available.');
+//        }
+        $this->setQuantity($this->warehousesProduct->quantity - 1);
     }
 
     private function setQuantity($quantity): void
     {
-        if ($this->quantity == 0 && $quantity > 0) {
+        if ($this->warehousesProduct->quantity == 0 && $quantity > 0) {
             $this->recordEvent(new ProductAppearedInStock($this));
         }
-        $this->quantity = $quantity;
+        $this->warehousesProduct->quantity = $quantity;
     }
 
     public function setValue($id, $value): void
@@ -796,6 +793,7 @@ class Product extends ActiveRecord implements AggregateRoot
      */
     public function getWarehousesProduct(): ActiveQuery
     {
+
         return $this->hasOne(WarehousesProduct::class, ['product_id' => 'id'])->where([
             'warehouse_id' => LocationHelper::getWarehouseId()
         ]);

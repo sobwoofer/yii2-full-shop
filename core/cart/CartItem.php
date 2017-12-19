@@ -65,7 +65,12 @@ class CartItem
         if ($this->modificationId) {
             return $this->product->getModificationPrice($this->modificationId);
         }
-        return $this->product->price_new;
+        if ($this->product->warehousesProduct->isSpecial()) {
+            return $this->product->warehousesProduct->special;
+         }
+
+        return $this->product->warehousesProduct->price;
+
     }
 
     public function getWeight(): int

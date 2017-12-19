@@ -9,10 +9,8 @@
 namespace backend\controllers\shop;
 
 use core\entities\Shop\Product\Modification;
-use core\forms\manage\Shop\Product\QuantityForm;
 use core\forms\manage\Shop\Product\PhotosForm;
 use core\forms\manage\Shop\Product\Photos360Form;
-use core\forms\manage\Shop\Product\PriceForm;
 use core\forms\manage\Shop\Product\ProductCreateForm;
 use core\forms\manage\Shop\Product\ProductEditForm;
 use core\useCases\manage\Shop\ProductManageService;
@@ -188,53 +186,7 @@ class ProductController extends Controller
         ]);
     }
 
-    /**
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionPrice($id)
-    {
-        $product = $this->findModel($id);
 
-        $form = new PriceForm($product);
-        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try {
-                $this->service->changePrice($product->id, $form);
-                return $this->redirect(['view', 'id' => $product->id]);
-            } catch (\DomainException $e) {
-                Yii::$app->errorHandler->logException($e);
-                Yii::$app->session->setFlash('error', $e->getMessage());
-            }
-        }
-        return $this->render('price', [
-            'model' => $form,
-            'product' => $product,
-        ]);
-    }
-
-    /**
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionQuantity($id)
-    {
-        $product = $this->findModel($id);
-
-        $form = new QuantityForm($product);
-        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try {
-                $this->service->changeQuantity($product->id, $form);
-                return $this->redirect(['view', 'id' => $product->id]);
-            } catch (\DomainException $e) {
-                Yii::$app->errorHandler->logException($e);
-                Yii::$app->session->setFlash('error', $e->getMessage());
-            }
-        }
-        return $this->render('quantity', [
-            'model' => $form,
-            'product' => $product,
-        ]);
-    }
 
     /**
      * @param integer $id

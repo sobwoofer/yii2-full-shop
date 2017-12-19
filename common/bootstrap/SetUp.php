@@ -38,6 +38,9 @@ use core\services\sms\SmsSender;
 use core\entities\User\events\UserSignUpConfirmed;
 use core\entities\User\events\UserSignUpRequested;
 use core\cart\cost\calculator\DynamicCost;
+use core\services\location\LocationManager;
+use core\services\location\storage\SessionStorage as LocationSessionStorage;
+use yii\web\Session;
 use yii\base\BootstrapInterface;
 use yii\mail\MailerInterface;
 use yii\di\Container;
@@ -140,6 +143,11 @@ class SetUp implements BootstrapInterface
         $container->setSingleton(AsyncEventJobHandler::class, [], [
             Instance::of(SimpleEventDispatcher::class)
         ]);
+
+        //Подключение LocationManager определения местаположения и отображения параметров товара в зависимости
+        $container->setSingleton(LocationManager::class, function () use ($app) {
+            return new LocationManager(new LocationSessionStorage('location', new Session()));
+        });
 
         //Подключаем библиотеку Flysystem если будем использовать хранение файлов на удаленном сервере
         /*

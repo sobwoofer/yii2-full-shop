@@ -54,7 +54,9 @@ class WarehousesProductForm extends Model
             $this->quantity = $warehousesProduct->quantity;
             $this->special = $warehousesProduct->special;
             $this->specialStatus = $warehousesProduct->special_status;
-            $this->specialStart = $warehousesProduct->special_start;
+
+            $this->specialStart = $warehousesProduct->special_start ? gmdate('Y-m-d H:i' , $warehousesProduct->special_start) : '';
+            $this->specialEnd = $warehousesProduct->special_end ? gmdate('Y-m-d H:i', $warehousesProduct->special_end) : '';
 
             $this->id = $warehousesProduct->id;
             $this->warehouseId = $warehousesProduct->warehouse->id;
@@ -94,8 +96,8 @@ class WarehousesProductForm extends Model
     {
         return [
             [['externalStatus', 'extraStatusId', 'price'], 'required'],
-            [['price', 'special'], 'string'],
-            [['externalStatus', 'quantity',  'extraStatusId', 'specialStatus', 'specialStart', 'specialEnd'], 'integer'],
+            [['price', 'special', 'specialStart', 'specialEnd'], 'string'],
+            [['externalStatus', 'quantity',  'extraStatusId', 'specialStatus'], 'integer'],
 
         ];
     }

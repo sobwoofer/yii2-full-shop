@@ -6,13 +6,11 @@ use core\entities\Meta;
 use core\entities\Shop\Product\Product;
 use core\entities\Shop\Tag;
 use core\forms\manage\Shop\Product\CategoriesForm;
-use core\forms\manage\Shop\Product\QuantityForm;
 use core\forms\manage\Shop\Product\PhotosForm;
 use core\forms\manage\Shop\Product\Photos360Form;
 use core\forms\manage\Shop\Product\ProductCreateForm;
 use core\forms\manage\Shop\Product\ProductEditForm;
 use core\forms\manage\Shop\Product\ModificationForm;
-use core\forms\manage\Shop\Product\PriceForm;
 use core\forms\manage\Shop\Product\WarehousesProductForm;
 use core\helpers\LangsHelper;
 use core\repositories\Shop\BrandRepository;
@@ -87,7 +85,6 @@ class ProductManageService
             $category->id,
             $form->code,
             $form->weight,
-            $form->quantity->quantity,
             $form->caseCode,
             $form->video,
             $form->qtyInPack,
@@ -97,8 +94,6 @@ class ProductManageService
             $descriptions,
             $metas
         );
-
-        $product->setPrice($form->price->new, $form->price->old);
 
         foreach ($form->categories->others as $otherId) {
             $category = $this->categories->get($otherId);
@@ -248,20 +243,6 @@ class ProductManageService
             }
         });
 
-    }
-
-    public function changePrice($id, PriceForm $form): void
-    {
-        $product = $this->products->get($id);
-        $product->setPrice($form->new, $form->old);
-        $this->products->save($product);
-    }
-
-    public function changeQuantity($id, QuantityForm $form): void
-    {
-        $product = $this->products->get($id);
-        $product->changeQuantity($form->quantity);
-        $this->products->save($product);
     }
 
     public function activate($id): void

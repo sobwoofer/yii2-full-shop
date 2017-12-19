@@ -141,8 +141,9 @@ $(document).ready(function () {
 $(document).ready(function () {
     if ($('#clock').length) {
         $(window).on('load', function () {
-            var labels = ['дни', 'часы', 'мин', 'сек'],
-                nextYear = (new Date().getFullYear() + 1) + '/01/01',
+            var labels = ['неделя', 'дни', 'часы', 'мин', 'сек'],
+                // nextYear = (new Date().getFullYear() + 1) + '/01/01',
+                nextYear = $('#clock').data('date-to'),
                 template = _.template($('#clock-template').html()),
                 currDate = '00:00:00:00',
                 nextDate = ':00:00:00:00',
@@ -181,7 +182,8 @@ $(document).ready(function () {
             });
             // Starts the countdown
             $example.countdown(nextYear, function (event) {
-                var newDate = event.strftime('%w:%d:%H:%S'),
+
+                var newDate = event.strftime('%w:%d:%H:%M:%S'),
                     data;
                 if (newDate !== nextDate) {
                     currDate = nextDate;
@@ -209,6 +211,8 @@ $(document).ready(function () {
         });
     }
 });
+
+
 
 // help page
 $(document).ready(function () {

@@ -33,14 +33,14 @@ class AddToCartForm extends Model
     {
         return array_filter([$this->_product->modifications ? ['modifications', 'required'] : false,
             ['quantity', 'required'],
-            ['quantity', 'integer', 'max' => $this->_product->quantity],
+            ['quantity', 'integer', 'max' => $this->_product->warehousesProduct->quantity],
         ]);
     }
 
     public function modificationsList(): array
     {
         return ArrayHelper::map($this->_product->modifications, 'id', function(Modification $modification) {
-            return $modification->code . ' - ' . $modification->name . ' (' . PriceHelper::format($modification->price ?: $this->_product->price_new) . ')';
+            return $modification->code . ' - ' . $modification->name . ' (' . PriceHelper::format($modification->price ?: $this->_product->warehousesProduct->price) . ')';
         });
     }
 }

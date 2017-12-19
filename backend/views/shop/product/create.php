@@ -12,7 +12,9 @@ use yii\bootstrap\ActiveForm;
 use mihaildev\ckeditor\CKEditor;
 use core\helpers\LangsHelper;
 use powerkernel\flagiconcss\Flag;
-use core\helpers\PostHelper;
+use core\helpers\ProductHelper;
+use kartik\widgets\DateTimePicker;
+
 /* @var $this yii\web\View */
 /* @var $model core\forms\manage\Shop\Product\ProductCreateForm */
 
@@ -107,18 +109,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="box box-default">
-        <div class="box-header with-border">Quantity</div>
-        <div class="box-body">
-            <div class="row">
-
-                <div class="col-md-6">
-                    <?= $form->field($model->quantity, 'quantity')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="box box-default">
         <div class="box-header with-border">Warehouses</div>
         <div class="box-body">
             <?php foreach ($model->warehousesProducts as $i => $warehouseModel): ?>
@@ -136,11 +126,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-sm-3">
                                 <?= $form->field($warehouseModel, '[' . $i . ']externalStatus')
-                                    ->dropDownList(PostHelper::externalStatusList()) ?>
+                                    ->dropDownList(ProductHelper::externalStatusList()) ?>
                             </div>
                             <div class="col-sm-3">
                                 <?= $form->field($warehouseModel, '[' . $i . ']extraStatusId')
-                                    ->dropDownList(PostHelper::extraStatusList()) ?>
+                                    ->dropDownList(ProductHelper::extraStatusList()) ?>
                             </div>
                             <div class="col-sm-3">
                                 <?= $form->field($warehouseModel, '[' . $i . ']price')->textInput()?>
@@ -158,30 +148,28 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= $form->field($warehouseModel, '[' . $i . ']specialStatus')->dropDownList([1 => 'on', 0 => 'off'])?>
                             </div>
                             <div class="col-sm-3">
-                                <?= $form->field($warehouseModel, '[' . $i . ']specialStart')->textInput()?>
+                                <?= $form->field($warehouseModel, '[' . $i . ']specialStart')
+                                    ->label('Special Start (if empty - will be active right now)')
+                                    ->widget(DateTimePicker::class, [
+                                        'pluginOptions' => [
+                                            'format' => 'yyyy-mm-dd hh:ii'
+                                        ]
+                                    ]) ?>
                             </div>
                             <div class="col-sm-3">
-                                <?= $form->field($warehouseModel, '[' . $i . ']specialEnd')->textInput()?>
+                                <?= $form->field($warehouseModel, '[' . $i . ']specialEnd')
+                                    ->label('Special End (if empty - will be always active)')
+                                    ->widget(DateTimePicker::class, [
+                                        'pluginOptions' => [
+                                            'format' => 'yyyy-mm-dd hh:ii'
+                                        ]
+                                    ]) ?>
                             </div>
                         </div>
                     </div>
                     <!-- /.box-body -->
                 </div>
             <?php endforeach; ?>
-        </div>
-    </div>
-
-    <div class="box box-default">
-        <div class="box-header with-border">Price</div>
-        <div class="box-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <?= $form->field($model->price, 'new')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-6">
-                    <?= $form->field($model->price, 'old')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
         </div>
     </div>
 

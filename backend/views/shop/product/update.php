@@ -7,12 +7,15 @@
  */
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+//use yii\bootstrap\ActiveForm;
+use kartik\form\ActiveForm;
 use mihaildev\ckeditor\CKEditor;
 use core\helpers\LangsHelper;
 use powerkernel\flagiconcss\Flag;
 use core\entities\Shop\Product\Product;
+use core\helpers\ProductHelper;
 use core\helpers\PostHelper;
+use kartik\widgets\DateTimePicker;
 
 /* @var $this yii\web\View */
 /* @var $product core\entities\Shop\Product\Product */
@@ -125,11 +128,11 @@ $this->params['breadcrumbs'][] = 'Update';
                         <div class="row">
                             <div class="col-sm-3">
                                 <?= $form->field($warehouseModel, '[' . $i . ']externalStatus')
-                                    ->dropDownList(PostHelper::externalStatusList()) ?>
+                                    ->dropDownList(ProductHelper::externalStatusList()) ?>
                             </div>
                             <div class="col-sm-3">
                                 <?= $form->field($warehouseModel, '[' . $i . ']extraStatusId')
-                                    ->dropDownList(PostHelper::extraStatusList()) ?>
+                                    ->dropDownList(ProductHelper::extraStatusList()) ?>
                             </div>
                             <div class="col-sm-3">
                                 <?= $form->field($warehouseModel, '[' . $i . ']price')->textInput()?>
@@ -147,10 +150,22 @@ $this->params['breadcrumbs'][] = 'Update';
                                 <?= $form->field($warehouseModel, '[' . $i . ']specialStatus')->dropDownList([1 => 'on', 0 => 'off'])?>
                             </div>
                             <div class="col-sm-3">
-                                <?= $form->field($warehouseModel, '[' . $i . ']specialStart')->textInput()?>
+                                <?= $form->field($warehouseModel, '[' . $i . ']specialStart')
+                                    ->label('Special Start (if empty - will be active right now)')
+                                    ->widget(DateTimePicker::class, [
+                                            'pluginOptions' => [
+                                                    'format' => 'yyyy-mm-dd hh:ii'
+                                            ]
+                                    ]) ?>
                             </div>
                             <div class="col-sm-3">
-                                <?= $form->field($warehouseModel, '[' . $i . ']specialEnd')->textInput()?>
+                                <?= $form->field($warehouseModel, '[' . $i . ']specialEnd')
+                                    ->label('Special End (if empty - will be always active)')
+                                    ->widget(DateTimePicker::class, [
+                                        'pluginOptions' => [
+                                            'format' => 'yyyy-mm-dd hh:ii'
+                                        ]
+                                    ]) ?>
                             </div>
                         </div>
                     </div>

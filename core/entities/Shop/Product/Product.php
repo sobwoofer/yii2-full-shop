@@ -364,6 +364,7 @@ class Product extends ActiveRecord implements AggregateRoot
         $warehouseId,
         $productId,
         $extraStatusId,
+        $deliveryTermId,
         $externalStatus,
         $price,
         $quantity,
@@ -380,6 +381,7 @@ class Product extends ActiveRecord implements AggregateRoot
             $warehouseId,
             $productId,
             $extraStatusId,
+            $deliveryTermId,
             $externalStatus,
             $price,
             $quantity,
@@ -395,6 +397,7 @@ class Product extends ActiveRecord implements AggregateRoot
     public function editWarehousesProduct(
         $id,
         $extraStatusId,
+        $deliveryTermId,
         $externalStatus,
         $price,
         $quantity,
@@ -410,6 +413,7 @@ class Product extends ActiveRecord implements AggregateRoot
             if ($warehousesProduct->isIdEqualTo($id)) {
                 $warehousesProduct->edit(
                     $extraStatusId,
+                    $deliveryTermId,
                     $externalStatus,
                     $price,
                     $quantity,

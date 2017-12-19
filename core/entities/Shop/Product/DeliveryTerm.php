@@ -2,34 +2,32 @@
 /**
  * Created by PhpStorm.
  * User: volynets
- * Date: 14.12.17
- * Time: 17:15
+ * Date: 19.12.17
+ * Time: 16:40
  */
 
 namespace core\entities\Shop\Product;
 
 
-use yii\db\ActiveRecord;
 use core\entities\behaviors\FilledMultilingualBehavior;
+use yii\db\ActiveRecord;
 use omgdef\multilingual\MultilingualQuery;
 
 /**
- * Class ExtraStatus
- * @package core\entities\Shop\Product
+ * Class DeliveryTerm
+ * @package entities\Shop\Product
  * @property integer $id
- * @property integer $external_id
  * @property string $slug
  * @property string $name
  * @property string $name_ua
  */
-class ExtraStatus extends ActiveRecord
+class DeliveryTerm extends ActiveRecord
 {
-
     public static function create(): self
     {
-        $extraStatus = new static();
+        $deliveryTerm = new static();
 
-        return $extraStatus;
+        return $deliveryTerm;
     }
 
     public function edit(): void
@@ -39,7 +37,7 @@ class ExtraStatus extends ActiveRecord
 
     public static function tableName()
     {
-        return '{{%shop_product_extra_statuses}}';
+        return '{{%shop_product_delivery_terms}}';
     }
 
 
@@ -50,8 +48,8 @@ class ExtraStatus extends ActiveRecord
                 'class' => FilledMultilingualBehavior::className(),
                 'defaultLanguage' => 'ru',
                 'dynamicLangClass' => true,
-                'langForeignKey' => 'extra_status_id',
-                'tableName' => '{{%shop_product_extra_statuses_lang}}',
+                'langForeignKey' => 'delivery_term_id',
+                'tableName' => '{{%shop_product_delivery_terms_lang}}',
                 'attributes' => [
                     'name'
                 ]
@@ -63,4 +61,6 @@ class ExtraStatus extends ActiveRecord
     {
         return new MultilingualQuery(get_called_class());
     }
+
+
 }

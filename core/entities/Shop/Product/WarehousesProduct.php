@@ -12,6 +12,7 @@ namespace core\entities\Shop\Product;
 use core\entities\Shop\Product\queries\WarehousesProductQuery;
 use core\entities\Shop\Warehouse;
 use core\forms\manage\Shop\Product\WarehousesProductForm;
+use core\entities\Shop\Product\DeliveryTerm;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -22,6 +23,7 @@ use yii\db\ActiveRecord;
  * @property integer $warehouse_id
  * @property integer $product_id
  * @property integer $extra_status_id
+ * @property integer $delivery_term_id
  * @property integer $external_status
  * @property integer $price
  * @property integer $quantity
@@ -30,6 +32,7 @@ use yii\db\ActiveRecord;
  * @property integer $special_start
  * @property integer $special_end
  * @property ExtraStatus $extraStatus
+ * @property DeliveryTerm $deliveryTerm
  * @property Warehouse $warehouse
  * @property Product $product
  */
@@ -39,6 +42,7 @@ class WarehousesProduct extends ActiveRecord
         $warehouseId,
         $productId,
         $extraStatusId,
+        $deliveryTermId,
         $externalStatus,
         $price,
         $quantity,
@@ -52,6 +56,7 @@ class WarehousesProduct extends ActiveRecord
         $warehousesProduct->warehouse_id = $warehouseId;
         $warehousesProduct->product_id = $productId;
         $warehousesProduct->extra_status_id = $extraStatusId;
+        $warehousesProduct->delivery_term_id = $deliveryTermId;
         $warehousesProduct->external_status = $externalStatus;
         $warehousesProduct->price = $price;
         $warehousesProduct->quantity = $quantity;
@@ -65,6 +70,7 @@ class WarehousesProduct extends ActiveRecord
 
     public function edit(
         $extraStatusId,
+        $deliveryTermId,
         $externalStatus,
         $price,
         $quantity,
@@ -75,6 +81,7 @@ class WarehousesProduct extends ActiveRecord
     ): void
     {
         $this->extra_status_id = $extraStatusId;
+        $this->delivery_term_id = $deliveryTermId;
         $this->external_status = $externalStatus;
         $this->price = $price;
         $this->quantity = $quantity;
@@ -104,6 +111,11 @@ class WarehousesProduct extends ActiveRecord
     public function getExtraStatus(): ActiveQuery
     {
         return $this->hasOne(ExtraStatus::class, ['id' => 'extra_status_id']);
+    }
+
+    public function getDeliveryTerm(): ActiveQuery
+    {
+        return $this->hasOne(DeliveryTerm::class, ['id' => 'delivery_term_id']);
     }
 
     public function getProduct(): ActiveQuery

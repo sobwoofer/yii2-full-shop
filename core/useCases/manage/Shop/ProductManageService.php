@@ -388,6 +388,7 @@ class ProductManageService
             $warehouse->id,
             $product->id,
             $form->extraStatusId,
+            $form->deliveryTermId,
             $form->externalStatus,
             $form->price,
             $form->quantity,
@@ -408,6 +409,7 @@ class ProductManageService
         $product->editWarehousesProduct(
             $warehouseProductId,
             $form->extraStatusId,
+            $form->deliveryTermId,
             $form->externalStatus,
             $form->price,
             $form->quantity,

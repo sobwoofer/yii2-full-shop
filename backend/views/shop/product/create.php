@@ -130,7 +130,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                             <div class="col-sm-3">
                                 <?= $form->field($warehouseModel, '[' . $i . ']extraStatusId')
-                                    ->dropDownList(ProductHelper::extraStatusList()) ?>
+                                    ->dropDownList($warehouseModel->getExtraStatusList()) ?>
+                            </div>
+                            <div class="col-sm-3">
+                                <?= $form->field($warehouseModel, '[' . $i . ']deliveryTermId')
+                                    ->dropDownList($warehouseModel->getDeliveryTermList(), ['prompt' => '']) ?>
                             </div>
                             <div class="col-sm-3">
                                 <?= $form->field($warehouseModel, '[' . $i . ']price')->textInput()?>

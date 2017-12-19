@@ -13,6 +13,9 @@ namespace core\forms\manage\Shop\Product;
 use core\entities\Shop\Product\WarehousesProduct;
 use core\entities\Shop\Warehouse;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
+use core\entities\Shop\Product\ExtraStatus;
+use core\entities\Shop\Product\DeliveryTerm;
 use core\entities\Shop\Product\Product;
 
 /**
@@ -20,6 +23,7 @@ use core\entities\Shop\Product\Product;
  * @package core\forms\manage\Shop\Product
  * @property integer $externalStatus
  * @property integer $extraStatusId
+ * @property integer $deliveryTermId
  * @property integer $price
  * @property integer $quantity
  * @property integer $special
@@ -32,6 +36,7 @@ class WarehousesProductForm extends Model
 {
     public $externalStatus;
     public $extraStatusId;
+    public $deliveryTermId;
     public $price;
     public $quantity;
     public $special;
@@ -50,6 +55,7 @@ class WarehousesProductForm extends Model
         if ($warehousesProduct) {
             $this->externalStatus = $warehousesProduct->external_status;
             $this->extraStatusId = $warehousesProduct->extra_status_id;
+            $this->deliveryTermId = $warehousesProduct->delivery_term_id;
             $this->price = $warehousesProduct->price;
             $this->quantity = $warehousesProduct->quantity;
             $this->special = $warehousesProduct->special;
@@ -97,9 +103,20 @@ class WarehousesProductForm extends Model
         return [
             [['externalStatus', 'extraStatusId', 'price'], 'required'],
             [['price', 'special', 'specialStart', 'specialEnd'], 'string'],
-            [['externalStatus', 'quantity',  'extraStatusId', 'specialStatus'], 'integer'],
+            [['externalStatus', 'quantity',  'extraStatusId', 'specialStatus', 'deliveryTermId'], 'integer'],
 
         ];
     }
+
+    public function getExtraStatusList(): array
+    {
+        return ArrayHelper::map(ExtraStatus::find()->all(), 'id', 'name');
+    }
+
+    public function getDeliveryTermList(): array
+    {
+        return ArrayHelper::map(DeliveryTerm::find()->all(), 'id', 'name');
+    }
+
 
 }

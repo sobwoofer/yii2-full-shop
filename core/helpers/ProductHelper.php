@@ -56,10 +56,7 @@ class ProductHelper
         ];
     }
 
-    public static function extraStatusList(): array
-    {
-        return ArrayHelper::map(ExtraStatus::find()->all(), 'id', 'name');
-    }
+
 
     public static function externalStatusName($status): string
     {

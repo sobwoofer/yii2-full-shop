@@ -162,6 +162,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                     },
                                     'format' => 'raw'
                                 ],
+                                [
+                                    'attribute' => 'delivery term',
+                                    'value' => function (WarehousesProduct $model) {
+                                        return $model->deliveryTerm->name ?? null;
+                                    },
+                                    'format' => 'raw'
+                                ],
                                 'quantity'
                             ],
                         ]) ?>

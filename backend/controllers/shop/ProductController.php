@@ -13,12 +13,15 @@ use core\forms\manage\Shop\Product\PhotosForm;
 use core\forms\manage\Shop\Product\Photos360Form;
 use core\forms\manage\Shop\Product\ProductCreateForm;
 use core\forms\manage\Shop\Product\ProductEditForm;
+use core\forms\manage\Shop\Product\RelatedForm;
+use core\forms\manage\Shop\Product\BuyWithForm;
 use core\useCases\manage\Shop\ProductManageService;
 use DeepCopyTest\Matcher\Y;
 use Yii;
 use core\entities\Shop\Product\Product;
 use backend\forms\Shop\ProductSearch;
 use yii\data\ActiveDataProvider;
+use yii\data\ArrayDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -99,14 +102,19 @@ class ProductController extends Controller
             'pagination' => false,
         ]);
 
+
         $photosForm = new PhotosForm();
         $photos360Form = new Photos360Form();
+        $relatedForm = new RelatedForm();
+        $buyWithForm = new BuyWithForm();
 
         return $this->render('view', [
             'product' => $product,
             'modificationsProvider' => $modificationsProvider,
             'photosForm' => $photosForm,
             'photos360Form' => $photos360Form,
+            'relatedForm' => $relatedForm,
+            'buyWithForm' => $buyWithForm,
         ]);
     }
 
@@ -125,6 +133,7 @@ class ProductController extends Controller
         }
 
     }
+
     public function actionAddPhotos360($id)
     {
         $photos360Form = new Photos360Form();
@@ -138,6 +147,62 @@ class ProductController extends Controller
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
+    }
+
+    //Related product Assignments
+    public function actionAddRelated($id)
+    {
+        $product = $this->findModel($id);
+        $form = new RelatedForm();
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try {
+                $this->service->addRelatedProduct($product->id, $form->relatedId);
+
+            } catch (\DomainException $e) {
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
+        }
+        return $this->redirect(['view', 'id' => $product->id, '#' => 'relatedProducts']);
+    }
+
+    public function actionDeleteRelated($id, $otherId)
+    {
+        $product = $this->findModel($id);
+        try {
+            $this->service->removeRelatedProduct($id, $otherId);
+        } catch (\DomainException $e) {
+            Yii::$app->session->setFlash('error', $e->getMessage());
+        }
+
+        return $this->redirect(['view', 'id' => $product->id, '#' => 'relatedProducts']);
+    }
+
+    //Buy with product Assignments
+    public function actionAddBuyWith($id)
+    {
+        $product = $this->findModel($id);
+        $form = new BuyWithForm();
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try {
+                $this->service->addBuyWithProduct($product->id, $form->relatedId);
+            } catch (\DomainException $e) {
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
+        }
+        return $this->redirect(['view', 'id' => $product->id, '#' => 'buyWithProducts']);
+    }
+
+    public function actionDeleteBuyWith($id, $otherId)
+    {
+        $product = $this->findModel($id);
+        try {
+            $this->service->removeBuyWithProduct($id, $otherId);
+        } catch (\DomainException $e) {
+            Yii::$app->session->setFlash('error', $e->getMessage());
+        }
+        return $this->redirect(['view', 'id' => $product->id, '#' => 'buyWithProducts']);
     }
 
     /**

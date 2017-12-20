@@ -329,11 +329,13 @@ class ProductManageService
         $this->products->save($product);
     }
 
+
     public function addRelatedProduct($id, $otherId): void
     {
         $product = $this->products->get($id);
         $other = $this->products->get($otherId);
         $product->assignRelatedProduct($other->id);
+
         $this->products->save($product);
     }
 
@@ -342,6 +344,23 @@ class ProductManageService
         $product = $this->products->get($id);
         $other = $this->products->get($otherId);
         $product->revokeRelatedProduct($other->id);
+        $this->products->save($product);
+    }
+
+    public function addBuyWithProduct($id, $otherId): void
+    {
+        $product = $this->products->get($id);
+        $other = $this->products->get($otherId);
+        $product->assignBuyWithProduct($other->id);
+
+        $this->products->save($product);
+    }
+
+    public function removeBuyWithProduct($id, $otherId): void
+    {
+        $product = $this->products->get($id);
+        $other = $this->products->get($otherId);
+        $product->revokeBuyWithProduct($other->id);
         $this->products->save($product);
     }
 

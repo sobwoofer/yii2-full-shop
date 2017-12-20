@@ -8,6 +8,7 @@
 
 namespace core\readModels\Shop;
 
+use core\entities\Shop\Product\RelatedAssignment;
 use Elasticsearch\Client;
 use core\entities\Shop\Brand\Brand;
 use core\entities\Shop\Category\Category;
@@ -142,6 +143,25 @@ class ProductReadRepository
         //TODO need develop select from one category
         return Product::find()->with('mainPhoto')->orderBy(['id' => SORT_DESC])->limit($limit)->all();
     }
+
+    public function getRelatedProducts($limit, $productId): array
+    {
+        return Product::find()->joinWith('related r')
+            ->andWhere(['r.product_id' => $productId])
+            ->with('mainPhoto')
+            ->limit($limit)
+            ->all();
+    }
+
+    public function getBuyWithProducts($limit, $productId): array
+    {
+        return Product::find()->joinWith('buyWith r')
+            ->andWhere(['r.product_id' => $productId])
+            ->with('mainPhoto')
+            ->limit($limit)
+            ->all();
+    }
+
     public function getNew($limit): array
     {
         return Product::find()->with('mainPhoto')->orderBy(['id' => SORT_DESC])->limit($limit)->all();

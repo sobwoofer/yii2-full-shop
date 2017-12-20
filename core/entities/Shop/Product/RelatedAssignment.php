@@ -2,11 +2,13 @@
 
 namespace core\entities\Shop\Product;
 
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
  * @property integer $product_id;
  * @property integer $related_id;
+ * @property Product $relatedProduct;
  */
 class RelatedAssignment extends ActiveRecord
 {
@@ -20,6 +22,11 @@ class RelatedAssignment extends ActiveRecord
     public function isForProduct($id): bool
     {
         return $this->related_id == $id;
+    }
+
+    public function getRelatedProduct(): ActiveQuery
+    {
+        return $this->hasOne(Product::class, ['id' => 'related_id']);
     }
 
     public static function tableName(): string

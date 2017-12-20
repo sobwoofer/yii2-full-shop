@@ -16,17 +16,19 @@ class m171220_084250_create_product_buy_with_table extends Migration
         if ($this->db->driverName === 'mysql') {
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
         }
-        $this->createTable('{{%shop_product_buy_with}}', [
+
+        $this->createTable('{{%shop_buy_with_assignments}}', [
             'product_id' => $this->integer()->notNull(),
-            'relative_id' => $this->integer()->notNull(),
+            'related_id' => $this->integer()->notNull(),
         ], $tableOptions);
 
-        $this->addPrimaryKey('{{%pk-shop_product_buy_with}}', '{{%shop_product_buy_with}}', ['product_id', 'relative_id']);
+        $this->addPrimaryKey('{{%pk-shop_buy_with_assignments}}', '{{%shop_buy_with_assignments}}', ['product_id', 'related_id']);
+        $this->createIndex('{{%idx-shop_buy_with_assignments-product_id}}', '{{%shop_buy_with_assignments}}', 'product_id');
+        $this->createIndex('{{%idx-shop_buy_with_assignments-related_id}}', '{{%shop_buy_with_assignments}}', 'related_id');
 
-        $this->createIndex('{{%idx-shop_product_buy_with-ids}}', '{{%shop_product_buy_with}}', ['product_id', 'relative_id']);
-
-        $this->addForeignKey('{{%fk-shop_product_buy_with-product_id}}',
-            '{{%shop_product_buy_with}}',
+        $this->addForeignKey(
+            '{{%fk-shop_buy_with_assignments-product_id}}',
+            '{{%shop_buy_with_assignments}}',
             'product_id',
             '{{%shop_products}}',
             'id',
@@ -34,9 +36,10 @@ class m171220_084250_create_product_buy_with_table extends Migration
             'RESTRICT'
         );
 
-        $this->addForeignKey('{{%fk-shop_product_buy_with-relative_id}}',
-            '{{%shop_product_buy_with}}',
-            'relative_id',
+        $this->addForeignKey(
+            '{{%fk-shop_buy_with_assignments-related_id}}',
+            '{{%shop_buy_with_assignments}}',
+            'related_id',
             '{{%shop_products}}',
             'id',
             'CASCADE',

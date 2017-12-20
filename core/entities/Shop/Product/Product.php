@@ -56,6 +56,7 @@ use Yii;
  * @property Country $country
  * @property Category $category
  * @property RelatedAssignment[] $relatedAssignments
+ * @property BuyWithAssignment[] $buyWithAssignments
  * @property CategoryAssignment[] $categoryAssignments
  * @property Category[] $categories
  * @property Modification[] $modifications
@@ -650,7 +651,7 @@ class Product extends ActiveRecord implements AggregateRoot
                 return;
             }
         }
-        $assignments[] = CategoryAssignment::create($id);
+        $assignments[] = RelatedAssignment::create($id);
         $this->relatedAssignments = $assignments;
     }
 
@@ -661,6 +662,33 @@ class Product extends ActiveRecord implements AggregateRoot
             if ($assignment->isForProduct($id)) {
                 unset($assignments[$i]);
                 $this->relatedAssignments = $assignments;
+                return;
+            }
+        }
+        throw new \DomainException('Assignment is not found.');
+    }
+
+    // Buy with products
+
+    public function assignBuyWithProduct($id): void
+    {
+        $assignments = $this->buyWithAssignments;
+        foreach ($assignments as $assignment) {
+            if ($assignment->isForProduct($id)) {
+                return;
+            }
+        }
+        $assignments[] = BuyWithAssignment::create($id);
+        $this->buyWithAssignments = $assignments;
+    }
+
+    public function revokeBuyWithProduct($id): void
+    {
+        $assignments = $this->buyWithAssignments;
+        foreach ($assignments as $i => $assignment) {
+            if ($assignment->isForProduct($id)) {
+                unset($assignments[$i]);
+                $this->buyWithAssignments = $assignments;
                 return;
             }
         }
@@ -843,10 +871,25 @@ class Product extends ActiveRecord implements AggregateRoot
         return $this->hasMany(RelatedAssignment::class, ['product_id' => 'id']);
     }
 
-    public function getRelateds(): ActiveQuery
+    public function getRelated(): ActiveQuery
     {
-        return $this->hasMany(Product::class, ['id' => 'related_id'])->via('relatedAssignments');
+        return $this->hasMany(RelatedAssignment::class, ['related_id' => 'id']);
     }
+
+    public function getBuyWithAssignments(): ActiveQuery
+    {
+        return $this->hasMany(BuyWithAssignment::class, ['product_id' => 'id']);
+    }
+
+    public function getBuyWith(): ActiveQuery
+    {
+        return $this->hasMany(BuyWithAssignment::class, ['related_id' => 'id']);
+    }
+
+//    public function getRelateds(): ActiveQuery
+//    {
+//        return $this->hasMany(Product::class, ['id' => 'related_id'])->via('relatedAssignments');
+//    }
 
     public function getReviews(): ActiveQuery
     {
@@ -879,6 +922,7 @@ class Product extends ActiveRecord implements AggregateRoot
                     'categoryAssignments',
                     'tagAssignments',
                     'relatedAssignments',
+                    'buyWithAssignments',
                     'warehousesProducts',
                     'modifications',
                     'values',

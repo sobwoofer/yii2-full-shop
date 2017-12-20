@@ -19,11 +19,15 @@ use yii\helpers\Html;
 use core\entities\Shop\Product\Product;
 use yii\widgets\DetailView;
 use core\entities\Shop\Product\WarehousesProduct;
+use core\entities\Shop\Product\RelatedAssignment;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $product core\entities\Shop\Product\Product */
 /* @var $photosForm core\forms\manage\Shop\Product\PhotosForm */
 /* @var $photos360Form core\forms\manage\Shop\Product\Photos360Form */
+/* @var $relatedForm core\forms\manage\Shop\Product\RelatedForm */
+/* @var $buyWithForm core\forms\manage\Shop\Product\BuyWithForm */
 /* @var $modificationsProvider yii\data\ActiveDataProvider */
 
 $this->title = $product->name;
@@ -178,7 +182,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
         </div>
         <div class="col-md-6">
-
             <div class="box box-default">
                 <div class="box-header with-border">Characteristics</div>
                 <div class="box-body">
@@ -192,6 +195,88 @@ $this->params['breadcrumbs'][] = $this->title;
                             ];
                         }, $product->values),
                     ]) ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-default" id="relatedProducts">
+                <div class="box-header with-border">Related Products</div>
+                <div class="box-body">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <td>id</td>
+                            <td>name</td>
+                            <td>delete</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($product->relatedAssignments as $relatedAssignment): ?>
+                            <tr>
+                                <td><?= $relatedAssignment->relatedProduct->id ?></td>
+                                <td><?= $relatedAssignment->relatedProduct->name ?></td>
+                                <td>
+                                    <a href="<?= Url::to([
+                                        '/shop/product/delete-related',
+                                        'id' => $product->id,
+                                        'otherId' => $relatedAssignment->relatedProduct->id
+                                    ]) ?>" class="text-danger">
+                                        <i class="fa fa-remove"></i> </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    <?php $form = ActiveForm::begin(['action' => '/shop/product/add-related?id=' . $product->id]) ?>
+                        <div class="col-sm-8"> <?= $form->field($relatedForm, 'relatedId') ?></div>
+
+                        <div class="col-sm-4">
+                            <div class="btn-group" style="padding-top:25px">
+                                <?= Html::submitButton('add', ['class' => 'btn btn-success']) ?>
+                            </div>
+
+                        </div>
+                    <?php ActiveForm::end() ?>
+                </div>
+            </div>
+            <div class="box box-default" id="buyWithProducts">
+                <div class="box-header with-border">Buy With Products</div>
+                <div class="box-body">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <td>id</td>
+                            <td>name</td>
+                            <td>delete</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($product->buyWithAssignments as $buyWithAssignment): ?>
+                            <tr>
+                                <td><?= $buyWithAssignment->buyWithProduct->id ?></td>
+                                <td><?= $buyWithAssignment->buyWithProduct->name ?></td>
+                                <td>
+                                    <a href="<?= Url::to([
+                                        '/shop/product/delete-buy-with',
+                                        'id' => $product->id,
+                                        'otherId' => $buyWithAssignment->buyWithProduct->id
+                                    ]) ?>" class="text-danger">
+                                        <i class="fa fa-remove"></i> </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    <?php $form = ActiveForm::begin(['action' => '/shop/product/add-buy-with?id=' . $product->id]) ?>
+                    <div class="col-sm-8"> <?= $form->field($buyWithForm, 'relatedId') ?></div>
+
+                    <div class="col-sm-4">
+                        <div class="btn-group" style="padding-top:25px">
+                            <?= Html::submitButton('add', ['class' => 'btn btn-success']) ?>
+                        </div>
+
+                    </div>
+                    <?php ActiveForm::end() ?>
                 </div>
             </div>
         </div>

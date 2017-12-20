@@ -273,7 +273,9 @@ $this->params['active_category'] = $product->category;
                         <div class="one_product_deal__wrapper">
                             <div class="one_product_deal__title">Доставка</div>
                             <div class="one_product_deal__text">
-                                Cрок поставки: 20 дня с момента заказа
+                                Cрок поставки:
+                                <?= $product->warehousesProduct->deliveryTerm->name ?>
+                                с момента заказа
                                 Общие условия доставки
                             </div>
                         </div>

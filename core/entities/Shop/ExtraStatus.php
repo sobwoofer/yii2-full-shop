@@ -6,7 +6,7 @@
  * Time: 17:15
  */
 
-namespace core\entities\Shop\Product;
+namespace core\entities\Shop;
 
 
 use yii\db\ActiveRecord;
@@ -25,21 +25,35 @@ use omgdef\multilingual\MultilingualQuery;
 class ExtraStatus extends ActiveRecord
 {
 
-    public static function create(): self
+    public static function create($externalId, $slug, $names): self
     {
         $extraStatus = new static();
+        $extraStatus->external_id = $externalId;
+        $extraStatus->slug = $slug;
+
+        //$deliveryTerm->name, $deliveryTerm->name_ua...
+        foreach ($names as $name => $value) {
+            $extraStatus->{$name} = $value;
+        }
 
         return $extraStatus;
     }
 
-    public function edit(): void
+    public function edit($externalId, $slug, $names): void
     {
+        $this->external_id = $externalId;
+        $this->slug = $slug;
+
+        //$this->name, $this->name_ua...
+        foreach ($names as $name => $value) {
+            $this->{$name} = $value;
+        }
 
     }
 
     public static function tableName()
     {
-        return '{{%shop_product_extra_statuses}}';
+        return '{{%shop_extra_statuses}}';
     }
 
 
@@ -51,7 +65,7 @@ class ExtraStatus extends ActiveRecord
                 'defaultLanguage' => 'ru',
                 'dynamicLangClass' => true,
                 'langForeignKey' => 'extra_status_id',
-                'tableName' => '{{%shop_product_extra_statuses_lang}}',
+                'tableName' => '{{%shop_extra_statuses_lang}}',
                 'attributes' => [
                     'name'
                 ]

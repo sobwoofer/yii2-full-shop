@@ -14,8 +14,8 @@ use core\entities\Shop\Product\WarehousesProduct;
 use core\entities\Shop\Warehouse;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
-use core\entities\Shop\Product\ExtraStatus;
-use core\entities\Shop\Product\DeliveryTerm;
+use core\entities\Shop\ExtraStatus;
+use core\entities\Shop\DeliveryTerm;
 use core\entities\Shop\Product\Product;
 
 /**

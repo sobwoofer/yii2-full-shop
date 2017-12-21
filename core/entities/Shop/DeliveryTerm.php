@@ -6,7 +6,7 @@
  * Time: 16:40
  */
 
-namespace core\entities\Shop\Product;
+namespace core\entities\Shop;
 
 
 use core\entities\behaviors\FilledMultilingualBehavior;
@@ -17,27 +17,42 @@ use omgdef\multilingual\MultilingualQuery;
  * Class DeliveryTerm
  * @package entities\Shop\Product
  * @property integer $id
+ * @property integer $external_id
  * @property string $slug
  * @property string $name
  * @property string $name_ua
  */
 class DeliveryTerm extends ActiveRecord
 {
-    public static function create(): self
+    public static function create($externalId, $slug, $names): self
     {
         $deliveryTerm = new static();
+        $deliveryTerm->external_id = $externalId;
+        $deliveryTerm->slug = $slug;
+
+        //$deliveryTerm->name, $deliveryTerm->name_ua...
+        foreach ($names as $name => $value) {
+            $deliveryTerm->{$name} = $value;
+        }
 
         return $deliveryTerm;
     }
 
-    public function edit(): void
+    public function edit($externalId, $slug, $names): void
     {
+        $this->external_id = $externalId;
+        $this->slug = $slug;
+
+        //$this->name, $this->name_ua...
+        foreach ($names as $name => $value) {
+            $this->{$name} = $value;
+        }
 
     }
 
     public static function tableName()
     {
-        return '{{%shop_product_delivery_terms}}';
+        return '{{%shop_delivery_terms}}';
     }
 
 
@@ -49,7 +64,7 @@ class DeliveryTerm extends ActiveRecord
                 'defaultLanguage' => 'ru',
                 'dynamicLangClass' => true,
                 'langForeignKey' => 'delivery_term_id',
-                'tableName' => '{{%shop_product_delivery_terms_lang}}',
+                'tableName' => '{{%shop_delivery_terms_lang}}',
                 'attributes' => [
                     'name'
                 ]

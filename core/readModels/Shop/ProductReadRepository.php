@@ -155,8 +155,8 @@ class ProductReadRepository
 
     public function getBuyWithProducts($limit, $productId): array
     {
-        return Product::find()->joinWith('buyWith r')
-            ->andWhere(['r.product_id' => $productId])
+        return Product::find()->joinWith('buyWith bw')
+            ->andWhere(['bw.product_id' => $productId])
             ->with('mainPhoto')
             ->limit($limit)
             ->all();

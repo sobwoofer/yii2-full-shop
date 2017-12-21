@@ -11,7 +11,7 @@ namespace core\helpers;
 use core\entities\Shop\Product\Product;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use core\entities\Shop\Product\ExtraStatus;
+use core\entities\Shop\ExtraStatus;
 
 
 class ProductHelper

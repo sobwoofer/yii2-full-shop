@@ -39,6 +39,13 @@
                         ['label' => 'Characteristics', 'icon' => 'file-o', 'url' => ['/shop/characteristic/index'], 'active' => $this->context->id == 'shop/characteristic'],
                         ['label' => 'Reviews', 'icon' => 'file-o', 'url' => ['/shop/review/index'], 'active' => $this->context->id == 'shop/review'],
                         ['label' => 'Delivery Methods', 'icon' => 'file-o', 'url' => ['/shop/delivery/index'], 'active' => $this->context->id == 'shop/delivery'],
+                        [
+                            'label' => 'Other misc',
+                            'items' => [
+                                ['label' => 'Delivery Terms', 'icon' => 'file-o', 'url' => ['/shop/delivery-term/index'], 'active' => $this->context->id == 'shop/delivery-term'],
+                                ['label' => 'Extra Statuses', 'icon' => 'file-o', 'url' => ['/shop/extra-status/index'], 'active' => $this->context->id == 'shop/extra-status'],
+                            ]
+                        ],
                         ['label' => 'Warehouses', 'icon' => 'file-o', 'url' => ['/shop/warehouse/index'], 'active' => $this->context->id == 'shop/warehouse'],
                         ['label' => 'Give Points', 'icon' => 'file-o', 'url' => ['/shop/give-point/index'], 'active' => $this->context->id == 'shop/give-point'],
                         ['label' => 'Stores', 'icon' => 'file-o', 'url' => ['/shop/store/index'], 'active' => $this->context->id == 'shop/store'],

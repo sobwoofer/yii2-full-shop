@@ -12,7 +12,8 @@ namespace core\entities\Shop\Product;
 use core\entities\Shop\Product\queries\WarehousesProductQuery;
 use core\entities\Shop\Warehouse;
 use core\forms\manage\Shop\Product\WarehousesProductForm;
-use core\entities\Shop\Product\DeliveryTerm;
+use core\entities\Shop\DeliveryTerm;
+use core\entities\Shop\ExtraStatus;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 

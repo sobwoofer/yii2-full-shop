@@ -21,6 +21,7 @@ use yii\widgets\DetailView;
 use core\entities\Shop\Product\WarehousesProduct;
 use core\entities\Shop\Product\RelatedAssignment;
 use yii\helpers\Url;
+use yii\data\ArrayDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $product core\entities\Shop\Product\Product */
@@ -251,6 +252,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </tr>
                         </thead>
                         <tbody>
+
                         <?php foreach ($product->buyWithAssignments as $buyWithAssignment): ?>
                             <tr>
                                 <td><?= $buyWithAssignment->buyWithProduct->id ?></td>

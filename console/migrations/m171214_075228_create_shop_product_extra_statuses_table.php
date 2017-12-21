@@ -18,15 +18,15 @@ class m171214_075228_create_shop_product_extra_statuses_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('{{%shop_product_extra_statuses}}', [
+        $this->createTable('{{%shop_extra_statuses}}', [
             'id' => $this->primaryKey(),
             'external_id' => $this->integer()->unique(),
             'slug' =>$this->string()->unique()->notNull()
         ], $tableOptions);
 
-        $this->createIndex('{{%idx-shop_product_extra_statuses-external_id}}', '{{%shop_product_extra_statuses}}', 'external_id');
+        $this->createIndex('{{%idx-shop_extra_statuses-external_id}}', '{{%shop_extra_statuses}}', 'external_id');
 
-        Yii::$app->db->createCommand()->batchInsert('{{%shop_product_extra_statuses}}',
+        Yii::$app->db->createCommand()->batchInsert('{{%shop_extra_statuses}}',
             ['external_id', 'slug'], [
                 [1, 'availability'],
                 [2, 'expected'],
@@ -36,7 +36,7 @@ class m171214_075228_create_shop_product_extra_statuses_table extends Migration
                 [8, 'discontinued']
             ])->execute();
 
-        $this->createTable('{{%shop_product_extra_statuses_lang}}', [
+        $this->createTable('{{%shop_extra_statuses_lang}}', [
             'id' => $this->primaryKey(),
             'extra_status_id' => $this->integer()->notNull(),
             'name' => $this->string()->notNull(),
@@ -45,19 +45,19 @@ class m171214_075228_create_shop_product_extra_statuses_table extends Migration
 
 
 
-        $this->createIndex('{{%idx-shop_product_extra_statuses_lang-extra_status_id}}', '{{%shop_product_extra_statuses_lang}}', 'extra_status_id');
+        $this->createIndex('{{%idx-shop_extra_statuses_lang-extra_status_id}}', '{{%shop_extra_statuses_lang}}', 'extra_status_id');
 
         $this->addForeignKey(
-            '{{%fk-shop_product_extra_statuses_lang-extra_status_id}}',
-            '{{%shop_product_extra_statuses_lang}}',
+            '{{%fk-shop_extra_statuses_lang-extra_status_id}}',
+            '{{%shop_extra_statuses_lang}}',
             'extra_status_id',
-            '{{shop_product_extra_statuses}}',
+            '{{shop_extra_statuses}}',
             'id',
             'CASCADE',
             'RESTRICT'
         );
 
-        Yii::$app->db->createCommand()->batchInsert('{{%shop_product_extra_statuses_lang}}',
+        Yii::$app->db->createCommand()->batchInsert('{{%shop_extra_statuses_lang}}',
             ['extra_status_id', 'name', 'language'], [
                 [1, 'Есть в наличии', 'ru'],
                 [1, 'Є в наявності', 'ua'],
@@ -80,7 +80,7 @@ class m171214_075228_create_shop_product_extra_statuses_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('{{%shop_product_extra_statuses}}');
-        $this->dropTable('{{%shop_product_extra_statuses_lang}}');
+        $this->dropTable('{{%shop_extra_statuses}}');
+        $this->dropTable('{{%shop_extra_statuses_lang}}');
     }
 }

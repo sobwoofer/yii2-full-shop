@@ -8,8 +8,11 @@
 
 namespace backend\controllers\shop;
 
-use core\forms\manage\Shop\Product\ModificationForm;
-use core\useCases\manage\Shop\ProductManageService;
+use core\entities\Shop\Modification\Modification;
+use core\entities\Shop\Modification\ModificationGroup;
+use core\forms\manage\Shop\Modification\ModificationForm;
+use backend\forms\Shop\ModificationSearch;
+use core\useCases\manage\Shop\ModificationManageService;
 use Yii;
 use core\entities\Shop\Product\Product;
 use yii\web\Controller;
@@ -22,7 +25,7 @@ class ModificationController extends Controller
 {
     private $service;
 
-    public function __construct($id, $module, ProductManageService $service, $config = [])
+    public function __construct($id, $module, ModificationManageService $service, $config = [])
     {
         parent::__construct($id, $module, $config);
         $this->service = $service;
@@ -59,84 +62,100 @@ class ModificationController extends Controller
      */
     public function actionIndex()
     {
-        return $this->redirect('shop/product');
+        $searchModel = new ModificationSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel
+        ]);
     }
 
-    /**
-     * @param $product_id
-     * @return mixed
-     */
-    public function actionCreate($product_id)
+    public function actionView($id)
     {
-        $product = $this->findModel($product_id);
+        return $this->render('view', [
+            'modification' => $this->findModel($id),
+        ]);
+    }
+
+
+    public function actionCreate()
+    {
 
         $form = new ModificationForm();
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
-                $this->service->addModification($product->id, $form);
-                return $this->redirect(['shop/product/view', 'id' => $product->id, '#' => 'modifications']);
+                $this->service->add($form);
+                return $this->redirect(['index']);
             } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
         return $this->render('create', [
-            'product' => $product,
             'model' => $form,
         ]);
     }
 
     /**
-     * @param integer $product_id
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($product_id, $id)
+    public function actionUpdate($id)
     {
-        $product = $this->findModel($product_id);
-        $modification = $product->getModification($id);
-
+        $modification = $this->findModel($id);
         $form = new ModificationForm($modification);
+
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
-                $this->service->editModification($product->id, $modification->id, $form);
-                return $this->redirect(['shop/product/view', 'id' => $product->id, '#' => 'modifications']);
+                $this->service->edit($modification->id, $form);
+                return $this->redirect(['index']);
             } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
         return $this->render('update', [
-            'product' => $product,
             'model' => $form,
             'modification' => $modification,
         ]);
     }
 
     /**
-     * @param $product_id
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($product_id, $id)
+    public function actionDelete($id)
     {
-        $product = $this->findModel($product_id);
+        $modification = $this->findModel($id);
         try {
-            $this->service->removeModification($product->id, $id);
+            $this->service->remove($modification->id);
         } catch (\DomainException $e) {
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
-        return $this->redirect(['shop/product/view', 'id' => $product->id, '#' => 'modifications']);
+        return $this->redirect(['index']);
     }
 
     /**
      * @param integer $id
-     * @return Product the loaded model
+     * @return Modification the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id): Product
+    protected function findModel($id): Modification
     {
-        if (($model = Product::findOne($id)) !== null) {
+        if (($model = Modification::find()->multilingual()->andWhere(['id' => $id])) !== null) {
+            return $model;
+        }
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * @param integer $id
+     * @return ModificationGroup the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModelGroup($id): ModificationGroup
+    {
+        if (($model = ModificationGroup::find()->localized()->andWhere(['id' => $id])) !== null) {
             return $model;
         }
         throw new NotFoundHttpException('The requested page does not exist.');

@@ -364,38 +364,7 @@ class ProductManageService
         $this->products->save($product);
     }
 
-    //Modifications
-    public function addModification($id, ModificationForm $form): void
-    {
-        $product = $this->products->get($id);
-        $product->addModification(
-            $form->code,
-            $form->name,
-            $form->price,
-            $form->quantity
-        );
-        $this->products->save($product);
-    }
 
-    public function editModification($id, $modificationId, ModificationForm $form): void
-    {
-        $product = $this->products->get($id);
-        $product->editModification(
-            $modificationId,
-            $form->code,
-            $form->name,
-            $form->price,
-            $form->quantity
-        );
-        $this->products->save($product);
-    }
-
-    public function removeModification($id, $modificationId): void
-    {
-        $product = $this->products->get($id);
-        $product->removeModification($modificationId);
-        $this->products->save($product);
-    }
 
     //Warehouses product
     public function addWarehousesProduct($productId, $warehouseId, WarehousesProductForm $form): void

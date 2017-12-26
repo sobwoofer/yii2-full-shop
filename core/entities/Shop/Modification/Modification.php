@@ -66,7 +66,7 @@ class Modification extends ActiveRecord
 
     public function getGroup()
     {
-        $this->hasOne(ModificationGroup::class, ['id' => 'group_id']);
+        return $this->hasOne(ModificationGroup::class, ['id' => 'group_id']);
     }
     public function isIdEqualTo($id)
     {

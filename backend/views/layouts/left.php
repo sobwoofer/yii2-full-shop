@@ -40,11 +40,18 @@
                         ['label' => 'Reviews', 'icon' => 'file-o', 'url' => ['/shop/review/index'], 'active' => $this->context->id == 'shop/review'],
                         ['label' => 'Delivery Methods', 'icon' => 'file-o', 'url' => ['/shop/delivery/index'], 'active' => $this->context->id == 'shop/delivery'],
                         [
+                            'label' => 'Modifications',
+                            'items' => [
+                                ['label' => 'Groups', 'icon' => 'file-o', 'url' => ['/shop/modification/group-index'], 'active' => $this->context->id == 'shop/group-modification'],
+                                ['label' => 'Modifications', 'icon' => 'file-o', 'url' => ['/shop/modification/index'], 'active' => $this->context->id == 'shop/modification'],
+                            ]
+                        ],
+                        [
                             'label' => 'Other misc',
                             'items' => [
                                 ['label' => 'Delivery Terms', 'icon' => 'file-o', 'url' => ['/shop/delivery-term/index'], 'active' => $this->context->id == 'shop/delivery-term'],
                                 ['label' => 'Extra Statuses', 'icon' => 'file-o', 'url' => ['/shop/extra-status/index'], 'active' => $this->context->id == 'shop/extra-status'],
-                                ['label' => 'Modifications', 'icon' => 'file-o', 'url' => ['/shop/modification/index'], 'active' => $this->context->id == 'shop/modification'],
+
                             ]
                         ],
                         ['label' => 'Warehouses', 'icon' => 'file-o', 'url' => ['/shop/warehouse/index'], 'active' => $this->context->id == 'shop/warehouse'],

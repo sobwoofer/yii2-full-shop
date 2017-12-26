@@ -11,6 +11,7 @@ namespace backend\forms\Shop;
 
 use core\entities\Shop\Modification\Modification;
 use core\entities\Shop\Modification\ModificationGroup;
+use core\helpers\ModificationHelper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
@@ -64,7 +65,12 @@ class ModificationSearch extends Model
 
     public function groupList()
     {
-        return ArrayHelper::map(ModificationGroup::find()->all(), 'id', 'name');
+        return ArrayHelper::map(ModificationGroup::find()->localized()->all(), 'id', 'name');
+    }
+
+    public function statusList()
+    {
+        return ModificationHelper::statusList();
     }
 
 }

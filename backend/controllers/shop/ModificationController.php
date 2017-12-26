@@ -17,6 +17,7 @@ use Yii;
 use core\entities\Shop\Product\Product;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use core\repositories\NotFoundException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use core\access\Rbac;
@@ -61,6 +62,19 @@ class ModificationController extends Controller
      * @return mixed
      */
     public function actionIndex()
+    {
+        $searchModel = new ModificationSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel
+        ]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function actionGroupIndex()
     {
         $searchModel = new ModificationSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -142,10 +156,10 @@ class ModificationController extends Controller
      */
     protected function findModel($id): Modification
     {
-        if (($model = Modification::find()->multilingual()->andWhere(['id' => $id])) !== null) {
+        if (($model = Modification::find()->multilingual()->andWhere(['id' => $id])->one()) !== null) {
             return $model;
         }
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundException('The requested page does not exist.');
     }
 
     /**

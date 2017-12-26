@@ -47,6 +47,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => 'group.name',
                     ],
                     ['class' => ActionColumn::class],
+                    [
+                        'attribute' => 'status',
+                        'filter' => $searchModel->statusList(),
+                        'value' => function (Modification $model) {
+                            return \core\helpers\ModificationHelper::statusLabel($model->status);
+                        },
+                        'format' => 'raw',
+                    ],
                 ],
             ]); ?>
         </div>

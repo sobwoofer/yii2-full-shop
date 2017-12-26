@@ -52,7 +52,7 @@ use powerkernel\flagiconcss\Flag;
     <?= $form->field($model, 'managerId')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'groupId')->dropDownList($model->getGroupList()) ?>
-    <?= $form->field($model, 'status')->dropDownList([Modification::STATUS_ACTIVE, Modification::STATUS_DRAFT]) ?>
+    <?= $form->field($model, 'status')->dropDownList(\core\helpers\ModificationHelper::statusList()) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

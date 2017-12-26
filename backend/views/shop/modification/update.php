@@ -8,12 +8,12 @@
 
 /* @var $this yii\web\View */
 /* @var $product core\entities\Shop\Product\Product */
-/* @var $modification core\entities\Shop\Product\Modification */
-/* @var $model core\forms\manage\Shop\Product\ModificationForm */
+/* @var $modification core\entities\Shop\Modification\Modification */
+/* @var $model core\forms\manage\Shop\Modification\ModificationForm */
 
 $this->title = 'Update Modification: ' . $modification->name;
-$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['shop/product/index']];
-$this->params['breadcrumbs'][] = ['label' => $product->name, 'url' => ['shop/product/view', 'id' => $product->id]];
+$this->params['breadcrumbs'][] = ['label' => 'Modifications', 'url' => ['shop/modification/index']];
+$this->params['breadcrumbs'][] = ['label' => $modification->name, 'url' => ['shop/modification/view', 'id' => $modification->id]];
 $this->params['breadcrumbs'][] = $modification->name;
 ?>
 <div class="modification-update">

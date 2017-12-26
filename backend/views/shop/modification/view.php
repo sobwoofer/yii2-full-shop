@@ -42,8 +42,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     'code',
                     'price',
                     'manager_id',
-                    'status',
-                    'group_id',
+                    [
+                        'attribute' => 'status',
+                        'value' => \core\helpers\ModificationHelper::statusLabel($modification->status),
+                        'format' => 'raw',
+                    ],
+                    'group.name',
                 ],
             ]) ?>
         </div>

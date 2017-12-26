@@ -8,12 +8,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use core\entities\Shop\Modification\Modification;
 use core\helpers\LangsHelper;
 use powerkernel\flagiconcss\Flag;
+use kartik\widgets\FileInput;
 
 /* @var $this yii\web\View */
-/* @var $model core\forms\manage\Shop\Modification\ModificationForm */
+/* @var $model core\forms\manage\Shop\Modification\ModificationGroupForm */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -39,6 +39,7 @@ use powerkernel\flagiconcss\Flag;
                         <div class="chart tab-pane <?= !$suffix ? 'active' : '' ?>" id="langTab-<?= $lang->url ?>">
                             <div class="col-sm-12">
                                 <?= $form->field($model, 'name' . $suffix)->textInput(['maxlength' => true]) ?>
+                                <?= $form->field($model, 'description' . $suffix)->textInput(['maxlength' => true]) ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -48,16 +49,23 @@ use powerkernel\flagiconcss\Flag;
     </div>
 
     <div class="box box-default">
-        <div class="box-header with-border">General</div>
+        <div class="box-header with-border">Image</div>
         <div class="box-body">
-            <?= $form->field($model, 'caseCode')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'managerId')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'groupId')->dropDownList($model->getGroupList()) ?>
-            <?= $form->field($model, 'status')->dropDownList(\core\helpers\ModificationHelper::statusList()) ?>
+            <?= $form->field($model, 'image')->label(false)->widget(FileInput::class, [
+                'options' => [
+                    'accept' => 'image/*',
+                ]
+            ]) ?>
         </div>
     </div>
+    <div class="box box-default">
+        <div class="box-header with-border">General</div>
+        <div class="box-body">
+            <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'status')->dropDownList(\core\helpers\ModificationGroupHelper::statusList()) ?>
+        </div>
+    </div>
+
 
 
     <div class="form-group">

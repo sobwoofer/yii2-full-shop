@@ -9,13 +9,10 @@
 namespace backend\controllers\shop;
 
 use backend\forms\Shop\ModificationGroupSearch;
-use core\entities\Shop\Modification\Modification;
 use core\entities\Shop\Modification\ModificationGroup;
-use core\forms\manage\Shop\Modification\ModificationForm;
-use backend\forms\Shop\ModificationSearch;
-use core\useCases\manage\Shop\ModificationManageService;
+use core\useCases\manage\Shop\ModificationGroupManageService;
+use core\forms\manage\Shop\Modification\ModificationGroupForm;
 use Yii;
-use core\entities\Shop\Product\Product;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use core\repositories\NotFoundException;
@@ -23,11 +20,11 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use core\access\Rbac;
 
-class ModificationController extends Controller
+class ModificationGroupController extends Controller
 {
     private $service;
 
-    public function __construct($id, $module, ModificationManageService $service, $config = [])
+    public function __construct($id, $module, ModificationGroupManageService $service, $config = [])
     {
         parent::__construct($id, $module, $config);
         $this->service = $service;
@@ -48,11 +45,11 @@ class ModificationController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['index', 'view'],
-                        'roles' => [Rbac::PERMISSION_SHOP_MODIFICATION_VIEW],
+                        'roles' => [Rbac::PERMISSION_SHOP_MODIFICATION_GROUP_VIEW],
                     ],
                     [
                         'allow' => true,
-                        'roles' => [Rbac::PERMISSION_SHOP_MODIFICATION_EDIT],
+                        'roles' => [Rbac::PERMISSION_SHOP_MODIFICATION_GROUP_EDIT],
                     ],
                 ],
             ],
@@ -64,7 +61,7 @@ class ModificationController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ModificationSearch();
+        $searchModel = new ModificationGroupSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'dataProvider' => $dataProvider,
@@ -73,11 +70,10 @@ class ModificationController extends Controller
     }
 
 
-
     public function actionView($id)
     {
         return $this->render('view', [
-            'modification' => $this->findModel($id),
+            'modificationGroup' => $this->findModel($id),
         ]);
     }
 
@@ -85,7 +81,7 @@ class ModificationController extends Controller
     public function actionCreate()
     {
 
-        $form = new ModificationForm();
+        $form = new ModificationGroupForm();
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
                 $this->service->add($form);
@@ -106,12 +102,12 @@ class ModificationController extends Controller
      */
     public function actionUpdate($id)
     {
-        $modification = $this->findModel($id);
-        $form = new ModificationForm($modification);
+        $modificationGroup = $this->findModel($id);
+        $form = new ModificationGroupForm($modificationGroup);
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
-                $this->service->edit($modification->id, $form);
+                $this->service->edit($modificationGroup->id, $form);
                 return $this->redirect(['index']);
             } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
@@ -120,7 +116,7 @@ class ModificationController extends Controller
         }
         return $this->render('update', [
             'model' => $form,
-            'modification' => $modification,
+            'modificationGroup' => $modificationGroup,
         ]);
     }
 
@@ -130,9 +126,9 @@ class ModificationController extends Controller
      */
     public function actionDelete($id)
     {
-        $modification = $this->findModel($id);
+        $modificationGroup = $this->findModel($id);
         try {
-            $this->service->remove($modification->id);
+            $this->service->remove($modificationGroup->id);
         } catch (\DomainException $e) {
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
@@ -141,14 +137,15 @@ class ModificationController extends Controller
 
     /**
      * @param integer $id
-     * @return Modification the loaded model
+     * @return ModificationGroup the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id): Modification
+    protected function findModel($id): ModificationGroup
     {
-        if (($model = Modification::find()->multilingual()->andWhere(['id' => $id])->one()) !== null) {
+        if (($model = ModificationGroup::find()->multilingual()->andWhere(['id' => $id])->one()) !== null) {
             return $model;
         }
         throw new NotFoundException('The requested page does not exist.');
     }
+
 }

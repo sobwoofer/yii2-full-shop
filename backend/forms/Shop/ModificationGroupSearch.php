@@ -9,25 +9,23 @@
 namespace backend\forms\Shop;
 
 
-use core\entities\Shop\Modification\Modification;
 use core\entities\Shop\Modification\ModificationGroup;
-use core\helpers\ModificationHelper;
+use core\helpers\ModificationGroupHelper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
 
-class ModificationSearch extends Model
+class ModificationGroupSearch extends Model
 {
     public $id;
     public $name;
+    public $slug;
     public $status;
-    public $group_id;
 
     public function rules(): array
     {
         return [
-            [['id', 'group_id', 'status'], 'integer'],
-            ['name', 'string'],
+            [['id', 'status'], 'integer'],
+            [['name', 'slug'], 'string'],
         ];
     }
 
@@ -37,7 +35,7 @@ class ModificationSearch extends Model
      */
     public function search(array $params): ActiveDataProvider
     {
-        $query = Modification::find()->joinWith('translation');
+        $query = ModificationGroup::find()->joinWith('translation');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -64,14 +62,10 @@ class ModificationSearch extends Model
 
     }
 
-    public function groupList()
-    {
-        return ArrayHelper::map(ModificationGroup::find()->localized()->all(), 'id', 'name');
-    }
 
     public function statusList()
     {
-        return ModificationHelper::statusList();
+        return ModificationGroupHelper::statusList();
     }
 
 }

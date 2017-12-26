@@ -7,15 +7,15 @@
  */
 
 /* @var $this yii\web\View */
-/* @var $searchModel \backend\forms\Shop\ModificationSearch */
+/* @var $searchModel \backend\forms\Shop\ModificationGroupSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use core\entities\Shop\Modification\Modification;
+use core\entities\Shop\Modification\ModificationGroup;
 use yii\grid\ActionColumn;
 
-$this->title = 'Modifications';
+$this->title = 'Modification Groups';
 $this->params['breadcrumbs'][] = $this->title;
 
 
@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="modifications">
     <p>
-        <?= Html::a('Create modification', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create modification group', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <div class="box">
@@ -33,23 +33,27 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
+                    [
+                        'attribute' => 'image',
+                        'value' => function (ModificationGroup $model) {
+                            return $model->image ? Html::img($model->getThumbFileUrl('image', 'thumb')) : null;
+                        },
+                        'format' => 'raw',
+                        'contentOptions' => ['style' => 'width: 100px'],
+                    ],
                     'id',
                     [
                         'attribute' => 'name',
-                        'value' => function (Modification $model) {
+                        'value' => function (ModificationGroup $model) {
                             return Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
                         },
                         'format' => 'raw'
                     ],
-                    [
-                        'attribute' => 'group_id',
-                        'filter' => $searchModel->groupList(),
-                        'value' => 'group.name',
-                    ],
+                    'slug',
                     [
                         'attribute' => 'status',
                         'filter' => $searchModel->statusList(),
-                        'value' => function (Modification $model) {
+                        'value' => function (ModificationGroup $model) {
                             return \core\helpers\ModificationHelper::statusLabel($model->status);
                         },
                         'format' => 'raw',

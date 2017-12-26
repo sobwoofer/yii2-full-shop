@@ -71,6 +71,6 @@ class ModificationManageService
     public function remove($id): void
     {
         $modification = $this->modifications->get($id);
-        $this->modifications->save($modification);
+        $this->modifications->remove($modification);
     }
 }

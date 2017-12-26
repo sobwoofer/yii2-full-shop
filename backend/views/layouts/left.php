@@ -42,7 +42,7 @@
                         [
                             'label' => 'Modifications',
                             'items' => [
-                                ['label' => 'Groups', 'icon' => 'file-o', 'url' => ['/shop/modification/group-index'], 'active' => $this->context->id == 'shop/group-modification'],
+                                ['label' => 'Groups', 'icon' => 'file-o', 'url' => ['/shop/modification-group/index'], 'active' => $this->context->id == 'shop/modification-group'],
                                 ['label' => 'Modifications', 'icon' => 'file-o', 'url' => ['/shop/modification/index'], 'active' => $this->context->id == 'shop/modification'],
                             ]
                         ],

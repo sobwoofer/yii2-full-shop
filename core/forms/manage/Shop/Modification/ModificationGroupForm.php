@@ -6,12 +6,14 @@
  * Time: 14:09
  */
 
-namespace forms\manage\Shop\Modification;
+namespace core\forms\manage\Shop\Modification;
 
 
+use core\entities\Shop\Modification\ModificationGroup;
 use core\helpers\LangsHelper;
 use yii\base\Model;
 use core\forms\ForMultiLangFormTrait;
+use yii\web\UploadedFile;
 
 /**
  * Class ModificationGroupForm
@@ -24,6 +26,21 @@ class ModificationGroupForm extends Model
     public $status;
     public $slug;
     public $image;
+    public $_group;
+
+    public function __construct(ModificationGroup $group = null, array $config = [])
+    {
+        if ($group) {
+            $this->status = $group->status;
+            $this->slug = $group->slug;
+            foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+                $this->{'name' . $suffix} = $group->{'name' . $suffix};
+                $this->{'description' . $suffix} = $group->{'description' . $suffix};
+            }
+            $this->_group = $group;
+        }
+        parent::__construct($config);
+    }
 
     public function rules(): array
     {
@@ -32,7 +49,17 @@ class ModificationGroupForm extends Model
             [LangsHelper::getNamesWithSuffix(['name', 'description']), 'string'],
             [['status', 'slug'], 'required'],
             ['status', 'integer'],
+            [['image'], 'image'],
             ['slug', 'string'],
         ];
+    }
+
+    public function beforeValidate(): bool
+    {
+        if (parent::beforeValidate()) {
+            $this->image = UploadedFile::getInstance($this, 'image');
+            return true;
+        }
+        return false;
     }
 }

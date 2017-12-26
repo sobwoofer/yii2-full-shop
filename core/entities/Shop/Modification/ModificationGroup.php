@@ -12,6 +12,8 @@ namespace core\entities\Shop\Modification;
 use yii\db\ActiveRecord;
 use omgdef\multilingual\MultilingualQuery;
 use core\entities\behaviors\FilledMultilingualBehavior;
+use yii\web\UploadedFile;
+use yiidreamteam\upload\ImageUploadBehavior;
 
 /**
  * Class ModificationGroup
@@ -24,9 +26,13 @@ use core\entities\behaviors\FilledMultilingualBehavior;
  * @property string $name_ua
  * @property string $description
  * @property string $description_ua
+ *
+ * @mixin ImageUploadBehavior
  */
 class ModificationGroup extends ActiveRecord
 {
+    const STATUS_ACTIVE = 1;
+    const STATUS_DRAFT = 0;
 
     public static function create($status, $slug, $image, array $names, array $descriptions): self
     {
@@ -66,9 +72,27 @@ class ModificationGroup extends ActiveRecord
         }
     }
 
+    public function setPhoto(UploadedFile $image): void
+    {
+        $this->image = $image;
+    }
+
     public function behaviors(): array
     {
         return [
+            [
+                'class' => ImageUploadBehavior::className(),
+                'attribute' => 'image',
+                'createThumbsOnRequest' => true,
+                'filePath' => '@staticRoot/origin/modification-groups/[[id]].[[extension]]',
+                'fileUrl' => '@static/origin/modification-groups/[[id]].[[extension]]',
+                'thumbPath' => '@staticRoot/cache/modification-groups/[[profile]]_[[id]].[[extension]]',
+                'thumbUrl' => '@static/cache/modification-groups/[[profile]]_[[id]].[[extension]]',
+                'thumbs' => [
+                    'thumb' => ['width' => 232, 'height' => 100],
+                    'product_page' => ['width' => 170, 'height' => 27],
+                ],
+            ],
             'ml' => [
                 'class' => FilledMultilingualBehavior::className(),
                 'defaultLanguage' => 'ru',

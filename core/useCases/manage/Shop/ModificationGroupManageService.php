@@ -11,7 +11,7 @@ namespace core\useCases\manage\Shop;
 
 use core\entities\Shop\Modification\ModificationGroup;
 use core\repositories\Shop\ModificationGroupRepository;
-use forms\manage\Shop\Modification\ModificationGroupForm;
+use core\forms\manage\Shop\Modification\ModificationGroupForm;
 use core\helpers\LangsHelper;
 
 /**
@@ -44,6 +44,10 @@ class ModificationGroupManageService
             $descriptions
         );
 
+        if ($form->image) {
+            $group->setPhoto($form->image);
+        }
+
         $this->groups->save($group);
     }
 
@@ -66,13 +70,17 @@ class ModificationGroupManageService
             $descriptions
         );
 
+        if ($form->image) {
+            $group->setPhoto($form->image);
+        }
+
         $this->groups->save($group);
     }
 
     public function remove($id): void
     {
         $group = $this->groups->get($id);
-        $this->groups->save($group);
+        $this->groups->remove($group);
     }
 
 }

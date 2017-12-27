@@ -6,6 +6,7 @@ use core\entities\Meta;
 use core\entities\Shop\Product\Product;
 use core\entities\Shop\Tag;
 use core\forms\manage\Shop\Product\CategoriesForm;
+use core\forms\manage\Shop\Product\ModificationAssignmentsForm;
 use core\forms\manage\Shop\Product\PhotosForm;
 use core\forms\manage\Shop\Product\Photos360Form;
 use core\forms\manage\Shop\Product\ProductCreateForm;
@@ -15,6 +16,7 @@ use core\forms\manage\Shop\Product\WarehousesProductForm;
 use core\helpers\LangsHelper;
 use core\repositories\Shop\BrandRepository;
 use core\repositories\Shop\CategoryRepository;
+use core\repositories\Shop\ModificationRepository;
 use core\repositories\Shop\ProductRepository;
 use core\repositories\Shop\TagRepository;
 use core\repositories\Geo\CountryRepository;
@@ -34,6 +36,7 @@ class ProductManageService
     private $countries;
     private $warehouses;
     private $transaction;
+    private $modifications;
     private $reader;
 
     public function __construct(
@@ -42,6 +45,7 @@ class ProductManageService
         CountryRepository $countries,
         CategoryRepository $categories,
         WarehouseRepository $warehouses,
+        ModificationRepository $modifications,
         TagRepository $tags,
         TransactionManager $transaction,
         Reader $reader
@@ -52,6 +56,7 @@ class ProductManageService
         $this->countries = $countries;
         $this->categories = $categories;
         $this->warehouses = $warehouses;
+        $this->modifications = $modifications;
         $this->tags = $tags;
         $this->transaction = $transaction;
         $this->reader = $reader;
@@ -259,20 +264,12 @@ class ProductManageService
         $this->products->save($product);
     }
 
+    //Photo
     public function addPhotos($id, PhotosForm $form): void
     {
         $product = $this->products->get($id);
         foreach ($form->files as $file) {
             $product->addPhoto($file);
-        }
-        $this->products->save($product);
-    }
-
-    public function addPhotos360($id, Photos360Form $form): void
-    {
-        $product = $this->products->get($id);
-        foreach ($form->files as $file) {
-            $product->addPhoto360($file);
         }
         $this->products->save($product);
     }
@@ -289,13 +286,6 @@ class ProductManageService
         $this->products->save($product);
     }
 
-    public function movePhoto360Up($id, $photoId): void
-    {
-        $product = $this->products->get($id);
-        $product->movePhoto360Up($photoId);
-        $this->products->save($product);
-    }
-
     /**
      * @param $id
      * @param $photoId
@@ -308,17 +298,19 @@ class ProductManageService
         $this->products->save($product);
     }
 
-    public function movePhoto360Down($id, $photoId): void
-    {
-        $product = $this->products->get($id);
-        $product->movePhoto360Down($photoId);
-        $this->products->save($product);
-    }
-
     public function removePhoto($id, $photoId): void
     {
         $product = $this->products->get($id);
         $product->removePhoto($photoId);
+        $this->products->save($product);
+    }
+    //Photo 360
+    public function addPhotos360($id, Photos360Form $form): void
+    {
+        $product = $this->products->get($id);
+        foreach ($form->files as $file) {
+            $product->addPhoto360($file);
+        }
         $this->products->save($product);
     }
 
@@ -329,7 +321,21 @@ class ProductManageService
         $this->products->save($product);
     }
 
+    public function movePhoto360Up($id, $photoId): void
+    {
+        $product = $this->products->get($id);
+        $product->movePhoto360Up($photoId);
+        $this->products->save($product);
+    }
 
+    public function movePhoto360Down($id, $photoId): void
+    {
+        $product = $this->products->get($id);
+        $product->movePhoto360Down($photoId);
+        $this->products->save($product);
+    }
+
+    //Related Products
     public function addRelatedProduct($id, $otherId): void
     {
         $product = $this->products->get($id);
@@ -364,9 +370,52 @@ class ProductManageService
         $this->products->save($product);
     }
 
+    //Modification Assignments
+
+    /**
+     * @param $id //product_id
+     * @param ModificationAssignmentsForm $form
+     */
+    public function addModificationAssign($id, ModificationAssignmentsForm $form)
+    {
+        $product = $this->products->get($id);
+        $modification = $this->modifications->get($form->modificationId);
+        $product->assignModification($modification->id, $form->minQty, $form->status);
+
+        $this->products->save($product);
+    }
+
+    /**
+     * @param $productId
+     * @param ModificationAssignmentsForm $form
+     */
+    public function editModificationAssign($productId, ModificationAssignmentsForm $form)
+    {
+        $product = $this->products->get($productId);
+        $modification = $this->modifications->get($form->modificationId);
+        $product->editModificationAssign($modification->id, $form->minQty, $form->status);
+
+        $this->products->save($product);
+    }
+
+
+    public function removeModificationAssign($productId, $modificationId)
+    {
+        $product = $this->products->get($productId);
+        $modification = $this->modifications->get($modificationId);
+        $product->revokeModification($modification->id);
+
+        $this->products->save($product);
+    }
 
 
     //Warehouses product
+
+    /**
+     * @param $productId
+     * @param $warehouseId
+     * @param WarehousesProductForm $form
+     */
     public function addWarehousesProduct($productId, $warehouseId, WarehousesProductForm $form): void
     {
         $product = $this->products->get($productId);
@@ -390,6 +439,11 @@ class ProductManageService
 
     }
 
+    /**
+     * @param $productId
+     * @param $warehouseProductId
+     * @param WarehousesProductForm $form
+     */
     public function editWarehousesProduct($productId, $warehouseProductId, WarehousesProductForm $form): void
     {
         $product = $this->products->get($productId);

@@ -8,7 +8,10 @@
 
 namespace backend\controllers\shop;
 
-use core\entities\Shop\Product\Modification;
+use backend\forms\Shop\ModificationAssignmentsSearch;
+use core\entities\Shop\Modification\Modification;
+use core\entities\Shop\Product\ModificationAssignment;
+use core\forms\manage\Shop\Product\ModificationAssignmentsForm;
 use core\forms\manage\Shop\Product\PhotosForm;
 use core\forms\manage\Shop\Product\Photos360Form;
 use core\forms\manage\Shop\Product\ProductCreateForm;
@@ -91,14 +94,8 @@ class ProductController extends Controller
     {
         $product = $this->findModel($id);
 
-        $modificationsProvider = new ActiveDataProvider([
-            'query' => $product->getModifications()->orderBy('name'),
-            'key' => function (Modification $modification) use ($product) {
-                return [
-                    'product_id' => $product->id,
-                    'id' => $modification->id,
-                ];
-            },
+        $modificationAssignmentsProvider = new ActiveDataProvider([
+            'query' => $product->getModificationAssignments()->joinWith('modification'),
             'pagination' => false,
         ]);
 
@@ -107,11 +104,13 @@ class ProductController extends Controller
         $photos360Form = new Photos360Form();
         $relatedForm = new RelatedForm();
         $buyWithForm = new BuyWithForm();
+        $modificationAssignmentsForm = new ModificationAssignmentsForm();
 
         return $this->render('view', [
             'product' => $product,
-            'modificationsProvider' => $modificationsProvider,
+            'modificationAssignmentsProvider' => $modificationAssignmentsProvider,
             'photosForm' => $photosForm,
+            'modificationAssignmentsForm' => $modificationAssignmentsForm,
             'photos360Form' => $photos360Form,
             'relatedForm' => $relatedForm,
             'buyWithForm' => $buyWithForm,
@@ -148,6 +147,7 @@ class ProductController extends Controller
             }
         }
     }
+
 
     //Related product Assignments
     public function actionAddRelated($id)

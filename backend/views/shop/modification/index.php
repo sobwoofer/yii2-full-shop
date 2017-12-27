@@ -14,6 +14,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use core\entities\Shop\Modification\Modification;
 use yii\grid\ActionColumn;
+use core\helpers\ModificationHelper;
 
 $this->title = 'Modifications';
 $this->params['breadcrumbs'][] = $this->title;
@@ -50,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'status',
                         'filter' => $searchModel->statusList(),
                         'value' => function (Modification $model) {
-                            return \core\helpers\ModificationHelper::statusLabel($model->status);
+                            return ModificationHelper::statusLabel($model->status);
                         },
                         'format' => 'raw',
                     ],

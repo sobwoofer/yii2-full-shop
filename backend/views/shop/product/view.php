@@ -7,7 +7,7 @@
  */
 
 use kartik\file\FileInput;
-use core\entities\Shop\Product\Modification;
+use core\entities\Shop\Modification\Modification;
 use core\entities\Shop\Product\Value;
 use core\helpers\PriceHelper;
 use core\helpers\ProductHelper;
@@ -20,6 +20,10 @@ use core\entities\Shop\Product\Product;
 use yii\widgets\DetailView;
 use core\entities\Shop\Product\WarehousesProduct;
 use core\entities\Shop\Product\RelatedAssignment;
+use core\helpers\ModificationAssignmentHelper;
+use core\helpers\ModificationGroupHelper;
+use core\helpers\ModificationHelper;
+use core\entities\Shop\Product\ModificationAssignment;
 use yii\helpers\Url;
 use yii\data\ArrayDataProvider;
 
@@ -29,7 +33,7 @@ use yii\data\ArrayDataProvider;
 /* @var $photos360Form core\forms\manage\Shop\Product\Photos360Form */
 /* @var $relatedForm core\forms\manage\Shop\Product\RelatedForm */
 /* @var $buyWithForm core\forms\manage\Shop\Product\BuyWithForm */
-/* @var $modificationsProvider yii\data\ActiveDataProvider */
+/* @var $modificationAssignmentsProvider yii\data\ActiveDataProvider */
 
 $this->title = $product->name;
 $this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
@@ -301,23 +305,70 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="box-header with-border">Modifications</div>
         <div class="box-body">
             <p>
-                <?= Html::a('Add Modification', ['shop/modification/create', 'product_id' => $product->id], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Assign Modification', ['shop/modification-assign/create', 'id' => $product->id], ['class' => 'btn btn-success']) ?>
             </p>
             <?= GridView::widget([
-                'dataProvider' => $modificationsProvider,
+                'dataProvider' => $modificationAssignmentsProvider,
                 'columns' => [
-                    'code',
-                    'name',
                     [
-                        'attribute' => 'price',
-                        'value' => function (Modification $model) {
-                            return PriceHelper::format($model->price);
+                        'attribute' => 'code',
+                        'value' => function (ModificationAssignment $model) {
+                            return $model->modification->code;
                         },
                     ],
-                    'quantity',
+                    [
+                        'attribute' => 'name',
+                        'value' => function (ModificationAssignment $model) {
+                            return $model->modification->name;
+                        },
+                    ],
+                    [
+                        'attribute' => 'case_code',
+                        'value' => function (ModificationAssignment $model) {
+                            return $model->modification->case_code;
+                        },
+                    ],
+                    [
+                        'attribute' => 'price',
+                        'value' => function (ModificationAssignment $model) {
+                            return PriceHelper::format($model->modification->price);
+                        },
+                    ],
+                    [
+                        'attribute' => 'group_id',
+//                        'filter' => $modificationAssignmentsSearchModel->modificationGroupList(),
+                        'value' => function (ModificationAssignment $model) {
+                            return $model->modification->group->name;
+                        },
+                    ],
+                    'min_qty',
+                    [
+                        'attribute' => 'status',
+                        'filter' => ModificationAssignmentHelper::statusList(),
+                        'value' => function (ModificationAssignment $model) {
+                            return ModificationAssignmentHelper::statusLabel($model->status);
+                        },
+                        'format' => 'raw',
+                    ],
+                    [
+                        'attribute' => 'mod. status',
+                        'filter' => ModificationHelper::statusList(),
+                        'value' => function (ModificationAssignment $model) {
+                            return ModificationHelper::statusLabel($model->modification->status);
+                        },
+                        'format' => 'raw',
+                    ],
+                    [
+                        'attribute' => 'mod. group status',
+                        'filter' => ModificationGroupHelper::statusList(),
+                        'value' => function (ModificationAssignment $model) {
+                            return ModificationGroupHelper::statusLabel($model->modification->group->status);
+                        },
+                        'format' => 'raw',
+                    ],
                     [
                         'class' => ActionColumn::class,
-                        'controller' => 'shop/modification',
+                        'controller' => 'shop/modification-assign',
                         'template' => '{update} {delete}',
                     ],
                 ],

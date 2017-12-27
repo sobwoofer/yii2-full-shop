@@ -2,6 +2,7 @@
 
 namespace core\entities\Shop\Modification;
 
+use core\entities\Shop\Product\ModificationAssignment;
 use yii\db\ActiveRecord;
 use omgdef\multilingual\MultilingualQuery;
 use core\entities\behaviors\FilledMultilingualBehavior;
@@ -17,6 +18,7 @@ use core\entities\behaviors\FilledMultilingualBehavior;
  * @property integer $group_id
  * @property integer $status
  * @property ModificationGroup $group
+ * @property ModificationAssignment[] $modificationAssignments
  */
 class Modification extends ActiveRecord
 {
@@ -63,6 +65,11 @@ class Modification extends ActiveRecord
 //        }
 //        $this->quantity -= $quantity;
 //    }
+
+    public function getModificationAssignments()
+    {
+        return $this->hasMany(ModificationAssignment::class, ['modification_id' => 'id']);
+    }
 
     public function getGroup()
     {

@@ -9,6 +9,7 @@
 namespace core\entities\Shop\Product;
 
 use core\entities\EventTrait;
+use core\entities\Shop\Modification\Modification;
 use core\helpers\LocationHelper;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use core\entities\AggregateRoot;
@@ -59,7 +60,7 @@ use Yii;
  * @property BuyWithAssignment[] $buyWithAssignments
  * @property CategoryAssignment[] $categoryAssignments
  * @property Category[] $categories
- * @property Modification[] $modifications
+ * @property ModificationAssignment[] $modificationAssignments
  * @property TagAssignment[] $tagAssignments
  * @property Tag[] $tags
  * @property Value[] $values
@@ -314,17 +315,7 @@ class Product extends ActiveRecord implements AggregateRoot
         throw new \DomainException('Modification is not found.');
     }
 
-    public function addModification($code, $name, $price, $quantity): void
-    {
-        $modifications = $this->modifications;
-        foreach ($modifications as $modification) {
-            if ($modification->isCodeEqualTo($code)) {
-                throw new \DomainException('Modification already exists.');
-            }
-        }
-        $modifications[] = Modification::create($code, $name, $price, $quantity);
-        $this->updateModifications($modifications);
-    }
+
 
     public function editModification($id, $code, $name, $price, $quantity): void
     {
@@ -352,13 +343,75 @@ class Product extends ActiveRecord implements AggregateRoot
         throw new \DomainException('Modification is not found.');
     }
 
-    private function updateModifications(array $modifications): void
+    private function updateModificationAssignments(array $modificationAssignments): void
     {
-        $this->modifications = $modifications;
-        $this->setQuantity(array_sum(array_map(function (Modification $modification) {
-            return $modification->quantity;
-        }, $this->modifications)));
+        $this->modificationAssignments = $modificationAssignments;
     }
+
+
+//    public function addModificationAssign($minQty, $status, $modificationId): void
+//    {
+//        $modificationAssignments = $this->modificationAssignments;
+//        foreach ($modificationAssignments as $modificationAssignment) {
+//            if ($modificationAssignment->modification->isIdEqualTo($modificationId)) {
+//                throw new \DomainException('Modification already exists.');
+//            }
+//        }
+//
+//        $modifications[] = ModificationAssignment::create($modificationId, $minQty, $status);
+//        $this->updateModifications($modifications);
+//    }
+
+    // Modifications
+
+    /**
+     * @param $id
+     * @param $minQty
+     * @param $status
+     */
+    public function assignModification($id,  $minQty, $status): void
+    {
+        $assignments = $this->modificationAssignments;
+        foreach ($assignments as $assignment) {
+            if ($assignment->isForModification($id)) {
+                throw new \DomainException('Modification already exists.');
+            }
+        }
+        $assignments[] = ModificationAssignment::create($id, $minQty, $status);
+        $this->updateModificationAssignments($assignments);
+    }
+
+    public function editModificationAssign($id,  $minQty, $status)
+    {
+        $assignments = $this->modificationAssignments;
+        foreach ($assignments as $assignment) {
+            if ($assignment->isForModification($id)) {
+                $assignment->edit($minQty, $status);
+                $this->updateModificationAssignments($assignments);
+                return;
+            }
+        }
+        throw new \DomainException('Modification is not found.');
+    }
+
+    public function revokeModification($id): void
+    {
+        $assignments = $this->modificationAssignments;
+        foreach ($assignments as $i => $assignment) {
+            if ($assignment->isForModification($id)) {
+                unset($assignments[$i]);
+                $this->modificationAssignments = $assignments;
+                return;
+            }
+        }
+        throw new \DomainException('Assignment is not fount');
+    }
+
+    public function revokeModifications(): void
+    {
+        $this->modificationAssignments = [];
+    }
+
 
     //warehouses products
     public function addWarehousesProduct(
@@ -836,9 +889,14 @@ class Product extends ActiveRecord implements AggregateRoot
         return $this->hasMany(Tag::class, ['id' => 'tag_id'])->via('tagAssignments');
     }
 
+    public function getModificationAssignments(): ActiveQuery
+    {
+        return $this->hasMany(ModificationAssignment::class, ['product_id' => 'id']);
+    }
+
     public function getModifications(): ActiveQuery
     {
-        return $this->hasMany(Modification::class, ['product_id' => 'id']);
+        return $this->hasMany(Modification::class, ['id' => 'modification_id'])->via('modificationAssignments');
     }
 
     public function getValues(): ActiveQuery
@@ -924,6 +982,7 @@ class Product extends ActiveRecord implements AggregateRoot
                     'relatedAssignments',
                     'buyWithAssignments',
                     'warehousesProducts',
+                    'modificationAssignments',
                     'modifications',
                     'values',
                     'photos',

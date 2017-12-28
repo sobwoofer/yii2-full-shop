@@ -18,6 +18,8 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use romkaChev\yii2\swiper\Swiper;
+use yii\helpers\ArrayHelper;
+
 
 $this->title = $product->name;
 
@@ -241,10 +243,34 @@ $this->params['active_category'] = $product->category;
                             <div class="one_product_details__square">Площадь нанесения
 
                             </div>
-                            <?php if ($modifications = $cartForm->modificationsList()): ?>
-                                <?= $form->field($cartForm, 'modification')
-                                    ->dropDownList($modifications, ['prompt' => '--- Select ---'])
-                                    ->label(false)  ?>
+
+                                <?php if ($modificationGroups = $cartForm->modificationsList()): ?>
+                                    <?php foreach ($modificationGroups as $key => $assignments): ?>
+                                        <?php
+//                                    var_dump($modifications);
+//                                    die();
+                                       ?>
+                                        <?= $form->field($cartForm, '[' . $key . ']modifications')
+                                            ->dropDownList(
+                                                ArrayHelper::map($assignments, 'modification.id', 'modification.name'),
+                                                ['prompt' => 'select mod',  'options' => $cartForm->getModificationDataAttributes()])
+                                            ->label('')  ?>
+                                    <?php endforeach; ?>
+
+
+                                <?php foreach ($modificationGroups as $key => $assignments): ?>
+                                    <div class="col-sm-12">
+                                        <label for="modificationGroup-<?= $key ?>"> <?= reset($assignments)->modification->group->name ?></label> <br>
+                                        <select id="modificationGroup-<?= $key ?>" name="<?= '[' . $key . ']modifications' ?>">
+                                            <?php foreach ($assignments as $assignment) { ?>
+                                                <option data-price="<?= $assignment->modification->price ?>"
+                                                        data-min-qty="<?= $assignment->min_qty ?>">
+                                                    <?= $assignment->modification->name ?>
+                                                </option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                <?php endforeach; ?>
                             <?php endif; ?>
 
                             <div class="dropdown dropdown__one_product_details">

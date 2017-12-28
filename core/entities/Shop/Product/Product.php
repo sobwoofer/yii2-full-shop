@@ -10,6 +10,7 @@ namespace core\entities\Shop\Product;
 
 use core\entities\EventTrait;
 use core\entities\Shop\Modification\Modification;
+use core\entities\Shop\Modification\ModificationGroup;
 use core\helpers\LocationHelper;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use core\entities\AggregateRoot;
@@ -61,6 +62,8 @@ use Yii;
  * @property CategoryAssignment[] $categoryAssignments
  * @property Category[] $categories
  * @property ModificationAssignment[] $modificationAssignments
+ * @property Modification[] $modifications
+ * @property ModificationGroup[] $modificationGroups
  * @property TagAssignment[] $tagAssignments
  * @property Tag[] $tags
  * @property Value[] $values
@@ -897,6 +900,11 @@ class Product extends ActiveRecord implements AggregateRoot
     public function getModifications(): ActiveQuery
     {
         return $this->hasMany(Modification::class, ['id' => 'modification_id'])->via('modificationAssignments');
+    }
+
+    public function getModificationGroups(): ActiveQuery
+    {
+        return $this->hasMany(ModificationGroup::class, ['id' => 'group_id'])->via('modifications');
     }
 
     public function getValues(): ActiveQuery

@@ -71,31 +71,44 @@ class CartController extends Controller
         if (!$product = $this->products->find($id)) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-
-        if (!$product->modifications) {
-            try {
-                $this->service->add($product->id, null, 1);
-                Yii::$app->session->setFlash('success', 'Success!');
-                return $this->redirect(Yii::$app->request->referrer);
-            } catch (\DomainException $e) {
-                Yii::$app->errorHandler->logException($e);
-                Yii::$app->session->setFlash('error', $e->getMessage());
-            }
-        }
-
         $this->layout = 'blank';
 
         $form = new AddToCartForm($product);
+        var_dump($form);
+        die();
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
-                $this->service->add($product->id, $form->modification, $form->quantity);
+                //if product does not have any modifications that will add him to cart and return
+                if (!$product->modificationAssignments) {
+                    $this->service->add($product->id, null, $form->quantity);
+                } else {
+                    $this->service->add($product->id, $form->modifications, $form->quantity);
+                }
+
                 return $this->redirect(['index']);
             } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
+
+//        if (!$product->modificationAssignments) {
+//            try {
+//                $this->service->add($product->id, null, 1);
+//                Yii::$app->session->setFlash('success', 'Success!');
+//                return $this->redirect(Yii::$app->request->referrer);
+//            } catch (\DomainException $e) {
+//                Yii::$app->errorHandler->logException($e);
+//                Yii::$app->session->setFlash('error', $e->getMessage());
+//            }
+//        }
+
+
+
+
+
+
 
         return $this->render('add', [
             'product' => $product,

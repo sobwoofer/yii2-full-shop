@@ -135,7 +135,7 @@ class CartController extends Controller
 
         if ($form->validate()) {
             try {
-                $this->service->add($product->id, $form);
+                $this->service->add($product->id, $form->modifications, $form->quantity);
                 Yii::$app->getResponse()->setStatusCode(201);
                 return [];
             } catch (\DomainException $e) {

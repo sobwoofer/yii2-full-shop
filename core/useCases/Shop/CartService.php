@@ -33,14 +33,18 @@ class CartService
     public function add($productId, $modifications, $quantity): void
     {
         $product = $this->products->get($productId);
-        if ($modifications) {
 
-            foreach ($modifications as $modification) {
-                $modId = $modificationId ? $product->getModification($modificationId)->id : null;
+        if ($modifications) {
+            foreach ($modifications as $id) {
+                $assignment = $product->getModificationAssign($id);
+                if (!$assignment->isActive()) {
+                    break;
+                }
+                $modificationAssignments[] = $assignment;
             }
         }
 
-        $this->cart->add(new CartItem($product, $modifications, $form->quantity));
+        $this->cart->add(new CartItem($product, $modificationAssignments ?? null, $quantity));
     }
 
     public function set($id, $quantity): void

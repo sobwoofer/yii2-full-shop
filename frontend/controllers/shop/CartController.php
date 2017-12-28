@@ -74,8 +74,7 @@ class CartController extends Controller
         $this->layout = 'blank';
 
         $form = new AddToCartForm($product);
-        var_dump($form);
-        die();
+
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {

@@ -14,6 +14,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
+use yii\helpers\ArrayHelper;
 
 $this->title = 'Add';
 $this->params['breadcrumbs'][] = ['label' => 'Catalog', 'url' => ['/shop/catalog/index']];
@@ -27,8 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin() ?>
 
-            <?php if ($modifications = $model->modificationsList()): ?>
-                <?= $form->field($model, 'modification')->dropDownList($modifications, ['prompt' => '--- Select ---']) ?>
+            <?php if ($modificationGroups = $model->modificationsList()): ?>
+                <?php foreach ($modificationGroups as $key => $assignments): ?>
+                    <?= $form->field($model, 'modifications[' . $key . ']')
+                        ->dropDownList(
+                            ArrayHelper::map($assignments, 'modification.id', 'modification.name'),
+                            ['prompt' => 'select mod',  'options' => $model->getModificationDataAttributes()])
+                        ->label('')  ?>
+                <?php endforeach; ?>
             <?php endif; ?>
 
             <?= $form->field($model, 'quantity')->textInput() ?>

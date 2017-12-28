@@ -37,7 +37,7 @@ use yii\helpers\Html;
     <?php foreach ($cart->getItems() as $item): ?>
     <?php
     $product = $item->getProduct();
-    $modification = $item->getModification();
+    $modification = $item->getModificationAssignments();
     $cost = $cart->getCost();
     $url = Url::to(['/shop/catalog/product', 'id' => $product->id]);
     ?>

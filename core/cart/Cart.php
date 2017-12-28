@@ -91,7 +91,7 @@ class Cart
     public function getCost(): Cost
     {
         $this->loadItems();
-        return $this->calculator->getCost($this->items);
+        return $this->calculator->getCost($this->items);//TODO need that its calculate discount without modifications;
     }
 
     public function getWeight(): int

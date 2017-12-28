@@ -229,19 +229,22 @@ class Product extends ActiveRecord implements AggregateRoot
     }
 
     /**
-     * method is disabled because we do not want to validate qty and don't use its
-     * @param $modificationId
-     * @param $quantity
-     * @return bool
+     * @param integer $quantity
+     * @param ModificationAssignment[] $modificationAssignments
+     * @return void
      */
-    public function canBeCheckout($modificationId, $quantity): bool
+    public function canBeCheckout($modificationAssignments, $quantity): void
     {
-        return true;
-
-        if ($modificationId) {
-            return $quantity <= $this->getModification($modificationId)->quantity;
+        if ($modificationAssignments) {
+            foreach ($modificationAssignments as $assignment) {
+                if ($assignment->min_qty > $quantity){
+                    throw new \DomainException('Quantity is less for someone modification.');
+                }
+            }
         }
-        return $quantity <= $this->quantity;
+        if ($quantity <= $this->warehousesProduct->quantity) {
+            throw new \DomainException('Quantity is too big.');
+        }
     }
 
     public function checkout($modificationId, $quantity): void
@@ -298,21 +301,21 @@ class Product extends ActiveRecord implements AggregateRoot
 
     // Modification
 
-    public function getModification($id): Modification
+    public function getModificationAssign($id): ModificationAssignment
     {
-        foreach ($this->modifications as $modification) {
-            if ($modification->isIdEqualTo($id)) {
-                return $modification;
+        foreach ($this->modificationAssignments as $assignment) {
+            if ($assignment->isForModification($id)) {
+                return $assignment;
             }
         }
-        throw new \DomainException('Modification is not found.');
+        throw new \DomainException('ModificationAssignment is not found.');
     }
 
     public function getModificationPrice($id): int
     {
         foreach ($this->modifications as $modification) {
             if ($modification->isIdEqualTo($id)) {
-                return $modification->price ?: $this->price_new;
+                return $modification->price;
             }
         }
         throw new \DomainException('Modification is not found.');
@@ -320,31 +323,31 @@ class Product extends ActiveRecord implements AggregateRoot
 
 
 
-    public function editModification($id, $code, $name, $price, $quantity): void
-    {
-        $modifications = $this->modifications;
-        foreach ($modifications as $i => $modification) {
-            if ($modification->isIdEqualTo($id)) {
-                $modification->edit($code, $name, $price, $quantity);
-                $this->updateModifications($modifications);
-                return;
-            }
-        }
-        throw new \DomainException('Modification is not found.');
-    }
+//    public function editModification($id, $code, $name, $price, $quantity): void
+//    {
+//        $modifications = $this->modifications;
+//        foreach ($modifications as $i => $modification) {
+//            if ($modification->isIdEqualTo($id)) {
+//                $modification->edit($code, $name, $price, $quantity);
+//                $this->updateModifications($modifications);
+//                return;
+//            }
+//        }
+//        throw new \DomainException('Modification is not found.');
+//    }
 
-    public function removeModification($id): void
-    {
-        $modifications = $this->modifications;
-        foreach ($modifications as $i => $modification) {
-            if ($modification->isIdEqualTo($id)) {
-                unset($modifications[$i]);
-                $this->updateModifications($modifications);
-                return;
-            }
-        }
-        throw new \DomainException('Modification is not found.');
-    }
+//    public function removeModification($id): void
+//    {
+//        $modifications = $this->modifications;
+//        foreach ($modifications as $i => $modification) {
+//            if ($modification->isIdEqualTo($id)) {
+//                unset($modifications[$i]);
+//                $this->updateModifications($modifications);
+//                return;
+//            }
+//        }
+//        throw new \DomainException('Modification is not found.');
+//    }
 
     private function updateModificationAssignments(array $modificationAssignments): void
     {

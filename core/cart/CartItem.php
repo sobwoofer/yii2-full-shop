@@ -9,27 +9,34 @@
 namespace core\cart;
 
 use core\entities\Shop\Product\Modification;
+use core\entities\Shop\Product\ModificationAssignment;
 use core\entities\Shop\Product\Product;
 
+/**
+ * Class CartItem
+ * @package core\cart
+ * @property ModificationAssignment[] $modificationAssignments
+ * @property integer $quantity
+ * @property Product $product
+ */
 class CartItem
 {
     private $product;
-    private $modificationId;
+    private $modificationAssignments;
     private $quantity;
 
-    public function __construct(Product $product, $modificationId, $quantity)
+    public function __construct(Product $product, $modificationAssignments, $quantity)
     {
-        if (!$product->canBeCheckout($modificationId, $quantity)) {
-            throw new \DomainException('Quantity is too big.');
-        }
+        $product->canBeCheckout($modificationAssignments, $quantity);
+
         $this->product = $product;
-        $this->modificationId = $modificationId;
+        $this->modificationAssignments = $modificationAssignments;
         $this->quantity = $quantity;
     }
 
     public function getId(): string
     {
-        return md5(serialize([$this->product->id, $this->modificationId]));
+        return md5(serialize([$this->product->id, $this->product->code]));
     }
 
     public function getProductId(): int
@@ -42,35 +49,58 @@ class CartItem
         return $this->product;
     }
 
-    public function getModificationId(): ?int
+    public function getModificationAssignments(): ?array
     {
-        return $this->modificationId;
+        return $this->modificationAssignments;
     }
 
-    public function getModification(): ?Modification
+    public function getModifications(): ?array
     {
-        if ($this->modificationId) {
-            return $this->product->getModification($this->modificationId);
+        foreach ($this->modificationAssignments as $assignment) {
+            $modifications[] = $assignment->modification;
         }
-        return null;
+        return $modifications ?? null;
     }
+
+//    public function getModification(): ?Modification
+//    {
+//        if ($this->modificationId) {
+//            return $this->product->getModification($this->modificationId);
+//        }
+//        return null;
+//    }
 
     public function getQuantity(): int
     {
         return $this->quantity;
     }
 
+    /**
+     * sum all modification's prices of this item product
+     * @return int
+     */
+    public function getModificationsPrice(): int
+    {
+        $total = 0;
+        if ($this->modificationAssignments) {
+            foreach ($this->modificationAssignments as $modificationAssignment) {
+                if ($modificationAssignment->modification->group->depend_qty) {
+                    $total +=  $this->product->getModificationPrice($modificationAssignment->modification_id) * $this->quantity;
+                } else {
+                    $total += $this->product->getModificationPrice($modificationAssignment->modification_id);
+                }
+            }
+        }
+        return $total;
+    }
+
     public function getPrice(): int
     {
-        if ($this->modificationId) {
-            return $this->product->getModificationPrice($this->modificationId);
-        }
         if ($this->product->warehousesProduct->isSpecial()) {
             return $this->product->warehousesProduct->special;
          }
 
         return $this->product->warehousesProduct->price;
-
     }
 
     public function getWeight(): int
@@ -83,14 +113,19 @@ class CartItem
         return $this->getPrice() * $this->quantity;
     }
 
+    public function getFullCost(): int
+    {
+        return $this->getCost() + $this->getModificationsPrice();
+    }
+
     public function plus($quantity)
     {
-        return new static($this->product, $this->modificationId, $this->quantity + $quantity);
+        return new static($this->product, $this->modificationAssignments, $this->quantity + $quantity);
     }
 
     public function changeQuantity($quantity)
     {
-        return new static($this->product, $this->modificationId, $quantity);
+        return new static($this->product, $this->modificationAssignments, $quantity);
     }
 
 }

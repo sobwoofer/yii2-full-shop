@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php foreach ($cart->getItems() as $item): ?>
                     <?php
                     $product = $item->getProduct();
-                    $modification = $item->getModification();
+                    $modificationAssignments = $item->getModificationAssignments();
                     $url = Url::to(['/shop/catalog/product', 'id' => $product->id]);
                     ?>
                     <tr>
@@ -62,8 +62,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             <a href="<?= $url ?>"><?= Html::encode($product->name) ?></a>
                         </td>
                         <td class="text-left">
-                            <?php if ($modification): ?>
-                                <?= Html::encode($modification->name) ?>
+                            <?php if ($modificationAssignments): ?>
+                                <?php foreach ($modificationAssignments as $assignment): ?>
+                                    <?= Html::encode($assignment->modification->name) ?>
+                                <?php endforeach; ?>
                             <?php endif; ?>
                         </td>
                         <td><?= PriceHelper::format($item->getPrice()) ?></td>

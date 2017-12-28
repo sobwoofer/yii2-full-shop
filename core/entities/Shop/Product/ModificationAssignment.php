@@ -49,6 +49,11 @@ class ModificationAssignment extends ActiveRecord
         return $this->modification_id == $id;
     }
 
+    public function isActive()
+    {
+        return $this->status && $this->modification->status && $this->modification->group->status;
+    }
+
     public function getModification(): ActiveQuery
     {
         return $this->hasOne(Modification::class, ['id' => 'modification_id']);

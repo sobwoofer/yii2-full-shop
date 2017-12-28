@@ -17,15 +17,17 @@ use yiidreamteam\upload\ImageUploadBehavior;
 
 /**
  * Class ModificationGroup
- * @package entities\Shop\Modification
+ * @package entities\Shop\ModificationGroup
  * @property integer $id
  * @property integer $status
  * @property string $slug
+ * @property integer $depend_qty
  * @property string $image
  * @property string $name
  * @property string $name_ua
  * @property string $description
  * @property string $description_ua
+ * @property Modification[] $modifications
  *
  * @mixin ImageUploadBehavior
  */
@@ -34,11 +36,12 @@ class ModificationGroup extends ActiveRecord
     const STATUS_ACTIVE = 1;
     const STATUS_DRAFT = 0;
 
-    public static function create($status, $slug, $image, array $names, array $descriptions): self
+    public static function create($status, $slug, $dependQty, $image, array $names, array $descriptions): self
     {
         $group = new static();
         $group->status = $status;
         $group->slug = $slug;
+        $group->depend_qty = $dependQty;
         $group->image = $image;
 
         //$group->name, $group->name_ua...
@@ -55,10 +58,11 @@ class ModificationGroup extends ActiveRecord
         return $group;
     }
 
-    public function edit($status, $slug, $image, array $names, array $descriptions): void
+    public function edit($status, $slug, $dependQty, $image, array $names, array $descriptions): void
     {
         $this->status = $status;
         $this->slug = $slug;
+        $this->depend_qty = $dependQty;
         $this->image = $image;
 
         //$this->name, $this->name_ua...
@@ -75,6 +79,11 @@ class ModificationGroup extends ActiveRecord
     public function setPhoto(UploadedFile $image): void
     {
         $this->image = $image;
+    }
+
+    public function getModifications()
+    {
+        return $this->hasMany(Modification::class, ['group_id' => 'id']);
     }
 
     public function behaviors(): array

@@ -20,6 +20,7 @@ class m171221_100001_create_modification_groups_table extends Migration
         $this->createTable('{{%shop_modification_groups}}', [
             'id' => $this->primaryKey(),
             'status' => $this->smallInteger(1)->notNull()->defaultValue(1),
+            'depend_qty' => $this->smallInteger(1)->notNull()->defaultValue(1),
             'slug' => $this->string()->notNull()->unique(),
             'image' => $this->string(),
         ], $tableOptions);

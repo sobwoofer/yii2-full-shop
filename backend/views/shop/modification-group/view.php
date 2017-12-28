@@ -52,6 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id',
                     'name',
                     'slug',
+                    'depend_qty',
                     'description',
                     [
                         'attribute' => 'status',

@@ -62,6 +62,7 @@ use kartik\widgets\FileInput;
         <div class="box-header with-border">General</div>
         <div class="box-body">
             <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'dependQty')->dropDownList([0,1]) ?>
             <?= $form->field($model, 'status')->dropDownList(\core\helpers\ModificationGroupHelper::statusList()) ?>
         </div>
     </div>

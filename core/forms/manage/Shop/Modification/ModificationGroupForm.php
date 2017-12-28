@@ -25,6 +25,7 @@ class ModificationGroupForm extends Model
 
     public $status;
     public $slug;
+    public $dependQty;
     public $image;
     public $_group;
 
@@ -33,6 +34,7 @@ class ModificationGroupForm extends Model
         if ($group) {
             $this->status = $group->status;
             $this->slug = $group->slug;
+            $this->dependQty = $group->depend_qty;
             foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
                 $this->{'name' . $suffix} = $group->{'name' . $suffix};
                 $this->{'description' . $suffix} = $group->{'description' . $suffix};
@@ -48,7 +50,7 @@ class ModificationGroupForm extends Model
             [LangsHelper::getNamesWithSuffix(['name']), 'required'],
             [LangsHelper::getNamesWithSuffix(['name', 'description']), 'string'],
             [['status', 'slug'], 'required'],
-            ['status', 'integer'],
+            [['status', 'dependQty'], 'integer'],
             [['image'], 'image'],
             ['slug', 'string'],
         ];

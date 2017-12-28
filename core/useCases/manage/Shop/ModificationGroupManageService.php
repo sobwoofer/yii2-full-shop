@@ -39,6 +39,7 @@ class ModificationGroupManageService
         $group = ModificationGroup::create(
             $form->status,
             $form->slug,
+            $form->dependQty,
             $form->image,
             $names,
             $descriptions
@@ -65,6 +66,7 @@ class ModificationGroupManageService
         $group->edit(
             $form->status,
             $form->slug,
+            $form->dependQty,
             $form->image,
             $names,
             $descriptions

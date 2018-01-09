@@ -76,22 +76,33 @@ class CartItem
     }
 
     /**
-     * sum all modification's prices of this item product
+     * sum all modification's prices of this item product in cart
      * @return int
      */
-    public function getModificationsPrice(): int
+    public function getModificationsCost(): int
     {
         $total = 0;
         if ($this->modificationAssignments) {
             foreach ($this->modificationAssignments as $modificationAssignment) {
-                if ($modificationAssignment->modification->group->depend_qty) {
-                    $total +=  $this->product->getModificationPrice($modificationAssignment->modification_id) * $this->quantity;
-                } else {
-                    $total += $this->product->getModificationPrice($modificationAssignment->modification_id);
-                }
+                $total += $this->getModificationCost($modificationAssignment->modification_id);
             }
         }
         return $total;
+    }
+
+    public function getModificationCost($id): int
+    {
+        $result = 0;
+        foreach ($this->modificationAssignments as $modificationAssignment) {
+            if ($modificationAssignment->modification->isIdEqualTo($id)) {
+                if ($modificationAssignment->modification->group->depend_qty) {
+                    $result = $this->product->getModificationPrice($modificationAssignment->modification_id) * $this->quantity;
+                } else {
+                    $result =  $this->product->getModificationPrice($modificationAssignment->modification_id);
+                }
+            }
+        }
+        return $result;
     }
 
     public function getPrice(): int
@@ -115,7 +126,7 @@ class CartItem
 
     public function getFullCost(): int
     {
-        return $this->getCost() + $this->getModificationsPrice();
+        return $this->getCost() + $this->getModificationsCost();
     }
 
     public function plus($quantity)

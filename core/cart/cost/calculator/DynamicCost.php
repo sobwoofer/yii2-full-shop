@@ -33,7 +33,7 @@ class DynamicCost implements CalculatorInterface
         foreach ($discounts as $discount) {
             if ($discount->isEnabled()) {
                 $new = new CartDiscount($cost->getOrigin() * $discount->percent / 100, $discount->name);
-                $cost = $cost->withDiscount($new);
+                $cost = $cost->withDiscount($new, $cost->getOriginModifications());
             }
         }
 

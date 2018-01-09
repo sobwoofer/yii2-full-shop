@@ -12,17 +12,29 @@ namespace core\cart\cost;
 final class Cost
 {
     private $value;
+    private $modificationsValue;
     private $discounts = [];
 
-    public function __construct(float $value, array $discounts = [])
+    public function __construct(float $value, float $modificationsValue = 0,  array $discounts = [])
     {
         $this->value = $value;
+        $this->modificationsValue = $modificationsValue;
         $this->discounts = $discounts;
     }
 
-    public function withDiscount(Discount $discount): self
+    public function withDiscount(Discount $discount, $modificationsValue = 0): self
     {
-        return new static($this->value, array_merge($this->discounts, [$discount]));
+        return new static($this->value, $modificationsValue, array_merge($this->discounts, [$discount]));
+    }
+
+    public function getOriginWithModifications(): float
+    {
+        return $this->value + $this->modificationsValue;
+    }
+
+    public function getOriginModifications(): float
+    {
+        return $this->modificationsValue;
     }
 
     public function getOrigin(): float

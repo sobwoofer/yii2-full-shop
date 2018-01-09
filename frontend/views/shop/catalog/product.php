@@ -240,9 +240,7 @@ $this->params['active_category'] = $product->category;
                             <div class="one_product_details__summary">Итого: <span>1512.00 грн</span></div>
                         </div>
                         <div class="one_product_details__item clearfix">
-                            <div class="one_product_details__square">Площадь нанесения
 
-                            </div>
 
                             <?php if ($modificationGroups = $cartForm->modificationsList()): ?>
                                 <?php foreach ($modificationGroups as $key => $assignments): ?>
@@ -250,19 +248,20 @@ $this->params['active_category'] = $product->category;
                                         ->dropDownList(
                                             ArrayHelper::map($assignments, 'modification.id', 'modification.name'),
                                             ['prompt' => 'select mod',  'options' => $cartForm->getModificationDataAttributes()])
-                                        ->label('')  ?>
+                                        ->label(reset($assignments)->modification->group->name)  ?>
                                 <?php endforeach; ?>
                             <?php endif; ?>
-
-                            <div class="dropdown dropdown__one_product_details">
-                                <button class="dropdown-toggle dropdown_button__one_product_details" type="button" data-toggle="dropdown">Выберите размер
-                                    <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">601-1247 см.кв.</a></li>
-                                    <li><a href="#">501-0000 см.кв.</a></li>
-                                    <li><a href="#">404-6666 см.кв</a></li>
-                                </ul>
-                            </div>
+<!--                            <div class="one_product_details__square">Площадь нанесения-->
+<!--                            </div>-->
+<!--                            <div class="dropdown dropdown__one_product_details">-->
+<!--                                <button class="dropdown-toggle dropdown_button__one_product_details" type="button" data-toggle="dropdown">Выберите размер-->
+<!--                                    <span class="caret"></span></button>-->
+<!--                                <ul class="dropdown-menu">-->
+<!--                                    <li><a href="#">601-1247 см.кв.</a></li>-->
+<!--                                    <li><a href="#">501-0000 см.кв.</a></li>-->
+<!--                                    <li><a href="#">404-6666 см.кв</a></li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
                         </div>
                     </div>
                     <?php ActiveForm::end() ?>

@@ -59,14 +59,17 @@ $this->params['breadcrumbs'][] = $this->title;
                             </a>
                         </td>
                         <td>
-                            <a href="<?= $url ?>"><?= Html::encode($product->name) ?></a>
-                        </td>
-                        <td class="text-left">
+                            <a href="<?= $url ?>"><?= Html::encode($product->name) ?></a> <br>
                             <?php if ($modificationAssignments): ?>
                                 <?php foreach ($modificationAssignments as $assignment): ?>
-                                    <?= Html::encode($assignment->modification->name) ?>
+                                    <span><?= Html::encode($assignment->modification->name) ?>
+                                        (<?= PriceHelper::format($item->getModificationCost($assignment->modification_id)) ?>), </span>
                                 <?php endforeach; ?>
                             <?php endif; ?>
+                        </td>
+                        <td class="text-left">
+                            <?= $product->code ?>
+
                         </td>
                         <td><?= PriceHelper::format($item->getPrice()) ?></td>
                         <td>0%</td>
@@ -81,8 +84,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                             <?= Html::endForm() ?>
                         </td>
-                        <td><?= PriceHelper::format($item->getCost()) ?></td>
-                        <td>В наличие</td>
+                        <td><?= PriceHelper::format($item->getFullCost()) ?></td>
+                        <td><?= $product->warehousesProduct->extraStatus->name ?></td>
                     </tr>
                 <?php endforeach; ?>
             </table>
@@ -253,7 +256,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <div class="col-sm-6 text-left-xs">
                     <p class="text-right link-in-p">Доставка согласно <a href="#/">тарифов перевозчика </a>Новая почта</p>
-                    <p class="text-right"><b>Стоимость (включая НДС): <span class="red price"><?= PriceHelper::format($cost->getOrigin()) ?></span></b></p>
+                    <p class="text-right"><b>Стоимость (включая НДС): <span class="red price"><?= PriceHelper::format($cost->getOriginWithModifications()) ?></span></b></p>
                     <?php foreach ($cost->getDiscounts() as $discount): ?>
                         <p class="text-right"><?= Html::encode($discount->getName()) ?>: <span class="red"><?= PriceHelper::format($discount->getValue()) ?></span></p>
                     <?php endforeach; ?>

@@ -51,6 +51,7 @@
                             'items' => [
                                 ['label' => 'Delivery Terms', 'icon' => 'file-o', 'url' => ['/shop/delivery-term/index'], 'active' => $this->context->id == 'shop/delivery-term'],
                                 ['label' => 'Extra Statuses', 'icon' => 'file-o', 'url' => ['/shop/extra-status/index'], 'active' => $this->context->id == 'shop/extra-status'],
+                                ['label' => 'Discounts', 'icon' => 'file-o', 'url' => ['/shop/discount/index'], 'active' => $this->context->id == 'shop/discount'],
 
                             ]
                         ],

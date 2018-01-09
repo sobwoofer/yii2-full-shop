@@ -9,10 +9,13 @@
 namespace core\entities\Shop\queries;
 
 
+use omgdef\multilingual\MultilingualTrait;
 use yii\db\ActiveQuery;
 
 class DiscountQuery extends ActiveQuery
 {
+    use MultilingualTrait;
+
     public function active()
     {
         return $this->andWhere(['active' => true]);

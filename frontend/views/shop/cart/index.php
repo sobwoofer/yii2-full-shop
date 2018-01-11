@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <button class="custom-btn"><span class="icon"><img src="/images/system/printer.png" alt="">&nbsp;&nbsp;Распечатать</span></button>
             <button class="custom-btn"><span class="icon"><img src="/images/system/download.png" alt="">&nbsp;&nbsp;Скачать</span></button>
         </div>
-
+        <?php $cost = $cart->getCost() ?>
         <div class="cart-table-wrp">
             <div class="cart-table-wrp-overflow" style="    overflow-x: auto;">
             <table>
@@ -71,8 +71,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= $product->code ?>
 
                         </td>
-                        <td><?= PriceHelper::format($item->getPrice()) ?></td>
-                        <td>0%</td>
+                        <td><?= PriceHelper::format($item->getPrice()) ?>
+                            <?= PriceHelper::format($item->getPrice()) ?></td>
+                        <td><?php var_dump($cost); ?></td>
                         <td>
                             <?= Html::beginForm(['quantity', 'id' => $item->getId()]); ?>
                             <div class="input-group btn-block" style="max-width: 200px;">
@@ -96,7 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <li><a href="#">Удалить</a></li>
                 </ul>
             </div>
-            <?php $cost = $cart->getCost() ?>
+
             <div class="cart-table-mobile">
                 <div class="mobile--item">
                     <p class="mobile--item--title">Мультифункциональное устройство MECANIX, красный</p>
@@ -256,7 +257,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <div class="col-sm-6 text-left-xs">
                     <p class="text-right link-in-p">Доставка согласно <a href="#/">тарифов перевозчика </a>Новая почта</p>
-                    <p class="text-right"><b>Стоимость (включая НДС): <span class="red price"><?= PriceHelper::format($cost->getOriginWithModifications()) ?></span></b></p>
+                    <p class="text-right"><b>Стоимость (включая НДС): <span class="red price"><?= PriceHelper::format($cost->getOriginWithoutDiscount()) ?></span></b></p>
                     <?php foreach ($cost->getDiscounts() as $discount): ?>
                         <p class="text-right"><?= Html::encode($discount->getName()) ?>: <span class="red"><?= PriceHelper::format($discount->getValue()) ?></span></p>
                     <?php endforeach; ?>

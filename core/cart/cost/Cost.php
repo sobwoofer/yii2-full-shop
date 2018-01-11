@@ -13,23 +13,25 @@ final class Cost
 {
     private $value;
     private $modificationsValue;
+    private $specialValue;
     private $discounts = [];
 
-    public function __construct(float $value, float $modificationsValue = 0,  array $discounts = [])
+    public function __construct(float $value, float $specialValue, float $modificationsValue, array $discounts = [])
     {
         $this->value = $value;
         $this->modificationsValue = $modificationsValue;
+        $this->specialValue = $specialValue;
         $this->discounts = $discounts;
     }
 
-    public function withDiscount(Discount $discount, $modificationsValue = 0): self
+    public function withDiscount(Discount $discount, $specialValue = 0, $modificationsValue = 0): self
     {
-        return new static($this->value, $modificationsValue, array_merge($this->discounts, [$discount]));
+        return new static($this->value, $specialValue, $modificationsValue, array_merge($this->discounts, [$discount]));
     }
 
-    public function getOriginWithModifications(): float
+    public function getOriginWithoutDiscount(): float
     {
-        return $this->value + $this->modificationsValue;
+        return $this->getOrigin() + $this->getOriginModifications() + $this->getOriginSpecial();
     }
 
     public function getOriginModifications(): float
@@ -42,11 +44,16 @@ final class Cost
         return $this->value;
     }
 
+    public function getOriginSpecial(): float
+    {
+        return $this->specialValue;
+    }
+
     public function getTotal(): float
     {
         return $this->value - array_sum(array_map(function (Discount $discount) {
                 return $discount->getValue();
-            }, $this->discounts));
+            }, $this->discounts)) + $this->getOriginModifications() + $this->getOriginSpecial();
     }
 
     /**

@@ -99,7 +99,7 @@ class WarehousesProduct extends ActiveRecord
 
     public function isSpecial(): ?bool
     {
-        return $this->special && $this->special_start < time() && $this->special_end > time() && $this->special;
+        return $this->special_status && $this->special && $this->special_start < time() && ($this->special_end ? $this->special_end > time() : true);
     }
 
 

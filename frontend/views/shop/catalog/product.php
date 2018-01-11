@@ -170,8 +170,6 @@ $this->params['active_category'] = $product->category;
                     </div>
                     <div class="clearfix"></div>
 
-
-
                     <?php if ($product->warehousesProduct->isSpecial() && $product->warehousesProduct->special_end): ?>
                         <!--color pick-->
                         <div class="timer_wrp one-product">

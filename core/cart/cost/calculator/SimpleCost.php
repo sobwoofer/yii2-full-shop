@@ -17,6 +17,7 @@ use core\cart\cost\Cost;
  */
 class SimpleCost implements CalculatorInterface
 {
+
     /**
      * @param CartItem[] $items
      * @return Cost
@@ -24,12 +25,20 @@ class SimpleCost implements CalculatorInterface
     public function getCost(array $items): Cost
     {
         $cost = 0;
+        $specialCost = 0;
         $modificationsCost = 0;
+
         foreach ($items as $item) {
-            $cost += $item->getCost();
+            if (!$item->isSpecial()) {
+                $cost += $item->getCost();
+            } else {
+                $specialCost += $item->getCost();
+            }
             $modificationsCost += $item->getModificationsCost();
         }
-        return new Cost($cost, $modificationsCost);
+        return new Cost($cost, $specialCost, $modificationsCost);
     }
+
+
 
 }

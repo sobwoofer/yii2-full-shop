@@ -54,12 +54,14 @@ class CartItem
         return $this->modificationAssignments;
     }
 
-    public function getModifications(): ?array
+    public function getModifications(): array
     {
-        foreach ($this->modificationAssignments as $assignment) {
-            $modifications[] = $assignment->modification;
+        if ($modificationAssignments = $this->modificationAssignments){
+            foreach ($this->modificationAssignments as $assignment) {
+                $modifications[] = $assignment->modification;
+            }
         }
-        return $modifications ?? null;
+        return $modifications ?? [];
     }
 
 //    public function getModification(): ?Modification
@@ -107,11 +109,16 @@ class CartItem
 
     public function getPrice(): int
     {
-        if ($this->product->warehousesProduct->isSpecial()) {
+        if ($this->isSpecial()) {
             return $this->product->warehousesProduct->special;
          }
 
         return $this->product->warehousesProduct->price;
+    }
+
+    public function isSpecial(): bool
+    {
+        return $this->product->warehousesProduct->isSpecial();
     }
 
     public function getWeight(): int

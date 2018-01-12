@@ -41,6 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'description',
                     'percent',
                     'sort',
+                    'min_cost',
+                    'max_cost',
                     [
                         'attribute' => 'from date',
                         'value' => function (Discount $model) {

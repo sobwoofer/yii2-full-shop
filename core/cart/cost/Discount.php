@@ -13,16 +13,23 @@ final class Discount
 {
     private $value;
     private $name;
+    private $percent;
 
-    public function __construct(float $value, string $name)
+    public function __construct(float $value, string $name, int $percent)
     {
         $this->value = $value;
         $this->name = $name;
+        $this->percent = $percent;
     }
 
     public function getValue(): float
     {
         return $this->value;
+    }
+
+    public function getPercent(): float
+    {
+        return $this->percent;
     }
 
     public function getName(): string

@@ -9,6 +9,11 @@
 
 namespace core\cart\cost;
 
+/**
+ * Class Cost
+ * @package core\cart\cost
+ * @property Discount[] $discounts
+ */
 final class Cost
 {
     private $value;
@@ -42,6 +47,16 @@ final class Cost
     public function getOrigin(): float
     {
         return $this->value;
+    }
+
+
+    public function getDiscountPercent(): int
+    {
+        $result = 0;
+        foreach ($this->discounts as $discount) {
+            $result += $discount->getPercent() ?? 0;
+        }
+        return $result;
     }
 
     public function getOriginSpecial(): float

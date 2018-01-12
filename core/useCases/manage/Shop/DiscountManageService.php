@@ -32,7 +32,16 @@ class DiscountManageService
             $descriptions['description' . $suffix] = $form->{'description' . $suffix};
         }
 
-        $discount = Discount::create($form->percent, $names, $descriptions, $form->fromDate, $form->toDate, $form->sort);
+        $discount = Discount::create(
+            $form->percent,
+            $names,
+            $descriptions,
+            $form->fromDate,
+            $form->toDate,
+            $form->sort,
+            $form->minCost,
+            $form->maxCost
+        );
 
         $this->discounts->save($discount);
 
@@ -50,7 +59,16 @@ class DiscountManageService
             $descriptions['description' . $suffix] = $form->{'description' . $suffix};
         }
 
-        $discount->edit($form->percent, $names, $descriptions, $form->fromDate, $form->toDate, $form->sort);
+        $discount->edit(
+            $form->percent,
+            $names,
+            $descriptions,
+            $form->fromDate,
+            $form->toDate,
+            $form->sort,
+            $form->minCost,
+            $form->maxCost
+        );
 
         $this->discounts->save($discount);
     }

@@ -60,20 +60,26 @@ $this->params['breadcrumbs'][] = $this->title;
                         </td>
                         <td>
                             <a href="<?= $url ?>"><?= Html::encode($product->name) ?></a> <br>
-                            <?php if ($modificationAssignments): ?>
-                                <?php foreach ($modificationAssignments as $assignment): ?>
-                                    <span><?= Html::encode($assignment->modification->name) ?>
-                                        (<?= PriceHelper::format($item->getModificationCost($assignment->modification_id)) ?>), </span>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
+
                         </td>
                         <td class="text-left">
                             <?= $product->code ?>
 
                         </td>
-                        <td><?= PriceHelper::format($item->getPrice()) ?>
-                            <?= PriceHelper::format($item->getPrice()) ?></td>
-                        <td><?php var_dump($cost); ?></td>
+                        <td>
+                            <?php if ($item->isSpecial()): ?>
+                                <span><?= PriceHelper::format($product->warehousesProduct->price) ?></span>
+                                <span class="text-danger"><?= PriceHelper::format($item->getPrice()) ?></span>
+                            <?php elseif ($item->isDiscounted($cost->getDiscountPercent())): ?>
+                                <span><?= PriceHelper::format($item->getPrice()) ?></span>
+                                <span class="text-danger"><?= PriceHelper::format($item->getDiscountedPrice($cost->getDiscountPercent())) ?></span>
+                            <?php else: ?>
+                                <?= PriceHelper::format($item->getPrice()) ?>
+                            <?php endif; ?>
+                           </td>
+                        <td>
+                            <?= PriceHelper::percent($item->getDiscountPercent($cost->getDiscountPercent())) ?>
+                        </td>
                         <td>
                             <?= Html::beginForm(['quantity', 'id' => $item->getId()]); ?>
                             <div class="input-group btn-block" style="max-width: 200px;">
@@ -85,9 +91,23 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                             <?= Html::endForm() ?>
                         </td>
-                        <td><?= PriceHelper::format($item->getFullCost()) ?></td>
+                        <td><?= PriceHelper::format($item->getCostWithDiscount($cost->getDiscountPercent())) ?></td>
                         <td><?= $product->warehousesProduct->extraStatus->name ?></td>
                     </tr>
+                    <?php if ($modificationAssignments): ?>
+                        <?php foreach ($modificationAssignments as $assignment): ?>
+                            <tr class="modification">
+                                <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                                <td><?= Html::encode($assignment->modification->name) ?></td>
+                                <td><?= $assignment->modification->code ?></td>
+                                <td><?= PriceHelper::format($product->getModificationPrice($assignment->modification_id)) ?></td>
+                                <td></td>
+                                <td><?= $item->getQuantity() ?></td>
+                                <td><?= PriceHelper::format($item->getModificationCost($assignment->modification_id)) ?></td>
+                                <td></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </table>
             </div>
@@ -257,7 +277,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <div class="col-sm-6 text-left-xs">
                     <p class="text-right link-in-p">Доставка согласно <a href="#/">тарифов перевозчика </a>Новая почта</p>
-                    <p class="text-right"><b>Стоимость (включая НДС): <span class="red price"><?= PriceHelper::format($cost->getOriginWithoutDiscount()) ?></span></b></p>
+                    <p class="text-right"><b>Стоимость без скидки (включая НДС): <span class="red price"><?= PriceHelper::format($cost->getOriginWithoutDiscount()) ?></span></b></p>
                     <?php foreach ($cost->getDiscounts() as $discount): ?>
                         <p class="text-right"><?= Html::encode($discount->getName()) ?>: <span class="red"><?= PriceHelper::format($discount->getValue()) ?></span></p>
                     <?php endforeach; ?>

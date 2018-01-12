@@ -102,6 +102,15 @@ class WarehousesProduct extends ActiveRecord
         return $this->special_status && $this->special && $this->special_start < time() && ($this->special_end ? $this->special_end > time() : true);
     }
 
+    public function getSpecialPercent()
+    {
+        $result = 0;
+        if ($this->isSpecial()) {
+            $result =  ($this->price - $this->special) / ($this->price / 100);
+        }
+        return $result;
+    }
+
 
     //Relations
     public function getWarehouse(): ActiveQuery

@@ -29,7 +29,7 @@ class SimpleCost implements CalculatorInterface
         $modificationsCost = 0;
 
         foreach ($items as $item) {
-            if (!$item->isSpecial()) {
+            if ($item->isCanDiscount()) {
                 $cost += $item->getCost();
             } else {
                 $specialCost += $item->getCost();

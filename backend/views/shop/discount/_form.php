@@ -36,6 +36,8 @@ use kartik\widgets\DateTimePicker;
                 ]) ?>
             <?= $form->field($model, 'active')->dropDownList([0, 1]) ?>
             <?= $form->field($model, 'sort')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'minCost')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'maxCost')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
         </div>
     </div>

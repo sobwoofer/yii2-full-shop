@@ -18,6 +18,8 @@ use yii\base\Model;
  * Class DiscountForm
  * @package forms\manage\Shop
  * @property integer $percent;
+ * @property float $minCost;
+ * @property float $maxCost;
  * @property string $fromDate;
  * @property string $toDate;
  * @property string $name;
@@ -36,6 +38,8 @@ class DiscountForm extends Model
     public $toDate;
     public $active;
     public $sort;
+    public $minCost;
+    public $maxCost;
 
     public function __construct(Discount $discount = null, array $config = [])
     {
@@ -45,6 +49,8 @@ class DiscountForm extends Model
             $this->toDate = $discount->to_date;
             $this->active = $discount->active;
             $this->sort = $discount->sort;
+            $this->minCost = $discount->min_cost;
+            $this->maxCost = $discount->max_cost;
 
             foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
                 $this->{'name' . $suffix} = $discount->{'name' . $suffix};
@@ -58,8 +64,8 @@ class DiscountForm extends Model
     {
         return [
             [LangsHelper::getNamesWithSuffix(['name']), 'required'],
-            [['active', 'percent'], 'required'],
-            [['percent', 'active', 'sort'], 'integer'],
+            [['active', 'percent', 'sort'], 'required'],
+            [['percent', 'active', 'sort', 'minCost', 'maxCost'], 'integer'],
             [LangsHelper::getNamesWithSuffix(['name', 'description']), 'string'],
             [['fromDate', 'toDate'], 'string']
         ];

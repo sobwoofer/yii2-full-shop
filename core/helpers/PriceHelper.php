@@ -21,4 +21,10 @@ class PriceHelper
         return ' грн.';
     }
 
+    public static function percent($percent)
+    {
+        return number_format($percent, 0, '.', ' ') . '%';
+
+    }
+
 }

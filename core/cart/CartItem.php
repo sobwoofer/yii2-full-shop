@@ -8,6 +8,7 @@
 
 namespace core\cart;
 
+use core\cart\cost\Discount;
 use core\entities\Shop\Product\Modification;
 use core\entities\Shop\Product\ModificationAssignment;
 use core\entities\Shop\Product\Product;
@@ -92,6 +93,11 @@ class CartItem
         return $total;
     }
 
+    public function isCanDiscount()
+    {
+        return !$this->isSpecial() && $this->product->category->isBeInDiscount() && $this->product->isBeInDiscount();
+    }
+
     public function getModificationCost($id): int
     {
         $result = 0;
@@ -121,6 +127,8 @@ class CartItem
         return $this->product->warehousesProduct->isSpecial();
     }
 
+
+
     public function getWeight(): int
     {
         return $this->product->weight * $this->quantity;
@@ -129,6 +137,39 @@ class CartItem
     public function getCost(): int
     {
         return $this->getPrice() * $this->quantity;
+    }
+
+    public function getDiscountPercent($discountPercent)
+    {
+        if (!$this->isSpecial() && $this->isCanDiscount()) {
+            $result = $discountPercent;
+        } else {
+            $result = $this->product->warehousesProduct->getSpecialPercent();
+        }
+        return $result;
+    }
+
+    public function isDiscounted($discountPercent)
+    {
+        return $this->isCanDiscount() && $discountPercent > 0;
+    }
+
+    public function getDiscountedPrice($discountPercent)
+    {
+        return $this->getPrice()  - $this->getPrice() / 100 * $discountPercent;
+    }
+
+    /**
+     * @param int $discountPercent
+     * @return float
+     */
+    public function getCostWithDiscount($discountPercent): float
+    {
+
+        if (!$this->isSpecial() && $this->isCanDiscount()) {
+            $result = $this->getCost() - $this->getCost() / 100 * $discountPercent;
+        }
+        return $result ?? $this->getCost();
     }
 
     public function getFullCost(): int

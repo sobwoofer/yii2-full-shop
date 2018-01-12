@@ -33,6 +33,7 @@ use Yii;
 /**
  * @property integer $id
  * @property integer $created_at
+ * @property integer $be_in_discount
  * @property string $code
  * @property string $name
  * @property string $title
@@ -297,6 +298,11 @@ class Product extends ActiveRecord implements AggregateRoot
             }
         }
         return Value::blank($id);
+    }
+
+    public function isBeInDiscount(): bool
+    {
+        return boolval($this->be_in_discount);
     }
 
     // Modification

@@ -20,6 +20,7 @@ use yii\web\UploadedFile;
 /**
  * @property string $slug
  * @property integer $parentId
+ * @property integer $beInDiscount
  * @property string $name
  * @property string $title
  * @property string $description
@@ -34,6 +35,7 @@ class CategoryForm extends CompositeForm
     public $name;
     public $image;
     public $slug;
+    public $beInDiscount;
     public $title;
     public $description;
     public $parentId;
@@ -51,6 +53,7 @@ class CategoryForm extends CompositeForm
             }
 
             $this->slug = $category->slug;
+            $this->beInDiscount = $category->be_in_discount;
             $this->parentId = $category->parent ? $category->parent->id : null;
 
             $this->_category = $category;
@@ -66,8 +69,9 @@ class CategoryForm extends CompositeForm
     {
         return [
             [LangsHelper::getNamesWithSuffix(['name']), 'required'],
+            ['beInDiscount', 'required'],
             [['image'], 'image'],
-            [['parentId'], 'integer'],
+            [['parentId', 'beInDiscount'], 'integer'],
             [LangsHelper::getNamesWithSuffix(['title', 'name']), 'string', 'max' => 255],
             ['slug', 'string', 'max' => 255],
             [LangsHelper::getNamesWithSuffix(['description']), 'string'],

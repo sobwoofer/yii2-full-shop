@@ -15,6 +15,8 @@ use core\entities\behaviors\FilledMultilingualBehavior;
 /**
  * @property integer $id
  * @property integer $percent
+ * @property float $max_cost
+ * @property float $min_cost
  * @property string $description
  * @property string $description_ua
  * @property string $name
@@ -26,13 +28,15 @@ use core\entities\behaviors\FilledMultilingualBehavior;
  */
 class Discount extends ActiveRecord
 {
-    public static function create($percent, $names, $descriptions, $fromDate, $toDate, $sort): self
+    public static function create($percent, $names, $descriptions, $fromDate, $toDate, $sort, $minCost, $maxCost): self
     {
         $discount = new static();
         $discount->percent = $percent;
         $discount->from_date = $fromDate;
         $discount->to_date = $toDate;
         $discount->sort = $sort;
+        $discount->min_cost = $minCost;
+        $discount->max_cost = $maxCost;
         $discount->active = true;
 
         //$this->$name, $this->$name_ua...
@@ -47,12 +51,14 @@ class Discount extends ActiveRecord
         return $discount;
     }
 
-    public function edit($percent, $names, $descriptions, $fromDate, $toDate, $sort): void
+    public function edit($percent, $names, $descriptions, $fromDate, $toDate, $sort, $minCost, $maxCost): void
     {
         $this->percent = $percent;
         $this->from_date = $fromDate;
         $this->to_date = $toDate;
         $this->sort = $sort;
+        $this->min_cost = $minCost;
+        $this->max_cost = $maxCost;
 
         //$this->$name, $this->$name_ua...
         foreach ($names as $name => $value) {
@@ -77,6 +83,11 @@ class Discount extends ActiveRecord
     public function isEnabled(): bool
     {
         return true;
+    }
+
+    public function isRightCostDiapason($cost)
+    {
+        return ($this->min_cost ? $cost > $this->min_cost : true) && ($this->max_cost ? $cost < $this->max_cost : true);
     }
 
     public static function tableName(): string

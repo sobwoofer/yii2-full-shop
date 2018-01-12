@@ -33,6 +33,7 @@ use core\entities\Shop\Category\CategoryLang;
  * @property integer $lft
  * @property integer $rgt
  * @property integer $depth
+ * @property integer $be_in_discount
  * @property string $image
  * @property Category[] $children
  *
@@ -45,10 +46,11 @@ use core\entities\Shop\Category\CategoryLang;
 class Category extends ActiveRecord
 {
 
-    public static function create(array $names, array $titles, array $descriptions, array $metas, $slug): self
+    public static function create(array $names, array $titles, array $descriptions, array $metas, $slug, $beInDiscount): self
     {
         $category = new static();
         $category->slug = $slug;
+        $category->be_in_discount = $beInDiscount;
 
         //$category->name, $category->name_ua...
         foreach ($names as $name => $value) {
@@ -73,9 +75,10 @@ class Category extends ActiveRecord
         return $category;
     }
 
-    public function edit(array $names, array $titles, array $descriptions, array $metas, $slug): void
+    public function edit(array $names, array $titles, array $descriptions, array $metas, $slug, $beInDiscount): void
     {
         $this->slug = $slug;
+        $this->be_in_discount = $beInDiscount;
 
         //$this->name, $this->name_ua...
         foreach ($names as $name => $value) {
@@ -111,6 +114,11 @@ class Category extends ActiveRecord
     public function setPhoto(UploadedFile $image): void
     {
         $this->image = $image;
+    }
+
+    public function isBeInDiscount(): bool
+    {
+        return boolval($this->be_in_discount);
     }
 
     public static function tableName(): string

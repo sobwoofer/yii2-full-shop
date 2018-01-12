@@ -51,7 +51,8 @@ class CategoryManageService
             $titles,
             $descriptions,
             $metas,
-            $form->slug ?: Inflector::slug($form->name)
+            $form->slug ?: Inflector::slug($form->name),
+            $form->beInDiscount
         );
         $category->appendTo($parent);
         if ($form->image) {
@@ -86,7 +87,8 @@ class CategoryManageService
             $titles,
             $descriptions,
             $metas,
-            $form->slug ?: Inflector::slug($form->name)
+            $form->slug ?: Inflector::slug($form->name),
+            $form->beInDiscount
         );
         if ($form->parentId !== $category->parent->id) {
             $parent = $this->categories->get($form->parentId);

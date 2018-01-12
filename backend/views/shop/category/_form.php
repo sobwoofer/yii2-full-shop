@@ -26,9 +26,8 @@ use powerkernel\flagiconcss\Flag;
         <div class="box-header with-border">Common</div>
         <div class="box-body">
             <?= $form->field($model, 'parentId')->dropDownList($model->parentCategoriesList()) ?>
+            <?= $form->field($model, 'beInDiscount')->dropDownList([0,1]) ?>
             <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-
-
         </div>
     </div>
 

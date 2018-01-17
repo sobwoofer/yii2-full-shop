@@ -56,12 +56,13 @@ class OrderService
 
         $items = array_map(function (CartItem $item) {
             $product = $item->getProduct();
-            $product->checkout($item->getModificationId(), $item->getQuantity());
+            $product->checkout($item->getQuantity());
             $products[] = $product;
             return OrderItem::create(
                 $product,
-                $item->getModificationId(),
-                $item->getPrice(),
+                $item->getModificationsPrepared(),
+                $item->getPriceWithoutAnyDiscount($this->cart->getCost()->getDiscountPercent()),
+                $item->getPriceWithDiscount($this->cart->getCost()->getDiscountPercent()),
                 $item->getQuantity()
             );
         }, $this->cart->getItems());

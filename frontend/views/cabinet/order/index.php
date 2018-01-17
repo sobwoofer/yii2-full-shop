@@ -79,11 +79,35 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </div>
                                     <div class="col-sm-6">
                                         <p class="orders_item__title"><?= $item->product_name ?></p>
-                                        <p class="price"><?= PriceHelper::format($item->price); ?></p>
+                                        <p class="price">
+                                            <?php if ($item->price_old): ?>
+                                                <?= PriceHelper::format($item->price_old); ?>
+                                            <?php endif; ?>
+                                            <span class="text-danger"><?= PriceHelper::format($item->price); ?></span>
+                                        </p>
+
                                     </div>
                                     <div class="col-sm-2 text-center"><?= $item->quantity ?></div>
-                                    <div class="col-sm-2 text-center"><?= PriceHelper::format($item->price); ?></div>
+                                    <div class="col-sm-2 text-center"><?= PriceHelper::format($item->getCost()); ?></div>
                                 </div>
+                                <?php if ($item->modifications): ?>
+
+                                    <?php foreach ($item->modifications as $modification): ?>
+                                        <div class="row row_modification">
+                                            <div class="col-sm-1 col-sm-offset-1"> </div>
+                                            <div class="col-sm-6">
+                                                <p class="orders_item__title"><?= $modification->name ?></p>
+                                                <p class="price">
+                                                    <span class="text-danger"><?= PriceHelper::format($modification->cost); ?></span>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-2 text-center"><?= $modification->quantity ?></div>
+                                            <div class="col-sm-2 text-center"><?= PriceHelper::format($modification->cost); ?></div>
+                                        </div>
+                                    <?php endforeach; ?>
+
+                                <?php endif; ?>
+
                             <?php endforeach; ?>
 
                             <div class="row row_items total">

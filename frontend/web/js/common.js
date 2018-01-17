@@ -473,5 +473,17 @@ $(document).ready(function () {
     $('.search .search-icon').click(()=>{
         $('.search .find').toggleClass('active')
     });
+
+    // Initialize tooltip component
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+// Initialize popover component
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+
 });
+
 

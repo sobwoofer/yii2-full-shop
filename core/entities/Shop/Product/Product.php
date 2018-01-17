@@ -243,28 +243,18 @@ class Product extends ActiveRecord implements AggregateRoot
                 }
             }
         }
-        if ($quantity <= $this->warehousesProduct->quantity) {
+        if ($quantity > $this->warehousesProduct->quantity) {
             throw new \DomainException('Quantity is too big.');
         }
     }
 
-    public function checkout($modificationId, $quantity): void
+    public function checkout($quantity): void
     {
-        if ($modificationId) {
-            $modifications = $this->modifications;
-            foreach ($modifications as $i => $modification) {
-                if ($modification->isIdEqualTo($modificationId)) {
-                    $modification->checkout($quantity);
-                    $this->updateModifications($modifications);
-                    return;
-                }
-            }
-        }
         // Not throw Exception if quantity not available
-//        if ($quantity > $this->warehousesProduct->quantity) {
-//            throw new \DomainException('Only ' . $this->warehousesProduct->quantity . ' items are available.');
-//        }
-        $this->setQuantity($this->warehousesProduct->quantity - 1);
+        if ($quantity > $this->warehousesProduct->quantity) {
+            throw new \DomainException('Only ' . $this->warehousesProduct->quantity . ' items are available.');
+        }
+        $this->setQuantity($this->warehousesProduct->quantity - $quantity);
     }
 
     private function setQuantity($quantity): void

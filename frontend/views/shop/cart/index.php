@@ -78,7 +78,24 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php endif; ?>
                            </td>
                         <td>
-                            <?= PriceHelper::percent($item->getDiscountPercent($cost->getDiscountPercent())) ?>
+                            <span data-toggle="popover" data-trigger="hover" data-placement="right"
+                                  data-content="
+                                    <?php if ($item->isSpecial()): ?>
+                                        special discount
+                                    <?php elseif ($item->isDiscounted($cost->getDiscountPercent())): ?>
+                                        <?php foreach ($cost->getDiscounts() as $discount): ?>
+                                            <?= $discount->getDescription() ?>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                         no discount
+                                    <?php endif; ?>
+                                    ">
+                                 <?= PriceHelper::percent($item->getDiscountPercent($cost->getDiscountPercent())) ?>
+                            </span>
+
+
+
+
                         </td>
                         <td>
                             <?= Html::beginForm(['quantity', 'id' => $item->getId()]); ?>
@@ -102,7 +119,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td><?= $assignment->modification->code ?></td>
                                 <td><?= PriceHelper::format($product->getModificationPrice($assignment->modification_id)) ?></td>
                                 <td></td>
-                                <td><?= $item->getQuantity() ?></td>
+                                <td>
+                                    <?= $item->getModificationQuantity($assignment->modification->id) ?>
+                                </td>
                                 <td><?= PriceHelper::format($item->getModificationCost($assignment->modification_id)) ?></td>
                                 <td></td>
                             </tr>

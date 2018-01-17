@@ -13,7 +13,7 @@ class PriceHelper
 {
     public static function format($price): string
     {
-        return number_format($price, 0, '.', ' ') . self::getCurrencySymbol();
+        return number_format($price, 2, '.', ' ') . self::getCurrencySymbol();
     }
 
     public static function getCurrencySymbol(): string

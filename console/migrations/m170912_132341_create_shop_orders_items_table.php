@@ -26,7 +26,7 @@ class m170912_132341_create_shop_orders_items_table extends Migration
             'product_code' => $this->string()->notNull(),
             'modification_name' => $this->string(),
             'modification_code' => $this->string(),
-            'price' => $this->integer()->notNull(),
+            'price' => $this->float()->notNull(),
             'quantity' => $this->integer()->notNull(),
         ], $tableOptions);
 

@@ -9,6 +9,7 @@
 namespace core\cart;
 
 use core\cart\cost\Discount;
+use core\entities\Shop\Order\ModificationWrapper;
 use core\entities\Shop\Product\Modification;
 use core\entities\Shop\Product\ModificationAssignment;
 use core\entities\Shop\Product\Product;
@@ -55,6 +56,9 @@ class CartItem
         return $this->modificationAssignments;
     }
 
+    /**
+     * @return \core\entities\Shop\Modification\Modification[]
+     */
     public function getModifications(): array
     {
         if ($modificationAssignments = $this->modificationAssignments){
@@ -82,7 +86,7 @@ class CartItem
      * sum all modification's prices of this item product in cart
      * @return int
      */
-    public function getModificationsCost(): int
+    public function getModificationsCost(): float
     {
         $total = 0;
         if ($this->modificationAssignments) {
@@ -93,12 +97,38 @@ class CartItem
         return $total;
     }
 
+    public function getModificationQuantity($id): ?int
+    {
+        foreach ($this->getModifications() as $modification) {
+           if ($modification->isIdEqualTo($id)){
+              $quantity = $modification->group->depend_qty ? $this->getQuantity() : 1;
+           }
+         }
+
+        return $quantity ?? null;
+    }
+
+    public function getModificationsPrepared(): array
+    {
+        foreach ($this->getModifications() as $modification) {
+            $result[] = new ModificationWrapper(
+                $modification->id,
+                $modification->code,
+                $modification->price,
+                $this->getModificationCost($modification->id),
+                $this->getModificationQuantity($modification->id),
+                $modification->name
+            );
+        }
+        return $result ?? [];
+    }
+
     public function isCanDiscount()
     {
         return !$this->isSpecial() && $this->product->category->isBeInDiscount() && $this->product->isBeInDiscount();
     }
 
-    public function getModificationCost($id): int
+    public function getModificationCost($id): float
     {
         $result = 0;
         foreach ($this->modificationAssignments as $modificationAssignment) {
@@ -113,7 +143,7 @@ class CartItem
         return $result;
     }
 
-    public function getPrice(): int
+    public function getPrice(): float
     {
         if ($this->isSpecial()) {
             return $this->product->warehousesProduct->special;
@@ -134,9 +164,28 @@ class CartItem
         return $this->product->weight * $this->quantity;
     }
 
-    public function getCost(): int
+    public function getCost(): float
     {
         return $this->getPrice() * $this->quantity;
+    }
+
+    public function getPriceWithoutAnyDiscount($discountPercent): ?float
+    {
+        if (!$this->isSpecial() && $this->isCanDiscount()) {
+            $result = $this->getPrice();
+        } elseif($this->isSpecial()) {
+            $result = $this->product->warehousesProduct->price;
+        }
+
+        return $result ?? null;
+    }
+
+    public function getPriceWithDiscount($discountPercent)
+    {
+        if (!$this->isSpecial() && $this->isCanDiscount()) {
+            $result = $this->getPrice() - $this->getPrice() / 100 * $discountPercent;
+        }
+        return $result ?? $this->getPrice();
     }
 
     public function getDiscountPercent($discountPercent)

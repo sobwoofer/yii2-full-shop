@@ -50,6 +50,7 @@ final class Cost
     }
 
 
+
     public function getDiscountPercent(): int
     {
         $result = 0;

@@ -26,6 +26,7 @@ class AddToCartForm extends Model
 {
     public $modifications;
     public $quantity;
+//    public $code;
 
     private $_product;
 
@@ -38,9 +39,11 @@ class AddToCartForm extends Model
 
     public function rules(): array
     {
-        return array_filter([$this->_product->modifications ? ['modifications', 'each', 'rule' => ['integer']] : false,
+        return array_filter([
+            $this->_product->modifications ? ['modifications', 'each', 'rule' => ['integer']] : false,
             ['quantity', 'required'],
             ['quantity', 'integer', 'max' => $this->_product->warehousesProduct->quantity],
+//            ['code', 'string']
         ]);
     }
 

@@ -169,7 +169,12 @@ class CartItem
         return $this->getPrice() * $this->quantity;
     }
 
-    public function getPriceWithoutAnyDiscount($discountPercent): ?float
+    public function getCostWithoutAnyDiscount(): float
+    {
+        return $this->getPriceWithoutAnyDiscount() * $this->quantity;
+    }
+
+    public function getPriceWithoutAnyDiscount(): ?float
     {
         if (!$this->isSpecial() && $this->isCanDiscount()) {
             $result = $this->getPrice();
@@ -180,7 +185,7 @@ class CartItem
         return $result ?? null;
     }
 
-    public function getPriceWithDiscount($discountPercent)
+    public function getPriceWithDiscount($discountPercent): float
     {
         if (!$this->isSpecial() && $this->isCanDiscount()) {
             $result = $this->getPrice() - $this->getPrice() / 100 * $discountPercent;
@@ -188,7 +193,7 @@ class CartItem
         return $result ?? $this->getPrice();
     }
 
-    public function getDiscountPercent($discountPercent)
+    public function getDiscountPercent($discountPercent): float
     {
         if (!$this->isSpecial() && $this->isCanDiscount()) {
             $result = $discountPercent;
@@ -198,7 +203,7 @@ class CartItem
         return $result;
     }
 
-    public function isDiscounted($discountPercent)
+    public function isDiscounted($discountPercent): bool
     {
         return $this->isCanDiscount() && $discountPercent > 0;
     }

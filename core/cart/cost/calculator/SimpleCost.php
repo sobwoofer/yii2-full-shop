@@ -27,6 +27,7 @@ class SimpleCost implements CalculatorInterface
         $cost = 0;
         $specialCost = 0;
         $modificationsCost = 0;
+        $costWithoutAnyDiscount = 0;
 
         foreach ($items as $item) {
             if ($item->isCanDiscount()) {
@@ -34,9 +35,10 @@ class SimpleCost implements CalculatorInterface
             } else {
                 $specialCost += $item->getCost();
             }
+                $costWithoutAnyDiscount += $item->getCostWithoutAnyDiscount();
             $modificationsCost += $item->getModificationsCost();
         }
-        return new Cost($cost, $specialCost, $modificationsCost);
+        return new Cost($cost, $specialCost, $modificationsCost, $costWithoutAnyDiscount);
     }
 
 

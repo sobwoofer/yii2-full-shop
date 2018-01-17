@@ -36,9 +36,10 @@ class DynamicCost implements CalculatorInterface
         $cost = $this->next->getCost($items);
 
         foreach ($discounts as $discount) {
+
             if ($discount->isEnabled() && $discount->isRightCostDiapason($cost->getOriginWithoutDiscount())) {
                 $new = new CartDiscount($cost->getOrigin() * $discount->percent / 100, $discount->name, $discount->percent, $discount->description);
-                $cost = $cost->withDiscount($new, $cost->getOriginSpecial(), $cost->getOriginModifications());
+                $cost = $cost->withDiscount($new, $cost->getOriginSpecial(), $cost->getOriginModifications(), $cost->getOriginWithoutAnyDiscount());
             }
         }
 

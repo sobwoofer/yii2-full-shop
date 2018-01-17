@@ -10,6 +10,7 @@ namespace frontend\controllers\shop;
 
 use core\cart\Cart;
 use core\forms\Shop\AddToCartForm;
+use core\forms\Shop\FastAddToCartForm;
 use core\readModels\Shop\ProductReadRepository;
 use core\useCases\Shop\CartService;
 use Yii;
@@ -61,6 +62,31 @@ class CartController extends Controller
         ]);
     }
 
+    public function actionFastAdd()
+    {
+        $form = new FastAddToCartForm();
+
+        if ($form->load(Yii::$app->request->post(), '') && $form->validate()) {
+            if (!$product = $this->products->findByCode($form->code)) {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+
+            $addForm = new AddToCartForm($product);
+
+            if ($addForm->load(Yii::$app->request->post(), '') && $addForm->validate()) {
+                try {
+                    $this->service->add($product->id, null, $form->quantity);
+                    return $this->redirect(['index']);
+                } catch (\DomainException $e) {
+                    Yii::$app->errorHandler->logException($e);
+                    Yii::$app->session->setFlash('error', $e->getMessage());
+                }
+
+            }
+        }
+        return $this->redirect(['index']);
+    }
+
     /**
      * @param $id
      * @return mixed
@@ -74,7 +100,6 @@ class CartController extends Controller
         $this->layout = 'blank';
 
         $form = new AddToCartForm($product);
-
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
@@ -91,23 +116,6 @@ class CartController extends Controller
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
-
-//        if (!$product->modificationAssignments) {
-//            try {
-//                $this->service->add($product->id, null, 1);
-//                Yii::$app->session->setFlash('success', 'Success!');
-//                return $this->redirect(Yii::$app->request->referrer);
-//            } catch (\DomainException $e) {
-//                Yii::$app->errorHandler->logException($e);
-//                Yii::$app->session->setFlash('error', $e->getMessage());
-//            }
-//        }
-
-
-
-
-
-
 
         return $this->render('add', [
             'product' => $product,

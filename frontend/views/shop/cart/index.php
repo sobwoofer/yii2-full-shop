@@ -296,23 +296,34 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <div class="col-sm-6 text-left-xs">
                     <p class="text-right link-in-p">Доставка согласно <a href="#/">тарифов перевозчика </a>Новая почта</p>
-                    <p class="text-right"><b>Стоимость без скидки (включая НДС): <span class="red price"><?= PriceHelper::format($cost->getOriginWithoutDiscount()) ?></span></b></p>
-                    <?php foreach ($cost->getDiscounts() as $discount): ?>
-                        <p class="text-right"><?= Html::encode($discount->getName()) ?>: <span class="red"><?= PriceHelper::format($discount->getValue()) ?></span></p>
-                    <?php endforeach; ?>
+                    <p class="text-right"><b>Стоимость без скидки (включая НДС): <span class="red price"><?= PriceHelper::format($cost->getOriginWithoutAnyDiscount()) ?></span></b></p>
+                    <p class="text-right"> Экономия: <span class="red"><?= PriceHelper::format($cost->getCostAllDiscount()) ?></span></p>
                     <p class="text-right"><b>Итого к оплате (включая НДС): <span class="red price"><?= PriceHelper::format($cost->getTotal()) ?></span></b></p>
                 </div>
             </div>
 
             <div class="box" style="margin-top: 30px;">
                 <div class="col-sm-6 col-xs-12">
-                    <form action="#">
+                    <?= Html::beginForm(['/shop/cart/fast-add'], 'post') ?>
 
                         <p>Быстрое добавление товара в корзину по артикулу</p>
-                        <input type="text" class="input-add-tovar">
-                        <input type="submit" value="Добавить" class="btn">
-                        <p class="link-in-p"><a href="#" download="/">Скачать</a> каталог товаров (PDF,~56MB)</p>
-                    </form>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <?= Html::input('text', 'code', null, ['class' => 'input-add-tovar']) ?>
+
+                        </div>
+                        <div class="col-sm-3">
+                            <?= Html::input('number', 'quantity', 1, ['min-length' => 1, 'class' => 'input-add-tovar']) ?>
+
+                        </div>
+                        <div class="col-sm-3">
+                            <?= Html::submitButton('Добавить', ['class' => 'btn']) ?>
+                        </div>
+
+
+                    </div>
+                    <p class="link-in-p"><a href="#" download="/">Скачать</a> каталог товаров (PDF,~56MB)</p>
+                    <?= Html::endForm() ?>
 
                 </div>
                 <div class="hidden visible-xs clearfix">

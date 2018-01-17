@@ -4742,7 +4742,7 @@ a.filter-title {
     margin-right: 20px;
     margin-bottom: 10px;
     padding: 6px 15px;
-
+    max-width: 100%;
     border: 1px solid #ccc;
     border-radius: 4px;
 }

@@ -69,8 +69,10 @@ $url = Url::to(['catalog/product', 'id' =>$product->id]);
         <a href="<?= Url::to(['/cabinet/wishlist/add', 'id' => $product->id]) ?>" onclick="wishlist.add('<?= $product->id ?>');" data-method="post" class="like">
             <i class="fa fa-heart" aria-hidden="true"></i>
         </a>
-        <input type="number" value="1">
-        <a href="<?= Url::to(['/shop/cart/add', 'id' => $product->id]) ?>" data-method="post" onclick="cart.add('<?= $product->id ?>', '2');" class="btn btn-to-cart">В КОРЗИНУ</a>
+        <?= Html::beginForm(['/shop/cart/add', 'id' => $product->id], 'post') ?>
+            <?= Html::input('number', 'AddToCartForm[quantity]', 1, ['min-length' => 1]) ?>
+            <?= Html::submitButton('В КОРЗИНУ', ['class' => 'btn btn-to-cart']) ?>
+        <?= Html::endForm() ?>
     </div>
 
     <div class="clearfix"></div>

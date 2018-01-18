@@ -19,6 +19,7 @@ class m171219_141546_create_delivery_terms_tables extends Migration
             'id' => $this->primaryKey(),
             'external_id' => $this->integer()->notNull(),
             'slug' => $this->string()->notNull(),
+            'value' => $this->integer(),
         ], $tableOptions);
 
         $this->createIndex('{{%idx-shop_delivery_terms-external_id}}', '{{%shop_delivery_terms}}', 'external_id');

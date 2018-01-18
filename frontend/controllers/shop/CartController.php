@@ -12,7 +12,9 @@ use core\cart\Cart;
 use core\forms\Shop\Cart\AddToCartForm;
 use core\forms\Shop\Cart\FastAddToCartForm;
 use core\forms\Shop\Cart\FileAddToCartForm;
+use core\helpers\LocationHelper;
 use core\readModels\Shop\ProductReadRepository;
+use core\readModels\WarehouseReadRepository;
 use core\services\import\Cart\Reader;
 use core\useCases\Shop\CartService;
 use Yii;
@@ -28,13 +30,23 @@ class CartController extends Controller
 
     private $products;
     private $service;
+    private $warehouses;
     private $cart;
 
-    public function __construct($id, $module, CartService $service, Cart $cart, ProductReadRepository $products, $config = [])
+    public function __construct(
+        $id,
+        $module,
+        CartService $service,
+        Cart $cart,
+        ProductReadRepository $products,
+        WarehouseReadRepository $warehouses,
+        $config = []
+    )
     {
         parent::__construct($id, $module, $config);
         $this->products = $products;
         $this->service = $service;
+        $this->warehouses = $warehouses;
         $this->cart = $cart;
     }
 
@@ -64,6 +76,8 @@ class CartController extends Controller
             'cart' => $cart,
             'model' => $form,
             'fileModel' => $fileForm,
+            'warehouseCurrent' => $this->warehouses->find(LocationHelper::getWarehouseId()),
+            'warehouseDefault' => $this->warehouses->findDefault()
         ]);
     }
 

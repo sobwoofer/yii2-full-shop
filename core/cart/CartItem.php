@@ -9,6 +9,7 @@
 namespace core\cart;
 
 use core\cart\cost\Discount;
+use core\entities\Shop\DeliveryTerm;
 use core\entities\Shop\Order\ModificationWrapper;
 use core\entities\Shop\Product\Modification;
 use core\entities\Shop\Product\ModificationAssignment;
@@ -49,6 +50,11 @@ class CartItem
     public function getProduct(): Product
     {
         return $this->product;
+    }
+
+    public function getDeliveryTerm(): DeliveryTerm
+    {
+        return $this->product->warehousesProduct->deliveryTerm;
     }
 
     public function getModificationAssignments(): ?array

@@ -30,7 +30,7 @@ class DeliveryTermManageService
             $names['name' . $suffix] = $form->{'name' . $suffix};
         }
 
-        $term = DeliveryTerm::create($form->externalId, $form->slug, $names);
+        $term = DeliveryTerm::create($form->externalId, $form->slug, $form->value, $names);
 
         $this->deliveryTerms->save($term);
 
@@ -46,7 +46,7 @@ class DeliveryTermManageService
             $names['name' . $suffix] = $form->{'name' . $suffix};
         }
 
-        $term->edit($form->externalId, $form->slug, $names);
+        $term->edit($form->externalId, $form->slug, $form->value, $names);
 
         $this->deliveryTerms->save($term);
     }

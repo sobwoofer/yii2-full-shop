@@ -11,6 +11,8 @@ namespace core\cart;
 use core\cart\cost\calculator\CalculatorInterface;
 use core\cart\cost\Cost;
 use core\cart\storage\StorageInterface;
+use core\entities\Shop\Product\Product;
+use yii\helpers\ArrayHelper;
 
 class Cart
 {
@@ -95,6 +97,32 @@ class Cart
         $this->loadItems();
         return $this->calculator->getCost($this->items);
     }
+
+    public function getMaxDeliveryTerm()
+    {
+        $this->loadItems();
+
+        ArrayHelper::multisort($this->items, function(CartItem $item) {
+            return $item->getDeliveryTerm()->value;
+        }, SORT_DESC);
+
+        return reset($this->items)->getDeliveryTerm()->name;
+
+    }
+
+    public function issetExpectedStatus(): bool
+    {
+        $this->loadItems();
+
+        foreach ($this->items as $item) {
+            if ($item->getProduct()->warehousesProduct->extraStatus->slug == Product::EXTRA_STATUS_FOR_ORDER) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
     public function getWeight(): int
     {

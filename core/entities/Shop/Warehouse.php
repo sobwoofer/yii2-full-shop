@@ -28,6 +28,7 @@ use omgdef\multilingual\MultilingualQuery;
  * @property string $name_ua
  * @property string $address
  * @property string $address_ua
+ * @property City $city
  * @property string $description
  * @property string $description_ua
  */

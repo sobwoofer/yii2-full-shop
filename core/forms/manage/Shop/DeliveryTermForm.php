@@ -18,6 +18,7 @@ use yii\base\Model;
  * Class DeliveryTermForm
  * @package core\forms\manage\Shop
  * @property string $slug;
+ * @property integer $value;
  * @property integer $externalId;
  * @property string $name;
  * @property string $name_ua;
@@ -28,6 +29,7 @@ class DeliveryTermForm extends Model
 
     public $externalId;
     public $slug;
+    public $value;
 
     public function __construct(DeliveryTerm $extraStatus = null, array $config = [])
     {
@@ -51,7 +53,7 @@ class DeliveryTermForm extends Model
             [LangsHelper::getNamesWithSuffix(['name']), 'required'],
             [LangsHelper::getNamesWithSuffix(['name']), 'string'],
             ['slug', 'string'],
-            ['externalId', 'integer'],
+            [['externalId', 'value'], 'integer'],
         ];
     }
 

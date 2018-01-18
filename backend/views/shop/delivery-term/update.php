@@ -57,6 +57,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
             </div>
             <div class="col-md-4">
+                <?= $form->field($model, 'value')->textInput(['maxlength' => true]) ?>
+            </div>
+            <div class="col-md-4">
                 <?= $form->field($model, 'externalId')->textInput(['maxlength' => true]) ?>
             </div>
 

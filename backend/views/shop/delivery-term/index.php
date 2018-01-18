@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     'id',
                     'name',
+                    'value',
                     'external_id',
                     [
                         'class' => ActionColumn::class,  'template' => '{update} {delete}',

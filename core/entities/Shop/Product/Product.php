@@ -86,6 +86,14 @@ class Product extends ActiveRecord implements AggregateRoot
     const EXTERNAL_STATUS_ARE_AVAILABLE = 1; //есть в наличии
     const EXTERNAL_STATUS_EXPECTED = 2; //ожидается
 
+
+    const EXTRA_STATUS_AVAILABILITY = 'availability'; //есть в наличии
+    const EXTRA_STATUS_EXPECTED = 'expected'; //Ожидается
+    const EXTRA_STATUS_ENDS = 'ends'; //Заканчивается
+    const EXTRA_STATUS_MANY = 'many'; //Товара много
+    const EXTRA_STATUS_FOR_ORDER = 'for-order'; //Под заказ
+    const EXTRA_STATUS_DISCONTINUED = 'discontinued'; //Снят с продаж
+
     public static function create(
         $brandId,
         $categoryId,

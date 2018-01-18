@@ -20,15 +20,17 @@ use omgdef\multilingual\MultilingualQuery;
  * @property integer $external_id
  * @property string $slug
  * @property string $name
+ * @property integer $value
  * @property string $name_ua
  */
 class DeliveryTerm extends ActiveRecord
 {
-    public static function create($externalId, $slug, $names): self
+    public static function create($externalId, $slug, $value, $names): self
     {
         $deliveryTerm = new static();
         $deliveryTerm->external_id = $externalId;
         $deliveryTerm->slug = $slug;
+        $deliveryTerm->value = $value;
 
         //$deliveryTerm->name, $deliveryTerm->name_ua...
         foreach ($names as $name => $value) {
@@ -38,10 +40,11 @@ class DeliveryTerm extends ActiveRecord
         return $deliveryTerm;
     }
 
-    public function edit($externalId, $slug, $names): void
+    public function edit($externalId, $slug, $value, $names): void
     {
         $this->external_id = $externalId;
         $this->slug = $slug;
+        $this->value = $value;
 
         //$this->name, $this->name_ua...
         foreach ($names as $name => $value) {

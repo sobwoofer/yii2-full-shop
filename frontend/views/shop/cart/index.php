@@ -8,6 +8,8 @@
 
 /* @var $this yii\web\View */
 /* @var $cart \core\cart\Cart */
+/* @var $warehouseCurrent \core\entities\Shop\Warehouse */
+/* @var $warehouseDefault \core\entities\Shop\Warehouse */
 /* @var $fileModel \core\forms\Shop\Cart\FileAddToCartForm */
 /* @var $model \core\forms\Shop\Order\OrderForm */
 
@@ -292,8 +294,13 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div class="row" style="margin-top: 30px;">
                 <div class="col-sm-6">
-                    <p class=" delivery-time"> Срок поставки: <span class="red">3-4 дня</span></p>
-                    <p>(в корзине присутствует товар под заказ)</p>
+                    <p class=" delivery-time"> Срок поставки:
+
+                    <span class="red"><?= $cart->getMaxDeliveryTerm(); ?></span></p>
+                    <?php if ($cart->issetExpectedStatus()): ?>
+                        <p>(в корзине присутствует товар под заказ)</p>
+                    <?php endif; ?>
+
                 </div>
                 <div class="col-sm-6 text-left-xs">
                     <p class="text-right link-in-p">Доставка согласно <a href="#/">тарифов перевозчика </a>Новая почта</p>
@@ -374,7 +381,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <div class="attention">
                         Внимание! Сумма минимального заказа: <br>
-                        для города Киев - 500 грн.      для доставки по Украине - 750 грн
+                        для города <?= $warehouseCurrent->city->name ?> - <?= PriceHelper::format($warehouseCurrent->min_order) ?>
+                        для доставки по Украине - <?= PriceHelper::format($warehouseDefault->min_order) ?>
                     </div>
                 </div>
             </div>

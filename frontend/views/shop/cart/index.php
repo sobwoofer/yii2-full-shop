@@ -8,6 +8,7 @@
 
 /* @var $this yii\web\View */
 /* @var $cart \core\cart\Cart */
+/* @var $fileModel \core\forms\Shop\Cart\FileAddToCartForm */
 /* @var $model \core\forms\Shop\Order\OrderForm */
 
 use core\helpers\PriceHelper;
@@ -330,27 +331,36 @@ $this->params['breadcrumbs'][] = $this->title;
                     <br>
                 </div>
                 <div class="col-sm-6 col-xs-12">
-                    <form action="#">
+
+
+                    <?php $fileForm = ActiveForm::begin([
+                        'method' => 'post',
+                        'action' => '/shop/cart/file-add',
+                        'options' => ['enctype' => 'multipart/form-data'],
+                        ]) ?>
 
                         <p>Множественное добавление товаров в корзину из файла</p>
-
-                        <div class="filebtnwrp">
-
-                            <div class="fileupload fileupload-new" data-provides="fileupload">
-                        <span class="btn-add-tovar btn-file">
-                            <span class="fileupload-new">ВЫБРАТЬ ФАЙЛ</span>
-                            <span class="fileupload-exists">Изменить</span>
-                            <input type="file"/></span>
-                                <span class="fileupload-preview"></span>
-                                <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
-                            </div>
-
-                        </div>
+                    <?= $fileForm->field($fileModel, 'file')->fileInput() ?>
+<!--                        <div class="filebtnwrp">-->
+<!---->
+<!--                            <div class="fileupload fileupload-new" data-provides="fileupload">-->
+<!--                            <span class="btn-add-tovar btn-file">-->
+<!--                                <span class="fileupload-new">ВЫБРАТЬ ФАЙЛ</span>-->
+<!--                                <span class="fileupload-exists">Изменить</span>-->
+<!---->
+<!--                            </span>-->
+<!--                                <span class="fileupload-preview"></span>-->
+<!--                                <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>-->
+<!---->
+<!---->
+<!--                            </div>-->
+<!---->
+<!--                        </div>-->
                         <!--<input type="file" class="btn-add-tovar">ВЫБРАТЬ ФАЙЛ</input>-->
                         <input type="submit" value="Добавить" class="btn">
                         <div class="clearfix"></div>
                         <p class="link-in-p"><a href="#" download="/">Скачать</a> пример файла (CSV)</p>
-                    </form>
+                        <?php ActiveForm::end() ?>
 
                 </div>
                 <div class="clearfix"></div>

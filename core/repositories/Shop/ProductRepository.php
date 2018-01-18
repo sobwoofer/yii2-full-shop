@@ -31,6 +31,14 @@ class ProductRepository
         return $product;
     }
 
+    public function getByCode($code): Product
+    {
+        if (!$product = Product::find()->multilingual()->andWhere(['code' => $code])->one()) {
+            throw new NotFoundException('Product is not found');
+        }
+        return $product;
+    }
+
     public function existByBrand($id): bool
     {
         return Product::find()->andWhere(['brand_id' => $id])->exists();

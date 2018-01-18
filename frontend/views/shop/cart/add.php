@@ -9,7 +9,7 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \core\forms\Shop\AddToCartForm */
+/* @var $model \core\forms\Shop\Cart\AddToCartForm */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;

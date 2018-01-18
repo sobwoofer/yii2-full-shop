@@ -8,7 +8,7 @@
 
 /* @var $this yii\web\View */
 /* @var $product core\entities\Shop\Product\Product */
-/* @var $cartForm core\forms\Shop\AddToCartForm */
+/* @var $cartForm core\forms\Shop\cart\AddToCartForm */
 /* @var $reviewForm core\forms\Shop\ReviewForm */
 
 

@@ -9,15 +9,18 @@
 namespace frontend\controllers\shop;
 
 use core\cart\Cart;
-use core\forms\Shop\AddToCartForm;
-use core\forms\Shop\FastAddToCartForm;
+use core\forms\Shop\Cart\AddToCartForm;
+use core\forms\Shop\Cart\FastAddToCartForm;
+use core\forms\Shop\Cart\FileAddToCartForm;
 use core\readModels\Shop\ProductReadRepository;
+use core\services\import\Cart\Reader;
 use core\useCases\Shop\CartService;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use core\forms\Shop\Order\OrderForm;
+use yii\web\UploadedFile;
 
 class CartController extends Controller
 {
@@ -55,11 +58,29 @@ class CartController extends Controller
     {
         $cart = $this->service->getCart();
         $form = new OrderForm($this->cart->getWeight());
+        $fileForm = new FileAddToCartForm();
 
         return $this->render('index', [
             'cart' => $cart,
             'model' => $form,
+            'fileModel' => $fileForm,
         ]);
+    }
+
+    public function actionFileAdd()
+    {
+        $form = new FileAddToCartForm();
+
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try {
+                $result = $this->service->addFromFile($form);
+
+            } catch (\DomainException $e){
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
+        }
+        return $this->redirect(['index']);
     }
 
     public function actionFastAdd()

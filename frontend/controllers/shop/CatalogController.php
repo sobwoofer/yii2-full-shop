@@ -9,7 +9,7 @@
 namespace frontend\controllers\shop;
 
 
-use core\forms\Shop\AddToCartForm;
+use core\forms\Shop\Cart\AddToCartForm;
 use core\readModels\Shop\BrandReadRepository;
 use core\readModels\Shop\CategoryReadRepository;
 use core\readModels\Shop\ProductReadRepository;

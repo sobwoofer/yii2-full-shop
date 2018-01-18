@@ -44,6 +44,7 @@ class Cart
 
     public function add(CartItem $item): void
     {
+
         $this->loadItems();
         foreach ($this->items as $i => $current) {
             if ($current->getId() == $item->getId()) {
@@ -52,6 +53,7 @@ class Cart
                 return;
             }
         }
+
         $this->items[] = $item;
         $this->saveItems();
     }

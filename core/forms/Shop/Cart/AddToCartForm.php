@@ -6,7 +6,7 @@
  * Time: 11:45
  */
 
-namespace core\forms\Shop;
+namespace core\forms\Shop\Cart;
 
 
 use core\entities\Shop\Modification\Modification;

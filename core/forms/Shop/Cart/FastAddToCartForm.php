@@ -6,7 +6,7 @@
  * Time: 13:48
  */
 
-namespace core\forms\Shop;
+namespace core\forms\Shop\Cart;
 
 
 use yii\base\Model;

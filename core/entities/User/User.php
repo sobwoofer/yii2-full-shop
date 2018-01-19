@@ -23,6 +23,7 @@ use yii\db\ActiveRecord;
  * @property string $phone
  * @property string $auth_key
  * @property integer $status
+ * @property integer $type
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
@@ -39,7 +40,11 @@ class User extends ActiveRecord implements AggregateRoot
     const STATUS_ACTIVE = 10;
     const STATUS_WAIT = 0;
 
-    public static function create(string $username, string $email, string $phone, string $password): self
+    const TYPE_ADMIN = 1; //admin user, it can be anybody who has asses to admin panel
+    const TYPE_INDIVIDUAL = 2; // it can be anybody individual seller
+    const TYPE_COMPANY = 3; // this user group of companies seller
+
+    public static function create(string $username = null, string $email, string $phone, string $password, int $type): self
     {
         $user = new User();
         $user->username = $username;
@@ -48,6 +53,7 @@ class User extends ActiveRecord implements AggregateRoot
         $user->setPassword(!empty($password) ? $password : Yii::$app->security->generateRandomString());
         $user->created_at = time();
         $user->status = self::STATUS_ACTIVE;
+        $user->type = $type;
         $user->auth_key = Yii::$app->security->generateRandomString();
         return $user;
     }
@@ -177,6 +183,16 @@ class User extends ActiveRecord implements AggregateRoot
         return $this->hasMany(WishlistItem::class, ['user_id' => 'id']);
     }
 
+    public function getTypeInfo()
+    {
+        if ($this->type == self::TYPE_COMPANY) {
+            return $this->hasOne(Company::class, ['id' => 'user_id']);
+        } elseif ($this->type == self::TYPE_INDIVIDUAL) {
+            return $this->hasOne(Individual::class, ['id' => 'user_id']);
+        } else {
+            return null;
+        }
+    }
 
     /**
      * @inheritdoc

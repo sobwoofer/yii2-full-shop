@@ -14,7 +14,7 @@ class m170815_092748_create_shop_categories_table extends Migration
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
-            $tableOptoons = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=Innodb ';
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=Innodb ';
         }
         $this->createTable('{{%shop_categories}}', [
             'id' => $this->primaryKey(),
@@ -26,7 +26,7 @@ class m170815_092748_create_shop_categories_table extends Migration
             'lft' => $this->integer()->notNull(),
             'rgt' => $this->integer()->notNull(),
             'depth' => $this->integer()->notNull(),
-        ], $tableOptoons);
+        ], $tableOptions);
 
         $this->createIndex('{{%idx-shop_categories_slug-slug}}', '{{%shop_categories}}', 'slug', true);
 

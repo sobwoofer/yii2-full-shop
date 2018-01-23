@@ -1,6 +1,7 @@
 <?php
 namespace core\entities\User;
 
+use core\entities\User\queries\UserQuery;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use core\entities\AggregateRoot;
 use core\entities\EventTrait;
@@ -40,9 +41,22 @@ class User extends ActiveRecord implements AggregateRoot
     const STATUS_ACTIVE = 10;
     const STATUS_WAIT = 0;
 
+    const TYPE = null; //admin user, it can be anybody who has asses to admin panel
     const TYPE_ADMIN = 1; //admin user, it can be anybody who has asses to admin panel
     const TYPE_INDIVIDUAL = 2; // it can be anybody individual seller
     const TYPE_COMPANY = 3; // this user group of companies seller
+
+    public $type;
+    public $username;
+    public $auth_key;
+    public $password_hash;
+    public $password_reset_token;
+    public $email;
+    public $email_confirm_token;
+    public $status;
+    public $created_at;
+    public $updated_at;
+    public $phone;
 
     public static function create(string $username = null, string $email, string $phone, string $password, int $type): self
     {
@@ -183,16 +197,18 @@ class User extends ActiveRecord implements AggregateRoot
         return $this->hasMany(WishlistItem::class, ['user_id' => 'id']);
     }
 
-    public function getTypeInfo()
-    {
-        if ($this->type == self::TYPE_COMPANY) {
-            return $this->hasOne(Company::class, ['id' => 'user_id']);
-        } elseif ($this->type == self::TYPE_INDIVIDUAL) {
-            return $this->hasOne(Individual::class, ['id' => 'user_id']);
-        } else {
-            return null;
-        }
-    }
+//    public function getTypeInfo()
+//    {
+//        if ($this->type == self::TYPE_COMPANY) {
+//            return $this->hasOne(Company::class, ['id' => 'user_id']);
+//        } elseif ($this->type == self::TYPE_INDIVIDUAL) {
+//            return $this->hasOne(Individual::class, ['id' => 'user_id']);
+//        } else {
+//            return null;
+//        }
+//    }
+
+
 
     /**
      * @inheritdoc
@@ -201,6 +217,53 @@ class User extends ActiveRecord implements AggregateRoot
     {
         return '{{%users}}';
     }
+
+    public static function instantiate($row)
+    {
+        switch ($row['type']) {
+            case UserCompany::TYPE:
+                return new UserCompany();
+            case UserIndividual::TYPE:
+                return new UserIndividual(null);
+            default:
+                return new static();
+        }
+    }
+
+
+//    public static function find(): ActiveQuery
+//    {
+//
+//        return new UserQuery(get_called_class(), []);
+//    }
+
+//    public function afterFind()
+//    {
+////        var_dump($this->username);
+////        die();
+////        var_dump($this->type);
+//
+//        switch ($this->type) {
+//            case UserCompany::TYPE:
+//                return $this->userCompany;
+//            case UserIndividual::TYPE:
+//                return new UserIndividual($this);
+//            default:
+//                return new self;
+//        }
+//    }
+
+    public function getUserIndividual()
+    {
+        return $this->hasOne(UserIndividual::class, ['user_id' => 'id']);
+    }
+
+    public function getUserCompany()
+    {
+        return $this->hasOne(UserCompany::class, ['user_id' => 'id']);
+    }
+
+
 
     /**
      * @inheritdoc

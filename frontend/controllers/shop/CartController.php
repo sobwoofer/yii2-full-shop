@@ -9,11 +9,13 @@
 namespace frontend\controllers\shop;
 
 use core\cart\Cart;
+use core\entities\User\User;
 use core\forms\Shop\Cart\AddToCartForm;
 use core\forms\Shop\Cart\FastAddToCartForm;
 use core\forms\Shop\Cart\FileAddToCartForm;
 use core\helpers\LocationHelper;
 use core\readModels\Shop\ProductReadRepository;
+use core\readModels\UserReadRepository;
 use core\readModels\WarehouseReadRepository;
 use core\services\import\Cart\Reader;
 use core\useCases\Shop\CartService;
@@ -31,6 +33,7 @@ class CartController extends Controller
     private $products;
     private $service;
     private $warehouses;
+    private $users;
     private $cart;
 
     public function __construct(
@@ -40,6 +43,7 @@ class CartController extends Controller
         Cart $cart,
         ProductReadRepository $products,
         WarehouseReadRepository $warehouses,
+        UserReadRepository $users,
         $config = []
     )
     {
@@ -47,6 +51,7 @@ class CartController extends Controller
         $this->products = $products;
         $this->service = $service;
         $this->warehouses = $warehouses;
+        $this->users = $users;
         $this->cart = $cart;
     }
 
@@ -71,6 +76,19 @@ class CartController extends Controller
         $cart = $this->service->getCart();
         $form = new OrderForm($this->cart->getWeight());
         $fileForm = new FileAddToCartForm();
+
+//        $user = $this->users->find(Yii::$app->getUser()->getId());
+
+//        if ($user->type) {
+//
+//        }
+//        var_dump(Yii::$app->getUser());
+//        var_dump($user);
+        $one = User::find()->andWhere(['id' => Yii::$app->getUser()->getId()])->one();
+
+//        $two = User::findAll([]);
+
+        var_dump($one);
 
         return $this->render('index', [
             'cart' => $cart,

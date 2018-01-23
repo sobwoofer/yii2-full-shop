@@ -106,8 +106,7 @@ class Cart
             return $item->getDeliveryTerm()->value;
         }, SORT_DESC);
 
-        return reset($this->items)->getDeliveryTerm()->name;
-
+        return $this->items ? reset($this->items)->getDeliveryTerm()->name : '';
     }
 
     public function issetExpectedStatus(): bool

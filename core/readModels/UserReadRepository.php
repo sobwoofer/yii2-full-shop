@@ -14,7 +14,8 @@ class UserReadRepository
 {
     public function find($id): ?User
     {
-        return User::findOne($id);
+//        return User::findOne($id);
+        return User::find()->andWhere(['id' => $id])->one();
     }
 
     public function findActiveByUsername($username): ?User
@@ -26,4 +27,10 @@ class UserReadRepository
     {
         return User::findOne(['id' => $id, 'status' => User::STATUS_ACTIVE]);
     }
+
+    public function findAll(): array
+    {
+        return User::find()->all();
+    }
+
 }

@@ -34,16 +34,6 @@ class UserIndividual extends User
     public $user_id;
     public $type;
 
-    public function __construct(User $user = null, array $config = [])
-    {
-//        var_dump($user->username);
-//        die();
-//        $this->user_id = $user->id;
-//        $this->username = $user->username;
-
-        parent::__construct($config);
-    }
-
 
     public function init()
     {
@@ -61,6 +51,8 @@ class UserIndividual extends User
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
+
+
 
 //    public static function instantiate($row)
 //    {

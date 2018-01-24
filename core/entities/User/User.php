@@ -224,7 +224,7 @@ class User extends ActiveRecord implements AggregateRoot
             case UserCompany::TYPE:
                 return new UserCompany();
             case UserIndividual::TYPE:
-                return new UserIndividual(null);
+                return new UserIndividual();
             default:
                 return new static();
         }

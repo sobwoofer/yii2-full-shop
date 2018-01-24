@@ -22,7 +22,7 @@ class UserQuery extends ActiveQuery
 //        if ($this->type !== null) {
 //            $this->andWhere(["$this->tableName.type" => $this->type]);
 //        }
-        $this->andWhere(['type' => $this->type]);
+//        $this->andWhere(['type' => $this->type]);
 //        var_dump('ss');
 //        die();
         return parent::prepare($builder);

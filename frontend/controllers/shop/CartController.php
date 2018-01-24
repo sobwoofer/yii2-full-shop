@@ -84,11 +84,11 @@ class CartController extends Controller
 //        }
 //        var_dump(Yii::$app->getUser());
 //        var_dump($user);
-        $one = User::find()->andWhere(['id' => Yii::$app->getUser()->getId()])->one();
+//        $one = User::find()->andWhere(['id' => Yii::$app->getUser()->getId()])->one();
 
 //        $two = User::findAll([]);
 
-        var_dump($one);
+//        var_dump($one);
 
         return $this->render('index', [
             'cart' => $cart,

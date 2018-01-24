@@ -1,0 +1,81 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: volynets
+ * Date: 24.01.18
+ * Time: 16:02
+ */
+
+namespace core\useCases\manage\Shop;
+
+
+use core\entities\Shop\PaymentMethod;
+use core\forms\manage\Shop\PaymentMethodForm;
+use core\helpers\LangsHelper;
+use core\repositories\Shop\PaymentMethodRepository;
+
+class PaymentMethodManageService
+{
+    private $methods;
+
+    public function __construct(PaymentMethodRepository $methods)
+    {
+        $this->methods = $methods;
+    }
+
+    public function create(PaymentMethodForm $form): PaymentMethod
+    {
+        $names = [];
+        $descriptions = [];
+
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $names['name' . $suffix] = $form->{'name' . $suffix};
+            $descriptions['description' . $suffix] = $form->{'description' . $suffix};
+        }
+
+        $method = PaymentMethod::create(
+            $form->warehouseId,
+            $form->active,
+            $form->maxCost,
+            $form->minCost,
+            $names,
+            $descriptions
+        );
+
+        $this->methods->save($method);
+        return $method;
+
+    }
+
+    public function edit($id, PaymentMethodForm $form): void
+    {
+        $method = $this->methods->get($id);
+
+        $names = [];
+        $descriptions = [];
+
+        foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
+            $names['name' . $suffix] = $form->{'name' . $suffix};
+            $descriptions['description' . $suffix] = $form->{'description' . $suffix};
+        }
+
+        $method->edit(
+            $form->warehouseId,
+            $form->active,
+            $form->maxCost,
+            $form->minCost,
+            $names,
+            $descriptions
+        );
+
+        $this->methods->save($method);
+
+    }
+
+    public function remove($id): void
+    {
+        $method = $this->methods->get($id);
+        $this->methods->remove($method);
+    }
+
+}

@@ -39,8 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'raw',
                     ],
                     'warehouse_id',
-                    'min_cost',
-                    'max_cost',
+                    'active',
                     ['class' => ActionColumn::class],
                 ],
             ]); ?>

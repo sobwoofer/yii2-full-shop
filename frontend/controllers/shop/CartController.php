@@ -69,12 +69,17 @@ class CartController extends Controller
     }
 
     /**
-     * @return mixed
+     * @param null $delivery_id
+     * @return string
      */
-    public function actionIndex()
+    public function actionIndex($delivery_id = null)
     {
+        if (Yii::$app->request->isPjax) {
+            var_dump(Yii::$app->request->get());
+//            die();
+        }
         $cart = $this->service->getCart();
-        $form = new OrderForm($this->cart->getWeight());
+        $form = new OrderForm($this->cart->getWeight(), $delivery_id);
         $fileForm = new FileAddToCartForm();
 
 //        $user = $this->users->find(Yii::$app->getUser()->getId());

@@ -11,6 +11,7 @@ namespace core\entities\Shop\PaymentMethod;
 
 use core\entities\behaviors\FilledMultilingualBehavior;
 use core\entities\Shop\DeliveryMethod\DeliveryMethod;
+use core\entities\Shop\queries\PaymentMethodQuery;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use omgdef\multilingual\MultilingualQuery;
 use yii\db\ActiveQuery;
@@ -36,13 +37,12 @@ use core\entities\Shop\Warehouse;
 class PaymentMethod extends ActiveRecord
 {
 
-    public static function create($warehouseId, $active, $max_cost, $min_cost, $names, $descriptions): self
+    public static function create($warehouseId, $active, $names, $descriptions): self
     {
         $method = new static();
         $method->active = $active;
         $method->warehouse_id = $warehouseId;
-        $method->max_cost = $max_cost;
-        $method->min_cost = $min_cost;
+
 
         //$method->name, $method->name_ua...
         foreach ($names as $name => $value) {
@@ -58,11 +58,10 @@ class PaymentMethod extends ActiveRecord
 
     }
 
-    public function edit($warehouseId, $active, $max_cost, $min_cost, $names, $descriptions): void
+    public function edit($warehouseId, $active, $names, $descriptions): void
     {
         $this->warehouse_id = $warehouseId;
-        $this->max_cost = $max_cost;
-        $this->min_cost = $min_cost;
+        $this->active = $active;
 
         //$this->name, $this->name_ua...
         foreach ($names as $name => $value) {
@@ -154,9 +153,9 @@ class PaymentMethod extends ActiveRecord
         ];
     }
 
-    public static function find()
+    public static function find(): PaymentMethodQuery
     {
-        return new MultilingualQuery(get_called_class());
+        return new PaymentMethodQuery(static::class);
     }
 
     public static function tableName(): string

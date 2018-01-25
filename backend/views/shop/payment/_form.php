@@ -48,9 +48,7 @@ use powerkernel\flagiconcss\Flag;
     </div>
     <div class="box box-default">
         <div class="box-body">
-            <?= $form->field($model, 'minCost')->textInput() ?>
-            <?= $form->field($model, 'maxCost')->textInput() ?>
-            <?= $form->field($model, 'active')->dropDownList([1,0]) ?>
+            <?= $form->field($model, 'active')->dropDownList([0,1]) ?>
             <?= $form->field($model, 'warehouseId')->dropDownList($model->getWarehouseList(), ['prompt' => 'all']) ?>
         </div>
     </div>

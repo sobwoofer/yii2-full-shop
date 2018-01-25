@@ -37,8 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id',
                     'name',
                     'active',
-                    'max_cost',
-                    'min_cost',
                 ],
             ]) ?>
         </div>

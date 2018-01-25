@@ -21,8 +21,6 @@ use yii\helpers\ArrayHelper;
 /**
  * Class PaymentMethodForm
  * @package core\forms\manage\Shop
- * @property float $minCost
- * @property float $maxCost
  * @property integer $active
  * @property integer $warehouseId
  * @property string $name
@@ -34,8 +32,6 @@ use yii\helpers\ArrayHelper;
 class PaymentMethodForm extends CompositeForm
 {
     public $active;
-    public $maxCost;
-    public $minCost;
     public $warehouseId;
 
     public function __construct(PaymentMethod $method = null, array $config = [])
@@ -43,8 +39,6 @@ class PaymentMethodForm extends CompositeForm
         $this->delivery = new DeliveryForm();
         if ($method) {
             $this->active = $method->active;
-            $this->minCost = $method->min_cost;
-            $this->maxCost = $method->max_cost;
             $this->warehouseId = $method->warehouse_id;
             $this->delivery = new DeliveryForm($method);
 
@@ -59,7 +53,6 @@ class PaymentMethodForm extends CompositeForm
     public function rules(): array
     {
         return [
-            [['minCost', 'maxCost'], 'string'],
             [['active', 'warehouseId'], 'string'],
             [LangsHelper::getNamesWithSuffix(['name']), 'required'],
             [LangsHelper::getNamesWithSuffix(['name', 'description']), 'string'],

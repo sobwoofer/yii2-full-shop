@@ -39,8 +39,6 @@ class PaymentMethodManageService
         $method = PaymentMethod::create(
             $form->warehouseId,
             $form->active,
-            $form->maxCost,
-            $form->minCost,
             $names,
             $descriptions
         );
@@ -70,8 +68,6 @@ class PaymentMethodManageService
         $method->edit(
             $form->warehouseId,
             $form->active,
-            $form->maxCost,
-            $form->minCost,
             $names,
             $descriptions
         );

@@ -9,7 +9,7 @@
 namespace backend\forms\Shop;
 
 
-use core\entities\Shop\PaymentMethod;
+use core\entities\Shop\PaymentMethod\PaymentMethod;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 

@@ -9,7 +9,7 @@
 namespace core\repositories\Shop;
 
 
-use core\entities\Shop\PaymentMethod;
+use core\entities\Shop\PaymentMethod\PaymentMethod;
 use core\repositories\NotFoundException;
 
 class PaymentMethodRepository

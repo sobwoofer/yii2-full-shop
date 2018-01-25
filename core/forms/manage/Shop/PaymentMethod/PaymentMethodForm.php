@@ -6,13 +6,15 @@
  * Time: 15:00
  */
 
-namespace core\forms\manage\Shop;
+namespace core\forms\manage\Shop\PaymentMethod;
 
 
-use core\entities\Shop\PaymentMethod;
+use core\entities\Shop\PaymentMethod\PaymentMethod;
 use core\entities\Shop\Warehouse;
+use core\forms\CompositeForm;
 use core\forms\ForMultiLangFormTrait;
 use core\helpers\LangsHelper;
+use core\forms\manage\Shop\PaymentMethod\DeliveryForm;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
 
@@ -27,11 +29,10 @@ use yii\helpers\ArrayHelper;
  * @property string $name_ua
  * @property string $description
  * @property string $description_ua
+ * @property DeliveryForm $delivery
  */
-class PaymentMethodForm extends Model
+class PaymentMethodForm extends CompositeForm
 {
-    use ForMultiLangFormTrait;
-
     public $active;
     public $maxCost;
     public $minCost;
@@ -39,11 +40,13 @@ class PaymentMethodForm extends Model
 
     public function __construct(PaymentMethod $method = null, array $config = [])
     {
+        $this->delivery = new DeliveryForm();
         if ($method) {
             $this->active = $method->active;
             $this->minCost = $method->min_cost;
             $this->maxCost = $method->max_cost;
             $this->warehouseId = $method->warehouse_id;
+            $this->delivery = new DeliveryForm($method);
 
             foreach (LangsHelper::getWithSuffix() as $suffix => $lang) {
                 $this->{'name' . $suffix} = $method->{'name' . $suffix};
@@ -61,6 +64,11 @@ class PaymentMethodForm extends Model
             [LangsHelper::getNamesWithSuffix(['name']), 'required'],
             [LangsHelper::getNamesWithSuffix(['name', 'description']), 'string'],
         ];
+    }
+
+    protected function internalForms(): array
+    {
+        return ['delivery'];
     }
 
     public function getWarehouseList()

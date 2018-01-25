@@ -7,8 +7,8 @@
  */
 
 /* @var $this yii\web\View */
-/* @var $method core\entities\Shop\PaymentMethod */
-/* @var $model core\forms\manage\Shop\PaymentMethodForm */
+/* @var $method core\entities\Shop\PaymentMethod\PaymentMethod */
+/* @var $model core\forms\manage\Shop\PaymentMethod\PaymentMethodForm */
 
 $this->title = 'Update Payment Method: ' . $method->name;
 $this->params['breadcrumbs'][] = ['label' => 'PaymentMethods', 'url' => ['index']];

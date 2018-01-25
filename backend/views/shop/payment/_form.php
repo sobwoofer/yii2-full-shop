@@ -12,7 +12,7 @@ use core\helpers\LangsHelper;
 use powerkernel\flagiconcss\Flag;
 
 /* @var $this yii\web\View */
-/* @var $model core\forms\manage\Shop\PaymentMethodForm */
+/* @var $model core\forms\manage\Shop\PaymentMethod\PaymentMethodForm */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -52,6 +52,17 @@ use powerkernel\flagiconcss\Flag;
             <?= $form->field($model, 'maxCost')->textInput() ?>
             <?= $form->field($model, 'active')->dropDownList([1,0]) ?>
             <?= $form->field($model, 'warehouseId')->dropDownList($model->getWarehouseList(), ['prompt' => 'all']) ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">Depend on Deliveries (Visibility depend on select delivery)</div>
+                <div class="box-body">
+                    <?= $form->field($model->delivery, 'deliveries')->checkboxList($model->delivery->deliveryList(), ['prompt' => '']) ?>
+                </div>
+            </div>
         </div>
     </div>
 

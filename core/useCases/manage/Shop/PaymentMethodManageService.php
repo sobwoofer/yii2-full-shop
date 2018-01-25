@@ -9,18 +9,21 @@
 namespace core\useCases\manage\Shop;
 
 
-use core\entities\Shop\PaymentMethod;
-use core\forms\manage\Shop\PaymentMethodForm;
+use core\entities\Shop\PaymentMethod\PaymentMethod;
+use core\forms\manage\Shop\PaymentMethod\PaymentMethodForm;
 use core\helpers\LangsHelper;
+use core\repositories\Shop\DeliveryMethodRepository;
 use core\repositories\Shop\PaymentMethodRepository;
 
 class PaymentMethodManageService
 {
-    private $methods;
+    private $paymentMethods;
+    private $deliveries;
 
-    public function __construct(PaymentMethodRepository $methods)
+    public function __construct(PaymentMethodRepository $paymentMethods, DeliveryMethodRepository $deliveries)
     {
-        $this->methods = $methods;
+        $this->paymentMethods = $paymentMethods;
+        $this->deliveries = $deliveries;
     }
 
     public function create(PaymentMethodForm $form): PaymentMethod
@@ -42,14 +45,19 @@ class PaymentMethodManageService
             $descriptions
         );
 
-        $this->methods->save($method);
+        foreach ($form->delivery->deliveries as $deliveryId) {
+            $delivery = $this->deliveries->get($deliveryId);
+            $method->assignDelivery($delivery->id);
+        }
+
+        $this->paymentMethods->save($method);
         return $method;
 
     }
 
     public function edit($id, PaymentMethodForm $form): void
     {
-        $method = $this->methods->get($id);
+        $method = $this->paymentMethods->get($id);
 
         $names = [];
         $descriptions = [];
@@ -68,14 +76,25 @@ class PaymentMethodManageService
             $descriptions
         );
 
-        $this->methods->save($method);
+
+
+        $method->revokeDeliveries();
+        $this->paymentMethods->save($method);
+
+        foreach ($form->delivery->deliveries as $deliveryId) {
+
+            $delivery = $this->deliveries->get($deliveryId);
+            $method->assignDelivery($delivery->id);
+        }
+
+        $this->paymentMethods->save($method);
 
     }
 
     public function remove($id): void
     {
-        $method = $this->methods->get($id);
-        $this->methods->remove($method);
+        $method = $this->paymentMethods->get($id);
+        $this->paymentMethods->remove($method);
     }
 
 }

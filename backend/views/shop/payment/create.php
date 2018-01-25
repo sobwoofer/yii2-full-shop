@@ -7,7 +7,7 @@
  */
 
 /* @var $this yii\web\View */
-/* @var $model core\forms\manage\Shop\PaymentMethodForm */
+/* @var $model core\forms\manage\Shop\PaymentMethod\PaymentMethodForm */
 
 $this->title = 'Create Payment Method';
 $this->params['breadcrumbs'][] = ['label' => 'PaymentMethods', 'url' => ['index']];

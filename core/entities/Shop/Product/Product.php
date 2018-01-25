@@ -508,7 +508,7 @@ class Product extends ActiveRecord implements AggregateRoot
                 return;
             }
         }
-        $assignments = CategoryAssignment::create($id);
+        $assignments[] = CategoryAssignment::create($id);
         $this->categoryAssignments = $assignments;
     }
 

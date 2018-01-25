@@ -10,8 +10,8 @@ namespace backend\controllers\shop;
 
 
 use backend\forms\Shop\PaymentMethodSearch;
-use core\entities\Shop\PaymentMethod;
-use core\forms\manage\Shop\PaymentMethodForm;
+use core\entities\Shop\PaymentMethod\PaymentMethod;
+use core\forms\manage\Shop\PaymentMethod\PaymentMethodForm;
 use core\useCases\manage\Shop\PaymentMethodManageService;
 use yii\web\Controller;
 use Yii;
@@ -111,6 +111,7 @@ class PaymentController extends Controller
 
         $form = new PaymentMethodForm($method);
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+
             try {
                 $this->service->edit($method->id, $form);
                 return $this->redirect(['view', 'id' => $method->id]);

@@ -6,14 +6,16 @@
  * Time: 12:43
  */
 
-namespace core\entities\Shop;
+namespace core\entities\Shop\PaymentMethod;
 
 
 use core\entities\behaviors\FilledMultilingualBehavior;
+use core\entities\Shop\DeliveryMethod\DeliveryMethod;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use omgdef\multilingual\MultilingualQuery;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
+use core\entities\Shop\Warehouse;
 
 /**
  * Class PaymentMethod
@@ -28,6 +30,8 @@ use yii\db\ActiveRecord;
  * @property string $description
  * @property string $description_ua
  * @property Warehouse $warehouse
+ * @property DeliveryMethod[] $deliveries
+ * @property PaymentToDeliveryAssignments[] $toDeliveryAssignments
  */
 class PaymentMethod extends ActiveRecord
 {
@@ -77,9 +81,63 @@ class PaymentMethod extends ActiveRecord
         return $this->hasOne(Warehouse::class, ['id' => 'warehouse_id']);
     }
 
+    public function getToDeliveryAssignments()
+    {
+        return $this->hasMany(PaymentToDeliveryAssignments::class, ['payment_id' => 'id']);
+    }
+
+    public function getDeliveries()
+    {
+        return $this->hasMany(DeliveryMethod::class, ['id' => 'delivery_id'])->via('toDeliveryAssignments');
+    }
+
+//    private function updateDeliveryAssignments(array $deliveryAssignments): void
+//    {
+//        $this->toDeliveryAssignments = $deliveryAssignments;
+//    }
+
+    public function assignDelivery($id)
+    {
+        $assignments = $this->toDeliveryAssignments;
+        foreach ($assignments as $assignment) {
+            if ($assignment->isForDelivery($id)) {
+                return;
+            }
+        }
+
+        $assignments[] = PaymentToDeliveryAssignments::create($id);
+        $this->toDeliveryAssignments = $assignments;
+    }
+
+    public function revokeDelivery($id): void
+    {
+        $assignments = $this->toDeliveryAssignments;
+        foreach ($assignments as $i => $assignment) {
+            if ($assignment->isForDelivery($id)) {
+                unset($assignments[$i]);
+                $this->toDeliveryAssignments = $assignments;
+                return;
+            }
+        }
+        throw new \DomainException('Assignment is not fount');
+    }
+
+    public function revokeDeliveries(): void
+    {
+        $this->toDeliveryAssignments = [];
+    }
+
+
+
     public function behaviors(): array
     {
         return [
+            [
+                'class' => SaveRelationsBehavior::className(),
+                'relations' => [
+                    'toDeliveryAssignments',
+                ],
+            ],
             'ml' => [
                 'class' => FilledMultilingualBehavior::className(),
                 'defaultLanguage' => 'ru',
@@ -91,6 +149,7 @@ class PaymentMethod extends ActiveRecord
                     'name', 'description'
                 ]
             ],
+
 
         ];
     }

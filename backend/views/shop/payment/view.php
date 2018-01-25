@@ -10,7 +10,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $method core\entities\Shop\PaymentMethod */
+/* @var $method core\entities\Shop\PaymentMethod\PaymentMethod */
 
 $this->title = $method->name;
 $this->params['breadcrumbs'][] = ['label' => 'PaymentMethods', 'url' => ['index']];

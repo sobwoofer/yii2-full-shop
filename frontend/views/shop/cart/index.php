@@ -17,6 +17,9 @@ use core\helpers\PriceHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
+use yii\widgets\Pjax;
+
+$this->registerJsFile('/js/pages/cart.js');
 
 $this->title = 'Shopping Cart';
 $this->params['breadcrumbs'][] = ['label' => 'Catalog', 'url' => ['/shop/catalog/index']];
@@ -413,11 +416,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p class="info"><span class="red">*</span> поля обязательные к заполнению</p>
                     <p class="form-title">Заполните контактные данные</p>
 
-                    <div class="wrp-input">
-                        <p class="wrp-input-title">Способ оплаты</p>
-                        <input type="text" placeholder="Безналичны расчет">
-                        <a href="#/" class="wrp-input_more">подробнее</a>
-                    </div>
+
                     <div class="wrp-input">
                         <p class="wrp-input-title">Способ доставки</p>
                         <?= $form->field($model->delivery, 'method')
@@ -427,6 +426,21 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--                        <input type="text" placeholder="Курьером по Киеву">-->
                         <a href="#/" class="wrp-input_more">подробнее</a>
                     </div>
+            <?php Pjax::begin(['id' => 'deliveryPjaxSection']); ?>
+                <div class="wrp-input">
+                    <p class="wrp-input-title">Способ оплаты</p>
+
+
+
+                    <?= $form->field($model->payment, 'method', ['options' => ['class' => 'field-deliveryform-method']])
+                        ->dropDownList($model->payment->paymentMethodsList(), ['prompt' => '--- Select ---'])
+                        ->label(false) ?>
+
+                    <!--                        <input type="text" placeholder="Безналичны расчет">-->
+                    <a href="#/" class="wrp-input_more">подробнее</a>
+                </div>
+            <?php Pjax::end(); ?>
+
                     <div class="adress-wrp">
                         <input type="text" placeholder="№ офиса" class="pull-left">
                         <input type="text" placeholder="№ этажа" class="pull-right">

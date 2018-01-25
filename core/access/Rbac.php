@@ -23,6 +23,8 @@ class Rbac
     const PERMISSION_FILE_VIEW = 'permFileView';
     const PERMISSION_DELIVERY_VIEW = 'permDeliveryView';
     const PERMISSION_DELIVERY_EDIT = 'permDeliveryEdit';
+    const PERMISSION_PAYMENT_VIEW = 'permPaymentView';
+    const PERMISSION_PAYMENT_EDIT = 'permPaymentEdit';
     const PERMISSION_SHOP_DELIVERY_TERM_VIEW = 'permShopDeliveryTermView';
     const PERMISSION_SHOP_DELIVERY_TERM_EDIT = 'permShopDeliveryTermEdit';
     const PERMISSION_SHOP_EXTRA_STATUS_VIEW = 'permShopExtraStatusView';

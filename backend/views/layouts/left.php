@@ -39,6 +39,7 @@
                         ['label' => 'Characteristics', 'icon' => 'file-o', 'url' => ['/shop/characteristic/index'], 'active' => $this->context->id == 'shop/characteristic'],
                         ['label' => 'Reviews', 'icon' => 'file-o', 'url' => ['/shop/review/index'], 'active' => $this->context->id == 'shop/review'],
                         ['label' => 'Delivery Methods', 'icon' => 'file-o', 'url' => ['/shop/delivery/index'], 'active' => $this->context->id == 'shop/delivery'],
+                        ['label' => 'Payment Methods', 'icon' => 'file-o', 'url' => ['/shop/payment/index'], 'active' => $this->context->id == 'shop/payment'],
                         [
                             'label' => 'Modifications',
                             'items' => [

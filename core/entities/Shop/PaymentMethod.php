@@ -19,6 +19,7 @@ use yii\db\ActiveRecord;
  * Class PaymentMethod
  * @package entities\Shop
  * @property integer $warehouse_id
+ * @property integer $id
  * @property integer $active
  * @property float $max_cost
  * @property float $min_cost

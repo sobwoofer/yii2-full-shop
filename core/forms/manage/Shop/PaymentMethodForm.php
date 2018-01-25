@@ -10,9 +10,11 @@ namespace core\forms\manage\Shop;
 
 
 use core\entities\Shop\PaymentMethod;
+use core\entities\Shop\Warehouse;
 use core\forms\ForMultiLangFormTrait;
 use core\helpers\LangsHelper;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class PaymentMethodForm
@@ -54,11 +56,17 @@ class PaymentMethodForm extends Model
     public function rules(): array
     {
         return [
-            [['minCost', 'maxCost'], 'float'],
-            [['active', 'warehouseId'], 'float'],
+            [['minCost', 'maxCost'], 'string'],
+            [['active', 'warehouseId'], 'string'],
             [LangsHelper::getNamesWithSuffix(['name']), 'required'],
             [LangsHelper::getNamesWithSuffix(['name', 'description']), 'string'],
         ];
+    }
+
+    public function getWarehouseList()
+    {
+        return ArrayHelper::map(Warehouse::find()->joinWith('translation')->orderBy('name')->asArray()->all(), 'id', 'translation.name');
+
     }
 
 }

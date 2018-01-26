@@ -20,7 +20,7 @@ class FileAddToCartForm extends Model
     public function rules()
     {
         return [
-            ['file', 'file', 'extensions' => 'xls, csv']
+            ['file', 'file', 'extensions' => 'xls, xlsx, csv']
         ];
     }
 

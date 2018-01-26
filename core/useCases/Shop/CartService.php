@@ -66,6 +66,7 @@ class CartService
         $result = [];
 
         foreach ($items as $key => $item) {
+
             try {
                 if ($product = $this->products->getByCode($item->code)) {
                     $this->add($product->id, null, $item->quantity);

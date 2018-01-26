@@ -120,7 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php if ($modificationAssignments): ?>
                         <?php foreach ($modificationAssignments as $assignment): ?>
                             <tr class="modification">
-                                <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                                <td><a href="<?= Url::to(['remove-modification', 'id' => $assignment->modification_id, 'item_id' => $item->getId()]) ?>" data-method="post"> <i class="fa fa-times" aria-hidden="true"></i></a></td>
                                 <td><?= Html::encode($assignment->modification->name) ?></td>
                                 <td><?= $assignment->modification->code ?></td>
                                 <td><?= PriceHelper::format($product->getModificationPrice($assignment->modification_id)) ?></td>

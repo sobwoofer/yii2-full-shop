@@ -86,6 +86,19 @@ class Cart
         throw new \DomainException('Item is not found.');
     }
 
+
+    public function removeModification($id, $itemId): void
+    {
+        $this->loadItems();
+        foreach ($this->items as $i => $current) {
+            if ($current->getId() == $itemId && $current->revokeModification($id)) {
+                $this->saveItems();
+                return;
+            }
+        }
+        throw new \DomainException('Modification of item is not found.');
+    }
+
     public function clear(): void
     {
         $this->items = [];

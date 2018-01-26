@@ -211,4 +211,21 @@ class CartController extends Controller
         return $this->redirect(['index']);
     }
 
+
+    /**
+     * @param $id
+     * @param $item_id
+     * @return mixed
+     */
+    public function actionRemoveModification($id, $item_id)
+    {
+        try {
+            $this->service->removeModification($id, $item_id);
+        } catch (\DomainException $e) {
+            Yii::$app->errorHandler->logException($e);
+            Yii::$app->session->setFlash('error', $e->getMessage());
+        }
+        return $this->redirect(['index']);
+    }
+
 }

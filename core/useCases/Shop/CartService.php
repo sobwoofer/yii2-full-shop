@@ -90,6 +90,11 @@ class CartService
         $this->cart->remove($id);
     }
 
+    public function removeModification($id, $itemId): void
+    {
+        $this->cart->removeModification($id, $itemId);
+    }
+
     public function clear(): void
     {
         $this->cart->clear();

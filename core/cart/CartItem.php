@@ -57,9 +57,23 @@ class CartItem
         return $this->product->warehousesProduct->deliveryTerm;
     }
 
+    /**
+     * @return ModificationAssignment[] |null
+     */
     public function getModificationAssignments(): ?array
     {
         return $this->modificationAssignments;
+    }
+
+    public function revokeModification($id): bool
+    {
+        foreach ($this->modificationAssignments as $key => $assignment) {
+            if ($assignment->modification->id == $id) {
+                unset($this->modificationAssignments[$key]);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -90,7 +104,7 @@ class CartItem
 
     /**
      * sum all modification's prices of this item product in cart
-     * @return int
+     * @return float
      */
     public function getModificationsCost(): float
     {

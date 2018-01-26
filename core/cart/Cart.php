@@ -90,8 +90,10 @@ class Cart
     public function removeModification($id, $itemId): void
     {
         $this->loadItems();
+
         foreach ($this->items as $i => $current) {
             if ($current->getId() == $itemId && $current->revokeModification($id)) {
+
                 $this->saveItems();
                 return;
             }

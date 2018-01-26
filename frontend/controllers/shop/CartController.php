@@ -20,10 +20,13 @@ use core\readModels\WarehouseReadRepository;
 use core\services\import\Cart\Reader;
 use core\useCases\Shop\CartService;
 use Yii;
+use yii\filters\ContentNegotiator;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use core\forms\Shop\Order\OrderForm;
+use yii\web\Request;
+use yii\web\Response;
 use yii\web\UploadedFile;
 
 class CartController extends Controller
@@ -63,6 +66,15 @@ class CartController extends Controller
                 'actions' => [
                     'quantity' => ['POST'],
                     'remove' => ['POST'],
+                    'remove-modification' => ['POST'],
+                ],
+            ],
+            'contentNegotiator' => [
+                'class' => ContentNegotiator::className(),
+                'only' => ['add', 'remove', 'quantity', 'remove-modification'],
+                'formatParam' => '_format',
+                'formats' => [
+                    'application/json' => Response::FORMAT_JSON,
                 ],
             ],
         ];
@@ -74,10 +86,7 @@ class CartController extends Controller
      */
     public function actionIndex($delivery_id = null)
     {
-        if (Yii::$app->request->isPjax) {
-            var_dump(Yii::$app->request->get());
-//            die();
-        }
+
         $cart = $this->service->getCart();
         $form = new OrderForm($this->cart->getWeight(), $delivery_id);
         $fileForm = new FileAddToCartForm();
@@ -189,26 +198,29 @@ class CartController extends Controller
     {
         try {
             $this->service->set($id, (int)Yii::$app->request->post('quantity'));
+            return true;
         } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
-        return $this->redirect(['index']);
+        return false;
+//        return $this->redirect(['index']);
     }
 
     /**
      * @param $id
      * @return mixed
      */
-    public function actionRemove($id)
+    public function actionRemove($id): bool
     {
         try {
             $this->service->remove($id);
+            return true;
         } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
-        return $this->redirect(['index']);
+        return false;
     }
 
 
@@ -221,11 +233,13 @@ class CartController extends Controller
     {
         try {
             $this->service->removeModification($id, $item_id);
+            return true;
         } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
-        return $this->redirect(['index']);
+        return false;
+//        return $this->redirect(['index']);
     }
 
 }

@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <button class="custom-btn"><span class="icon"><img src="/images/system/printer.png" alt="">&nbsp;&nbsp;Распечатать</span></button>
             <button class="custom-btn"><span class="icon"><img src="/images/system/download.png" alt="">&nbsp;&nbsp;Скачать</span></button>
         </div>
+    <?php Pjax::begin(['id' => 'cartPjaxSection', 'enablePushState' => true]); ?>
         <?php $cost = $cart->getCost() ?>
         <div class="cart-table-wrp">
             <div class="cart-table-wrp-overflow" style="    overflow-x: auto;">
@@ -55,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     $modificationAssignments = $item->getModificationAssignments();
                     $url = Url::to(['/shop/catalog/product', 'id' => $product->id]);
                     ?>
-                    <tr>
+                    <tr class="cart-item">
                         <td>
                             <input type="checkbox">
                             <a href="<?= $url ?>">
@@ -104,14 +105,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         </td>
                         <td>
-                            <?= Html::beginForm(['quantity', 'id' => $item->getId()]); ?>
-                            <div class="input-group btn-block" style="max-width: 200px;">
-                                <input type="text" name="quantity" value="<?= $item->getQuantity() ?>" size="1" class="form-control" />
-                                <span class="input-group-btn">
-                                    <button type="submit" title="" class="btn btn-primary" data-original-title="Update"><i class="fa fa-refresh"></i></button>
-                                    <a title="Remove" class="btn btn-danger" href="<?= Url::to(['remove', 'id' => $item->getId()]) ?>" data-method="post"><i class="fa fa-times-circle"></i></a>
-                                </span>
-                            </div>
+                            <?= Html::beginForm(['quantity', 'id' => $item->getId()], 'post', ['class' => 'form-inline quantity-form']); ?>
+                                <div class="input-group btn-block" style="max-width: 200px;">
+                                    <?= Html::input('hidden', 'id', $item->getId()) ?>
+                                    <input type="number" name="quantity" value="<?= $item->getQuantity() ?>" size="1" class="form-control" />
+                                    <span class="input-group-btn">
+                                        <button type="submit" title="" class="btn btn-primary" data-original-title="Update"><i class="fa fa-refresh"></i></button>
+                                        <button title="Remove" class="btn btn-danger" onclick="cart.remove('<?= $item->getId(); ?>')"><i class="fa fa-times-circle"></i></button>
+                                    </span>
+                                </div>
                             <?= Html::endForm() ?>
                         </td>
                         <td><?= PriceHelper::format($item->getCostWithDiscount($cost->getDiscountPercent())) ?></td>
@@ -120,7 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php if ($modificationAssignments): ?>
                         <?php foreach ($modificationAssignments as $assignment): ?>
                             <tr class="modification">
-                                <td><a href="<?= Url::to(['remove-modification', 'id' => $assignment->modification_id, 'item_id' => $item->getId()]) ?>" data-method="post"> <i class="fa fa-times" aria-hidden="true"></i></a></td>
+                                <td><span onclick="cart.removeModification('<?= $assignment->modification_id ?>', '<?= $item->getId() ?>')"> <i class="fa fa-times" aria-hidden="true"></i></span></td>
                                 <td><?= Html::encode($assignment->modification->name) ?></td>
                                 <td><?= $assignment->modification->code ?></td>
                                 <td><?= PriceHelper::format($product->getModificationPrice($assignment->modification_id)) ?></td>
@@ -312,7 +314,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p class="text-right"><b>Итого к оплате (включая НДС): <span class="red price"><?= PriceHelper::format($cost->getTotal()) ?></span></b></p>
                 </div>
             </div>
-
+    <?php Pjax::end(); ?>
             <div class="box" style="margin-top: 30px;">
                 <div class="col-sm-6 col-xs-12">
                     <?= Html::beginForm(['/shop/cart/fast-add'], 'post') ?>

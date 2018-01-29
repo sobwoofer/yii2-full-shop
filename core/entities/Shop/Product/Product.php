@@ -308,6 +308,7 @@ class Product extends ActiveRecord implements AggregateRoot
     public function getModificationAssign($id): ModificationAssignment
     {
         foreach ($this->modificationAssignments as $assignment) {
+
             if ($assignment->isForModification($id)) {
                 return $assignment;
             }

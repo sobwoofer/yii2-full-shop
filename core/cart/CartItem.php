@@ -14,6 +14,7 @@ use core\entities\Shop\Order\ModificationWrapper;
 use core\entities\Shop\Product\Modification;
 use core\entities\Shop\Product\ModificationAssignment;
 use core\entities\Shop\Product\Product;
+use yii\web\ForbiddenHttpException;
 
 /**
  * Class CartItem
@@ -39,7 +40,13 @@ class CartItem
 
     public function getId(): string
     {
-        return md5(serialize([$this->product->id, $this->product->code]));
+        $modificationSalt = '';
+        if ($this->getModifications()) {
+            foreach ($this->getModifications() as $modification) {
+                $modificationSalt .= $modification->id;
+            }
+        }
+        return md5(serialize([$this->product->id, $this->product->code]) . $modificationSalt);
     }
 
     public function getProductId(): int
@@ -82,6 +89,7 @@ class CartItem
     public function getModifications(): array
     {
         if ($modificationAssignments = $this->modificationAssignments){
+
             foreach ($this->modificationAssignments as $assignment) {
                 $modifications[] = $assignment->modification;
             }

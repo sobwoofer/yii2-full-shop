@@ -43,14 +43,17 @@ class CartService
 
         if ($modifications) {
             foreach ($modifications as $id) {
+                if (!$id) {
+                    continue;
+                }
                 $assignment = $product->getModificationAssign($id);
+
                 if (!$assignment->isActive()) {
                     break;
                 }
                 $modificationAssignments[] = $assignment;
             }
         }
-
         $this->cart->add(new CartItem($product, $modificationAssignments ?? null, $quantity));
     }
 

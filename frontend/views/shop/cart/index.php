@@ -34,9 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <button class="custom-btn"><span class="icon"><img src="/images/system/printer.png" alt="">&nbsp;&nbsp;Распечатать</span></button>
             <button class="custom-btn"><span class="icon"><img src="/images/system/download.png" alt="">&nbsp;&nbsp;Скачать</span></button>
         </div>
-    <?php Pjax::begin(['id' => 'cartPjaxSection', 'enablePushState' => true]); ?>
-        <?php $cost = $cart->getCost() ?>
+
         <div class="cart-table-wrp">
+            <?php Pjax::begin(['id' => 'cartPjaxSection', 'enablePushState' => true]); ?>
+            <?php $cost = $cart->getCost() ?>
             <div class="cart-table-wrp-overflow" style="    overflow-x: auto;">
             <table>
                 <tr>
@@ -314,7 +315,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p class="text-right"><b>Итого к оплате (включая НДС): <span class="red price"><?= PriceHelper::format($cost->getTotal()) ?></span></b></p>
                 </div>
             </div>
-    <?php Pjax::end(); ?>
+            <?php Pjax::end(); ?>
             <div class="box" style="margin-top: 30px;">
                 <div class="col-sm-6 col-xs-12">
                     <?= Html::beginForm(['/shop/cart/fast-add'], 'post') ?>
@@ -342,6 +343,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="hidden visible-xs clearfix">
                     <br>
                 </div>
+
                 <div class="col-sm-6 col-xs-12">
 
 
@@ -391,6 +393,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                 </div>
             </div>
+
+
             <div class="col-sm-10 col-sm-offset-1 box checkout ">
                 <?php $form = ActiveForm::begin(['action' => '/shop/checkout']) ?>
                     <p class="form-title">Заполните контактные данные</p>
@@ -428,7 +432,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--                        <input type="text" placeholder="Курьером по Киеву">-->
                         <a href="#/" class="wrp-input_more">подробнее</a>
                     </div>
-            <?php Pjax::begin(['id' => 'deliveryPjaxSection']); ?>
+<!--            --><?php //Pjax::begin(['id' => 'deliveryPjaxSection']); ?>
                 <div class="wrp-input">
                     <p class="wrp-input-title">Способ оплаты</p>
 
@@ -441,7 +445,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <!--                        <input type="text" placeholder="Безналичны расчет">-->
                     <a href="#/" class="wrp-input_more">подробнее</a>
                 </div>
-            <?php Pjax::end(); ?>
+<!--            --><?php //Pjax::end(); ?>
 
                     <div class="adress-wrp">
                         <input type="text" placeholder="№ офиса" class="pull-left">

@@ -14,29 +14,16 @@
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 use core\entities\User\User;
+use core\helpers\UserHelper;
 
 ?>
 
 
-<?php
-
-switch ($model->getUser()->type ?? null) {
-    case User::TYPE_INDIVIDUAL : $customerFormName = 'customer-form';
-        break;
-    case User::TYPE_COMPANY : $customerFormName = 'company-form';
-        break;
-    case User::TYPE_ADMIN : $customerFormName = 'simple-form';
-        break;
-    default : $customerFormName = 'customer-form';
-} ?>
-
 <?php $form = ActiveForm::begin(['action' => '/shop/checkout']) ?>
-
-
 
     <p class="form-title">Заполните контактные данные</p>
 
-<?= $this->render('_customer-forms/' . $customerFormName, ['form' => $form, 'model' => $model]) ?>
+<?= $this->render('_customer-forms/' . UserHelper::getOrderFormOfUserType(), ['form' => $form, 'model' => $model]) ?>
 
 
 <?= $form->field($model, 'note')->textarea([

@@ -5,6 +5,7 @@ namespace core\helpers;
 use core\entities\User\User;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use Yii;
 
 class UserHelper
 {
@@ -36,5 +37,19 @@ class UserHelper
         return Html::tag('span', ArrayHelper::getValue(self::statusList(), $status), [
                 'class' => $class,
             ]);
+    }
+
+    public static function getOrderFormOfUserType(): string
+    {
+            switch (User::findOne(Yii::$app->user->id)->type ?? null) {
+                case User::TYPE_INDIVIDUAL : $customerFormName = 'customer-form';
+                    break;
+                case User::TYPE_COMPANY : $customerFormName = 'company-form';
+                    break;
+                case User::TYPE_ADMIN : $customerFormName = 'simple-form';
+                    break;
+                default : $customerFormName = 'customer-form';
+            }
+        return $customerFormName;
     }
 }

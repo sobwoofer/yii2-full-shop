@@ -394,68 +394,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
 
-
             <div class="col-sm-10 col-sm-offset-1 box checkout ">
-                <?php $form = ActiveForm::begin(['action' => '/shop/checkout']) ?>
-                    <p class="form-title">Заполните контактные данные</p>
-                <?= $form->field($model->customer, 'name')->textInput([
-                        'placeholder' => 'First and Last Name'])->label(false) ?>
-                <?= $form->field($model->delivery, 'address')->textarea([
-                        'rows' => 3,
-                        'placeholder' => 'Address'])->label(false) ?>
-                <?= $form->field($model->customer, 'phone')->textInput([
-                    'placeholder' => 'Phone number'])->label(false) ?>
-                <?= $form->field($model->delivery, 'index')->textInput([
-                        'placeholder' => 'post index'
-                ])->label(false) ?>
+
+                <?= $this->render('_order-form', ['model' => $model]); ?>
 
 
-
-<!--TODO need add all under fields-->
-<!--                    <input type="text" placeholder="Эл. почта *">-->
-
-                <?= $form->field($model, 'note')->textarea([
-                    'rows' => 3,
-                    'cols' => 30,
-                    'placeholder' => 'Comment for order'])->label(false) ?>
-
-                    <p class="info"><span class="red">*</span> поля обязательные к заполнению</p>
-                    <p class="form-title">Заполните контактные данные</p>
-
-
-                    <div class="wrp-input">
-                        <p class="wrp-input-title">Способ доставки</p>
-                        <?= $form->field($model->delivery, 'method')
-                            ->dropDownList($model->delivery->deliveryMethodsList(), ['prompt' => '--- Select ---'])
-                            ->label(false) ?>
-
-<!--                        <input type="text" placeholder="Курьером по Киеву">-->
-                        <a href="#/" class="wrp-input_more">подробнее</a>
-                    </div>
-<!--            --><?php //Pjax::begin(['id' => 'deliveryPjaxSection']); ?>
-                <div class="wrp-input">
-                    <p class="wrp-input-title">Способ оплаты</p>
-
-
-
-                    <?= $form->field($model->payment, 'method', ['options' => ['class' => 'field-deliveryform-method']])
-                        ->dropDownList($model->payment->paymentMethodsList(), ['prompt' => '--- Select ---'])
-                        ->label(false) ?>
-
-                    <!--                        <input type="text" placeholder="Безналичны расчет">-->
-                    <a href="#/" class="wrp-input_more">подробнее</a>
-                </div>
-<!--            --><?php //Pjax::end(); ?>
-
-                    <div class="adress-wrp">
-                        <input type="text" placeholder="№ офиса" class="pull-left">
-                        <input type="text" placeholder="№ этажа" class="pull-right">
-                        <div class="clearfix"></div>
-                    </div>
-                    <?php if ($cart->getItems()): ?>
-                        <input type="submit" value="Оформить заказ" href="index.php?route=checkout/checkout" class="btn uppercase">
-                    <?php endif; ?>
-                <?php ActiveForm::end() ?>
             </div>
         </div>
     </div>

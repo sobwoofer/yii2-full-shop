@@ -9,7 +9,6 @@
 namespace core\entities\User;
 
 
-use core\entities\User\queries\UserQuery;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -24,16 +23,11 @@ use yii\db\ActiveRecord;
  * @property string $username
  * @property User $user
  */
-class UserIndividual extends User
+class UserIndividual extends ActiveRecord
 {
     const TYPE = 2;
 
-    public $first_name;
-    public $last_name;
-    public $address;
-    public $user_id;
     public $type;
-
 
     public function init()
     {
@@ -51,21 +45,6 @@ class UserIndividual extends User
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
-
-
-
-//    public static function instantiate($row)
-//    {
-//        var_dump($row);
-//        die();
-//    }
-
-
-//    public static function find(): ActiveQuery
-//    {
-//        return new UserQuery(get_called_class(), ['type' => self::TYPE, 'tableName' => self::tableName()]);
-//    }
-
 
 
     public static function tableName(): string

@@ -61,7 +61,7 @@ class OrderService
             return OrderItem::create(
                 $product,
                 $item->getModificationsPrepared(),
-                $item->getPriceWithoutAnyDiscount($this->cart->getCost()->getDiscountPercent()),
+                $item->getPriceWithoutAnyDiscount(),
                 $item->getPriceWithDiscount($this->cart->getCost()->getDiscountPercent()),
                 $item->getQuantity()
             );

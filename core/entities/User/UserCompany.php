@@ -25,24 +25,11 @@ use yii\db\ActiveRecord;
  * @property string $address
  * @property User $user
  */
-class UserCompany extends User
+class UserCompany extends ActiveRecord
 {
     const TYPE = 3;
 
     public $type;
-
-
-//    public static function create($companyName, $companyTaxCode, $firstName, $lastName, $address): self
-//    {
-//        $company = new static();
-//        $company->company_name = $companyName;
-//        $company->company_tax_code = $companyTaxCode;
-//        $company->first_name = $firstName;
-//        $company->last_name = $lastName;
-//        $company->address = $address;
-//
-//        return $company;
-//    }
 
     public function init()
     {
@@ -61,20 +48,6 @@ class UserCompany extends User
         return parent::beforeSave($insert);
     }
 
-    public static function find()
-    {
-        return new UserQuery(get_called_class(), ['type' => self::TYPE, 'tableName' => self::tableName()]);
-    }
-
-//    public function behaviors()
-//    {
-//        return [
-//            [
-//                'class' => SaveRelationsBehavior::className(),
-//                'relations' => ['user'],
-//            ],
-//        ];
-//    }
 
     public static function tableName(): string
     {

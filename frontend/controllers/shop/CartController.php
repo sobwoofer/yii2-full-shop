@@ -10,6 +10,7 @@ namespace frontend\controllers\shop;
 
 use core\cart\Cart;
 use core\entities\User\User;
+use core\entities\User\UserIndividual;
 use core\forms\Shop\Cart\AddToCartForm;
 use core\forms\Shop\Cart\FastAddToCartForm;
 use core\forms\Shop\Cart\FileAddToCartForm;
@@ -86,24 +87,9 @@ class CartController extends Controller
      */
     public function actionIndex($delivery_id = null)
     {
-
         $cart = $this->service->getCart();
-        $form = new OrderForm($this->cart->getWeight(), $delivery_id);
         $fileForm = new FileAddToCartForm();
-
-//        $user = $this->users->find(Yii::$app->getUser()->getId());
-
-//        if ($user->type) {
-//
-//        }
-//        var_dump(Yii::$app->getUser());
-//        var_dump($user);
-//        $one = User::find()->andWhere(['id' => Yii::$app->getUser()->getId()])->one();
-
-//        $two = User::findAll([]);
-
-//        var_dump($one);
-
+        $form = new OrderForm($this->cart->getWeight(), $delivery_id);
         return $this->render('index', [
             'cart' => $cart,
             'model' => $form,
@@ -165,6 +151,7 @@ class CartController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
         $this->layout = 'blank';
+
 
         $form = new AddToCartForm($product);
 

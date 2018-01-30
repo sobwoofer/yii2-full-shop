@@ -20,6 +20,7 @@ use core\readModels\UserReadRepository;
 use core\readModels\WarehouseReadRepository;
 use core\services\import\Cart\Reader;
 use core\useCases\Shop\CartService;
+use core\useCases\Shop\OrderService;
 use Yii;
 use yii\filters\ContentNegotiator;
 use yii\filters\VerbFilter;
@@ -36,6 +37,7 @@ class CartController extends Controller
 
     private $products;
     private $service;
+    private $orderService;
     private $warehouses;
     private $users;
     private $cart;
@@ -44,6 +46,7 @@ class CartController extends Controller
         $id,
         $module,
         CartService $service,
+        OrderService $orderService,
         Cart $cart,
         ProductReadRepository $products,
         WarehouseReadRepository $warehouses,
@@ -54,6 +57,7 @@ class CartController extends Controller
         parent::__construct($id, $module, $config);
         $this->products = $products;
         $this->service = $service;
+        $this->orderService = $orderService;
         $this->warehouses = $warehouses;
         $this->users = $users;
         $this->cart = $cart;
@@ -90,6 +94,19 @@ class CartController extends Controller
         $cart = $this->service->getCart();
         $fileForm = new FileAddToCartForm();
         $form = new OrderForm($this->cart->getWeight(), $delivery_id);
+
+
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try {
+                $order = $this->orderService->checkout(Yii::$app->user->id, $form);
+
+                return $this->redirect(['/shop/cart/order-success', 'order_id' => $order->id]);
+            } catch (\DomainException $e) {
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
+        }
+
         return $this->render('index', [
             'cart' => $cart,
             'model' => $form,
@@ -97,6 +114,11 @@ class CartController extends Controller
             'warehouseCurrent' => $this->warehouses->find(LocationHelper::getWarehouseId()),
             'warehouseDefault' => $this->warehouses->findDefault()
         ]);
+    }
+
+    public function actionOrderSuccess($order_id)
+    {
+        return $this->render('order-success', ['orderId' => $order_id]);
     }
 
     public function actionFileAdd()

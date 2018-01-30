@@ -13,6 +13,7 @@ use core\entities\Shop\Product\Product;
 use Yii;
 use yii\helpers\Json;
 use yii\web\Cookie;
+use yii\helpers\ArrayHelper;
 
 class CookieStorage implements StorageInterface
 {
@@ -32,7 +33,9 @@ class CookieStorage implements StorageInterface
             return array_filter(array_map(function (array $row) {
                 if (isset($row['p'], $row['q']) && $product = Product::find()->active()->andWhere(['id' => $row['p']])->one()) {
                     /** @var Product $product */
-                    return new CartItem($product, $row['m'] ?? null, $row['q']);
+                    return new CartItem($product, array_map(function($modificationId) use ($product){
+                            return $product->getModificationAssign($modificationId);
+                        }, Json::decode($row['m'])) ?? null, $row['q']);
                 }
                 return false;
             }, Json::decode($cookie->value)));
@@ -47,7 +50,7 @@ class CookieStorage implements StorageInterface
             'value' => Json::encode(array_map(function (CartItem $item) {
                 return [
                     'p' => $item->getProductId(),
-                    'm' => $item->getModificationId(),
+                    'm' => Json::encode(ArrayHelper::getColumn($item->getModifications(), 'id')),
                     'q' => $item->getQuantity(),
                 ];
             }, $items)),

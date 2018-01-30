@@ -13,16 +13,23 @@ use core\entities\Shop\Order\DeliveryData;
 use core\forms\manage\Shop\Order\OrderEditForm;
 use core\repositories\Shop\DeliveryMethodRepository;
 use core\repositories\Shop\OrderRepository;
+use core\repositories\Shop\PaymentMethodRepository;
 
 class OrderManageService
 {
     private $orders;
     private $deliveryMethods;
+    private $paymentMethods;
 
-    public function __construct(OrderRepository $orders, DeliveryMethodRepository $deliveryMethods)
+    public function __construct(
+        OrderRepository $orders,
+        DeliveryMethodRepository $deliveryMethods,
+        PaymentMethodRepository $paymentMethods
+    )
     {
         $this->orders = $orders;
         $this->deliveryMethods = $deliveryMethods;
+        $this->paymentMethods = $paymentMethods;
     }
 
     public function edit($id, OrderEditForm $form): void
@@ -31,8 +38,10 @@ class OrderManageService
 
         $order->edit(
             new CustomerData(
-                $form->customer->phone,
-                $form->customer->name
+                $form->customer->firstName,
+                $form->customer->lastName,
+                $form->customer->email,
+                $form->customer->phone
             ),
             $form->note
         );
@@ -40,9 +49,12 @@ class OrderManageService
         $order->setDeliveryInfo(
             $this->deliveryMethods->get($form->delivery->method),
             new DeliveryData(
-                $form->delivery->index,
                 $form->delivery->address
             )
+        );
+
+        $order->setPaymentInfo(
+            $this->paymentMethods->get($form->payment->method)
         );
 
         $this->orders->save($order);

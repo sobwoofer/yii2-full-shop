@@ -16,8 +16,6 @@ use yii\helpers\ArrayHelper;
 class DeliveryForm extends Model
 {
     public $method;
-    public $index;
-    public $address;
 
     private $_weight;
 
@@ -31,9 +29,6 @@ class DeliveryForm extends Model
     {
         return [
             [['method'], 'integer'],
-            [['index', 'address'], 'required'],
-            [['index'], 'string', 'max' => 255],
-            [['address'], 'string'],
         ];
     }
 

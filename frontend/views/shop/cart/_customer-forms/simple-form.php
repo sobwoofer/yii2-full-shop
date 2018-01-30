@@ -14,7 +14,7 @@
 
 ?>
 
-<?= $form->field($model->customer, 'username')->textInput([
+<?= $form->field($model->customer, 'firstName')->textInput([
     'placeholder' => 'First Name'])->label(false) ?>
 
 <?= $form->field($model->customer, 'email')->textInput([

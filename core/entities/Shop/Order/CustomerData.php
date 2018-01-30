@@ -10,12 +10,16 @@ namespace core\entities\Shop\Order;
 
 class CustomerData
 {
+    public $firstName;
+    public $lastName;
+    public $email;
     public $phone;
-    public $name;
 
-    public function __construct($phone, $name)
+    public function __construct($firstName, $lastName, $email, $phone)
     {
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->email = $email;
         $this->phone = $phone;
-        $this->name = $name;
     }
 }

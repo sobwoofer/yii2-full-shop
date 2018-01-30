@@ -20,7 +20,7 @@ use core\entities\Shop\Order\ModificationWrapper;
  * @property int $id
  * @property int $order_id
  * @property int $product_id
- * @property array $modifications
+ * @property ModificationWrapper[] $modifications
  * @property string $product_name
  * @property string $product_code
  * @property float $price
@@ -58,7 +58,21 @@ class OrderItem extends ActiveRecord
         return $this->price * $this->quantity;
     }
 
+    public function getFullCost(): int
+    {
+        return $this->price * $this->quantity + $this->getModificationCost();
+    }
 
+    public function getModificationCost()
+    {
+        $cost = 0;
+        if ($this->modifications) {
+            foreach ($this->modifications as $modification) {
+                $cost += $modification->cost;
+            }
+        }
+        return $cost;
+    }
 
     public function getProduct(): ActiveQuery
     {

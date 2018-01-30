@@ -19,8 +19,6 @@ class CustomerCompanyForm extends Model
     public $email;
     public $address;
     public $phone;
-    public $companyName;
-    public $companyTaxCode;
 
     public function __construct(User $user, array $config = [])
     {
@@ -29,8 +27,6 @@ class CustomerCompanyForm extends Model
             $this->lastName = $user->userCompany->last_name;
             $this->email = $user->email;
             $this->address = $user->userCompany->address;
-            $this->companyName = $user->userCompany->company_name;
-            $this->companyTaxCode = $user->userCompany->company_tax_code;
             $this->phone = $user->phone;
         }
         parent::__construct($config);
@@ -39,9 +35,9 @@ class CustomerCompanyForm extends Model
     public function rules(): array
     {
         return [
-            [['firstName', 'phone', 'lastName', 'email', 'address', 'companyName', 'companyTaxCode'], 'required'],
+            [['firstName', 'phone', 'lastName', 'email', 'address',], 'required'],
             ['email', 'email'],
-            [['phone', 'firstName', 'address', 'lastName', 'companyName', 'companyTaxCode'], 'string', 'max' => 255],
+            [['phone', 'firstName', 'address', 'lastName',], 'string', 'max' => 255],
         ];
     }
 

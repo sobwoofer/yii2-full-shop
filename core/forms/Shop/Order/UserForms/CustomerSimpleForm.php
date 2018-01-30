@@ -14,15 +14,19 @@ use yii\base\Model;
 
 class CustomerSimpleForm extends Model
 {
-    public $name;
+    public $firstName;
+    public $lastName;
     public $email;
+    public $address;
     public $phone;
 
     public function __construct(User $user, array $config = [])
     {
         if ($user) {
-            $this->name = $user->username;
+            $this->firstName = $user->username;
+            $this->lastName = null;
             $this->email = $user->email;
+            $this->address = null;
             $this->phone = $user->phone;
         }
         parent::__construct($config);
@@ -32,7 +36,7 @@ class CustomerSimpleForm extends Model
     public function rules(): array
     {
         return [
-            [['name', 'phone', 'email'], 'required'],
+            [['firstName', 'phone', 'email'], 'required'],
             ['email', 'email'],
             [['name', 'phone'], 'string', 'max' => 255],
         ];

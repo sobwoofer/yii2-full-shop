@@ -19,7 +19,7 @@ use core\helpers\UserHelper;
 ?>
 
 
-<?php $form = ActiveForm::begin(['action' => '/shop/checkout']) ?>
+<?php $form = ActiveForm::begin() ?>
 
     <p class="form-title">Заполните контактные данные</p>
 
@@ -47,8 +47,6 @@ use core\helpers\UserHelper;
 <?php Pjax::begin(['id' => 'deliveryPjaxSection']); ?>
     <div class="wrp-input">
         <p class="wrp-input-title">Способ оплаты</p>
-
-
 
         <?= $form->field($model->payment, 'method', ['options' => ['class' => 'field-deliveryform-method']])
             ->dropDownList($model->payment->paymentMethodsList(), ['prompt' => '--- Select ---'])

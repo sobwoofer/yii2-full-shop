@@ -61,6 +61,6 @@ class OrderForm extends CompositeForm
 
     protected function internalForms(): array
     {
-        return ['delivery', 'customer'];
+        return ['delivery', 'customer', 'payment'];
     }
 }

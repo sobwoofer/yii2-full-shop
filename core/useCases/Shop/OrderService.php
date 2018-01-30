@@ -17,6 +17,7 @@ use core\entities\Shop\Order\OrderItem;
 use core\forms\Shop\Order\OrderForm;
 use core\repositories\Shop\DeliveryMethodRepository;
 use core\repositories\Shop\OrderRepository;
+use core\repositories\Shop\PaymentMethodRepository;
 use core\repositories\Shop\ProductRepository;
 use core\repositories\UserRepository;
 use core\services\TransactionManager;
@@ -28,6 +29,7 @@ class OrderService
     private $products;
     private $users;
     private $deliveryMethods;
+    private $paymentMethods;
     private $transaction;
 
     public function __construct(
@@ -36,6 +38,7 @@ class OrderService
         ProductRepository $products,
         UserRepository $users,
         DeliveryMethodRepository $deliveryMethods,
+        PaymentMethodRepository $paymentMethods,
         TransactionManager $transaction
     )
     {
@@ -44,13 +47,18 @@ class OrderService
         $this->products = $products;
         $this->users = $users;
         $this->deliveryMethods = $deliveryMethods;
+        $this->paymentMethods = $paymentMethods;
         $this->transaction = $transaction;
     }
 
-    //TODO need add checkoutGuest method for not authorization users.
+    /**
+     * @param $userId
+     * @param OrderForm $form
+     * @return Order
+     */
     public function checkout($userId, OrderForm $form): Order
     {
-        $user = $this->users->get($userId);
+        $userId = $userId ? $this->users->get($userId) : null;
 
         $products = [];
 
@@ -68,10 +76,12 @@ class OrderService
         }, $this->cart->getItems());
 
         $order = Order::create(
-            $user->id,
+            $userId,
             new CustomerData(
-                $form->customer->phone,
-                $form->customer->name
+                $form->customer->firstName,
+                $form->customer->lastName,
+                $form->customer->email,
+                $form->customer->phone
             ),
             $items,
             $this->cart->getCost()->getTotal(),
@@ -81,9 +91,12 @@ class OrderService
         $order->setDeliveryInfo(
             $this->deliveryMethods->get($form->delivery->method),
             new DeliveryData(
-                $form->delivery->index,
-                $form->delivery->address
+                $form->customer->address
             )
+        );
+
+        $order->setPaymentInfo(
+            $this->paymentMethods->get($form->payment->method)
         );
 
         $this->transaction->wrap(function () use ($order, $products) {

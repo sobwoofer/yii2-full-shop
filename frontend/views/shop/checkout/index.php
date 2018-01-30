@@ -89,8 +89,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel panel-default">
         <div class="panel-heading">Customer</div>
         <div class="panel-body">
-            <?= $form->field($model->customer, 'name')->textInput() ?>
-            <?= $form->field($model->customer, 'phone')->textInput() ?>
+            <?= $form->field($model->customer, 'firstName')->textInput([
+                'placeholder' => 'First Name'])->label(false) ?>
+
+            <?= $form->field($model->customer, 'lastName')->textInput([
+                'placeholder' => 'Last Name'])->label(false) ?>
+
+            <?= $form->field($model->customer, 'email')->textInput([
+                'placeholder' => 'Email'])->label(false) ?>
+
+            <?= $form->field($model->customer, 'address')->textInput([
+                'placeholder' => 'Address'])->label(false) ?>
+
+            <?= $form->field($model->customer, 'phone')->textInput([
+                'placeholder' => 'Phone number'])->label(false) ?>
         </div>
     </div>
 
@@ -98,8 +110,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel-heading">Delivery</div>
         <div class="panel-body">
             <?= $form->field($model->delivery, 'method')->dropDownList($model->delivery->deliveryMethodsList(), ['prompt' => '--- Select ---']) ?>
-            <?= $form->field($model->delivery, 'index')->textInput() ?>
-            <?= $form->field($model->delivery, 'address')->textarea(['rows' => 3]) ?>
         </div>
     </div>
 

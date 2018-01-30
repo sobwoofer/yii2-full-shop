@@ -14,20 +14,25 @@ use yii\base\Model;
 class CustomerForm extends Model
 {
     public $phone;
-    public $name;
+    public $email;
+    public $firstName;
+    public $lastName;
 
     public function __construct(Order $order, array $config = [])
     {
         $this->phone = $order->customerData->phone;
-        $this->name = $order->customerData->name;
+        $this->firstName = $order->customerData->firstName;
+        $this->lastName = $order->customerData->lastName;
+        $this->email = $order->customerData->email;
         parent::__construct($config);
     }
 
     public function rules(): array
     {
         return [
-            [['phone', 'name'], 'required'],
-            [['phone', 'name'], 'string', 'max' => 255],
+            [['phone', 'firstName', 'email'], 'required'],
+            ['email', 'email'],
+            [['phone', 'firstName', 'lastName'], 'string', 'max' => 255],
         ];
     }
 }

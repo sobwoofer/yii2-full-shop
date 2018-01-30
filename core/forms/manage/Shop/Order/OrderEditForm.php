@@ -15,6 +15,7 @@ use core\forms\CompositeForm;
 /**
  * @property DeliveryForm $delivery
  * @property CustomerForm $customer
+ * @property PaymentForm $payment
  */
 class OrderEditForm extends CompositeForm
 {
@@ -23,8 +24,9 @@ class OrderEditForm extends CompositeForm
     public function __construct(Order $order, array $config = [])
     {
         $this->note = $order->note;
-        $this->delivery = new DeliveryForm($order);
         $this->customer = new CustomerForm($order);
+        $this->delivery = new DeliveryForm($order);
+        $this->payment = new PaymentForm($order);
         parent::__construct($config);
     }
 
@@ -37,6 +39,6 @@ class OrderEditForm extends CompositeForm
 
     protected function internalForms(): array
     {
-        return ['delivery', 'customer'];
+        return ['delivery', 'customer', 'payment'];
     }
 }

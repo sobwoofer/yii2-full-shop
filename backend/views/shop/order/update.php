@@ -25,8 +25,10 @@ $this->params['breadcrumbs'][] = 'Update';
     <div class="box box-default">
         <div class="box-header with-border">Customer</div>
         <div class="box-body">
+            <?= $form->field($model->customer, 'firstName')->textInput() ?>
+            <?= $form->field($model->customer, 'lastName')->textInput() ?>
             <?= $form->field($model->customer, 'phone')->textInput() ?>
-            <?= $form->field($model->customer, 'name')->textInput() ?>
+            <?= $form->field($model->customer, 'email')->textInput() ?>
         </div>
     </div>
 
@@ -34,8 +36,14 @@ $this->params['breadcrumbs'][] = 'Update';
         <div class="box-header with-border">Delivery</div>
         <div class="box-body">
             <?= $form->field($model->delivery, 'method')->dropDownList($model->delivery->deliveryMethodsList(), ['prompt' => '--- Select ---']) ?>
-            <?= $form->field($model->delivery, 'index')->textInput() ?>
             <?= $form->field($model->delivery, 'address')->textarea(['rows' => 3]) ?>
+        </div>
+    </div>
+
+    <div class="box box-default">
+        <div class="box-header with-border">Payment</div>
+        <div class="box-body">
+            <?= $form->field($model->payment, 'method')->dropDownList($model->payment->paymentMethodsList(), ['prompt' => '--- Select ---']) ?>
         </div>
     </div>
 

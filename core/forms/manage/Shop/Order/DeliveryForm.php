@@ -17,7 +17,6 @@ use yii\helpers\ArrayHelper;
 class DeliveryForm extends Model
 {
     public $method;
-    public $index;
     public $address;
 
     private $_order;
@@ -25,7 +24,6 @@ class DeliveryForm extends Model
     public function __construct(Order $order, array $config = [])
     {
         $this->method = $order->delivery_method_id;
-        $this->index = $order->deliveryData->index;
         $this->address = $order->deliveryData->address;
         parent::__construct($config);
     }
@@ -34,8 +32,7 @@ class DeliveryForm extends Model
     {
         return [
             [['method'], 'integer'],
-            [['index', 'address'], 'required'],
-            [['index'], 'string', 'max' => 255],
+            [['address'], 'required'],
             [['address'], 'string'],
         ];
     }

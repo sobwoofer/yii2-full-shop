@@ -10,6 +10,7 @@ use core\helpers\OrderHelper;
 use core\helpers\PriceHelper;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use core\entities\Shop\Order\Order;
 
 /* @var $this yii\web\View */
 /* @var $order core\entities\Shop\Order\Order */
@@ -45,9 +46,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     'user_id',
                     'delivery_method_name',
-                    'deliveryData.index',
                     'deliveryData.address',
-                    'cost',
+                    [
+                        'attribute' => 'Cost',
+                        'value' => PriceHelper::format($order->cost)
+                    ],
+                    [
+                        'attribute' => 'Delivery cost',
+                        'value' => PriceHelper::format($order->delivery_cost)
+                    ],
+                    [
+                        'attribute' => 'Total',
+                        'value' => PriceHelper::format($order->getTotalCost())
+                    ],
                     'note:ntext',
                 ],
             ]) ?>
@@ -61,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <thead>
                     <tr>
                         <th class="text-left">Product Name</th>
-                        <th class="text-left">Model</th>
+                        <th class="text-left">Modifications</th>
                         <th class="text-left">Quantity</th>
                         <th class="text-right">Unit Price</th>
                         <th class="text-right">Total</th>
@@ -75,14 +86,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= Html::encode($item->product_name) ?>
                             </td>
                             <td class="text-left">
-                                <?= Html::encode($item->modification_code) ?><br />
-                                <?= Html::encode($item->modification_name) ?>
+                                <?php foreach ($item->modifications as $modification): ?>
+                                    <?= Html::encode($modification->name) ?>(<?= PriceHelper::format($modification->price) ?>)
+                                <?php endforeach; ?>
+                                <br />
                             </td>
                             <td class="text-left">
                                 <?= $item->quantity ?>
                             </td>
                             <td class="text-right"><?= PriceHelper::format($item->price) ?></td>
-                            <td class="text-right"><?= PriceHelper::format($item->getCost()) ?></td>
+                            <td class="text-right"><?= PriceHelper::format($item->getFullCost()) ?></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
